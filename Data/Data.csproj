@@ -2,10 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>MaskShop.Data</AssemblyName>
+    <RootNamespace>MaskShop.Data</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="NewFolder\" />
+    <Folder Include="Objects\" />
+    <Folder Include="Shipments\" />
+    <Folder Include="Products\" />
+    <Folder Include="Parties\" />
+    <Folder Include="Orders\" />
   </ItemGroup>
 
 </Project>
