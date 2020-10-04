@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Aids.Enums
+namespace MaskShop.Data.Parties
 {
-    public enum PartyType
+    public enum PartyTypeData
     {
         Unspecified = 0,
         Person = 1,

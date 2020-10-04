@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MaskShop.Data.Parties
 {
-    public enum ContactMechanismType
+    public enum ContactMechanismTypeData
     {
         Unspecified = 0,
         PostalAddress = 1,

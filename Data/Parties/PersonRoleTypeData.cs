@@ -4,7 +4,8 @@ using System.Text;
 
 namespace MaskShop.Data.Parties
 {
-    class PartyRoleType
+    public abstract class PersonRoleTypeData : PartyRoleTypeData
     {
+       
     }
 }

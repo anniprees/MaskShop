@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MaskShop.Data.Shipments.ShipmentData" Collapsed="true">
+    <Position X="1.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAEAAAAEIAAAAAAIAAAAAA=</HashCode>
+      <FileName>Shipments\ShipmentData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MaskShop.Data.Shipments.ShipmentItemData" Collapsed="true">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAgAAAAAA=</HashCode>
+      <FileName>Shipments\ShipmentItemData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MaskShop.Data.Shipments.ShipmentStatusData" Collapsed="true">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Shipments\ShipmentStatusData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data.Common.UniqueEntityData" Collapsed="true">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\UniqueEntityData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="MaskShop.Data.Shipments.ShipmentStatusTypeData">
+    <Position X="5.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAgAgAAAAAAAAEIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Shipments\ShipmentStatusTypeData.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -3,10 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MaskShop.Data.Parties
+namespace MaskShop.Data.Products
 {
-    public sealed class PartyRoleData : PartyAttributeData
+    public abstract class ProductFeatureData : DefinedEntityData
     {
-
     }
 }

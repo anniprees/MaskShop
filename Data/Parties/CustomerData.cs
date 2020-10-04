@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MaskShop.Data.Parties
 {
-    class ConsumerRoleType
+    public sealed class CustomerData : ConsumerRoleTypeData
     {
     }
 }

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Data.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MaskShop.Data.Parties
 {
-    class PartyRelationshipData
+    public sealed class PartyRelationshipData : PeriodData
     {
     }
 }

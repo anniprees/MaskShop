@@ -1,12 +1,10 @@
-﻿using Data.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MaskShop.Data.Parties
 {
-    public sealed class PartyRoleData : PartyAttributeData
+    public sealed class WebMasterData : PersonRoleTypeData
     {
-
     }
 }

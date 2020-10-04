@@ -3,12 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MaskShop.Data.Parties
+namespace MaskShop.Data.Orders
 {
-    public sealed class PartyContactMechanismData : PeriodData
+    public sealed class OrderData : UniqueEntityData
     {
-        public string PartyId { get; set; }
-
         public string ContactMechanismId { get; set; }
+
+        public string PartyRoleId { get; set; }
     }
 }
