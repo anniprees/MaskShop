@@ -3,19 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Soft", "Soft\Soft.csproj", "{176750B7-9A3C-4982-9C6C-4AEA33D163CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soft", "Soft\Soft.csproj", "{176750B7-9A3C-4982-9C6C-4AEA33D163CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{CE007277-E508-43EC-B39D-972F180311CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{CE007277-E508-43EC-B39D-972F180311CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{DC7DB5C8-D49A-4A45-88E7-18A6BDF56107}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{DC7DB5C8-D49A-4A45-88E7-18A6BDF56107}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra", "Infra\Infra.csproj", "{F2DE10A4-AB05-438D-BE28-1818E643E910}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra", "Infra\Infra.csproj", "{F2DE10A4-AB05-438D-BE28-1818E643E910}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pages", "Pages\Pages.csproj", "{BE0EB541-CA6E-40B2-9785-B2F78322BF7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pages", "Pages\Pages.csproj", "{BE0EB541-CA6E-40B2-9785-B2F78322BF7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Facade", "Facade\Facade.csproj", "{510C8E2B-3A21-48EC-AC54-0BE027044512}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Facade", "Facade\Facade.csproj", "{510C8E2B-3A21-48EC-AC54-0BE027044512}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{6617BC29-29C3-45AB-9544-B079B7F63068}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{6617BC29-29C3-45AB-9544-B079B7F63068}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aids", "Aids\Aids.csproj", "{B16EC399-5209-482C-8B69-8B85F7036A97}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{6617BC29-29C3-45AB-9544-B079B7F63068}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6617BC29-29C3-45AB-9544-B079B7F63068}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6617BC29-29C3-45AB-9544-B079B7F63068}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B16EC399-5209-482C-8B69-8B85F7036A97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B16EC399-5209-482C-8B69-8B85F7036A97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B16EC399-5209-482C-8B69-8B85F7036A97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B16EC399-5209-482C-8B69-8B85F7036A97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
