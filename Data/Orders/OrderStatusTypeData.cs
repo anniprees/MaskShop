@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MaskShop.Data.Orders
+﻿namespace MaskShop.Data.Orders
 {
     public enum OrderStatusTypeData
     {

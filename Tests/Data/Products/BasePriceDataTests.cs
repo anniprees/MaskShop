@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MaskShop.Tests.Data.Products
 {
     [TestClass]
-    public class BasePriceDataClassTests: SealedClassTests<BasePriceData, PriceComponentData> {
+    public class BasePriceDataClassTests: SealedClassTests<BasePriceData, PriceComponentData> 
+    {
     }
-  
 }

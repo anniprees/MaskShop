@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Facade
+﻿namespace Facade
 {
     public class Class1
     {

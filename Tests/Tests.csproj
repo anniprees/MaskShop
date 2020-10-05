@@ -26,8 +26,4 @@
     <ProjectReference Include="..\Soft\Soft.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Data\Common\" />
-  </ItemGroup>
-
 </Project>

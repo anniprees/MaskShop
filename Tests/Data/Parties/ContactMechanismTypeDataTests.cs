@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Aids;
+﻿using Aids;
 using MaskShop.Data.Parties;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

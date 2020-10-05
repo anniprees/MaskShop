@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MaskShop.Data.Shipments
+﻿namespace MaskShop.Data.Shipments
 {
     public enum ShipmentStatusTypeData
     {

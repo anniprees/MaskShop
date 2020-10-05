@@ -6,7 +6,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MaskShop.Tests.Data.Products
 {
     [TestClass]
-    public class ProductFeatureDataTests : AbstractClassTests<ProductFeatureData, DefinedEntityData> {
+    public class ProductFeatureDataTests : AbstractClassTests<ProductFeatureData, DefinedEntityData> 
+    {
         private class TestClass : ProductFeatureData { }
 
         [TestInitialize] public override void TestInitialize()

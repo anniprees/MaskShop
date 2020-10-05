@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MaskShop.Tests.Data
 {
@@ -11,7 +8,5 @@ namespace MaskShop.Tests.Data
         protected override string assembly => "MaskShop.Data";
 
         protected override string nameSpace(string name) { return $"{assembly}.{name}"; }
-
-
     }
 }

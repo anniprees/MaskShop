@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Data.Common
+﻿namespace Data.Common
 {
     public abstract class NamedEntityData : UniqueEntityData
     {
