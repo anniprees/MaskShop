@@ -5,8 +5,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MaskShop.Tests.Data.Products
 {
     [TestClass]
-    public class QuantityBreakDataTests : SealedTests<QuantityBreakData, UniqueEntityData>{
-        [TestMethod] public void FromQuantityTest() => IsNullableProperty<int>();
+    public class QuantityBreakDataClassTests : SealedClassTests<QuantityBreakData, UniqueEntityData>{
+        [TestMethod] public void FromQuantityTest() => IsProperty<int>(() => obj.FromQuantity, x => obj.FromQuantity = x);
     }
 }
 

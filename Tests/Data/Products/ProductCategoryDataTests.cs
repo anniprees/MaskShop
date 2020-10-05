@@ -5,6 +5,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MaskShop.Tests.Data.Products
 {
     [TestClass]
-    public class ProductCategoryDataTests : SealedTests<ProductCategoryData, DefinedEntityData> {
+    public class ProductCategoryDataClassTests : SealedClassTests<ProductCategoryData, DefinedEntityData> {
     }
 }

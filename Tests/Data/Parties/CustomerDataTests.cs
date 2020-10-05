@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MaskShop.Tests.Data.Parties
 {
     [TestClass]
-    public class CustomerDataTests : SealedTests <CustomerData, ConsumerRoleTypeData>
+    public class CustomerDataClassTests : SealedClassTests <CustomerData, ConsumerRoleTypeData>
     {
     }
 }

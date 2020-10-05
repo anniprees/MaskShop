@@ -5,11 +5,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MaskShop.Tests.Data.Products
 {
     [TestClass]
-    public class InventoryItemDataTests : SealedTests<InventoryItemData, UniqueEntityData> {
+    public class InventoryItemDataClassTests : SealedClassTests<InventoryItemData, UniqueEntityData> {
 
-        [TestMethod] public void QuantityOnHandTest() => IsNullableProperty<int>();
+        [TestMethod] public void QuantityOnHandTest() => IsProperty(() => obj.QuantityOnHand, x => obj.QuantityOnHand = x);
 
-        [TestMethod] public void ProductIdTest() => IsNullableProperty<string>();
+        [TestMethod] public void ProductIdTest() => IsNullableProperty(() => obj.ProductId, x => obj.ProductId = x);
     }
 }
 

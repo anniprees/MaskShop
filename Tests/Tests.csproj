@@ -11,12 +11,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Data\NewFolder\**" />
-    <EmbeddedResource Remove="Data\NewFolder\**" />
-    <None Remove="Data\NewFolder\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.1.0" />
     <PackageReference Include="MSTest.TestFramework" Version="2.1.0" />
@@ -30,6 +24,10 @@
     <ProjectReference Include="..\Infra\Infra.csproj" />
     <ProjectReference Include="..\Pages\Pages.csproj" />
     <ProjectReference Include="..\Soft\Soft.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Common\" />
   </ItemGroup>
 
 </Project>

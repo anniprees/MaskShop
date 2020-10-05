@@ -8,9 +8,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MaskShop.Tests.Data.Parties
 {
     [TestClass]
-    public class PartyContactMechanismPurposeDataTests : SealedTests <PartyContactMechanismPurposeData, PeriodData>
+    public class PartyContactMechanismPurposeDataClassTests : SealedClassTests <PartyContactMechanismPurposeData, PeriodData>
     {
-        [TestMethod] public void PartyContactMechanismIdTest() => IsNullableProperty<string>();
-        [TestMethod] public void ContactMechanismPurposeTypeTest() => IsNullableProperty<string>();
+        [TestMethod] public void PartyContactMechanismIdTest() => IsNullableProperty<string>(() => obj.PartyContactMechanismId, x => obj.PartyContactMechanismId = x);
+        [TestMethod] public void ContactMechanismPurposeTypeTest() => IsNullableProperty<string>(() => obj.ContactMechanismPurposeTypeId, x => obj.ContactMechanismPurposeTypeId = x);
     }
 }

@@ -6,12 +6,12 @@ using System;
 namespace MaskShop.Tests.Data.Shipments
 {
     [TestClass]
-    public class ShipmentDataTests : SealedTests<ShipmentData, UniqueEntityData> {
-        [TestMethod] public void EstimatedShipDateTest() => IsProperty<DateTime>();
-        [TestMethod] public void EstimatedArrivalDateTest() => IsProperty<DateTime>();
-        [TestMethod] public void ShipCostTest() => IsNullableProperty<double>();
-        [TestMethod] public void ContactMechanismIdTest() => IsNullableProperty<string>();
-        [TestMethod] public void PartyIdTest() => IsNullableProperty<string>();
+    public class ShipmentDataClassTests : SealedClassTests<ShipmentData, UniqueEntityData> {
+        [TestMethod] public void EstimatedShipDateTest() => IsProperty<DateTime>(() => obj.EstimatedShipDate, x => obj.EstimatedShipDate = x);
+        [TestMethod] public void EstimatedArrivalDateTest() => IsProperty<DateTime>(() => obj.EstimatedArrivalDate, x => obj.EstimatedArrivalDate = x);
+        [TestMethod] public void ShipCostTest() => IsProperty<double>(() => obj.ShipCost, x => obj.ShipCost = x);
+        [TestMethod] public void ContactMechanismIdTest() => IsNullableProperty<string>(() => obj.ContactMechanismId, x => obj.ContactMechanismId = x);
+        [TestMethod] public void PartyIdTest() => IsNullableProperty<string>(() => obj.PartyId, x => obj.PartyId = x);
     }
 }
 

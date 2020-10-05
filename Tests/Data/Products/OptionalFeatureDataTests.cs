@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MaskShop.Tests.Data.Products
 {
     [TestClass]
-    public class OptionalFeatureDataTests : SealedTests<OptionalFeatureData, ProductFeatureApplicabilityData> {
+    public class OptionalFeatureDataClassTests : SealedClassTests<OptionalFeatureData, ProductFeatureApplicabilityData> {
     }
 }
 

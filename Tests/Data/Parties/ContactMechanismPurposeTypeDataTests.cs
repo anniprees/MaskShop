@@ -8,8 +8,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MaskShop.Tests.Data.Parties
 {
     [TestClass]
-    public class ContactMechanismPurposeTypeDataTests : SealedTests <ContactMechanismPurposeTypeData, UniqueEntityData>
+    public class ContactMechanismPurposeTypeDataClassTests : SealedClassTests <ContactMechanismPurposeTypeData, UniqueEntityData>
     {
-        [TestMethod] public void DescriptionTest() => IsNullableProperty<string>();
+        [TestMethod] public void DescriptionTest() => IsNullableProperty<string>(() => obj.Description, x => obj.Description = x);
     }
 }
