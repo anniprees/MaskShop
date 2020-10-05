@@ -6,7 +6,7 @@ namespace MaskShop.Tests.Data.Products
 {
     [TestClass]
     public class ProductDataTests : SealedTests<ProductData, NamedEntityData>{
-        [TestMethod] public void ProductCategoryIdTest() => isNullableProperty<string>();
+        [TestMethod] public void ProductCategoryIdTest() => IsNullableProperty<string>();
     }
 }
 

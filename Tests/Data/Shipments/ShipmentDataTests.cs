@@ -7,11 +7,11 @@ namespace MaskShop.Tests.Data.Shipments
 {
     [TestClass]
     public class ShipmentDataTests : SealedTests<ShipmentData, UniqueEntityData> {
-        [TestMethod] public void EstimatedShipDateTest() => isProperty<DateTime>();
-        [TestMethod] public void EstimatedArrivalDateTest() => isProperty<DateTime>();
-        [TestMethod] public void ShipCostTest() => isNullableProperty<double>();
-        [TestMethod] public void ContactMechanismIdTest() => isNullableProperty<string>();
-        [TestMethod] public void PartyIdTest() => isNullableProperty<string>();
+        [TestMethod] public void EstimatedShipDateTest() => IsProperty<DateTime>();
+        [TestMethod] public void EstimatedArrivalDateTest() => IsProperty<DateTime>();
+        [TestMethod] public void ShipCostTest() => IsNullableProperty<double>();
+        [TestMethod] public void ContactMechanismIdTest() => IsNullableProperty<string>();
+        [TestMethod] public void PartyIdTest() => IsNullableProperty<string>();
     }
 }
 

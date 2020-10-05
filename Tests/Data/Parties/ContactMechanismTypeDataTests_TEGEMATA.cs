@@ -4,9 +4,9 @@ using System.Text;
 
 namespace MaskShop.Tests.Data.Parties
 {
-    [TestClass]
-    public class ContactMechanismTypeDataTests_TEGEMATA
-    {
-        //kuidas teha enumi testi?
-    }
+    //[TestClass]
+    //public class ContactMechanismTypeDataTests_TEGEMATA
+    //{
+    //    //kuidas teha enumi testi?
+    //}
 }

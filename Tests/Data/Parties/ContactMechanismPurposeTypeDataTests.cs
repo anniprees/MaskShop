@@ -10,6 +10,6 @@ namespace MaskShop.Tests.Data.Parties
     [TestClass]
     public class ContactMechanismPurposeTypeDataTests : SealedTests <ContactMechanismPurposeTypeData, UniqueEntityData>
     {
-        [TestMethod] public void DescriptionTest() => isNullableProperty<string>();
+        [TestMethod] public void DescriptionTest() => IsNullableProperty<string>();
     }
 }

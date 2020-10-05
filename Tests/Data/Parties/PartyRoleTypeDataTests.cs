@@ -8,8 +8,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MaskShop.Tests.Data.Parties
 {
     [TestClass]
-    public class PartyRoleTypeDataTests : AbstractTests <PartyAttributeData, UniqueEntityData>
+    public class PartyRoleTypeDataTests : AbstractClassTests <PartyAttributeData, UniqueEntityData>
     {
-        [TestMethod] public void PartyRoleIdTest() => isNullableProperty<string>();
+        [TestMethod] public void PartyRoleIdTest() => IsNullableProperty<string>();
     }
 }

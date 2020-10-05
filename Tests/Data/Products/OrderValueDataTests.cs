@@ -6,6 +6,6 @@ namespace MaskShop.Tests.Data.Products
 {
     [TestClass]
     public class OrderValueDataTests : SealedTests<OrderValueData, UniqueEntityData> {
-        [TestMethod] public void FromAmountTest() => isNullableProperty<double>();
+        [TestMethod] public void FromAmountTest() => IsNullableProperty<double>();
     }
 }

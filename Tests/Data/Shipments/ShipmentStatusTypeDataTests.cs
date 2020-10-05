@@ -1,4 +1,5 @@
-﻿using MaskShop.Data.Shipments;
+﻿using Aids;
+using MaskShop.Data.Shipments;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MaskShop.Tests.Data.Shipments
@@ -27,6 +28,7 @@ namespace MaskShop.Tests.Data.Shipments
         [TestMethod]
         public void DeliveredTest() =>
         Assert.AreEqual(3, (int)ShipmentStatusTypeData.Delivered);
+        
         [TestMethod]
         public void CanceledTest() =>
         Assert.AreEqual(4, (int)ShipmentStatusTypeData.Canceled);

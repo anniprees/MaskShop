@@ -10,7 +10,7 @@ namespace MaskShop.Tests.Data.Parties
     [TestClass]
     public class PartyContactMechanismPurposeDataTests : SealedTests <PartyContactMechanismPurposeData, PeriodData>
     {
-        [TestMethod] public void PartyContactMechanismIdTest() => isNullableProperty<string>();
-        [TestMethod] public void ContactMechanismPurposeTypeTest() => isNullableProperty<string>();
+        [TestMethod] public void PartyContactMechanismIdTest() => IsNullableProperty<string>();
+        [TestMethod] public void ContactMechanismPurposeTypeTest() => IsNullableProperty<string>();
     }
 }

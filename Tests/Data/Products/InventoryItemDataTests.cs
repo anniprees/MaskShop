@@ -7,9 +7,9 @@ namespace MaskShop.Tests.Data.Products
     [TestClass]
     public class InventoryItemDataTests : SealedTests<InventoryItemData, UniqueEntityData> {
 
-        [TestMethod] public void QuantityOnHandTest() => isNullableProperty<int>();
+        [TestMethod] public void QuantityOnHandTest() => IsNullableProperty<int>();
 
-        [TestMethod] public void ProductIdTest() => isNullableProperty<string>();
+        [TestMethod] public void ProductIdTest() => IsNullableProperty<string>();
     }
 }
 

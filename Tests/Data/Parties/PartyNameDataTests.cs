@@ -9,10 +9,10 @@ namespace MaskShop.Tests.Data.Parties
     [TestClass]
     public class PartyNameDataTests : SealedTests <PartyNameData, PartyAttributeData>
     {
-        [TestMethod] public void NameTest() => isNullableProperty<string>();
-        [TestMethod] public void GivenNameTest() => isNullableProperty<string>();
-        [TestMethod] public void MiddleNameTest() => isNullableProperty<string>();
-        [TestMethod] public void PreferredNameTest() => isNullableProperty<string>();
-        [TestMethod] public void PartyTypeTest() => isNullableProperty<PartyTypeData>();
+        [TestMethod] public void NameTest() => IsNullableProperty<string>();
+        [TestMethod] public void GivenNameTest() => IsNullableProperty<string>();
+        [TestMethod] public void MiddleNameTest() => IsNullableProperty<string>();
+        [TestMethod] public void PreferredNameTest() => IsNullableProperty<string>();
+        [TestMethod] public void PartyTypeTest() => IsNullableProperty<PartyTypeData>();
     }
 }

@@ -6,7 +6,7 @@ namespace MaskShop.Tests.Data.Products
 {
     [TestClass]
     public class QuantityBreakDataTests : SealedTests<QuantityBreakData, UniqueEntityData>{
-        [TestMethod] public void FromQuantityTest() => isNullableProperty<int>();
+        [TestMethod] public void FromQuantityTest() => IsNullableProperty<int>();
     }
 }
 
