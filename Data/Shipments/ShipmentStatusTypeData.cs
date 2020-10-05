@@ -10,6 +10,6 @@ namespace MaskShop.Data.Shipments
         Shipped = 1,
         InRoute = 2,
         Delivered = 3,
-        Canceled = 3
+        Canceled = 4
     }
 }
