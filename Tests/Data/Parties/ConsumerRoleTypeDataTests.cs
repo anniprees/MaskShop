@@ -1,4 +1,4 @@
-﻿using Aids;
+﻿using MaskShop.Aids;
 using MaskShop.Data.Parties;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

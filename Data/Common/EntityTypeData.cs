@@ -1,6 +1,4 @@
-﻿using Data.Common;
-
-namespace MaskShop.Data.Common
+﻿namespace MaskShop.Data.Common
 {
     public abstract class EntityTypeData : DefinedEntityData
     {

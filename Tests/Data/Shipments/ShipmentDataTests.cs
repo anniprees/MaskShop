@@ -1,7 +1,7 @@
-﻿using Data.Common;
-using MaskShop.Data.Shipments;
+﻿using MaskShop.Data.Shipments;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using MaskShop.Data.Common;
 
 namespace MaskShop.Tests.Data.Shipments
 {

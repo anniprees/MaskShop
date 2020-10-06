@@ -1,6 +1,6 @@
-﻿using Data.Common;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using MaskShop.Data.Common;
 
 namespace MaskShop.Tests.Data.Common
 {

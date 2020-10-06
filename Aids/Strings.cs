@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Linq;
 
-namespace Aids
+namespace MaskShop.Aids
 {
     public static class Strings
     {

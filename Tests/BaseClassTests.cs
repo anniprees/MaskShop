@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Reflection;
-using Aids;
+using MaskShop.Aids;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MaskShop.Tests

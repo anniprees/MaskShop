@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aids
+namespace MaskShop.Aids
 {
     public static class Safe
     {

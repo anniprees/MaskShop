@@ -1,4 +1,4 @@
-﻿namespace Infra
+﻿namespace MaskShop.Infra
 {
     public class Class1
     {

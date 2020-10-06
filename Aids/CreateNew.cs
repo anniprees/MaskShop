@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Aids
+namespace MaskShop.Aids
 {
     public static class CreateNew
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Aids;
+using MaskShop.Aids;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MaskShop.Tests
@@ -50,7 +50,7 @@ namespace MaskShop.Tests
 
         private static void report(string message, params object[] parameters)
         {
-            Assert.Inconclusive(message, parameters);
+            Assert.Fail(message, parameters);
         }
 
         private static List<Type> getAssemblyClasses(string assemblyName)

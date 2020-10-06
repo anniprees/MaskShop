@@ -1,4 +1,4 @@
-﻿namespace Data.Common
+﻿namespace MaskShop.Data.Common
 {
     public abstract class NamedEntityData : UniqueEntityData
     {

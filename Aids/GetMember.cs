@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Aids
+namespace MaskShop.Aids
 {
     public static class GetMember
     {

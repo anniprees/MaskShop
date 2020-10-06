@@ -1,4 +1,4 @@
-﻿using Data.Common;
+﻿using MaskShop.Data.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MaskShop.Tests.Data.Common

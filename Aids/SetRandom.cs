@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Linq;
 
-namespace Aids
+namespace MaskShop.Aids
 {
     public static class SetRandom
     {

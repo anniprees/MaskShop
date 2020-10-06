@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>MaskShop.Aids</AssemblyName>
+    <RootNamespace>MaskShop.Aids</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

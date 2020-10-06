@@ -1,4 +1,4 @@
-﻿using Data.Common;
+﻿using MaskShop.Data.Common;
 
 namespace MaskShop.Data.Orders
 {

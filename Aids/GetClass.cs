@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Aids
+namespace MaskShop.Aids
 {
     public static class GetClass
     {

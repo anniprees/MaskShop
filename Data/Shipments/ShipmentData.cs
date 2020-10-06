@@ -1,5 +1,5 @@
-﻿using Data.Common;
-using System;
+﻿using System;
+using MaskShop.Data.Common;
 
 namespace MaskShop.Data.Shipments
 {

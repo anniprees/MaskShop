@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Data.Common
+namespace MaskShop.Data.Common
 {
     public abstract class PeriodData
     {
