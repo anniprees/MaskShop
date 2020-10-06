@@ -7,10 +7,9 @@ namespace MaskShop.Tests.Data.Parties
     [TestClass]
     public class PartyDataTests : SealedClassTests <PartyData, UniqueEntityData>
     {
-        [TestMethod] public void DescriptionTest() => IsNullableProperty<string>();
-        [TestMethod] public void PartyNameIdTest() => IsNullableProperty<string>();
-        // [TestMethod] public void OrganizationTypeIdTest() => isNullableProperty<string>();
-        [TestMethod] public void PartyTypeTest() => IsNullableProperty<PartyTypeData>();
+        [TestMethod] public void DescriptionTest() => IsNullableProperty(() => obj.Description, x => obj.Description = x);
+        [TestMethod] public void PartyNameIdTest() => IsNullableProperty(() => obj.PartyNameId, x => obj.PartyNameId = x);
+        [TestMethod] public void PartyTypeTest() => IsProperty(() => obj.PartyType, x => obj.PartyType = x);
 
     }
 }
