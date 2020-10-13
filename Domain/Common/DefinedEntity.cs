@@ -1,10 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using MaskShop.Data.Common;
 
 namespace MaskShop.Domain.Common
 {
-    class DefinedEntity
+    public abstract class DefinedEntity<T> : NamedEntity<T>, IDefinedEntity<T> where T : DefinedEntityData, new()
     {
+
+        protected internal DefinedEntity(T d = null) : base(d) { }
+
+        public virtual string Definition => Data?.Definition ?? Unspecified;
+
     }
+
 }
