@@ -4,7 +4,15 @@ using System.Text;
 
 namespace MaskShop.Domain.Common
 {
-    class IEntity
+    public interface IEntity
     {
+        DateTime ValidFrom { get; }
+        DateTime ValidTo { get; }
+
+        bool IsUnspecified { get; }
+    }
+    public interface IEntity<out TData> : IEntity
+    {
+        TData Data { get; }
     }
 }
