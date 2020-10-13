@@ -2,7 +2,10 @@
 
 @using System.Linq.Dynamic.Core
 @using Radzen
-@*@using RadzenBlazorDemos.Data
+@using Data
+
+
+@*@using RadzenBlazorDemo.Data
 @using RadzenBlazorDemos.Models.Northwind
 
 @inject NorthwindContext dbContext*@
@@ -19,7 +22,7 @@
                 <RadzenImage Path="@data?.Photo" />
             </Template>
         </RadzenGridColumn>
-        <RadzenGridColumn TItem="Employee" Property="LastName" Title="Last Name" />
+        <RadzenGridColumn TItem="Product" Property="LastName" Title="Last Name" />
         <RadzenGridColumn TItem="Employee" Property="FirstName" Title="First Name" />
         <RadzenGridColumn TItem="Employee" Property="Title" Title="Title" />
         <RadzenGridColumn TItem="Employee" Property="TitleOfCourtesy" Title="Title Of Courtesy" />

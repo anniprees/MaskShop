@@ -36,7 +36,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Data.Products.OrderValueData" Collapsed="true">
-    <Position X="5.25" Y="4" Width="1.5" />
+    <Position X="5.25" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Products\OrderValueData.cs</FileName>
@@ -57,16 +57,16 @@
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Data.Products.ProductData" Collapsed="true">
-    <Position X="5.25" Y="1.75" Width="1.5" />
+    <Position X="5.25" Y="1.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
       <FileName>Products\ProductData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Data.Products.ProductFeatureApplicabilityData" Collapsed="true">
     <Position X="12" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>EAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Products\ProductFeatureApplicabilityData.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -87,7 +87,7 @@
   <Class Name="MaskShop.Data.Products.QuantityBreakData" Collapsed="true">
     <Position X="5.25" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Products\QuantityBreakData.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -126,28 +126,28 @@
       <FileName>Products\SurchargeComponentData.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Data.Common.UniqueEntityData" Collapsed="true">
+  <Class Name="MaskShop.Data.Common.UniqueEntityData" Collapsed="true">
     <Position X="8.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Common\UniqueEntityData.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Data.Common.PeriodData" Collapsed="true">
+  <Class Name="MaskShop.Data.Common.PeriodData" Collapsed="true">
     <Position X="12" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Common\PeriodData.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Data.Common.NamedEntityData" Collapsed="true">
+  <Class Name="MaskShop.Data.Common.NamedEntityData" Collapsed="true">
     <Position X="5.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Common\NamedEntityData.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Data.Common.DefinedEntityData" Collapsed="true">
+  <Class Name="MaskShop.Data.Common.DefinedEntityData" Collapsed="true">
     <Position X="2.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
