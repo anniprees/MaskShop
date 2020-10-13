@@ -21,19 +21,33 @@ namespace MaskShop.Aids
         public static List<Type> TypesForAssembly(string assemblyName)
         {
             var empty = new List<Type>();
-            return Safe.Run(() => {
+            return Safe.Run(() =>
+            {
                 var a = AssemblyByName(assemblyName);
                 return a?.GetTypes().ToList() ?? empty;
             }, empty);
+
+            //return Safe.Run(() =>
+            //{
+            //    var a = AssemblyByName(assemblyName);
+            //    return a.GetTypes().ToList();
+            //}, new List<Type>());
         }
 
         public static List<string> TypeNamesForAssembly(string assemblyName)
         {
             var empty = new List<string>();
-            return Safe.Run(() => {
+            return Safe.Run(() =>
+            {
                 var a = TypesForAssembly(assemblyName);
                 return a?.Select(t => t.FullName).ToList() ?? empty;
             }, empty);
+
+            //return Safe.Run(() =>
+            //{
+            //    var a = TypesForAssembly(assemblyName);
+            //    return a.Select(t => t.FullName).ToList();
+            //}, new List<string>());
         }
 
         public static string Name =>

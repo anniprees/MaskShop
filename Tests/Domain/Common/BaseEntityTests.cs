@@ -2,7 +2,7 @@
 using MaskShop.Domain.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MaskShop.Tests.Domain
+namespace MaskShop.Tests.Domain.Common
 {
     [TestClass]
     public class BaseEntityTests : AbstractClassTests<BaseEntity, object>

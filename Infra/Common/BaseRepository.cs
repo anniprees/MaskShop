@@ -72,7 +72,7 @@ namespace MaskShop.Infra.Common
             d = copyData(d);
             db.Attach(d).State = EntityState.Modified;
 
-            //TODO Midagi tuleb selle väljakommenteeritud asjadega teha
+            //TODO BaseRepository db.SaveChangesAsync
             //try {
             await db.SaveChangesAsync();
             //}

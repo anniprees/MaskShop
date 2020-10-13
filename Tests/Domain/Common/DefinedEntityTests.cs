@@ -1,4 +1,4 @@
-﻿namespace MaskShop.Tests.Domain
+﻿namespace MaskShop.Tests.Domain.Common
 {
     //[TestClass]
     //public class DefinedEntityTests : AbstractClassTests<DefinedEntity<ProductData>, NamedEntity<ProductData>>

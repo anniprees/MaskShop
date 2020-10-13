@@ -3,7 +3,7 @@ using MaskShop.Data.Products;
 using MaskShop.Domain.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MaskShop.Tests.Domain
+namespace MaskShop.Tests.Domain.Common
 {
     [TestClass]
     public class EntityTests : AbstractClassTests<Entity<ProductData>, ValueObject<ProductData>>
@@ -60,7 +60,7 @@ namespace MaskShop.Tests.Domain
             TestArePropertyValuesEqual(d, obj.Data);
         }
         
-        //TODO: Domain.Products
+        //TODO: Domain.Products puudu
         //[TestMethod]
         //public void ValidFromTest()
         //{

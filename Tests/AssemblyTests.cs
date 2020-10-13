@@ -1,4 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using MaskShop.Aids;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MaskShop.Tests
 {
