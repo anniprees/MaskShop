@@ -134,11 +134,11 @@ namespace MaskShop.Tests
             hasDisplayName(n, displayName);
         }
 
-        //protected void isReadOnlyProperty(object expected)
-        //{
-        //    var n = getPropertyNameAfter("isReadOnlyProperty");
-        //    isReadOnlyProperty(obj, n, expected);
-        //}
+        protected void isReadOnlyProperty(object expected)
+        {
+            var n = getPropertyNameAfter("isReadOnlyProperty");
+            isReadOnlyProperty(obj, n, expected);
+        }
 
         //protected void isReadOnlyProperty()
         //{
