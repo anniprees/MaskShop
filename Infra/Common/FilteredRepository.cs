@@ -17,6 +17,7 @@ namespace MaskShop.Infra.Common
         public string SearchString { get; set; }
         public string CurrentFilter { get; set; }
         public string FixedFilter { get; set; }
+        public string FIxedValue { get; set; }
         public string FixedValue { get; set; }
 
         protected FilteredRepository(DbContext c, DbSet<TData> s) : base(c, s) { }
