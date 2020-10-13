@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
 using MaskShop.Aids;
+using MaskShop.Domain.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MaskShop.Tests
@@ -140,18 +142,33 @@ namespace MaskShop.Tests
             isReadOnlyProperty(obj, n, expected);
         }
 
-        //protected void isReadOnlyProperty()
-        //{
-        //    var n = getPropertyNameAfter("isReadOnlyProperty");
-        //    isReadOnlyProperty(obj, n);
-        //}
+        protected void isReadOnlyProperty()
+        {
+            var n = getPropertyNameAfter("isReadOnlyProperty");
+            isReadOnlyProperty(obj, n);
+        }
+        protected static void isReadOnlyProperty(object o, string name, object expected)
+        {
+            var actual = isReadOnlyProperty(o, name);
+            Assert.AreEqual(expected, actual);
+        }
 
-        //protected void getListFromRepository<TDetail, TData, TRepository>(
-        //    Action<TData> setId, Func<TData, TDetail> toObject) where TRepository : IRepository<TDetail>
-        //{
-        //    var n = getPropertyNameAfter("getListFromRepository");
-        //    getListFromRepository<TDetail, TData, TRepository>(obj, n, setId, toObject);
-        //}
+        protected static object isReadOnlyProperty(object o, string name)
+        {
+            var property = o.GetType().GetProperty(name);
+            Assert.IsNotNull(property);
+            Assert.IsFalse(property.CanWrite);
+            Assert.IsTrue(property.CanRead);
+
+            return property.GetValue(o);
+        }
+
+        protected void getListFromRepository<TDetail, TData, TRepository>(
+            Action<TData> setId, Func<TData, TDetail> toObject) where TRepository : IRepository<TDetail>
+        {
+            var n = getPropertyNameAfter("getListFromRepository");
+            getListFromRepository<TDetail, TData, TRepository>(obj, n, setId, toObject);
+        }
 
         protected string getPropertyNameAfter(string methodName)
         {
@@ -174,6 +191,29 @@ namespace MaskShop.Tests
             }
 
             return string.Empty;
+        }
+
+        protected void getListFromRepository<TDetail, TData, TRepository>(
+            object obj, string name, Action<TData> setId, Func<TData, TDetail> toObject)
+
+            where TRepository : IRepository<TDetail>
+        {
+
+            var t = isReadOnlyProperty(obj, name) as IReadOnlyList<TDetail>;
+            Assert.IsNotNull(t);
+            Assert.AreEqual(0, t.Count);
+            var values = GetRepository.Instance<TRepository>();
+            var valuesCount = GetRandom.UInt8(10, 20);
+
+            for (var i = 0; i < valuesCount; i++)
+            {
+                var d = GetRandom.Object<TData>();
+                if (i % 4 == 0) setId(d);
+                values.Add(toObject(d)).GetAwaiter();
+            }
+
+            t = isReadOnlyProperty(obj, name) as IReadOnlyList<TDetail>;
+            Assert.AreEqual((int)Math.Ceiling(valuesCount / 4.0), t?.Count);
         }
 
         //protected void testRelatedList<TObject, TData, TRelatedObject, TRepository>(

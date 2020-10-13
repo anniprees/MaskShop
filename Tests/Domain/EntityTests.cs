@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
-using MaskShop.Aids;
+﻿using MaskShop.Aids;
 using MaskShop.Data.Products;
 using MaskShop.Domain.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -25,7 +21,7 @@ namespace MaskShop.Tests.Domain
         }
 
         [TestMethod]
-        public void DataTest() => IsReadOnlyProperty();
+        public void DataTest() => isReadOnlyProperty();
 
         [TestMethod]
         public void IsUnspecifiedTest()
@@ -60,23 +56,25 @@ namespace MaskShop.Tests.Domain
             obj.Data.Name = GetRandom.String();
             obj.Data.From = GetRandom.DateTime();
             obj.Data.To = GetRandom.DateTime();
+            obj.Data.ProductCategoryId = GetRandom.String();
             TestArePropertyValuesEqual(d, obj.Data);
         }
+        
+        //TODO: Domain.Products
+        //[TestMethod]
+        //public void ValidFromTest()
+        //{
+        //    Assert.AreEqual(DateTime.MinValue, obj.ValidFrom);
+        //    obj = new TestClass(GetRandom.Object<ProductData>());
+        //    isReadOnlyProperty(obj, GetMember.Name<Product>(x => x.ValidFrom), obj.Data.From);
+        //}
 
-        [TestMethod]
-        public void ValidFromTest()
-        {
-            Assert.AreEqual(DateTime.MinValue, obj.ValidFrom);
-            obj = new TestClass(GetRandom.Object<ProductData>());
-            isReadOnlyProperty(obj, GetMember.Name<Product>(x => x.ValidFrom), obj.Data.From);
-        }
-
-        [TestMethod]
-        public void ValidToTest()
-        {
-            Assert.AreEqual(DateTime.MaxValue, obj.ValidTo);
-            obj = new TestClass(GetRandom.Object<ProductData>());
-            isReadOnlyProperty(obj, GetMember.Name<Product>(x => x.ValidTo), obj.Data.To);
-        }
+        //[TestMethod]
+        //public void ValidToTest()
+        //{
+        //    Assert.AreEqual(DateTime.MaxValue, obj.ValidTo);
+        //    obj = new TestClass(GetRandom.Object<ProductData>());
+        //    isReadOnlyProperty(obj, GetMember.Name<Product>(x => x.ValidTo), obj.Data.To);
+        //}
     }
 }
