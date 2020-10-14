@@ -8,5 +8,6 @@ namespace MaskShop.Domain.Products
         public QuantityBreak() : this(null) { }
 
         public QuantityBreak(QuantityBreakData d) : base(d) { }
-    }
+        public int FromQuantity => Data?.FromQuantity ?? UnspecifiedInteger;
+    } 
 }
