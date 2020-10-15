@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MaskShop.Facade
+﻿namespace MaskShop.Facade.Common
 {
     public abstract class DefinedView : NamedView
     {
