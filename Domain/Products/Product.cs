@@ -9,7 +9,7 @@ namespace MaskShop.Domain.Products
 
         public Product(ProductData d) : base(d) { }
 
-        public string ProductCategoryId => data?.ProductCategoryId ?? Unspecified;
+        public string ProductCategoryId => Data?.ProductCategoryId ?? Unspecified;
         public ProductCategory ProductCategory => new GetFrom<IProductCategoriesRepository, ProductCategory>().ById(ProductCategoryId);
     }
 }

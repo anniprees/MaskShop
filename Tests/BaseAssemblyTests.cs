@@ -35,7 +35,7 @@ namespace MaskShop.Tests
         protected void isAllTested(string assemblyName,
             string namespaceName = null)
         {
-            //namespaceName ??= assemblyName;
+            namespaceName ??= assemblyName;
             var l = getAssemblyClasses(assemblyName);
             removeInterfaces(l);
             list = toClassNamesList(l);
