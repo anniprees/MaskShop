@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
 
 namespace MaskShop.Facade.Products
 {
-    class DiscountComponentView
+    public class DiscountComponentView : PriceComponentView
     {
     }
 }

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using MaskShop.Facade.Common;
 
 namespace MaskShop.Facade.Products
 {
-    class ProductCategoryView
+    public class ProductCategoryView : DefinedView
     {
     }
 }
