@@ -50,7 +50,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Data.Products.ProductData">
-    <Position X="3.75" Y="2.5" Width="2" />
+    <Position X="4" Y="2.5" Width="1.5" />
     <InheritanceLine Type="MaskShop.Data.Common.NamedEntityData" FixedToPoint="true">
       <Path>
         <Point X="4.75" Y="1.733" />

@@ -2,7 +2,7 @@
 
 namespace MaskShop.Domain.Products
 {
-    interface ISurchargeComponentsRepository : IRepository<SurchargeComponent>
+    public interface ISurchargeComponentsRepository : IRepository<SurchargeComponent>
     {
     }
 }
