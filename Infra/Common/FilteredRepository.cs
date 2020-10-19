@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using MaskShop.Data.Common;
 using MaskShop.Domain.Common;
 using Microsoft.EntityFrameworkCore;
@@ -17,7 +15,6 @@ namespace MaskShop.Infra.Common
         public string SearchString { get; set; }
         public string CurrentFilter { get; set; }
         public string FixedFilter { get; set; }
-        public string FIxedValue { get; set; }
         public string FixedValue { get; set; }
 
         protected FilteredRepository(DbContext c, DbSet<TData> s) : base(c, s) { }
@@ -25,19 +22,19 @@ namespace MaskShop.Infra.Common
         protected internal override IQueryable<TData> createSqlQuery()
         {
             var query = base.createSqlQuery();
-            query = addFixedFiltering(query);
-            query = addFiltering(query);
+            query = AddFixedFiltering(query);
+            query = AddFiltering(query);
 
             return query;
         }
 
-        private IQueryable<TData> addFixedFiltering(IQueryable<TData> query)
+        private IQueryable<TData> AddFixedFiltering(IQueryable<TData> query)
         {
-            var expression = createFixedWhereExpression();
+            var expression = CreateFixedWhereExpression();
             return expression is null ? query : query.Where(expression);
         }
 
-        private Expression<Func<TData, bool>> createFixedWhereExpression()
+        private Expression<Func<TData, bool>> CreateFixedWhereExpression()
         {
             if (FixedFilter is null) return null;
             if (FixedValue is null) return null;
@@ -59,15 +56,15 @@ namespace MaskShop.Infra.Common
             return Expression.Lambda<Func<TData, bool>>(predicate, param);
         }
 
-        internal IQueryable<TData> addFiltering(IQueryable<TData> query)
+        internal IQueryable<TData> AddFiltering(IQueryable<TData> query)
         {
             if (string.IsNullOrEmpty(SearchString)) return query;
-            var expression = createWhereExpression();
+            var expression = CreateWhereExpression();
 
             return query.Where(expression);
         }
 
-        internal Expression<Func<TData, bool>> createWhereExpression()
+        internal Expression<Func<TData, bool>> CreateWhereExpression()
         {
             var param = Expression.Parameter(typeof(TData), "s");
 

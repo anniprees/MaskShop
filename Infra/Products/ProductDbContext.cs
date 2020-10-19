@@ -1,5 +1,4 @@
 ﻿using MaskShop.Data.Products;
-using MaskShop.Domain.Products;
 using Microsoft.EntityFrameworkCore;
 
 namespace MaskShop.Infra.Products

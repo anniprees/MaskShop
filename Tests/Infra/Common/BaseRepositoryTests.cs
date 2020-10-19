@@ -16,7 +16,7 @@ namespace MaskShop.Tests.Infra.Common
         //private class TestClass : BaseRepository<Product, ProductData>
         //{
         //    public TestClass(DbContext c, DbSet<ProductData> s) : base(c, s) { }
-        //    protected override Product toDomainObject(ProductData d) => ProductFactory.Create(d);
+        //    protected override Product ToDomainObject(ProductData d) => ProductFactory.Create(d);
         //}
     }
 }

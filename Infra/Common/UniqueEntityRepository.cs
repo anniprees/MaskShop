@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MaskShop.Data.Common;
 using MaskShop.Domain.Common;
 using Microsoft.EntityFrameworkCore;
@@ -15,10 +12,10 @@ namespace MaskShop.Infra.Common
 
         protected UniqueEntityRepository(DbContext c, DbSet<TData> s) : base(c, s) { }
 
-        protected override async Task<TData> getData(string id)
+        protected override async Task<TData> GetData(string id)
             => await dbSet.FirstOrDefaultAsync(m => m.Id == id);
 
-        protected override TData getDataById(TData d) => dbSet.Find(d.Id);
+        protected override TData GetDataById(TData d) => dbSet.Find(d.Id);
 
     }
 

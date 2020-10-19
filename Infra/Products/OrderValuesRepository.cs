@@ -8,6 +8,6 @@ namespace MaskShop.Infra.Products
     {
     public OrderValuesRepository(ProductDbContext c = null) : base(c, c?.OrderValues) { }
 
-    protected internal override OrderValue toDomainObject(OrderValueData d) => new OrderValue(d);
+    protected internal override OrderValue ToDomainObject(OrderValueData d) => new OrderValue(d);
     }
 }

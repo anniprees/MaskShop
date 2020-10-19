@@ -1,6 +1,8 @@
-﻿using MaskShop.Aids;
+﻿using System;
+using MaskShop.Aids;
 using MaskShop.Data.Products;
 using MaskShop.Domain.Common;
+using MaskShop.Domain.Products;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MaskShop.Tests.Domain.Common
@@ -59,22 +61,22 @@ namespace MaskShop.Tests.Domain.Common
             obj.Data.ProductCategoryId = GetRandom.String();
             TestArePropertyValuesEqual(d, obj.Data);
         }
-        
-        //TODO: Domain.Products puudu
-        //[TestMethod]
-        //public void ValidFromTest()
-        //{
-        //    Assert.AreEqual(DateTime.MinValue, obj.ValidFrom);
-        //    obj = new TestClass(GetRandom.Object<ProductData>());
-        //    isReadOnlyProperty(obj, GetMember.Name<Product>(x => x.ValidFrom), obj.Data.From);
-        //}
 
-        //[TestMethod]
-        //public void ValidToTest()
-        //{
-        //    Assert.AreEqual(DateTime.MaxValue, obj.ValidTo);
-        //    obj = new TestClass(GetRandom.Object<ProductData>());
-        //    isReadOnlyProperty(obj, GetMember.Name<Product>(x => x.ValidTo), obj.Data.To);
-        //}
+
+        [TestMethod]
+        public void ValidFromTest()
+        {
+            Assert.AreEqual(DateTime.MinValue, obj.ValidFrom);
+            obj = new TestClass(GetRandom.Object<ProductData>());
+            isReadOnlyProperty(obj, GetMember.Name<Product>(x => x.ValidFrom), obj.Data.From);
+        }
+
+        [TestMethod]
+        public void ValidToTest()
+        {
+            Assert.AreEqual(DateTime.MaxValue, obj.ValidTo);
+            obj = new TestClass(GetRandom.Object<ProductData>());
+            isReadOnlyProperty(obj, GetMember.Name<Product>(x => x.ValidTo), obj.Data.To);
+        }
     }
 }

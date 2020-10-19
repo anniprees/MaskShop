@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using MaskShop.Aids.Methods;
 using MaskShop.Data.Common;
@@ -27,18 +25,18 @@ namespace MaskShop.Infra.Common
         public virtual async Task<List<TDomain>> Get()
         {
             var query = createSqlQuery();
-            var set = await runSqlQueryAsync(query);
+            var set = await RunSqlQueryAsync(query);
 
-            return toDomainObjectsList(set);
+            return ToDomainObjectsList(set);
         }
 
         public async Task<TDomain> Get(string id)
         {
-            if (id is null) return toDomainObject(new TData());
+            if (id is null) return ToDomainObject(new TData());
 
-            var d = await getData(id);
+            var d = await GetData(id);
 
-            var obj = toDomainObject(d);
+            var obj = ToDomainObject(d);
 
             return obj;
         }
@@ -47,7 +45,7 @@ namespace MaskShop.Infra.Common
         {
             if (id is null) return;
 
-            var v = await getData(id);
+            var v = await GetData(id);
 
             if (v is null) return;
             dbSet.Remove(v);
@@ -56,11 +54,11 @@ namespace MaskShop.Infra.Common
 
         public async Task Add(TDomain obj)
         {
-            var d = getData(obj);
+            var d = GetData(obj);
 
             if (d is null) return;
 
-            if (isInDatabase(d)) await Update(obj);
+            if (IsInDatabase(d)) await Update(obj);
             else await dbSet.AddAsync(d);
 
             await db.SaveChangesAsync();
@@ -68,8 +66,8 @@ namespace MaskShop.Infra.Common
 
         public async Task Update(TDomain obj)
         {
-            var d = getData(obj);
-            d = copyData(d);
+            var d = GetData(obj);
+            d = CopyData(d);
             db.Attach(d).State = EntityState.Modified;
 
             //TODO BaseRepository db.SaveChangesAsync
@@ -97,25 +95,25 @@ namespace MaskShop.Infra.Common
             return query;
         }
 
-        protected internal abstract TDomain toDomainObject(TData periodData);
+        protected internal abstract TDomain ToDomainObject(TData periodData);
 
-        protected abstract Task<TData> getData(string id);
+        protected abstract Task<TData> GetData(string id);
 
-        protected TData getData(TDomain obj) => obj?.Data;
+        protected TData GetData(TDomain obj) => obj?.Data;
 
-        protected abstract TData getDataById(TData d);
+        protected abstract TData GetDataById(TData d);
 
-        protected bool isInDatabase(TData d) => getDataById(d) != null;
+        protected bool IsInDatabase(TData d) => GetDataById(d) != null;
 
-        internal async Task<List<TData>> runSqlQueryAsync(IQueryable<TData> query)
+        internal async Task<List<TData>> RunSqlQueryAsync(IQueryable<TData> query)
             => await query.AsNoTracking().ToListAsync();
 
-        internal List<TDomain> toDomainObjectsList(List<TData> set)
-            => set.Select(toDomainObject).ToList();
+        internal List<TDomain> ToDomainObjectsList(List<TData> set)
+            => set.Select(ToDomainObject).ToList();
 
-        private TData copyData(TData d)
+        private TData CopyData(TData d)
         {
-            var x = getDataById(d);
+            var x = GetDataById(d);
 
             if (x is null) return d;
             Copy.Members(d, x);

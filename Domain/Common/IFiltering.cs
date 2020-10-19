@@ -9,6 +9,6 @@ namespace MaskShop.Domain.Common
         string SearchString { get; set; }
         string CurrentFilter { get; set; }
         string FixedFilter { get; set; }
-        string FIxedValue { get; set; }
+        string FixedValue { get; set; }
     }
 }
