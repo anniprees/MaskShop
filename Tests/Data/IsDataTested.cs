@@ -5,7 +5,7 @@ namespace MaskShop.Tests.Data
     [TestClass]
     public class IsDataTested : AssemblyTests
     {
-        protected override string assembly => "MaskShop.Data";
-        protected override string nameSpace(string name) { return $"{assembly}.{name}"; }
+        protected override string Assembly => "MaskShop.Data";
+        protected override string NameSpace(string name) { return $"{Assembly}.{name}"; }
     }
 }

@@ -5,8 +5,8 @@ namespace MaskShop.Tests.Infra
     [TestClass]
     public class IsInfraTested : AssemblyTests
     {
-        protected override string assembly => "MaskShop.Infra";
+        protected override string Assembly => "MaskShop.Infra";
 
-        protected override string nameSpace(string name) { return $"{assembly}.{name}"; }
+        protected override string NameSpace(string name) { return $"{Assembly}.{name}"; }
     }
 }

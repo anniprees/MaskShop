@@ -16,6 +16,6 @@
     //    }
 
     //    [TestMethod]
-    //    public void DefinitionTest() => isReadOnlyProperty(obj.Definition);
+    //    public void DefinitionTest() => IsReadOnlyProperty(obj.Definition);
     //}
 }

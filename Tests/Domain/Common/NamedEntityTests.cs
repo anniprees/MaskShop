@@ -25,7 +25,7 @@ namespace MaskShop.Tests.Domain.Common
         {
             Assert.AreEqual(Aids.Constants.Word.Unspecified, obj.Name);
             obj = new TestClass(GetRandom.Object<ProductData>());
-            isReadOnlyProperty(obj, GetMember.Name<TestClass>(x => x.Name), obj.Data.Name);
+            IsReadOnlyProperty(obj, GetMember.Name<TestClass>(x => x.Name), obj.Data.Name);
         }
     }
 }

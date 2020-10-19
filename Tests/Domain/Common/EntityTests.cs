@@ -23,7 +23,7 @@ namespace MaskShop.Tests.Domain.Common
         }
 
         [TestMethod]
-        public void DataTest() => isReadOnlyProperty();
+        public void DataTest() => IsReadOnlyProperty();
 
         [TestMethod]
         public void IsUnspecifiedTest()
@@ -68,7 +68,7 @@ namespace MaskShop.Tests.Domain.Common
         {
             Assert.AreEqual(DateTime.MinValue, obj.ValidFrom);
             obj = new TestClass(GetRandom.Object<ProductData>());
-            isReadOnlyProperty(obj, GetMember.Name<Product>(x => x.ValidFrom), obj.Data.From);
+            IsReadOnlyProperty(obj, GetMember.Name<Product>(x => x.ValidFrom), obj.Data.From);
         }
 
         [TestMethod]
@@ -76,7 +76,7 @@ namespace MaskShop.Tests.Domain.Common
         {
             Assert.AreEqual(DateTime.MaxValue, obj.ValidTo);
             obj = new TestClass(GetRandom.Object<ProductData>());
-            isReadOnlyProperty(obj, GetMember.Name<Product>(x => x.ValidTo), obj.Data.To);
+            IsReadOnlyProperty(obj, GetMember.Name<Product>(x => x.ValidTo), obj.Data.To);
         }
     }
 }

@@ -21,6 +21,6 @@ namespace MaskShop.Tests.Domain.Common
         }
 
         [TestMethod]
-        public void IdTest() => isReadOnlyProperty(obj.Id);
+        public void IdTest() => IsReadOnlyProperty(obj.Id);
     }
 }

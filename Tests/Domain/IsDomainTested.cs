@@ -8,8 +8,8 @@ namespace MaskShop.Tests.Domain
     [TestClass]
     public class IsDomainTested : AssemblyTests
     {
-            protected override string assembly => "MaskShop.Domain";
+            protected override string Assembly => "MaskShop.Domain";
 
-            protected override string nameSpace(string name) { return $"{assembly}.{name}"; }
+            protected override string NameSpace(string name) { return $"{Assembly}.{name}"; }
     } 
 }

@@ -5,8 +5,8 @@ namespace MaskShop.Tests.Facade
     [TestClass]
     public class IsFacadeTested : AssemblyTests
     {
-        protected override string assembly => "MaskShop.Facade";
+        protected override string Assembly => "MaskShop.Facade";
 
-        protected override string nameSpace(string name) { return $"{assembly}.{name}"; }
+        protected override string NameSpace(string name) { return $"{Assembly}.{name}"; }
     }
 }

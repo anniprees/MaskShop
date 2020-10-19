@@ -23,12 +23,12 @@ namespace MaskShop.Tests
 
         [TestMethod]
         public void IsInheritedTest()
-            => Assert.AreEqual(getBaseClass(), type.BaseType);
+            => Assert.AreEqual(GetBaseClass(), type.BaseType);
 
         [TestMethod] public void CanCreateTest() => Assert.IsNotNull(obj);
 
 
-        protected virtual Type getBaseClass() => typeof(TBaseClass);
+        protected virtual Type GetBaseClass() => typeof(TBaseClass);
 
         protected static void IsNullableProperty<T>(Func<T> get, Action<T> set)
         {
@@ -64,20 +64,20 @@ namespace MaskShop.Tests
         {
             IsProperty(o, name, t);
             var p = o.GetType().GetProperty(name);
-            canSetValue(o, p, null);
+            CanSetValue(o, p, null);
         }
 
         protected static void IsProperty(object o, string name, Type t)
         {
-            var p = isReadWriteProperty(o, name, t);
-            canSetValue(o, p, GetRandom.Value(t));
+            var p = IsReadWriteProperty(o, name, t);
+            CanSetValue(o, p, GetRandom.Value(t));
         }
-        private static void canSetValue(object o, PropertyInfo p, object v)
+        private static void CanSetValue(object o, PropertyInfo p, object v)
         {
             p.SetValue(o, v);
             Assert.AreEqual(v, p.GetValue(o));
         }
-        protected static PropertyInfo isReadWriteProperty(object o, string name, Type t)
+        protected static PropertyInfo IsReadWriteProperty(object o, string name, Type t)
         {
             var p = o.GetType().GetProperty(name);
             Assert.IsNotNull(p);
@@ -87,28 +87,28 @@ namespace MaskShop.Tests
 
             return p;
         }
-        protected static void hasDisplayName(string propertyName, string displayName)
+        protected static void HasDisplayName(string propertyName, string displayName)
             => Assert.AreEqual(displayName, GetMember.DisplayName<TClass>(propertyName));
 
         protected void IsProperty<TType>(string propertyName, string displayName)
         {
             IsProperty(obj, propertyName, typeof(TType));
-            hasDisplayName(propertyName, displayName);
+            HasDisplayName(propertyName, displayName);
         }
 
         protected void IsNullableProperty<TType>(string propertyName, string displayName)
         {
             IsNullableProperty(obj, propertyName, typeof(TType));
-            hasDisplayName(propertyName, displayName);
+            HasDisplayName(propertyName, displayName);
         }
 
         protected void IsProperty<TType>()
         {
-            var n = getPropertyName();
+            var n = GetPropertyName();
             IsProperty(obj, n, typeof(TType));
         }
 
-        protected string getPropertyName(int stackFrameIdx = 2)
+        protected string GetPropertyName(int stackFrameIdx = 2)
         {
             var stack = new StackTrace();
             var n = stack.GetFrame(stackFrameIdx)?.GetMethod()?.Name;
@@ -118,42 +118,42 @@ namespace MaskShop.Tests
 
         protected void IsNullableProperty<TType>()
         {
-            var n = getPropertyName();
+            var n = GetPropertyName();
             IsNullableProperty(obj, n, typeof(TType));
         }
 
         protected void IsProperty<TType>(string displayName)
         {
-            var n = getPropertyName();
+            var n = GetPropertyName();
             IsProperty(obj, n, typeof(TType));
-            hasDisplayName(n, displayName);
+            HasDisplayName(n, displayName);
         }
 
         protected void IsNullableProperty<TType>(string displayName)
         {
-            var n = getPropertyName();
+            var n = GetPropertyName();
             IsNullableProperty(obj, n, typeof(TType));
-            hasDisplayName(n, displayName);
+            HasDisplayName(n, displayName);
         }
 
-        protected void isReadOnlyProperty(object expected)
+        protected void IsReadOnlyProperty(object expected)
         {
-            var n = getPropertyNameAfter("isReadOnlyProperty");
-            isReadOnlyProperty(obj, n, expected);
+            var n = GetPropertyNameAfter("IsReadOnlyProperty");
+            IsReadOnlyProperty(obj, n, expected);
         }
 
-        protected void isReadOnlyProperty()
+        protected void IsReadOnlyProperty()
         {
-            var n = getPropertyNameAfter("isReadOnlyProperty");
-            isReadOnlyProperty(obj, n);
+            var n = GetPropertyNameAfter("IsReadOnlyProperty");
+            IsReadOnlyProperty(obj, n);
         }
-        protected static void isReadOnlyProperty(object o, string name, object expected)
+        protected static void IsReadOnlyProperty(object o, string name, object expected)
         {
-            var actual = isReadOnlyProperty(o, name);
+            var actual = IsReadOnlyProperty(o, name);
             Assert.AreEqual(expected, actual);
         }
 
-        protected static object isReadOnlyProperty(object o, string name)
+        protected static object IsReadOnlyProperty(object o, string name)
         {
             var property = o.GetType().GetProperty(name);
             Assert.IsNotNull(property);
@@ -163,14 +163,14 @@ namespace MaskShop.Tests
             return property.GetValue(o);
         }
 
-        protected void getListFromRepository<TDetail, TData, TRepository>(
+        protected void GetListFromRepository<TDetail, TData, TRepository>(
             Action<TData> setId, Func<TData, TDetail> toObject) where TRepository : IRepository<TDetail>
         {
-            var n = getPropertyNameAfter("getListFromRepository");
-            getListFromRepository<TDetail, TData, TRepository>(obj, n, setId, toObject);
+            var n = GetPropertyNameAfter("GetListFromRepository");
+            GetListFromRepository<TDetail, TData, TRepository>(obj, n, setId, toObject);
         }
 
-        protected string getPropertyNameAfter(string methodName)
+        protected string GetPropertyNameAfter(string methodName)
         {
             var stack = new StackTrace();
             int i;
@@ -193,13 +193,13 @@ namespace MaskShop.Tests
             return string.Empty;
         }
 
-        protected void getListFromRepository<TDetail, TData, TRepository>(
+        protected void GetListFromRepository<TDetail, TData, TRepository>(
             object obj, string name, Action<TData> setId, Func<TData, TDetail> toObject)
 
             where TRepository : IRepository<TDetail>
         {
 
-            var t = isReadOnlyProperty(obj, name) as IReadOnlyList<TDetail>;
+            var t = IsReadOnlyProperty(obj, name) as IReadOnlyList<TDetail>;
             Assert.IsNotNull(t);
             Assert.AreEqual(0, t.Count);
             var values = GetRepository.Instance<TRepository>();
@@ -212,7 +212,7 @@ namespace MaskShop.Tests
                 values.Add(toObject(d)).GetAwaiter();
             }
 
-            t = isReadOnlyProperty(obj, name) as IReadOnlyList<TDetail>;
+            t = IsReadOnlyProperty(obj, name) as IReadOnlyList<TDetail>;
             Assert.AreEqual((int)Math.Ceiling(valuesCount / 4.0), t?.Count);
         }
 
@@ -223,8 +223,8 @@ namespace MaskShop.Tests
         //    Action relatedMethod)
         //    where TRepository : IRepository<TObject>
         //{
-        //    var n = getPropertyNameAfter("testRelatedList");
-        //    isReadOnlyProperty(obj, n);
+        //    var n = GetPropertyNameAfter("testRelatedList");
+        //    IsReadOnlyProperty(obj, n);
         //    Assert.AreEqual(0, getList().Count);
         //    relatedMethod();
 

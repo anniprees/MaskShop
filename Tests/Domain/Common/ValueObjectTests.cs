@@ -24,7 +24,7 @@ namespace MaskShop.Tests.Domain.Common
             obj = new TestClass(GetRandom.Object<ValueData>());
         }
 
-        [TestMethod] public void DataTest() => isReadOnlyProperty();
+        [TestMethod] public void DataTest() => IsReadOnlyProperty();
 
         [TestMethod]
         public void IsUnspecifiedTest()
