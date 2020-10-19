@@ -8,7 +8,7 @@ namespace MaskShop.Facade.Common
         [Required]
         public string Id { get; set; }
 
-        public override string GetId() => Id;
+        //public override string GetId() => Id;
 
     }
 
