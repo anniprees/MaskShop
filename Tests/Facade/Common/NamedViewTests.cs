@@ -1,10 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using MaskShop.Facade.Common;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MaskShop.Tests.Facade.Common
 {
-    class NamedViewTests
+
+    [TestClass]
+    public class NamedViewTests : AbstractClassTests<NamedView, UniqueEntityView>
     {
+        private class TestClass : NamedView { }
+
+        [TestInitialize]
+        public override void TestInitialize()
+        {
+            base.TestInitialize();
+            obj = new TestClass();
+        }
+        [TestMethod]
+        public void NameTest()
+        {
+            IsNullableProperty(() => obj.Name, x => obj.Name = x);
+        }
+        [TestMethod]
+        public void CodeTest()
+        {
+            IsNullableProperty(() => obj.Code, x => obj.Code = x);
+        }
     }
+
 }

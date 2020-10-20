@@ -1,10 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using MaskShop.Facade.Common;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MaskShop.Tests.Facade.Common
 {
-    class DefinedViewTests
+
+    [TestClass]
+    public class DefinedViewTests : AbstractClassTests<DefinedView, NamedView>
     {
+
+        private class TestClass : DefinedView { }
+
+        [TestInitialize]
+        public override void TestInitialize()
+        {
+            base.TestInitialize();
+            obj = new TestClass();
+        }
+
+        [TestMethod]
+        public void DefinitionTest()
+        {
+            IsNullableProperty(() => obj.Definition, x => obj.Definition = x);
+        }
+
     }
+
 }
