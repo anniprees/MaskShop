@@ -1,4 +1,5 @@
 ﻿using MaskShop.Data.Products;
+using MaskShop.Domain.Products;
 using Microsoft.EntityFrameworkCore;
 
 namespace MaskShop.Infra.Products
@@ -37,7 +38,7 @@ namespace MaskShop.Infra.Products
             if (builder is null) return;
 
 
-            //builder.Entity<ProductData>().HasKey(table => new {table.Id,});
+            builder.Entity<ProductData>().HasKey(table => new { table.Id, });
 
             //builder.Entity<ProductData>()
             //    .HasOne(i => i.Id).WithMany(i => i.Products)
@@ -45,26 +46,19 @@ namespace MaskShop.Infra.Products
             //    ;
 
 
-            //builder.Entity<ProductData>().;
-            //builder.Entity<ProductFeatureData>().ToTable(nameof(ProductFeatures));
-            //builder.Entity<ProductCategoryData>().ToTable(nameof(ProductCategories));
-            //builder.Entity<ProductFeatureCategoryData>().ToTable(nameof(ProductFeatureCategories));
-            //builder.Entity<BasePriceData>().ToTable(nameof(BasePrices));
-            //builder.Entity<DiscountComponentData>().ToTable(nameof(DiscountComponents)).OwnsOne(
-            //    x => x.Percent);
-            //builder.Entity<SurchargeComponentData>().ToTable(nameof(SurchargeComponents)).OwnsOne(
-            //    x => x.Percent);
-            //builder.Entity<InventoryItem>().ToTable(nameof(InventoryItems));
-            //builder.Entity<OrderValueData>().ToTable(nameof(OrderValues));
-            //builder.Entity<QuantityBreakData>().ToTable(nameof(QuantityBreaks));
-            //builder.Entity<RequiredFeatureData>().ToTable(nameof(RequiredFeatures))
-            //    .HasKey(x => new { x.ProductFeatureId, x.ProductId });
-            //builder.Entity<OptionalFeatureData>().ToTable(nameof(OptionalFeatures))
-            //    .HasKey(x => new { x.ProductFeatureId, x.ProductId });
-            //builder.Entity<SelectableFeatureData>().ToTable(nameof(SelectableFeatures))
-            //    .HasKey(x => new { x.ProductFeatureId, x.ProductId });
-            //builder.Entity<StandardFeatureData>().ToTable(nameof(StandardFeatures))
-            //    .HasKey(x => new { x.ProductFeatureId, x.ProductId });
-            }
+            builder.Entity<ProductFeatureData>().HasKey(nameof(ProductFeatures));
+            builder.Entity<ProductCategoryData>().HasKey(nameof(ProductCategories));
+            builder.Entity<ProductFeatureCategoryData>().HasKey(nameof(ProductFeatureCategories));
+            builder.Entity<BasePriceData>().HasKey(nameof(BasePrices));
+            builder.Entity<DiscountComponentData>().HasKey(nameof(DiscountComponents));
+            builder.Entity<SurchargeComponentData>().HasKey(nameof(SurchargeComponents));
+            builder.Entity<InventoryItemData>().HasKey(nameof(InventoryItems));
+            builder.Entity<OrderValueData>().HasKey(nameof(OrderValues));
+            builder.Entity<QuantityBreakData>().HasKey(nameof(QuantityBreaks));
+            builder.Entity<RequiredFeatureData>().HasKey(table => new { table.ProductFeatureId, table.ProductId });
+            builder.Entity<OptionalFeatureData>().HasKey(table => new { table.ProductFeatureId, table.ProductId });
+            builder.Entity<SelectableFeatureData>().HasKey(table => new { table.ProductFeatureId, table.ProductId });
+            builder.Entity<StandardFeatureData>().HasKey(table => new { table.ProductFeatureId, table.ProductId });
+        }
         }
 }
