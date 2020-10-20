@@ -10,6 +10,6 @@ namespace MaskShop.Infra.Products
         {
         }
 
-        protected internal override BasePrice ToDomainObject(BasePriceData d) => new BasePrice(d);
+        protected override BasePrice ToDomainObject(BasePriceData d) => new BasePrice(d);
     }
 }

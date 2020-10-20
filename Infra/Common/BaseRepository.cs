@@ -95,7 +95,7 @@ namespace MaskShop.Infra.Common
             return query;
         }
 
-        protected internal abstract TDomain ToDomainObject(TData periodData);
+        protected abstract TDomain ToDomainObject(TData periodData);
 
         protected abstract Task<TData> GetData(string id);
 

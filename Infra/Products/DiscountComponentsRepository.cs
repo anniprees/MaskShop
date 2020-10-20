@@ -11,7 +11,7 @@ namespace MaskShop.Infra.Products
         {
         }
 
-        protected internal override DiscountComponent ToDomainObject(DiscountComponentData d) =>
+        protected override DiscountComponent ToDomainObject(DiscountComponentData d) =>
             new DiscountComponent(d);
     }
 }

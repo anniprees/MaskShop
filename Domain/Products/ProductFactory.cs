@@ -10,7 +10,7 @@ namespace MaskShop.Domain.Products
     {
         //public static IProduct Create(ProductData d)
         //{
-            
+
         //}
     }
 }

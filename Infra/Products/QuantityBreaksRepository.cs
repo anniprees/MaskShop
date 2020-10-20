@@ -8,6 +8,6 @@ namespace MaskShop.Infra.Products
     {
         public QuantityBreaksRepository(ProductDbContext c = null) : base(c, c?.QuantityBreaks) { }
 
-        protected internal override QuantityBreak ToDomainObject(QuantityBreakData d) => new QuantityBreak(d);
+        protected override QuantityBreak ToDomainObject(QuantityBreakData d) => new QuantityBreak(d);
     }
 }

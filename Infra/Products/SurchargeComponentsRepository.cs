@@ -11,7 +11,7 @@ namespace MaskShop.Infra.Products
         {
         }
 
-        protected internal override SurchargeComponent ToDomainObject(SurchargeComponentData d) =>
+        protected override SurchargeComponent ToDomainObject(SurchargeComponentData d) =>
             new SurchargeComponent(d);
     }
 }
