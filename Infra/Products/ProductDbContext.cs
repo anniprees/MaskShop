@@ -1,6 +1,7 @@
 ﻿using MaskShop.Data.Products;
 using MaskShop.Domain.Products;
 using Microsoft.EntityFrameworkCore;
+using System.Data.Entity.ModelConfiguration;
 
 namespace MaskShop.Infra.Products
 {
@@ -46,7 +47,7 @@ namespace MaskShop.Infra.Products
             //    ;
 
 
-            builder.Entity<ProductFeatureData>().HasKey(nameof(ProductFeatures));
+            builder.Entity<ProductFeatureData>().ToTable(nameof(ProductFeatures));
             builder.Entity<ProductCategoryData>().HasKey(nameof(ProductCategories));
             builder.Entity<ProductFeatureCategoryData>().HasKey(nameof(ProductFeatureCategories));
             builder.Entity<BasePriceData>().HasKey(nameof(BasePrices));
