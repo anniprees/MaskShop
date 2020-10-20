@@ -12,7 +12,7 @@ namespace MaskShop.Tests.Facade.Common
         private class TestClass : PeriodView
         {
 
-            public override string GetId() => string.Empty;
+            //public override string GetId() => string.Empty;
 
         }
 
@@ -27,7 +27,7 @@ namespace MaskShop.Tests.Facade.Common
 
         [TestMethod] public void ToTest() => IsNullableProperty<DateTime?>();
 
-        [TestMethod] public void GetIdTest() => IsAbstractMethod(nameof(obj.GetId));
+        //[TestMethod] public void GetIdTest() => IsAbstractMethod(nameof(obj.GetId));
 
     }
 

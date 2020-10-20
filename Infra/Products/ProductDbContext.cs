@@ -47,7 +47,7 @@ namespace MaskShop.Infra.Products
             //    ;
 
 
-            builder.Entity<ProductFeatureData>().ToTable(nameof(ProductFeatures));
+            builder.Entity<ProductFeatureData>().HasKey(nameof(ProductFeatures));
             builder.Entity<ProductCategoryData>().HasKey(nameof(ProductCategories));
             builder.Entity<ProductFeatureCategoryData>().HasKey(nameof(ProductFeatureCategories));
             builder.Entity<BasePriceData>().HasKey(nameof(BasePrices));
