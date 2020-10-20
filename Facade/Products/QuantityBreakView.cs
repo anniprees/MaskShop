@@ -6,7 +6,7 @@ using MaskShop.Data.Common;
 
 namespace MaskShop.Facade.Products
 {
-    public class QuantityBreakView : UniqueEntityData
+    public sealed class QuantityBreakView : UniqueEntityData
     {
         [DisplayName("From quantity")]
         public string FromQuantity { get; set; }

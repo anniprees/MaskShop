@@ -7,7 +7,7 @@ using MaskShop.Domain.Products;
 
 namespace MaskShop.Facade.Products
 {
-   public class OrderValueViewFactory
+   public static class OrderValueViewFactory
     {
        public static OrderValueView Create(OrderValue o)
        {

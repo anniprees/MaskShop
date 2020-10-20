@@ -7,7 +7,7 @@ using MaskShop.Domain.Products;
 
 namespace MaskShop.Facade.Products
 {
-    public class ProductFeatureViewFactory
+    public static class ProductFeatureViewFactory
     {
         public static ProductFeatureView Create(ProductFeature o)
         {

@@ -7,7 +7,7 @@ using MaskShop.Domain.Products;
 
 namespace MaskShop.Facade.Products
 {
-    public class QuantityBreakViewFactory
+    public static class QuantityBreakViewFactory
     { 
         public static QuantityBreakView Create(QuantityBreak o)
             {

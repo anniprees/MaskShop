@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MaskShop.Facade.Products
 {
-    public class OptionalFeatureView : ProductFeatureApplicabilityView
+    public sealed class OptionalFeatureView : ProductFeatureApplicabilityView
     {
     }
 }

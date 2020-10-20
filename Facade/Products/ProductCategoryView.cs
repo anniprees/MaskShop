@@ -5,7 +5,7 @@ using MaskShop.Facade.Common;
 
 namespace MaskShop.Facade.Products
 {
-    public class ProductCategoryView : DefinedView
+    public sealed class ProductCategoryView : DefinedView
     {
     }
 }

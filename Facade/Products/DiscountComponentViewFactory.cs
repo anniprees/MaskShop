@@ -7,7 +7,7 @@ using MaskShop.Domain.Products;
 
 namespace MaskShop.Facade.Products
 {
-   public class DiscountComponentViewFactory
+   public static class DiscountComponentViewFactory
     { 
        public static DiscountComponent Create(DiscountComponentView v)
        {

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MaskShop.Tests.Facade.Products
 {
-    class BasePriceViewTests
+    public class BasePriceViewTests 
     {
     }
 }

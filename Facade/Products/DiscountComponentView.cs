@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MaskShop.Facade.Products
 {
-    public class DiscountComponentView : PriceComponentView
+    public sealed class DiscountComponentView : PriceComponentView
     {
     }
 }

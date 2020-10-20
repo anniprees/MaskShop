@@ -7,7 +7,7 @@ using MaskShop.Facade.Common;
 
 namespace MaskShop.Facade.Products
 {
-    public class OrderValueView : UniqueEntityView
+    public sealed class OrderValueView : UniqueEntityView
     {
         [DisplayName("From amount")]
         [Required]
