@@ -1,7 +1,5 @@
 ﻿using MaskShop.Data.Products;
-using MaskShop.Domain.Products;
 using Microsoft.EntityFrameworkCore;
-using System.Data.Entity.ModelConfiguration;
 
 namespace MaskShop.Infra.Products
 {

@@ -20,15 +20,15 @@ namespace BlazorApp.Server.Data
         {
         }
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-            InitializeTables(builder);
-        }
+        //protected override void OnModelCreating(ModelBuilder builder)
+        //{
+        //    base.OnModelCreating(builder);
+        //    InitializeTables(builder);
+        //}
 
-        internal void InitializeTables(ModelBuilder builder)
-        {
-            ProductDbContext.InitializeTables(builder);
-        }
+        //internal void InitializeTables(ModelBuilder builder)
+        //{
+        //    ProductDbContext.InitializeTables(builder);
+        //}
     }
 }

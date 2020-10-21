@@ -12,7 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
 using BlazorApp.Server.Data;
+using BlazorApp.Server.Hubs;
 using BlazorApp.Server.Models;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace BlazorApp.Server
 {
@@ -29,10 +31,6 @@ namespace BlazorApp.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -42,13 +40,25 @@ namespace BlazorApp.Server
             services.AddAuthentication()
                 .AddIdentityServerJwt();
 
+            services.AddSignalR();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddResponseCompression(option =>
+            {
+                option.ExcludedMimeTypes =
+                    ResponseCompressionDefaults.MimeTypes.Concat(new[] {"application/octet-stream"});
+            });
+            
+            services.AddDbContext<ProductDbContext>(option =>
+                option.UseSqlServer(
+                    Configuration.GetConnectionString("ProductDBContext")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseResponseCompression();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -76,6 +86,7 @@ namespace BlazorApp.Server
             {
                 endpoints.MapRazorPages();
                 endpoints.MapControllers();
+                endpoints.MapHub<ProductHub>("/ProductHub");
                 endpoints.MapFallbackToFile("index.html");
             });
         }
