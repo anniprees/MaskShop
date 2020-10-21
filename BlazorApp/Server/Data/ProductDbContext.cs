@@ -1,11 +1,20 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System;
+using System.Diagnostics;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
 using MaskShop.Data.Products;
+using MaskShop.Domain.Products;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlazorApp.Server.Data
 {
     public class ProductDbContext : DbContext
     {
+        private readonly Guid _id;
+        public static readonly string RowVersion = nameof(RowVersion);
+        public static readonly string ProductsDb = nameof(ProductsDb).ToLower();
+
+
         public DbSet<ProductData> Products { get; set; }
         public DbSet<ProductFeatureData> ProductFeatures { get; set; }
         public DbSet<ProductCategoryData> ProductCategories { get; set; }
@@ -20,11 +29,13 @@ namespace BlazorApp.Server.Data
         public DbSet<OptionalFeatureData> OptionalFeatures { get; set; }
         public DbSet<SelectableFeatureData> SelectableFeatures { get; set; }
         public DbSet<StandardFeatureData> StandardFeatures { get; set; }
-
+        
 
         public ProductDbContext(DbContextOptions<ProductDbContext> options)
             : base(options)
         {
+            _id = Guid.NewGuid();
+            Debug.WriteLine($"{_id} context created.");
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -32,6 +43,31 @@ namespace BlazorApp.Server.Data
             base.OnModelCreating(builder);
             InitializeTables(builder);
         }
+
+
+        //TODO: concurrency - kas vaja iga tabeli jaoks oma context faili ja kuidas teha abstraktseks
+        //
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Product>()
+        //        .Property<byte[]>(RowVersion)
+        //        .IsRowVersion();
+
+        //    base.OnModelCreating(modelBuilder);
+        //}
+
+        //public override void Dispose()
+        //{
+        //    Debug.WriteLine($"{_id} context disposed.");
+        //    base.Dispose();
+        //}
+
+        //public override ValueTask DisposeAsync()
+        //{
+        //    Debug.WriteLine($"{_id} context disposed async.");
+        //    return base.DisposeAsync();
+        //}
+
 
         public static void InitializeTables(ModelBuilder builder)
         {

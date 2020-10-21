@@ -31,14 +31,15 @@ namespace BlazorApp.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            //TODO: lisada Identity tagasi - hetkel rakendus toimib
+            //services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddIdentityServer()
-                .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+            //services.AddIdentityServer()
+            //    .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
-            services.AddAuthentication()
-                .AddIdentityServerJwt();
+            //services.AddAuthentication()
+            //    .AddIdentityServerJwt();
 
             services.AddSignalR();
             services.AddControllersWithViews();
@@ -48,10 +49,16 @@ namespace BlazorApp.Server
                 option.ExcludedMimeTypes =
                     ResponseCompressionDefaults.MimeTypes.Concat(new[] {"application/octet-stream"});
             });
-            
+
+
+            // Tehtud EFCore Code First Add-Migration - abstraktne ApplicationDBContext esialgu pole kasutusel
             services.AddDbContext<ProductDbContext>(option =>
                 option.UseSqlServer(
                     Configuration.GetConnectionString("ProductDBContext")));
+
+            // TODO: concurrency rakendamisel DBContextFactory kasutamine
+            //services.AddDbContextFactory<ProductDbContext>(opt =>
+            //    opt.UseSqlServer(Configuration.GetConnectionString($"{nameof(ProductDbContext.ProductsDb)}.db")));
 
         }
 
@@ -78,9 +85,9 @@ namespace BlazorApp.Server
 
             app.UseRouting();
 
-            app.UseIdentityServer();
-            app.UseAuthentication();
-            app.UseAuthorization();
+            //app.UseIdentityServer();
+            //app.UseAuthentication();
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
