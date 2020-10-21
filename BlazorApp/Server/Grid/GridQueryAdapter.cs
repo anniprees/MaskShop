@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using MaskShop.Data.Products;
 using MaskShop.Domain.Products;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,14 +14,12 @@ namespace BlazorApp.Server.Grid
     {
         private readonly IFilters _controls;
 
-        private readonly Dictionary<ProductFilterColumns, Expression<Func<Product, dynamic>>> _expressions
-            = new Dictionary<ProductFilterColumns, Expression<Func<Product, dynamic>>>
+        private readonly Dictionary<ProductFilterColumns, Expression<Func<Product, string>>> _expressions
+            = new Dictionary<ProductFilterColumns, Expression<Func<Product, string>>>
             {
                 { ProductFilterColumns.Id, c => c.Id },
                 { ProductFilterColumns.Name, c => c.Name },
-                { ProductFilterColumns.ProductCategoryId, c => c.ProductCategoryId },
-                { ProductFilterColumns.From, c => c.ValidFrom },
-                { ProductFilterColumns.To, c => c.ValidTo }
+                { ProductFilterColumns.ProductCategoryId, c => c.ProductCategoryId }
             };
 
         private readonly Dictionary<ProductFilterColumns, Func<IQueryable<Product>, IQueryable<Product>>> _filterQueries;

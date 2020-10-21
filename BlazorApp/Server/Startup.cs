@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
 using BlazorApp.Server.Data;
+using BlazorApp.Server.Grid;
 using BlazorApp.Server.Hubs;
 using BlazorApp.Server.Models;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -59,7 +60,10 @@ namespace BlazorApp.Server
             // TODO: concurrency rakendamisel DBContextFactory kasutamine
             //services.AddDbContextFactory<ProductDbContext>(opt =>
             //    opt.UseSqlServer(Configuration.GetConnectionString($"{nameof(ProductDbContext.ProductsDb)}.db")));
-
+            
+            services.AddScoped<IPageHelper, PageHelper>();
+            services.AddScoped<IFilters, GridControls>();
+            services.AddScoped<GridQueryAdapter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

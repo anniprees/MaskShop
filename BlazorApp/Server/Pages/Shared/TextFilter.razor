@@ -1,0 +1,95 @@
+﻿@using System.Timers
+@using BlazorApp.Server.Grid
+
+@inject IFilters Filters
+@implements IDisposable
+Filter by:
+<input type="text" autofocus @bind-value="FilterText" @bind-value:event="oninput" />
+<button class="btn btn-danger" @onclick="">Clear</button>
+Filter on: <select @bind="SelectedColumn">
+    @foreach (ProductFilterColumns column in (ProductFilterColumns[])Enum.GetValues(typeof(ProductFilterColumns)))
+    {
+        <option @attributes="Selected(column)" value="@((int)column)">@(column.ToString())</option>
+    }
+</select>
+
+@code {
+
+    [CascadingParameter]
+    public GridWrapper Wrapper { get; set; }
+
+    const int DebounceMs = 300;
+
+    Timer timer;
+
+    protected override void OnInitialized()
+    {
+
+        filterText = Filters.FilterText;
+
+        selectedColumn = (int)(Filters.FilterColumn);
+
+        base.OnInitialized();
+    }
+
+
+    private IEnumerable<KeyValuePair<string, object>> Selected(ProductFilterColumns column)
+    {
+        return (int)column == selectedColumn ? new[]
+        {
+            new KeyValuePair<string, object>("selected", (object)"selected")
+        } : Enumerable.Empty<KeyValuePair<string, object>>();
+
+    }
+
+    private int selectedColumn;
+
+
+    private int SelectedColumn
+    {
+        get => selectedColumn;
+        set
+        {
+            if (value == selectedColumn) return;
+            selectedColumn = value;
+            Filters.FilterColumn = (ProductFilterColumns)selectedColumn;
+            FilterText = string.Empty;
+        }
+    }
+
+    private string filterText;
+
+
+    private string FilterText
+    {
+        get => filterText;
+        set
+        {
+            if (value == filterText) return;
+            filterText = value;
+
+            timer?.Dispose();
+            timer = new Timer(DebounceMs);
+            timer.Elapsed += NotifyTimerElapsed;
+            timer.Enabled = true;
+        }
+    }
+
+
+    private async void NotifyTimerElapsed(object sender, ElapsedEventArgs e)
+    {
+        timer.Dispose();
+        timer = null;
+        if (Filters.FilterText == filterText) return;
+        Filters.FilterText = filterText.Trim();
+        await InvokeAsync(() => Wrapper.FilterChanged.InvokeAsync(this));
+    }
+
+
+    public void Dispose()
+    {
+        if (timer == null) return;
+        timer.Dispose();
+        timer = null;
+    }
+}

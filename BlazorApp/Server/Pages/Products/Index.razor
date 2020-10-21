@@ -1,0 +1,131 @@
+﻿@page "/products/index"
+
+
+@using BlazorApp.Server.Data
+@using BlazorApp.Server.Grid
+@using BlazorApp.Server.Pages.Shared
+@using MaskShop.Data.Products
+@using MaskShop.Domain.Products
+@using Microsoft.EntityFrameworkCore
+
+@inject IFilters Filters
+@inject IDbContextFactory<ProductDbContext> DbFactory
+@inject NavigationManager Nav
+@inject GridQueryAdapter QueryAdapter
+
+<h1>Products</h1>
+
+
+@code {
+
+    //[Parameter]
+    //public int Page
+    //{
+    //    get => Filters.PageHelper.Page;
+    //    set
+    //    {
+    //        Filters.PageHelper.Page = value;
+    //    }
+    //}
+
+
+    //private GridWrapper Wrapper { get; set; }
+
+    //private ICollection<Product> Products { get; set; }
+
+    //private string IsDisabled(bool condition) =>
+    //!Filters.Loading && condition ? "" : "disabled";
+
+    //private int _lastPage = -1;
+
+    //protected override void OnAfterRender(bool firstRender)
+    //{
+    //    if (_lastPage < 1)
+    //    {
+    //        Nav.NavigateTo("/1");
+    //        return;
+    //    }
+
+    //    if (Filters.PageHelper.PageCount > 0)
+    //    {
+    //        if (Page < 1)
+    //        {
+    //            Nav.NavigateTo("/1");
+    //            return;
+    //        }
+    //        if (Page > Filters.PageHelper.PageCount)
+    //        {
+    //            Nav.NavigateTo($"/{Filters.PageHelper.PageCount}");
+    //            return;
+    //        }
+    //    }
+    //    base.OnAfterRender(firstRender);
+    //}
+
+
+    //protected override async Task OnParametersSetAsync()
+    //{
+    //    if (Page != _lastPage)
+    //    {
+    //        _lastPage = Page;
+    //        await ReloadAsync();
+    //    }
+    //    await base.OnParametersSetAsync();
+    //}
+
+    //private Task ToggleAsync(ProductFilterColumns col)
+    //{
+    //    if (Filters.SortColumn == col)
+    //    {
+    //        Filters.SortAscending = !Filters.SortAscending;
+    //    }
+    //    else
+    //    {
+    //        Filters.SortColumn = col;
+    //    }
+    //    return ReloadAsync();
+    //}
+
+    //private async Task DeleteContactAsync()
+    //{
+    //    await using var context = DbFactory.CreateDbContext();
+
+    //    Filters.Loading = true;
+
+    //    var contact = await context.Products.FirstAsync(
+    //        c => c.Id == Wrapper.DeleteRequestId);
+
+    //    if (contact != null)
+    //    {
+    //        context.Products.Remove(contact);
+    //        await context.SaveChangesAsync();
+    //    }
+
+    //    Filters.Loading = false;
+
+    //    await ReloadAsync();
+    //}
+
+    //private async Task ReloadAsync()
+    //{
+    //    if (Filters.Loading || Page < 1)
+    //    {
+    //        return;
+    //    }
+
+    //    Filters.Loading = true;
+
+    //    if (Wrapper != null)
+    //    {
+    //        Wrapper.DeleteRequestId = 0;
+    //    }
+
+    //    Products = null;
+
+    //    await using var context = DbFactory.CreateDbContext();
+
+    //    Products = await QueryAdapter.FetchAsync(context.Products.AsQueryable());
+
+    //    Filters.Loading = false;
+    //}
+}
