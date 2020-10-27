@@ -13,14 +13,12 @@ namespace MaskShop.Facade.Products
         {
             var v = new OptionalFeatureView();
             Copy.Members(o.Data, v);
-
             return v;
         }
         public static OptionalFeature Create(OptionalFeatureView v)
         {
             var d = new OptionalFeatureData();
             Copy.Members(v, d);
-
             return new OptionalFeature(d);
         }
     }

@@ -1,10 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
+using MaskShop.Aids;
+using MaskShop.Data.Products;
+using MaskShop.Domain.Products;
+using MaskShop.Facade.Products;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MaskShop.Tests.Facade.Products
 {
-    class ProductViewFactoryTests
+    [TestClass]
+    public class ProductViewFactoryTests : BaseTests
     {
+
+        [TestInitialize] public void TestInitialize() => type = typeof(ProductViewFactory);
+
+        [TestMethod] public void CreateTest() { }
+
+        [TestMethod]
+        public void CreateObjectTest()
+        {
+            var view = GetRandom.Object<ProductView>();
+            var data = ProductViewFactory.Create(view).Data;
+
+            TestArePropertyValuesEqual(view, data);
+
+        }
+
+        [TestMethod]
+        public void CreateViewTest()
+        {
+            var data = GetRandom.Object<ProductData>();
+            var view = ProductViewFactory.Create(new Product(data));
+
+            TestArePropertyValuesEqual(view, data);
+
+        }
+
     }
+
 }

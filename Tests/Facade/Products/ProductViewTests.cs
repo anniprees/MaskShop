@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using MaskShop.Facade.Common;
+using MaskShop.Facade.Products;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MaskShop.Tests.Facade.Products
 {
-    class ProductViewTests
+    [TestClass] public class ProductViewTests : SealedClassTests<ProductView, NamedView>
     {
+        [TestMethod]
+        public void ProductCategoryIdTest() => IsNullableProperty<string>("Product category Id");
     }
 }

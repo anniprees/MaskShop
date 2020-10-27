@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using MaskShop.Facade.Products;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MaskShop.Tests.Facade.Products
 {
-    public class BasePriceViewTests 
+    [TestClass] public class BasePriceViewTests : SealedClassTests<BasePriceView, PriceComponentView>
     {
     }
 }

@@ -8,7 +8,7 @@ namespace MaskShop.Facade.Products
 {
     public sealed class ProductView : NamedView
     {
-        [DisplayName("Product Category")]
+        [DisplayName("Product category Id")]
         public string ProductCategoryId { get; set; }
     }
 }
