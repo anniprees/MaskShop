@@ -10,6 +10,7 @@ namespace MaskShop.Tests
         public void IsAbstract()
         {
             Assert.IsTrue(type.IsAbstract);
+
         }
 
         protected void IsAbstractMethod(string name)
