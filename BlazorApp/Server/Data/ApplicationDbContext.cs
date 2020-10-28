@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlazorApp.Shared.Data;
 
 namespace BlazorApp.Server.Data
 {
@@ -16,6 +17,17 @@ namespace BlazorApp.Server.Data
             DbContextOptions options,
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            InitializeTables(builder);
+        }
+
+        internal void InitializeTables(ModelBuilder builder)
+        {
+            ProductDbContext.InitializeTables(builder);
         }
     }
 }

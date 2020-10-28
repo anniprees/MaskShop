@@ -12,5 +12,17 @@ namespace BlazorApp.Shared.Data
             : base(options) { }
 
         public DbSet<Product> Products { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            InitializeTables(builder);
+        }
+
+        public static void InitializeTables(ModelBuilder builder)
+        {
+            if (builder is null) return;
+            builder.Entity<Product>().ToTable(nameof(Products));
+        }
     }
 }
