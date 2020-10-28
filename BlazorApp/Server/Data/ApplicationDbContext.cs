@@ -7,8 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using IdentityServer4.EntityFramework.Extensions;
-using MaskShop.Infra.Products;
 
 namespace BlazorApp.Server.Data
 {
@@ -19,16 +17,5 @@ namespace BlazorApp.Server.Data
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
         }
-
-        //protected override void OnModelCreating(ModelBuilder builder)
-        //{
-        //    base.OnModelCreating(builder);
-        //    InitializeTables(builder);
-        //}
-
-        //internal void InitializeTables(ModelBuilder builder)
-        //{
-        //    ProductDbContext.InitializeTables(builder);
-        //}
     }
 }
