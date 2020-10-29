@@ -1,13 +1,10 @@
 using System;
 using System.Net.Http;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Text;
+using BlazorStrap;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace BlazorApp.Client
 {
@@ -16,6 +13,7 @@ namespace BlazorApp.Client
         public static async Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
+            builder.Services.AddBootstrapCss();
             builder.RootComponents.Add<App>("app");
 
             builder.Services.AddHttpClient("BlazorApp.ServerAPI", client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
