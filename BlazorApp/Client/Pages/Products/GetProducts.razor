@@ -15,7 +15,7 @@
 
 <div class="row mb-3">
     <div class="col-md-7">
-        @if (isLoggedOn())
+        @if (!isLoggedOn())
         {
             <BSButton Class="btn btn-primary" @onclick="AddProduct">Add New Product</BSButton>
         }
