@@ -3,6 +3,10 @@
 @using BlazorApp.Shared
 @using Microsoft.AspNetCore.SignalR.Client
 
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@attribute [Authorize]
+
 @inject NavigationManager NavigationManager
 @inject HttpClient HttpClient
 
