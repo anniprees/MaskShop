@@ -1,0 +1,80 @@
+﻿@page "/deleteproduct/{id}"
+
+@using BlazorApp.Shared
+@using Microsoft.AspNetCore.SignalR.Client
+
+@inject NavigationManager NavigationManager
+@inject HttpClient HttpClient
+
+<h2>Delete Product</h2>
+<hr />
+<p>Are you sure you want to delete this product</p>
+<br/>
+<div class="col-md-4">
+    <table>
+        <tr>
+            <td>Id</td>
+            <td>@product.Id</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>@product.Name</td>
+        </tr>
+        <tr>
+            <td>Product Category Id</td>
+            <td>@product.ProductCategoryId</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>@product.From</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>@product.To</td>
+        </tr>
+    </table>
+    <div class="form-group">
+        <input type="button" class="btn btn-danger" @onclick="@Delete" value="Delete" />
+        <input type="button" class="btn btn-primary" @onclick="@Cancel" value="Cancel" />
+    </div>
+</div>
+
+@code {
+    Product product = new Product();
+    private HubConnection hubConnection;
+
+    [Parameter]
+    public string id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        product = await HttpClient.GetJsonAsync<Product>("api/products/" + id);
+
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl(NavigationManager.ToAbsoluteUri("/ProductHub"))
+            .Build();
+
+        await hubConnection.StartAsync();
+    }
+
+    public bool IsConnected => hubConnection.State == HubConnectionState.Connected;
+
+    public async Task Delete()
+    {
+        await HttpClient.DeleteAsync("api/products/" + id);
+        if (IsConnected) await SendMessage();
+        NavigationManager.NavigateTo("productlist");
+    }
+
+    Task SendMessage() => hubConnection.SendAsync("SendMessage");
+
+    void Cancel()
+    {
+        NavigationManager.NavigateTo("productlist");
+    }
+
+    public void Dispose()
+    {
+        _ = hubConnection.DisposeAsync();
+    }
+}
