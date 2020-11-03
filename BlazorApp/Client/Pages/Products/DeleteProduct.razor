@@ -13,6 +13,10 @@
 <div class="col-md-4">
     <table>
         <tr>
+            <td>Id</td>
+            <td>@product.Id</td>
+        </tr>
+        <tr>
             <td>Name</td>
             <td>@product.Name</td>
         </tr>
@@ -59,14 +63,14 @@
     {
         await HttpClient.DeleteAsync("api/products/" + id);
         if (IsConnected) await SendMessage();
-        NavigationManager.NavigateTo("productsList");
+        NavigationManager.NavigateTo("productlist");
     }
 
     Task SendMessage() => hubConnection.SendAsync("SendMessage");
 
     void Cancel()
     {
-        NavigationManager.NavigateTo("productsList");
+        NavigationManager.NavigateTo("productlist");
     }
 
     public void Dispose()

@@ -1,4 +1,4 @@
-﻿@page "/productsList"
+﻿@page "/productlist"
 
 @using BlazorApp.Shared
 @using Microsoft.AspNetCore.SignalR.Client
@@ -64,6 +64,7 @@ else
         });
 
         await hubConnection.StartAsync();
+        await LoadData();
     }
 
     private void CallLoadData()
@@ -76,7 +77,7 @@ else
 
     protected async Task LoadData()
     {
-        productsList = await HttpClient.GetFromJsonAsync<Product[]>("api/products");
+        productsList = await HttpClient.GetJsonAsync<Product[]>("api/products");
         StateHasChanged();
     }
 

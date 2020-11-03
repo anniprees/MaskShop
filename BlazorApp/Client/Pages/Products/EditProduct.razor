@@ -12,6 +12,10 @@
     <div class="row">
         <div class="col-md-8">
             <div class="form-group">
+                <label for="Id" class="control-label">Id</label>
+                <input form="Id" class="form-control" @bind="@product.Id" />
+            </div>
+            <div class="form-group">
                 <label for="ProductName" class="control-label">Name</label>
                 <input form="ProductName" class="form-control" @bind="@product.Name" />
             </div>
@@ -61,16 +65,16 @@
 
     public async Task UpdateProduct()
     {
-        await HttpClient.PutAsJsonAsync("api/products/" + id, product);
+        await HttpClient.PutJsonAsync("api/products/" + id, product);
         if (IsConnected) await SendMessage();
-        NavigationManager.NavigateTo("productsList");
+        NavigationManager.NavigateTo("productlist");
     }
 
     Task SendMessage() => hubConnection.SendAsync("SendMessage");
 
     void Cancel()
     {
-        NavigationManager.NavigateTo("productsList");
+        NavigationManager.NavigateTo("productlist");
     }
 
     public void Dispose()
