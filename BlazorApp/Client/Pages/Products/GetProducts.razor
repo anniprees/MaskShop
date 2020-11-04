@@ -43,33 +43,33 @@ else
 {
     <BSTable IsResponsive="true" class='table'>
         <thead class="thead-light">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>ProductFeatureId</th>
-            <th>From</th>
-            <th>To</th>
-        </tr>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>ProductFeatureId</th>
+                <th>From</th>
+                <th>To</th>
+            </tr>
         </thead>
         <tbody>
-        @foreach (var product in Products.Results)
-        {
-            <tr>
-                <td>@product.Id</td>
-                <td>@product.Name</td>
-                <td>@product.ProductCategoryId</td>
-                <td>@product.From</td>
-                <td>@product.To</td>
-                <td>
-                    <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-eye text-primary" @onclick="@(async () => await ViewProduct(product.Id))"></BSButton>
-                    @if (isLoggedOn())
-                    {
-                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-pencil text-warning" @onclick="@(async () => await UpdateProduct(product.Id))"></BSButton>
-                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-trash text-danger" @onclick="@(async () => await DeleteProduct(product.Id))"></BSButton>
-                    }
-                </td>
-            </tr>
-        }
+            @foreach (var product in Products.Results)
+            {
+                <tr>
+                    <td>@product.Id</td>
+                    <td>@product.Name</td>
+                    <td>@product.ProductCategoryId</td>
+                    <td>@product.From</td>
+                    <td>@product.To</td>
+                    <td>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-eye text-primary" @onclick="@(async () => await ViewProduct(product.Id))"></BSButton>
+                        @if (isLoggedOn())
+                        {
+                            <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-pencil text-warning" @onclick="@(async () => await UpdateProduct(product.Id))"></BSButton>
+                            <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-trash text-danger" @onclick="@(async () => await DeleteProduct(product.Id))"></BSButton>
+                        }
+                    </td>
+                </tr>
+            }
         </tbody>
     </BSTable>
     <Pager Result=@Products PageChanged=PagerPageChanged />

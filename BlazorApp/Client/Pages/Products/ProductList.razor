@@ -1,11 +1,15 @@
 ﻿@page "/productlist"
+@using System.Net
 @using BlazorApp.Shared
 @using Microsoft.AspNetCore.SignalR.Client
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @using System.Xml
+@using System.Net.Http
+@using System.Threading.Tasks
 @attribute [Authorize]
 @inject NavigationManager NavigationManager
+@inject LocalStorage Storage
 @inject HttpClient HttpClient
 
 <h2>List of products</h2>
@@ -13,6 +17,19 @@
 <div class="row mb-3">
     <div class="col-md-7">
         <BSButton Class="btn btn-outline-primary" @onclick="AddProduct">Add New Product</BSButton>
+    </div>
+</div>
+<div class="input-group col-md-5 text-md-right">
+    <input name="OrganizationSearchInput" type="text" class="form-control" placeholder="Organization Name" @bind="this.SearchTerm" @onkeyup="SearchBoxKeyPress" />
+    <div class="input-group-btn">
+        <button name="OrganizationSearchButton" class="btn btn-default" @onclick="SearchClick">
+            <i class="oi oi-magnifying-glass" title="search" aria-hidden="true"></i>
+        </button>
+    </div>
+    <div class="input-group-btn">
+        <button name="OrganizationSearchClear" class="btn btn-default" @onclick="ClearSearch">
+            <i class="oi oi-x" title="clear" aria-hidden="true"></i>
+        </button>
     </div>
 </div>
 
@@ -24,30 +41,31 @@ else
 {
     <BSTable IsResponsive="true" class="table">
         <thead class="thead-light">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Product Category ID</th>
-            <th>From</th>
-            <th>To</th>
-        </tr>
+            <tr>
+                <th>ID</th>
+                @*<GridColumn ColumnTitle="Name"
+                    OnSearchTextChanged="OnSearchTextChanged"></GridColumn>*@
+                <th>Product Category ID</th>
+                <th>From</th>
+                <th>To</th>
+            </tr>
         </thead>
         <tbody>
-        @foreach (var product in productsList)
-        {
-            <tr>
-                <td>@product.Id</td>
-                <td>@product.Name</td>
-                <td>@product.ProductCategoryId</td>
-                <td>@product.From</td>
-                <td>@product.To</td>
-                <td>
-                    <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-eye text-primary" @onclick="@(async () => await ViewProduct(product.Id))"></BSButton>
-                    <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-pencil text-warning" @onclick="@(async () => await EditProduct(product.Id))"></BSButton>
-                    <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-trash text-danger" @onclick="@(async () => await DeleteProduct(product.Id))"></BSButton>
-                </td>
-            </tr>
-        }
+            @foreach (var product in productsList)
+            {
+                <tr>
+                    <td>@product.Id</td>
+                    <td>@product.Name</td>
+                    <td>@product.ProductCategoryId</td>
+                    <td>@product.From</td>
+                    <td>@product.To</td>
+                    <td>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-eye text-primary" @onclick="@(async () => await ViewProduct(product.Id))"></BSButton>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-pencil text-warning" @onclick="@(async () => await EditProduct(product.Id))"></BSButton>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-trash text-danger" @onclick="@(async () => await DeleteProduct(product.Id))"></BSButton>
+                    </td>
+                </tr>
+            }
         </tbody>
     </BSTable>
     @*<Pager Result=@Products PageChanged=PagerPageChanged />*@
@@ -124,7 +142,7 @@ else
                         <td>@Product.To</td>
                     </tr>
                 </BSTable>
-                
+
                 <div class="form-group">
                     @if (IsDelete)
                     {
@@ -146,7 +164,11 @@ else
     [Parameter]
     public string Page { get; set; } = "1";
 
+    public string SearchTerm { get; set; } = string.Empty;
+
     Product[] productsList;
+    //public List<Product> productList { get; set; }
+    //public List<Product> filteredProductList { get; set; }
     private HubConnection hubConnection;
 
     protected PagedResult<Product> Products;
@@ -197,6 +219,33 @@ else
     protected async Task LoadData()
     {
         productsList = await HttpClient.GetJsonAsync<Product[]>("api/products");
+        StateHasChanged();
+    }
+
+    protected async Task SearchClick()
+    {
+        if (string.IsNullOrEmpty(SearchTerm))
+        {
+            Products = await HttpClient.GetJsonAsync<PagedResult<Product>>(Storage.GetItem("environment_uri") + "/product/?name=" + SearchTerm + "&page=1");
+            return;
+        }
+
+        Products = await HttpClient.GetJsonAsync<PagedResult<Product>>(Storage.GetItem("environment_uri") + "/product/?name=" + SearchTerm + "&page=1");
+        StateHasChanged();
+    }
+
+    protected async Task SearchBoxKeyPress(KeyboardEventArgs ev)
+    {
+        if (ev.Key == "Enter")
+        {
+            await SearchClick();
+        }
+    }
+
+    protected async Task ClearSearch()
+    {
+        SearchTerm = string.Empty;
+        Products = await HttpClient.GetJsonAsync<PagedResult<Product>>(Storage.GetItem("environment_uri" + "/product/?name" + SearchTerm));
         StateHasChanged();
     }
 
@@ -265,7 +314,7 @@ else
     {
         Product = new Product
         {
-            Name ="",
+            Name = "",
             Id = "",
             ProductCategoryId = "",
         };
@@ -279,5 +328,7 @@ else
     protected void PagerPageChanged(int page)
     {
         NavigationManager.NavigateTo("/productlist/" + page);
+
     }
+
 }
