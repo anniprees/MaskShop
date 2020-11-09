@@ -226,11 +226,11 @@ else
     {
         if (string.IsNullOrEmpty(SearchTerm))
         {
-            Products = await HttpClient.GetJsonAsync<PagedResult<Product>>(Storage.GetItem("environment_uri") + "/product/?name=" + SearchTerm + "&page=1");
+            Products = await HttpClient.GetJsonAsync<PagedResult<Product>>(Storage.GetItem("api/products") + "/product/?name=" + SearchTerm + "&page=1");
             return;
         }
 
-        Products = await HttpClient.GetJsonAsync<PagedResult<Product>>(Storage.GetItem("environment_uri") + "/product/?name=" + SearchTerm + "&page=1");
+        Products = await HttpClient.GetJsonAsync<PagedResult<Product>>(Storage.GetItem("api/products") + "/product/?name=" + SearchTerm + "&page=1");
         StateHasChanged();
     }
 
@@ -245,7 +245,7 @@ else
     protected async Task ClearSearch()
     {
         SearchTerm = string.Empty;
-        Products = await HttpClient.GetJsonAsync<PagedResult<Product>>(Storage.GetItem("environment_uri" + "/product/?name" + SearchTerm));
+        Products = await HttpClient.GetJsonAsync<PagedResult<Product>>(Storage.GetItem("api/products" + "/product/?name" + SearchTerm));
         StateHasChanged();
     }
 
