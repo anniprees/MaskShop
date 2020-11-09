@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BlazorApp.Shared.Data;
 using BlazorApp.Shared.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BlazorApp.Server.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase

@@ -1,16 +1,37 @@
 ﻿@page "/productlist"
-
+@using System.Net
 @using BlazorApp.Shared
 @using Microsoft.AspNetCore.SignalR.Client
-
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using System.Xml
+@using System.Net.Http
+@using System.Threading.Tasks
+@attribute [Authorize]
 @inject NavigationManager NavigationManager
+@inject LocalStorage Storage
 @inject HttpClient HttpClient
 
 <h2>List of products</h2>
 
-<p>>
-    <a href="/addproduct">Create New Product</a>
-    </p>
+<div class="row mb-3">
+    <div class="col-md-7">
+        <BSButton Class="btn btn-outline-primary" @onclick="AddProduct">Add New Product</BSButton>
+    </div>
+</div>
+<div class="input-group col-md-5 text-md-right">
+    <input name="OrganizationSearchInput" type="text" class="form-control" placeholder="Organization Name" @bind="this.SearchTerm" @onkeyup="SearchBoxKeyPress" />
+    <div class="input-group-btn">
+        <button name="OrganizationSearchButton" class="btn btn-default" @onclick="SearchClick">
+            <i class="oi oi-magnifying-glass" title="search" aria-hidden="true"></i>
+        </button>
+    </div>
+    <div class="input-group-btn">
+        <button name="OrganizationSearchClear" class="btn btn-default" @onclick="ClearSearch">
+            <i class="oi oi-x" title="clear" aria-hidden="true"></i>
+        </button>
+    </div>
+</div>
 
 @if (productsList == null)
 {
@@ -18,12 +39,13 @@
 }
 else
 {
-    <table class="table">
-        <thead>
+    <BSTable IsResponsive="true" class="table">
+        <thead class="thead-light">
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Product Category Id</th>
+                <th>ID</th>
+                @*<GridColumn ColumnTitle="Name"
+                    OnSearchTextChanged="OnSearchTextChanged"></GridColumn>*@
+                <th>Product Category ID</th>
                 <th>From</th>
                 <th>To</th>
             </tr>
@@ -31,25 +53,144 @@ else
         <tbody>
             @foreach (var product in productsList)
             {
-            <tr>
-                <td>@product.Id</td>
-                <td>@product.Name</td>
-                <td>@product.ProductCategoryId</td>
-                <td>@product.From</td>
-                <td>@product.To</td>
-                <td>
-                    <a href="/editproduct/@product.Id">Edit</a>
-                    <a href="/deleteproduct/@product.Id">Delete</a>
-                </td>
-            </tr>
+                <tr>
+                    <td>@product.Id</td>
+                    <td>@product.Name</td>
+                    <td>@product.ProductCategoryId</td>
+                    <td>@product.From</td>
+                    <td>@product.To</td>
+                    <td>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-eye text-primary" @onclick="@(async () => await ViewProduct(product.Id))"></BSButton>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-pencil text-warning" @onclick="@(async () => await EditProduct(product.Id))"></BSButton>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-trash text-danger" @onclick="@(async () => await DeleteProduct(product.Id))"></BSButton>
+                    </td>
+                </tr>
             }
         </tbody>
-    </table>
+    </BSTable>
+    @*<Pager Result=@Products PageChanged=PagerPageChanged />*@
 }
 
+<div>
+    <BSModal @bind-IsOpen="@IsAdd" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
+        <BSModalHeader @onclick="CloseModal">@ModalTitle</BSModalHeader>
+        <BSModalBody>
+            <div class="col-md-12">
+                <EditForm Model="@Product" OnValidSubmit="@CreateProduct">
+                    <div class="form-group">
+                        <label for="Id" class="control-label">ID</label>
+                        <InputText id="Id" class="form-control" @bind-Value="Product.Id" />
+                        <ValidationMessage For="@(() => Product.Id)" />
+
+                        <label for="Name" class="control-label">Name</label>
+                        <InputText id="Name" class="form-control" @bind-Value="Product.Name" />
+                        <ValidationMessage For="@(() => Product.Name)" />
+
+                        <label for="Product Category" class="control-label">Product Category</label>
+                        <InputText id="Product Category" class="form-control" @bind-Value="Product.ProductCategoryId" />
+                        <ValidationMessage For="@(() => Product.ProductCategoryId)" />
+
+                        <label for="Valid From" class="control-label">Valid From</label>
+                        <InputDate id="Valid From" class="form-control" @bind-Value="Product.From" />
+                        <ValidationMessage For="@(() => Product.From)" />
+
+                        <label for="Valid To" class="control-label">Valid To</label>
+                        <InputDate id="Valid To" class="form-control" @bind-Value="Product.To" />
+                        <ValidationMessage For="@(() => Product.To)" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <button class="btn btn-primary" @onclick="CloseModal">Cancel</button>
+                    </div>
+                </EditForm>
+            </div>
+        </BSModalBody>
+    </BSModal>
+</div>
+
+<div>
+    <BSModal @bind-IsOpen="IsView" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
+        <BSModalHeader @onclick="CloseModal">@ModalTitle</BSModalHeader>
+        <BSModalBody>
+            <div class="col-md-12">
+                @if (IsDelete)
+                {
+                    <BSAlert Color="Color.Danger">Please review carefully before deleting.</BSAlert>
+                }
+                <hr />
+                <h5>Product</h5>
+                <hr />
+                <BSTable IsResponsive="true" class="table">
+                    <tr>
+                        <td>Id</td>
+                        <td>@Product.Id</td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>@Product.Name</td>
+                    </tr>
+                    <tr>
+                        <td>Product Category</td>
+                        <td>@Product.ProductCategoryId</td>
+                    </tr>
+                    <tr>
+                        <td>Valid From</td>
+                        <td>@Product.From</td>
+                    </tr>
+                    <tr>
+                        <td>Valid To</td>
+                        <td>@Product.To</td>
+                    </tr>
+                </BSTable>
+
+                <div class="form-group">
+                    @if (IsDelete)
+                    {
+                        <button type="button" class="btn btn-danger" @onclick=@RemoveProduct>Delete</button>
+                        <button class="btn btn-primary" @onclick="CloseModal">Cancel</button>
+                    }
+                    @if (!IsDelete)
+                    {
+                        <button class="btn btn-primary" @onclick="CloseModal">Back</button>
+                    }
+                </div>
+            </div>
+        </BSModalBody>
+    </BSModal>
+</div>
+
 @code {
+
+    [Parameter]
+    public string Page { get; set; } = "1";
+
+    public string SearchTerm { get; set; } = string.Empty;
+
     Product[] productsList;
+    //public List<Product> productList { get; set; }
+    //public List<Product> filteredProductList { get; set; }
     private HubConnection hubConnection;
+
+    protected PagedResult<Product> Products;
+
+    protected Product Product = new Product
+    {
+        Name = "",
+        Id = "",
+        ProductCategoryId = "",
+        From = null,
+        To = null,
+    };
+
+    protected string CurrentProductId { get; set; }
+    protected string ModalTitle { get; set; }
+    protected bool IsAdd { get; set; }
+    protected bool IsView { get; set; }
+    protected bool IsDelete { get; set; }
+
+    public bool IsConnected => hubConnection.State == HubConnectionState.Connected;
+
+    Task SendMessage() => hubConnection.SendAsync("SendMessage");
 
     protected override async Task OnInitializedAsync()
     {
@@ -81,8 +222,113 @@ else
         StateHasChanged();
     }
 
+    protected async Task SearchClick()
+    {
+        if (string.IsNullOrEmpty(SearchTerm))
+        {
+            Products = await HttpClient.GetJsonAsync<PagedResult<Product>>(Storage.GetItem("api/products") + "/product/?name=" + SearchTerm + "&page=1");
+            return;
+        }
+
+        Products = await HttpClient.GetJsonAsync<PagedResult<Product>>(Storage.GetItem("api/products") + "/product/?name=" + SearchTerm + "&page=1");
+        StateHasChanged();
+    }
+
+    protected async Task SearchBoxKeyPress(KeyboardEventArgs ev)
+    {
+        if (ev.Key == "Enter")
+        {
+            await SearchClick();
+        }
+    }
+
+    protected async Task ClearSearch()
+    {
+        SearchTerm = string.Empty;
+        Products = await HttpClient.GetJsonAsync<PagedResult<Product>>(Storage.GetItem("api/products" + "/product/?name" + SearchTerm));
+        StateHasChanged();
+    }
+
     public void Dispose()
     {
         _ = hubConnection.DisposeAsync();
     }
+
+    protected void AddProduct()
+    {
+        this.IsAdd = true;
+        this.ModalTitle = "Create product";
+    }
+
+    protected async Task ViewProduct(string productId)
+    {
+        Product = await HttpClient.GetJsonAsync<Product>("api/products/" + productId);
+        CurrentProductId = productId;
+        this.IsView = true;
+        this.ModalTitle = "View product";
+    }
+
+    protected async Task EditProduct(string productId)
+    {
+        Product = await HttpClient.GetJsonAsync<Product>("api/products/" + productId);
+        CurrentProductId = productId;
+        this.IsAdd = true;
+        this.ModalTitle = "Edit product";
+    }
+
+    protected async Task DeleteProduct(string productId)
+    {
+        Product = await HttpClient.GetJsonAsync<Product>("api/products/" + productId);
+        CurrentProductId = productId;
+        this.IsView = true;
+        this.IsDelete = true;
+        this.ModalTitle = "Delete product";
+    }
+
+
+    protected async Task CreateProduct()
+    {
+        if (CurrentProductId == null)
+        {
+            await HttpClient.SendJsonAsync(HttpMethod.Post, "api/products", Product);
+            if (IsConnected) await SendMessage();
+        }
+        else
+        {
+            await HttpClient.SendJsonAsync(HttpMethod.Put, "api/products" + CurrentProductId, Product);
+            if (IsConnected) await SendMessage();
+        }
+        CloseModal();
+        await OnParametersSetAsync();
+    }
+
+    protected async Task RemoveProduct()
+    {
+        await HttpClient.DeleteAsync("api/products");
+        if (IsConnected) await SendMessage();
+        CloseModal();
+        await OnParametersSetAsync();
+    }
+
+    protected void CloseModal()
+    {
+        Product = new Product
+        {
+            Name = "",
+            Id = "",
+            ProductCategoryId = "",
+        };
+        CurrentProductId = null;
+        this.IsAdd = false;
+        this.IsView = false;
+        this.IsDelete = false;
+        StateHasChanged();
+    }
+
+    protected void PagerPageChanged(int page)
+    {
+        NavigationManager.NavigateTo("/productlist/" + page);
+
+    }
+
 }
