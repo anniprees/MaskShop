@@ -1,0 +1,204 @@
+﻿@using System.ComponentModel.Design
+@using BlazorApp.Client.Configuration.Datagrid
+@using Alignment = BlazorApp.Client.Configuration.Datagrid.Alignment
+@typeparam TItem
+
+<table class="table">
+    <thead>
+        <tr>
+            @if (Columns == null || Columns.Count <= 0)
+            {
+                //TODO Header ilma andmeteta
+            }
+            else
+            {
+                @foreach (var column in Columns)
+                {
+                    if (column.Alignment != Alignment.NotSet)
+                    {
+                        switch (column.Alignment)
+                        {
+                            case Alignment.Left:
+                                <th @onclick="@(()=> SortData(column))" class="align-left">@column.Caption<span style="float: right" class="@(SortClass(column))"></span></th>
+                                break;
+                            case Alignment.Center:
+                                <th @onclick="@(()=> SortData(column))" class="align-center">@column.Caption<span style="float: right" class="@(SortClass(column))"></span></th>
+                                break;
+                            case Alignment.Right:
+                                <th @onclick="@(()=> SortData(column))" class="align-right">@column.Caption<span style="float: right" class="@(SortClass(column))"></span></th>
+                                break;
+                            case Alignment.NotSet:
+                            default:
+                                <th @onclick="@(()=> SortData(column))">@column.Caption<span style="float: right" class="@(SortClass(column))"></span></th>
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        <th @onclick="@(()=> SortData(column))">
+                            @column.Caption
+                            <span style="float: right" class="@(SortClass(column))"></span>
+                        </th>
+                    }
+                }
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in DataItems
+            .Skip(Paging.NumOfItemsToSkip(CurrentPageNumber))
+            .Take(Paging.NumOfItemsToTake(DataItems.Count)))
+        {
+        <tr>
+            @foreach (var column in Columns)
+            {
+                @if (!string.IsNullOrWhiteSpace(column.Format) && column.DataType != DataType.NotSet)
+                {
+                    string value = string.Empty;
+                    switch (column.DataType)
+                    {
+                        case DataType.Date:
+                        case DataType.DateTime:
+                            value = DateTime.Parse(typeof(TItem).GetProperty(column.DataField).GetValue(item).ToString()).ToString(column.Format);
+                            break;
+                        case DataType.Boolean:
+                            value = bool.Parse(typeof(TItem).GetProperty(column.DataField).GetValue(item).ToString()).ToString();
+                            break;
+                        case DataType.Currency:
+                            value = Math.Round(double.Parse(typeof(TItem).GetProperty(column.DataField).GetValue(item).ToString()), 2).ToString("C");
+                            break;
+                        default:
+                            break;
+                    }
+                    @if (column.Alignment != Alignment.NotSet)
+                    {
+                        <td align="@column.Alignment.ToString()">@value</td>
+                    }
+                    else
+                    {
+                        <td>@value</td>
+                    }
+                }
+                else
+                {
+                    @if (column.Alignment != Alignment.NotSet)
+                    {
+                        <td align="@column.Alignment.ToString().ToLower()">@typeof(TItem).GetProperty(column.DataField).GetValue(item)</td>
+                    }
+                    else
+                    {
+                        <td>@typeof(TItem).GetProperty(column.DataField).GetValue(item)</td>
+                    }
+                }
+            }
+        </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <div>
+        @if (Paging != null && Paging.Enabled)
+        {
+            @if (Paging.CustomPager)
+            {
+                @CustomPager
+            }
+            else
+            {
+                <button class="alert-primary" @onclick="GoToPrevPage">Previous</button>
+                <span>&nbsp; Page @CurrentPageNumber of @Paging.MaxPageNumber(DataItems.Count) &nbsp;</span>
+                <button class="alert-primary" @onclick="GoToNextPage">Next</button>
+            }
+        }
+    </div>
+</div>
+
+
+@code {
+
+    [Parameter]
+    public int CurrentPageNumber { get; set; } = 1;
+
+    [Parameter]
+    public List<TItem> DataItems { get; set; }
+
+    [Parameter]
+    public List<ColumnDefinition> Columns { get; set; }
+
+    [Parameter]
+    public PagingConfig Paging { get; set; }
+
+    [Parameter]
+    public RenderFragment CustomPager { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        SortData();
+    }
+
+    public void GoToPrevPage()
+    {
+        CurrentPageNumber = Paging.PrevPageNumber(CurrentPageNumber);
+    }
+
+    public void GoToNextPage()
+    {
+        CurrentPageNumber = Paging.NextPageNumber(CurrentPageNumber, DataItems.Count);
+    }
+
+    public int MaxPageNumber => Paging.MaxPageNumber(DataItems.Count);
+
+    private string SortClass(ColumnDefinition column)
+    {
+        if (column.SortDirection != SortDirection.NotSet)
+        {
+            return $"sort {column.SortDirection.ToString().ToLower()}";
+        }
+
+        return "no-sort";
+    }
+
+    private void SortData(ColumnDefinition sortByColumn = null)
+    {
+        bool initial = (sortByColumn== null);
+        if (sortByColumn == null)
+        {
+            sortByColumn = Columns.FirstOrDefault(x => x.SortDirection != SortDirection.NotSet);
+            if(sortByColumn == null) return;
+        }
+
+        foreach (var column in Columns)
+        {
+            if (column.DataField != sortByColumn.DataField) column.SortDirection = SortDirection.NotSet;
+        }
+
+        if(!initial)
+        switch (sortByColumn.SortDirection)
+        {
+            case SortDirection.NotSet:
+                sortByColumn.SortDirection = SortDirection.Asc;
+                break;
+            case SortDirection.Asc:
+                sortByColumn.SortDirection = SortDirection.Desc;
+                break;
+            case SortDirection.Desc:
+                sortByColumn.SortDirection = SortDirection.Asc;
+                break;
+            default:
+                sortByColumn.SortDirection = SortDirection.Asc;
+                break;
+        }
+
+        if (sortByColumn.SortDirection == SortDirection.Asc)
+        {
+            DataItems.Sort((x,y)=> typeof(TItem).GetProperty(sortByColumn.DataField).GetValue(x).ToString()
+                .CompareTo(typeof(TItem).GetProperty(sortByColumn.DataField).GetValue(y).ToString()));
+        }
+        else
+        {
+            DataItems.Sort((x, y) => typeof(TItem).GetProperty(sortByColumn.DataField).GetValue(y).ToString()
+                .CompareTo(typeof(TItem).GetProperty(sortByColumn.DataField).GetValue(x).ToString()));
+        }
+    }
+}
