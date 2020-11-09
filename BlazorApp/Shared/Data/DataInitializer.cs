@@ -31,6 +31,25 @@ namespace BlazorApp.Shared.Data
                 }
                 productContext.SaveChanges();
             }
+
+            if (productContext.ProductCategories.Count() == 0)
+            {
+                // Create new organizations only if the collection is empty
+                var categoryNames = new[] { "MED01", "REG01", "REU01" };
+                var testProductCategories = new Faker<ProductCategory>()
+                    .RuleFor(o => o.Id, f => f.IndexFaker.ToString())
+                    .RuleFor(p => p.Name, f => f.PickRandom(categoryNames))
+                    .RuleFor(p => p.From, f => f.Date.Recent(14))
+                    .RuleFor(p => p.To, f => f.Date.Soon(14));
+                var productCategories = testProductCategories.Generate(20);
+
+                foreach (ProductCategory o in productCategories)
+                {
+                    productContext.ProductCategories.Add(o);
+                }
+                productContext.SaveChanges();
+            }
+
         }
     }
 }

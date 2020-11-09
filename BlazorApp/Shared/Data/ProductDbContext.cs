@@ -12,6 +12,7 @@ namespace BlazorApp.Shared.Data
             : base(options) { }
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -23,6 +24,7 @@ namespace BlazorApp.Shared.Data
         {
             if (builder is null) return;
             builder.Entity<Product>().ToTable(nameof(Products));
+            builder.Entity<ProductCategory>().ToTable(nameof(ProductCategories));
         }
     }
 }
