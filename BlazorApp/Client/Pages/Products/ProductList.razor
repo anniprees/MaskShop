@@ -20,14 +20,14 @@
     </div>
 </div>
 <div class="input-group col-md-5 text-md-right">
-    <input name="OrganizationSearchInput" type="text" class="form-control" placeholder="Organization Name" @bind="this.SearchTerm" @onkeyup="SearchBoxKeyPress" />
+    <input name="ProductSearchInput" type="text" class="form-control" placeholder="Product Name" @bind="this.SearchTerm" @onkeyup="SearchBoxKeyPress" />
     <div class="input-group-btn">
-        <button name="OrganizationSearchButton" class="btn btn-default" @onclick="SearchClick">
+        <button name="ProductSearchButton" class="btn btn-default" @onclick="SearchClick">
             <i class="oi oi-magnifying-glass" title="search" aria-hidden="true"></i>
         </button>
     </div>
     <div class="input-group-btn">
-        <button name="OrganizationSearchClear" class="btn btn-default" @onclick="ClearSearch">
+        <button name="ProductSearchClear" class="btn btn-default" @onclick="ClearSearch">
             <i class="oi oi-x" title="clear" aria-hidden="true"></i>
         </button>
     </div>
@@ -43,8 +43,6 @@ else
         <thead class="thead-light">
             <tr>
                 <th>ID</th>
-                @*<GridColumn ColumnTitle="Name"
-                    OnSearchTextChanged="OnSearchTextChanged"></GridColumn>*@
                 <th>Product Category ID</th>
                 <th>From</th>
                 <th>To</th>
@@ -68,7 +66,6 @@ else
             }
         </tbody>
     </BSTable>
-    @*<Pager Result=@Products PageChanged=PagerPageChanged />*@
 }
 
 <div>
@@ -167,11 +164,9 @@ else
     public string SearchTerm { get; set; } = string.Empty;
 
     Product[] productsList;
-    //public List<Product> productList { get; set; }
-    //public List<Product> filteredProductList { get; set; }
     private HubConnection hubConnection;
 
-    protected PagedResult<Product> Products;
+    protected Product[] Products;
 
     protected Product Product = new Product
     {
@@ -226,11 +221,11 @@ else
     {
         if (string.IsNullOrEmpty(SearchTerm))
         {
-            Products = await HttpClient.GetJsonAsync<PagedResult<Product>>(Storage.GetItem("api/products") + "/product/?name=" + SearchTerm + "&page=1");
+            Products = await HttpClient.GetJsonAsync<Product[]>(("api/products") + "/product/?name=" + SearchTerm);
             return;
         }
 
-        Products = await HttpClient.GetJsonAsync<PagedResult<Product>>(Storage.GetItem("api/products") + "/product/?name=" + SearchTerm + "&page=1");
+        Products = await HttpClient.GetJsonAsync<Product[]>(("api/products") + "/product/?name=" + SearchTerm);
         StateHasChanged();
     }
 
@@ -245,7 +240,7 @@ else
     protected async Task ClearSearch()
     {
         SearchTerm = string.Empty;
-        Products = await HttpClient.GetJsonAsync<PagedResult<Product>>(Storage.GetItem("api/products" + "/product/?name" + SearchTerm));
+        Products = await HttpClient.GetJsonAsync<Product[]>(Storage.GetItem("api/products" + "/product/?name" + SearchTerm));
         StateHasChanged();
     }
 
