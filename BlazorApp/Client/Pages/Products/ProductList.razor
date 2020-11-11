@@ -161,6 +161,7 @@ else
     [Parameter]
     public string Page { get; set; } = "1";
 
+    [Parameter]
     public string SearchTerm { get; set; } = string.Empty;
 
     Product[] productsList;
@@ -221,11 +222,11 @@ else
     {
         if (string.IsNullOrEmpty(SearchTerm))
         {
-            Products = await HttpClient.GetJsonAsync<Product[]>(("api/products") + "/product/?name=" + SearchTerm);
+            Products = await HttpClient.GetJsonAsync<Product[]>(("api/products/") + "product/?name=" + SearchTerm);
             return;
         }
 
-        Products = await HttpClient.GetJsonAsync<Product[]>(("api/products") + "/product/?name=" + SearchTerm);
+        Products = await HttpClient.GetJsonAsync<Product[]>(("api/products/") + "product/?name=" + SearchTerm);
         StateHasChanged();
     }
 
@@ -240,7 +241,7 @@ else
     protected async Task ClearSearch()
     {
         SearchTerm = string.Empty;
-        Products = await HttpClient.GetJsonAsync<Product[]>(Storage.GetItem("api/products" + "/product/?name" + SearchTerm));
+        Products = await HttpClient.GetJsonAsync<Product[]>("api/products" + "/product/?name" + SearchTerm);
         StateHasChanged();
     }
 
@@ -290,7 +291,7 @@ else
         }
         else
         {
-            await HttpClient.SendJsonAsync(HttpMethod.Put, "api/products" + CurrentProductId, Product);
+            await HttpClient.PutJsonAsync("api/products/" + CurrentProductId, Product);
             if (IsConnected) await SendMessage();
         }
         CloseModal();
@@ -299,7 +300,7 @@ else
 
     protected async Task RemoveProduct()
     {
-        await HttpClient.DeleteAsync("api/products");
+        await HttpClient.DeleteAsync("api/products/" + CurrentProductId);
         if (IsConnected) await SendMessage();
         CloseModal();
         await OnParametersSetAsync();
