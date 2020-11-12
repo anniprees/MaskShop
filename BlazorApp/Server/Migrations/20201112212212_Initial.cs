@@ -85,9 +85,10 @@ namespace BlazorApp.Server.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    From = table.Column<DateTime>(nullable: true),
-                    To = table.Column<DateTime>(nullable: true),
-                    Name = table.Column<string>(nullable: true)
+                    ValidFrom = table.Column<DateTime>(nullable: true),
+                    ValidTo = table.Column<DateTime>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    Definition = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -99,8 +100,8 @@ namespace BlazorApp.Server.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    From = table.Column<DateTime>(nullable: true),
-                    To = table.Column<DateTime>(nullable: true),
+                    ValidFrom = table.Column<DateTime>(nullable: true),
+                    ValidTo = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     ProductCategoryId = table.Column<string>(nullable: true)
                 },

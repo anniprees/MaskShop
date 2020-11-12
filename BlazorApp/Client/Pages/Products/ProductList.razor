@@ -53,8 +53,8 @@ else
                     <td>@product.Id</td>
                     <td>@product.Name</td>
                     <td>@product.ProductCategoryId</td>
-                    <td>@product.From</td>
-                    <td>@product.To</td>
+                    <td>@product.ValidFrom</td>
+                    <td>@product.ValidTo</td>
                     <td>
                         <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-eye text-primary" @onclick="@(async () => await ViewProduct(product.Id))"></BSButton>
                         <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-pencil text-warning" @onclick="@(async () => await EditProduct(product.Id))"></BSButton>

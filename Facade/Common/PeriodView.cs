@@ -6,14 +6,13 @@ namespace MaskShop.Facade.Common
 {
     public abstract class PeriodView
     {
-
         [DataType(DataType.Date)]
         [DisplayName("Valid From")]
-        public DateTime? From { get; set; }
+        public DateTime? ValidFrom { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayName("Valid To")]
-        public DateTime? To { get; set; }
+        public DateTime? ValidTo { get; set; }
 
         //public abstract string GetId();
 
