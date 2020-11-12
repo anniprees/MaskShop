@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MaskShop.Aids.Methods
+﻿namespace MaskShop.Aids.Methods
 {
     public static class Copy
     {

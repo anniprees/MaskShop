@@ -1,17 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MaskShop.Aids;
-using MaskShop.Data.Products;
-using MaskShop.Domain.Products;
-using MaskShop.Infra.Common;
-using MaskShop.Infra.Products;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace MaskShop.Tests.Infra.Common
+﻿namespace MaskShop.Tests.Infra.Common
 {
     //[TestClass]
     //public class BaseRepositoryTests : AbstractClassTests<BaseRepository<Product, ProductData>, object>

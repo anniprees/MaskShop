@@ -1,6 +1,4 @@
-﻿using MaskShop.Data.Products;
-
-namespace MaskShop.Domain.Products
+﻿namespace MaskShop.Domain.Products
 {
     //public sealed class Color: ProductFeature<ColorData>
     //{

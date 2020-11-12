@@ -1,12 +1,9 @@
 ﻿@page "/productlist"
-@using System.Net
-@using BlazorApp.Shared
-@using Microsoft.AspNetCore.SignalR.Client
 @using Microsoft.AspNetCore.Authorization
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-@using System.Xml
-@using System.Net.Http
-@using System.Threading.Tasks
+@using MaskShop.Domain.Products
+@using MaskShop.Facade.Products
+@using Microsoft.AspNetCore.SignalR.Client
+
 @attribute [Authorize]
 @inject NavigationManager NavigationManager
 @inject LocalStorage Storage
@@ -89,12 +86,12 @@ else
                         <ValidationMessage For="@(() => Product.ProductCategoryId)" />
 
                         <label for="Valid From" class="control-label">Valid From</label>
-                        <InputDate id="Valid From" class="form-control" @bind-Value="Product.From" />
-                        <ValidationMessage For="@(() => Product.From)" />
+                        <InputDate id="Valid From" class="form-control" @bind-Value="Product.ValidFrom" />
+                        <ValidationMessage For="@(() => Product.ValidFrom)" />
 
                         <label for="Valid To" class="control-label">Valid To</label>
-                        <InputDate id="Valid To" class="form-control" @bind-Value="Product.To" />
-                        <ValidationMessage For="@(() => Product.To)" />
+                        <InputDate id="Valid To" class="form-control" @bind-Value="Product.ValidTo" />
+                        <ValidationMessage For="@(() => Product.ValidTo)" />
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-success">Save</button>
@@ -133,11 +130,11 @@ else
                     </tr>
                     <tr>
                         <td>Valid From</td>
-                        <td>@Product.From</td>
+                        <td>@Product.ValidFrom</td>
                     </tr>
                     <tr>
                         <td>Valid To</td>
-                        <td>@Product.To</td>
+                        <td>@Product.ValidTo</td>
                     </tr>
                 </BSTable>
 
@@ -165,18 +162,16 @@ else
     [Parameter]
     public string SearchTerm { get; set; } = string.Empty;
 
-    Product[] productsList;
+    ProductView[] productsList;
     private HubConnection hubConnection;
 
-    protected Product[] Products;
+    //protected Product[] Products;
 
     protected Product Product = new Product
     {
         Name = "",
         Id = "",
         ProductCategoryId = "",
-        From = null,
-        To = null,
     };
 
     protected string CurrentProductId { get; set; }
@@ -215,7 +210,7 @@ else
 
     protected async Task LoadData()
     {
-        productsList = await HttpClient.GetJsonAsync<Product[]>("api/products");
+        productsList = await HttpClient.GetJsonAsync<ProductView[]>("api/products");
         StateHasChanged();
     }
 
@@ -223,11 +218,11 @@ else
     {
         if (string.IsNullOrEmpty(SearchTerm))
         {
-            Products = await HttpClient.GetJsonAsync<Product[]>(("api/products/") + "product/?name=" + SearchTerm);
+            productsList = await HttpClient.GetJsonAsync<ProductView[]>(("api/products/") + "?name=" + SearchTerm);
             return;
         }
 
-        Products = await HttpClient.GetJsonAsync<Product[]>(("api/products/") + "product/?name=" + SearchTerm);
+        productsList = await HttpClient.GetJsonAsync<ProductView[]>(("api/products/") + "?name=" + SearchTerm);
         StateHasChanged();
     }
 
@@ -242,7 +237,7 @@ else
     protected async Task ClearSearch()
     {
         SearchTerm = string.Empty;
-        Products = await HttpClient.GetJsonAsync<Product[]>("api/products" + "/product/?name" + SearchTerm);
+        productsList = await HttpClient.GetJsonAsync<ProductView[]>("api/products/");
         StateHasChanged();
     }
 

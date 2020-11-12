@@ -4,14 +4,14 @@ using MaskShop.Infra.Common;
 
 namespace MaskShop.Infra.Products
 {
-    public sealed class SurchargeComponentsRepository :
-        UniqueEntityRepository<SurchargeComponent, SurchargeComponentData>, ISurchargeComponentsRepository
-    {
-        public SurchargeComponentsRepository(ProductDbContext c = null) : base(c, c?.SurchargeComponents)
-        {
-        }
+    //public sealed class SurchargeComponentsRepository :
+    //    UniqueEntityRepository<SurchargeComponent, SurchargeComponentData>, ISurchargeComponentsRepository
+    //{
+    //    public SurchargeComponentsRepository(ProductDbContext c = null) : base(c, c?.SurchargeComponents)
+    //    {
+    //    }
 
-        protected override SurchargeComponent ToDomainObject(SurchargeComponentData d) =>
-            new SurchargeComponent(d);
-    }
+    //    protected override SurchargeComponent ToDomainObject(SurchargeComponentData d) =>
+    //        new SurchargeComponent(d);
+    //}
 }

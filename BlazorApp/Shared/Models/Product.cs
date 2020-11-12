@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BlazorApp.Shared.Models
 {
-    public class Product
+    public class _Product
     {
         public DateTime? From { get; set; }
         public DateTime? To { get; set; }

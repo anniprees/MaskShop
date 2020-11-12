@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
-using MaskShop.Data.Common;
+﻿using System.ComponentModel;
 using MaskShop.Facade.Common;
 
 namespace MaskShop.Facade.Products

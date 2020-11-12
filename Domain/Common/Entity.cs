@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using MaskShop.Data.Common;
 
 namespace MaskShop.Domain.Common
@@ -11,9 +9,17 @@ namespace MaskShop.Domain.Common
 
         protected internal Entity(TData d = null) : base(d) { }
 
-        public virtual DateTime ValidFrom => Data?.From ?? UnspecifiedValidFrom;
+        public virtual DateTime ValidFrom
+        {
+            get => Data?.ValidFrom ?? UnspecifiedValidFrom;
+            set => throw new NotImplementedException();
+        }
 
-        public virtual DateTime ValidTo => Data?.To ?? UnspecifiedValidTo;
+        public virtual DateTime ValidTo
+        {
+            get => Data?.ValidTo ?? UnspecifiedValidTo;
+            set => throw new NotImplementedException();
+        }
     }
 
 }

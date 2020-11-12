@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using MaskShop.Data.Common;
 
 namespace MaskShop.Domain.Common
@@ -10,8 +8,11 @@ namespace MaskShop.Domain.Common
 
         protected internal NamedEntity(T d = null) : base(d) { }
 
-        public virtual string Name => Data?.Name ?? Unspecified;
-
+        public virtual string Name
+        {
+            get => Data?.Name ?? Unspecified;
+            set => throw new NotImplementedException();
+        }
     }
 
 }

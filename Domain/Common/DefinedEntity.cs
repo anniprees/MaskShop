@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MaskShop.Data.Common;
+﻿using MaskShop.Data.Common;
 
 namespace MaskShop.Domain.Common
 {

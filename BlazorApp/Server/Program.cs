@@ -1,5 +1,5 @@
 ﻿using System;
-using BlazorApp.Shared.Data;
+using MaskShop.Infra.Products;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;

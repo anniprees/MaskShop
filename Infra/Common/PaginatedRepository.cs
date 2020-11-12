@@ -3,6 +3,7 @@ using System.Linq;
 using MaskShop.Data.Common;
 using MaskShop.Domain.Common;
 using Microsoft.EntityFrameworkCore;
+using MaskShop.Aids;
 
 namespace MaskShop.Infra.Common
 {
