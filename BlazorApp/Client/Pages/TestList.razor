@@ -1,7 +1,8 @@
-﻿@*@page "/testlist"
+﻿@page "/testlist"
 
 @using BlazorApp.Client.Configuration.Datagrid
 @using BlazorApp.Shared
+@using MaskShop.Domain.Products
 @using Microsoft.AspNetCore.SignalR.Client
 
 @inject NavigationManager NavigationManager
@@ -60,88 +61,88 @@
                         Id = "1",
                         Name = "Two Layer Mask",
                         ProductCategoryId = "REU002",
-                        From = DateTime.Now,
-                        To = DateTime.Now
+                        ValidFrom = DateTime.Now,
+                        ValidTo = DateTime.Now
                     },
                     new Product
                     {
                         Id = "2",
                         Name = "Three Layer Mask",
                         ProductCategoryId = "REU003",
-                        From = DateTime.Now,
-                        To = DateTime.Now
+                        ValidFrom = DateTime.Now,
+                        ValidTo = DateTime.Now
                     },
                     new Product
                     {
                         Id = "3",
                         Name = "Single Use Mask",
                         ProductCategoryId = "SIN001",
-                        From = DateTime.Now,
-                        To = DateTime.Now
+                        ValidFrom = DateTime.Now,
+                        ValidTo = DateTime.Now
                     },
                     new Product
                     {
                         Id = "4",
                         Name = "Single Use Plastic Mask",
                         ProductCategoryId = "SIN002",
-                        From = DateTime.Now,
-                        To = DateTime.Now
+                        ValidFrom = DateTime.Now,
+                        ValidTo = DateTime.Now
                     },
                     new Product
                     {
                         Id = "5",
                         Name = "Single Use 3M Mask",
                         ProductCategoryId = "SIN003",
-                        From = DateTime.Now,
-                        To = DateTime.Now
+                        ValidFrom = DateTime.Now,
+                        ValidTo = DateTime.Now
                     },
                     new Product
                     {
                         Id = "6",
                         Name = "Medical Mask",
                         ProductCategoryId = "MED001",
-                        From = DateTime.Now,
-                        To = DateTime.Now
+                        ValidFrom = DateTime.Now,
+                        ValidTo = DateTime.Now
                     },
                     new Product
                     {
                         Id = "7",
                         Name = "Surgical Mask",
                         ProductCategoryId = "MED002",
-                        From = DateTime.Now,
-                        To = DateTime.Now
+                        ValidFrom = DateTime.Now,
+                        ValidTo = DateTime.Now
                     },
                     new Product
                     {
                         Id = "8",
                         Name = "Three Layer Cotton Mask",
                         ProductCategoryId = "REU003",
-                        From = DateTime.Now,
-                        To = DateTime.Now
+                        ValidFrom = DateTime.Now,
+                        ValidTo = DateTime.Now
                     },
                     new Product
                     {
                         Id = "9",
                         Name = "Three Layer HEPA Mask",
                         ProductCategoryId = "REU004",
-                        From = DateTime.Now,
-                        To = DateTime.Now
+                        ValidFrom = DateTime.Now,
+                        ValidTo = DateTime.Now
                     },
                     new Product
                     {
                         Id = "10",
                         Name = "Single Use Wire Mask",
                         ProductCategoryId = "SIN002",
-                        From = DateTime.Now,
-                        To = DateTime.Now
+                        ValidFrom = DateTime.Now,
+                        ValidTo = DateTime.Now
                     },
                     new Product
                     {
                         Id = "11",
                         Name = "Two Layer Antiseptic Mask",
                         ProductCategoryId = "REU005",
-                        From = DateTime.Now,
-                        To = DateTime.Now
+                        ValidFrom = DateTime.Now,
+                        ValidTo = DateTime.Now
                     }
                 }
             );
@@ -206,4 +207,4 @@
     //    _ = hubConnection.DisposeAsync();
     //}
 
-}*@
+}
