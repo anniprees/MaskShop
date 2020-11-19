@@ -1,6 +1,5 @@
 ﻿@page "/productlist"
 @using Microsoft.AspNetCore.Authorization
-@using MaskShop.Domain.Products
 @using MaskShop.Facade.Products
 @using Microsoft.AspNetCore.SignalR.Client
 
@@ -165,7 +164,7 @@ else
     ProductView[] productsList;
     private HubConnection hubConnection;
 
-    protected Product Product = new Product
+    protected ProductView Product = new ProductView
     {
         Name = "",
         Id = "",
@@ -252,7 +251,7 @@ else
 
     protected async Task ViewProduct(string productId)
     {
-        Product = await HttpClient.GetJsonAsync<Product>("api/products/" + productId);
+        Product = await HttpClient.GetJsonAsync<ProductView>("api/products/" + productId);
         CurrentProductId = productId;
         this.IsView = true;
         this.ModalTitle = "View product";
@@ -260,7 +259,7 @@ else
 
     protected async Task EditProduct(string productId)
     {
-        Product = await HttpClient.GetJsonAsync<Product>("api/products/" + productId);
+        Product = await HttpClient.GetJsonAsync<ProductView>("api/products/" + productId);
         CurrentProductId = productId;
         this.IsAdd = true;
         this.ModalTitle = "Edit product";
@@ -268,7 +267,7 @@ else
 
     protected async Task DeleteProduct(string productId)
     {
-        Product = await HttpClient.GetJsonAsync<Product>("api/products/" + productId);
+        Product = await HttpClient.GetJsonAsync<ProductView>("api/products/" + productId);
         CurrentProductId = productId;
         this.IsView = true;
         this.IsDelete = true;
@@ -302,7 +301,7 @@ else
 
     protected void CloseModal()
     {
-        Product = new Product
+        Product = new ProductView
         {
             Name = "",
             Id = "",

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MaskShop.Domain.Products;
+using MaskShop.Facade.Products;
 using Microsoft.AspNetCore.Authorization;
 
 namespace BlazorApp.Server.Controllers
@@ -21,17 +22,24 @@ namespace BlazorApp.Server.Controllers
 
         // GET: api/Products
         [HttpGet]
-        public async Task<ActionResult<List<Product>>> GetProducts(string name)
+        public async Task<ActionResult<List<ProductView>>> GetProducts(string name)
         {
             var result = await _pr.Get();
-            if (name == null) return result;
-            return result.Where(x => x.Name.ToLower().Contains(name.ToLower())).ToList();
+            var aa = new List<ProductView>();
+
+            result.ForEach(x => aa.Add(ProductViewFactory.Create(x)));
+
+            return name == null ? aa : aa.Where(x => x.Name.ToLower().Contains(name.ToLower())).ToList();
+
+
+            //return ProductViewFactory.Create(result);
+            //return result.Where(x => x.Name.ToLower().Contains(name.ToLower())).ToList();
             //return await _context.Products.ToListAsync();
         }
 
         // GET: api/Products/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(string id)
+        public async Task<ActionResult<ProductView>> GetProduct(string id)
         {
             var product = await _pr.Get(id);
 
@@ -40,7 +48,7 @@ namespace BlazorApp.Server.Controllers
                 return NotFound();
             }
 
-            return product;
+            return ProductViewFactory.Create(product);
         }
         //TODO kas update
         // PUT: api/Products/5
