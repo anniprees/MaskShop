@@ -10,7 +10,7 @@ namespace MaskShop.Tests.Facade.Common
     {
 
         private class TestClass : UniqueEntityView {
-            public string GetId()
+            public override string GetId()
             {
                 throw new System.NotImplementedException();
             }

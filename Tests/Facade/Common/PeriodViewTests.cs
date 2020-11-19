@@ -11,9 +11,7 @@ namespace MaskShop.Tests.Facade.Common
 
         private class TestClass : PeriodView
         {
-
-            //public override string GetId() => string.Empty;
-
+            public override string GetId() => string.Empty;
         }
 
         [TestInitialize]

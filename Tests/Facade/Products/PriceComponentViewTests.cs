@@ -5,16 +5,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MaskShop.Tests.Facade.Products
 {
-    [TestClass] public class PriceComponentViewTests : AbstractClassTests<PriceComponentView, UniqueEntityView>
+    [TestClass] public class PriceComponentViewTests : SealedClassTests<PriceComponentView, UniqueEntityView>
     {
-        private class TestClass : PriceComponentView { }
-
-        [TestInitialize]
-        public override void TestInitialize()
-        {
-            base.TestInitialize();
-            obj = GetRandom.Object<TestClass>();
-        }
         [TestMethod]
         public void PriceTest() => IsProperty<double>("Price");
         [TestMethod]
