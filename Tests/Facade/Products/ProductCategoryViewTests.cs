@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MaskShop.Tests.Facade.Products
 {
-    [TestClass] public sealed class ProductCategoryViewTests : SealedClassTests<ProductCategoryView, DefinedView>
+    [TestClass] public sealed class ProductCategoryViewTests : SealedClassTests<ProductCategoryView, NamedView>
     {
     }
 }

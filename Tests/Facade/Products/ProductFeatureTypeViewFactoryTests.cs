@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MaskShop.Tests.Facade.Products
 {
     [TestClass]
-    public class ProductFeatureCategoryViewFactoryTests : BaseTests
+    public class ProductFeatureTypeViewFactoryTests : BaseTests
     {
         [TestInitialize] public void TestInitialize() => type = typeof(ProductFeatureCategoryViewFactory);
 

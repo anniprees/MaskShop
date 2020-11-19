@@ -10,15 +10,11 @@ namespace MaskShop.Tests.Facade.Products
         [TestMethod]
         public void PriceTest() => IsProperty<double>("Price");
         [TestMethod]
-        public void PercentTest() => IsProperty<double>("Percent");
+        public void DiscountComponentTest() => IsProperty<double>("Discount Component");
         [TestMethod]
         public void CommentTest() => IsNullableProperty<string>("Comment");
         [TestMethod]
         public void ProductIdTest() => IsNullableProperty<string>("Product Id");
-        [TestMethod]
-        public void ProductFeatureIdTest() => IsNullableProperty<string>("Product feature Id");
-        [TestMethod]
-        public void ProductCategoryIdTest() => IsNullableProperty<string>("Product category Id");
         [TestMethod]
         public void ConsumerRoleTypeIdTest() => IsNullableProperty<string>("Consumer role type Id");
     }

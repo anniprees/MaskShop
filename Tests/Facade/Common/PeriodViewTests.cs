@@ -21,11 +21,11 @@ namespace MaskShop.Tests.Facade.Common
             obj = new TestClass();
         }
 
-        [TestMethod] public void FromTest() => IsNullableProperty<DateTime?>();
+        [TestMethod] public void ValidFromTest() => IsNullableProperty<DateTime?>();
 
-        [TestMethod] public void ToTest() => IsNullableProperty<DateTime?>();
+        [TestMethod] public void ValidToTest() => IsNullableProperty<DateTime?>();
 
-        //[TestMethod] public void GetIdTest() => IsAbstractMethod(nameof(obj.GetId));
+        [TestMethod] public void GetIdTest() => IsAbstractMethod(nameof(obj.GetId));
 
     }
 

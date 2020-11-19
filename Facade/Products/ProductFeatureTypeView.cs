@@ -7,7 +7,7 @@ namespace MaskShop.Facade.Products
     public sealed class ProductFeatureCategoryView :DefinedView
     {
         [Required]
-        [DisplayName("Is Feature Mandatory")]
+        [DisplayName("Is Mandatory Feature")]
         public bool IsMandatory { get; set; }
 
         [Required]
