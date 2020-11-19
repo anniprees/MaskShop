@@ -14,7 +14,7 @@ namespace MaskShop.Facade.Common
         [DisplayName("Valid To")]
         public DateTime? ValidTo { get; set; }
 
-        //public abstract string GetId();
+        public abstract string GetId();
 
     }
 

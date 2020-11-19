@@ -3,7 +3,7 @@ using MaskShop.Domain.Common;
 
 namespace MaskShop.Domain.Products
 {
-    public sealed class ProductCategory: DefinedEntity<ProductCategoryData>
+    public sealed class ProductCategory : NamedEntity<ProductCategoryData>
     {
         public ProductCategory() : this(null) { }
 

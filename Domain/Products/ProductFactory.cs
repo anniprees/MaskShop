@@ -1,4 +1,6 @@
-﻿namespace MaskShop.Domain.Products
+﻿using MaskShop.Data.Products;
+
+namespace MaskShop.Domain.Products
 {
     public static class ProductFactory
     {

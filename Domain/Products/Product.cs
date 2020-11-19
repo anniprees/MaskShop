@@ -15,6 +15,6 @@ namespace MaskShop.Domain.Products
             set => throw new System.NotImplementedException();
         }
 
-        public ProductCategory ProductCategory => new GetFrom<IProductCategoriesRepository, ProductCategory>().ById(ProductCategoryId);
+        //public ProductCategory ProductCategory => new GetFrom<IProductCategoriesRepository, ProductCategory>().ById(ProductCategoryId);
     }
 }

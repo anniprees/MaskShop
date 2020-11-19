@@ -2,7 +2,7 @@
 
 namespace MaskShop.Data.Products
 {
-    public sealed class ProductCategoryData : DefinedEntityData
+    public sealed class ProductCategoryData : NamedEntityData
     {
     }
 }
