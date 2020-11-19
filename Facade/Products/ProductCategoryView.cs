@@ -2,7 +2,7 @@
 
 namespace MaskShop.Facade.Products
 {
-    public sealed class ProductCategoryView : DefinedView
+    public sealed class ProductCategoryView : NamedView
     {
     }
 }

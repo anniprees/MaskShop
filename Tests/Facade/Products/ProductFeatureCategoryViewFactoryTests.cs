@@ -26,7 +26,7 @@ namespace MaskShop.Tests.Facade.Products
         [TestMethod]
         public void CreateViewTest()
         {
-            var data = GetRandom.Object<ProductFeatureCategoryData>();
+            var data = GetRandom.Object<ProductFeatureTypeData>();
             var view = ProductFeatureCategoryViewFactory.Create(new ProductFeatureCategory(data));
 
             TestArePropertyValuesEqual(view, data);

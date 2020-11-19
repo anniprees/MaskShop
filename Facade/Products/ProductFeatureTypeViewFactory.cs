@@ -9,7 +9,7 @@ namespace MaskShop.Facade.Products
     {
         public static ProductFeatureCategory Create(ProductFeatureCategoryView v)
         {
-            var d = new ProductFeatureCategoryData();
+            var d = new ProductFeatureTypeData();
             Copy.Members(v, d);
             return new ProductFeatureCategory(d);
         }
