@@ -17,9 +17,9 @@ namespace MaskShop.Tests.Data.Common
         }
 
         [TestMethod]
-        public void FromTest() => IsNullableProperty<DateTime?>();
+        public void ValidFromTest() => IsNullableProperty<DateTime?>();
 
         [TestMethod]
-        public void ToTest() => IsNullableProperty<DateTime?>();
+        public void ValidToTest() => IsNullableProperty<DateTime?>();
     }
 }

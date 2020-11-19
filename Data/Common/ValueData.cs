@@ -8,7 +8,7 @@ namespace MaskShop.Data.Common
     {
         public string UnitOrCurrencyId { get; set; }
         public string Value { get; set; }
-        public ValueType ValueType { get; set; }
-        public DateTime? From { get; set; }
+        //public ValueType ValueType { get; set; }
+        //public DateTime? From { get; set; }
     }
 }

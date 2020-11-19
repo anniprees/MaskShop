@@ -56,7 +56,7 @@ namespace MaskShop.Tests.Domain.Common
             obj = new TestClass(GetRandom.Object<ValueData>());
             var d = obj.Data;
             obj.Data.UnitOrCurrencyId = GetRandom.String();
-            obj.Data.ValueType = GetRandom.Enum<ValueType>();
+            //obj.Data.ValueType = GetRandom.Enum<ValueType>();
             obj.Data.Value = GetRandom.String();
             TestArePropertyValuesEqual(d, obj.Data);
         }
