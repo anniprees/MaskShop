@@ -5,7 +5,6 @@ using MaskShop.Aids.Constants;
 using MaskShop.Data.Common;
 using MaskShop.Domain.Common;
 using MaskShop.Facade.Common;
-using Microsoft.Data.SqlClient;
 
 namespace MaskShop.Pages.Common
 {
