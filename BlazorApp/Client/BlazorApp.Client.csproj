@@ -29,7 +29,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Facade\Facade.csproj" />
     <ProjectReference Include="..\..\Pages\Pages.csproj" />
-    <ProjectReference Include="..\Shared\BlazorApp.Shared.csproj" />
   </ItemGroup>
 
 </Project>
