@@ -1,6 +1,12 @@
-﻿namespace MaskShop.Tests.Domain.Products
+﻿using MaskShop.Data.Products;
+using MaskShop.Domain.Common;
+using MaskShop.Domain.Products;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace MaskShop.Tests.Domain.Products
 {
-    class ProductFeatureTests
-    {
-    }
+    //[TestClass]
+    //public class ProductFeatureTests : SealedClassTests<ProductFeature, NamedEntity<ProductFeatureData>>
+    //{
+    //}
 }
