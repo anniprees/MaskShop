@@ -33,11 +33,9 @@ namespace MaskShop.Tests.Infra.Common
         {
             base.TestInitialize();
             var options = new DbContextOptionsBuilder<ProductDbContext>().Options;
-            //var options = new DbContextOptionsBuilder<ProductDbContext>().UseInMemoryDatabase("TestDb").Options;
             var c = new ProductDbContext(options);
             obj = new TestClass(c, c.Products);
         }
-        //}UseMemoryDatabase ei tööta
 
         [TestMethod]
         public void GetTest()
