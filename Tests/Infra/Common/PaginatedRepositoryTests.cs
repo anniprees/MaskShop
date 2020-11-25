@@ -6,6 +6,7 @@ using MaskShop.Data.Products;
 using MaskShop.Domain.Products;
 using MaskShop.Infra;
 using MaskShop.Infra.Common;
+using MaskShop.Infra.Products;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -16,10 +17,10 @@ namespace MaskShop.Tests.Infra.Common
          FilteredRepository<Product, ProductData>>
     {
 
-        private class testClass : PaginatedRepository<Product, ProductData>
+        private class TestClass : PaginatedRepository<Product, ProductData>
         {
 
-            public testClass(DbContext c, DbSet<ProductData> s) : base(c, s) { }
+            public TestClass(DbContext c, DbSet<ProductData> s) : base(c, s) { }
             protected override Product ToDomainObject(ProductData d) => new Product(d);
             protected override async Task<ProductData> GetData(string id)
             {
@@ -33,10 +34,10 @@ namespace MaskShop.Tests.Infra.Common
         [TestInitialize]
         public override void TestInitialize()
         {
-            //base.TestInitialize();
-            //var options = new DbContextOptionsBuilder<QuantityDbContext>().UseInMemoryDatabase("TestDb").Options;
-            //var c = new QuantityDbContext(options);
-            //obj = new testClass(c, c.Measures);
+            base.TestInitialize();
+            var options = new DbContextOptionsBuilder<ProductDbContext>().Options;
+            var c = new ProductDbContext(options);
+            obj = new TestClass(c, c.Products);
 
             //for (var i = 0; i < GetRandom.UInt8(10, 30); i++)
             //{
@@ -71,11 +72,11 @@ namespace MaskShop.Tests.Infra.Common
         [TestMethod]
         public void GetListTest()
         {
-            for (var i = 0; i < GetRandom.UInt8(10, 30); i++)
-            {
-                //var d = GetRandom.Object<ProductData>();
-                //obj.Add(MeasureFactory.Create(d)).GetAwaiter();
-            }
+            //for (var i = 0; i < GetRandom.UInt8(10, 30); i++)
+            //{
+            //    var d = GetRandom.Object<ProductData>();
+            //    obj.Add(MeasureFactory.Create(d)).GetAwaiter();
+            //}
 
             obj.PageIndex = 1;
             var l = obj.Get().GetAwaiter().GetResult();

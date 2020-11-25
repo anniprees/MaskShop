@@ -75,7 +75,7 @@ namespace MaskShop.Infra.Common
             catch { return query; }
         }
 
-        internal bool IsDescending() => !string.IsNullOrEmpty(SortOrder) && SortOrder.EndsWith(DescendingString);
+        public bool IsDescending() => !string.IsNullOrEmpty(SortOrder) && SortOrder.EndsWith(DescendingString);
 
     }
 

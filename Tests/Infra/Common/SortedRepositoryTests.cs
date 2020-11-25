@@ -7,6 +7,7 @@ using MaskShop.Aids;
 using MaskShop.Data.Products;
 using MaskShop.Domain.Products;
 using MaskShop.Infra.Common;
+using MaskShop.Infra.Products;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -38,10 +39,10 @@ namespace MaskShop.Tests.Infra.Common
         [TestInitialize]
         public override void TestInitialize()
         {
-            //base.TestInitialize();
-            //var options = new DbContextOptionsBuilder<QuantityDbContext>().UseInMemoryDatabase("TestDb").Options;
-            //var c = new QuantityDbContext(options);
-            //obj = new TestClass(c, c.Measures);
+            base.TestInitialize();
+            var options = new DbContextOptionsBuilder<ProductDbContext>().Options;
+            var c = new ProductDbContext(options);
+            obj = new TestClass(c, c.Products);
         }
 
         [TestMethod]
