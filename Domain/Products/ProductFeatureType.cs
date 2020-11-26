@@ -8,5 +8,8 @@ namespace MaskShop.Domain.Products
         public ProductFeatureType() : this(null) { }
 
         public ProductFeatureType(ProductFeatureTypeData d) : base(d) { }
+
+        public bool IsMandatory => Data?.IsMandatory ?? IsUnspecified;
+        public int NumericCode => Data?.NumericCode ?? UnspecifiedInteger;
     }
 }

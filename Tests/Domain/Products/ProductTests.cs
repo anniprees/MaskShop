@@ -13,5 +13,12 @@ namespace MaskShop.Tests.Domain.Products
 
         [TestMethod]
         public void PublicCategoryIdTest() => IsReadOnlyProperty(obj.Data.ProductCategoryId);
+
+        //[TestMethod]
+        //public void ProductCategoryTest() =>
+        //    GetFromRepository<ProductCategoryData, ProductCategory, IProductCategoriesRepository>(obj.ProductCategoryId, () =>
+        //        obj.ProductCategory.Data, d => new ProductCategory(d));
+
+
     }
 }
