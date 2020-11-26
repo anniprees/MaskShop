@@ -26,7 +26,7 @@ namespace MaskShop.Infra.Common
             return query;
         }
 
-        protected internal IQueryable<TData> AddSorting(IQueryable<TData> query)
+        public IQueryable<TData> AddSorting(IQueryable<TData> query)
         {
             var expression = CreateExpression();
 
@@ -35,14 +35,14 @@ namespace MaskShop.Infra.Common
             return r;
         }
 
-        internal Expression<Func<TData, object>> CreateExpression()
+        public Expression<Func<TData, object>> CreateExpression()
         {
             var property = FindProperty();
 
             return property is null ? null : LambdaExpression(property);
         }
 
-        internal Expression<Func<TData, object>> LambdaExpression(PropertyInfo p)
+        public Expression<Func<TData, object>> LambdaExpression(PropertyInfo p)
         {
             var param = Expression.Parameter(typeof(TData), "x");
             var property = Expression.Property(param, p);
@@ -51,14 +51,14 @@ namespace MaskShop.Infra.Common
             return Expression.Lambda<Func<TData, object>>(body, param);
         }
 
-        internal PropertyInfo FindProperty()
+        public PropertyInfo FindProperty()
         {
             var name = GetName();
 
             return typeof(TData).GetProperty(name);
         }
 
-        internal string GetName()
+        public string GetName()
         {
             if (string.IsNullOrEmpty(SortOrder)) return string.Empty;
             var idx = SortOrder.IndexOf(DescendingString, StringComparison.Ordinal);
@@ -66,7 +66,7 @@ namespace MaskShop.Infra.Common
             return idx > 0 ? SortOrder.Remove(idx) : SortOrder;
         }
 
-        internal IQueryable<TData> AddOrderBy(IQueryable<TData> query, Expression<Func<TData, object>> e)
+        public IQueryable<TData> AddOrderBy(IQueryable<TData> query, Expression<Func<TData, object>> e)
         {
             if (query is null) return null;
             if (e is null) return query;
@@ -75,7 +75,7 @@ namespace MaskShop.Infra.Common
             catch { return query; }
         }
 
-        internal bool IsDescending() => !string.IsNullOrEmpty(SortOrder) && SortOrder.EndsWith(DescendingString);
+        public bool IsDescending() => !string.IsNullOrEmpty(SortOrder) && SortOrder.EndsWith(DescendingString);
 
     }
 

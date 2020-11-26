@@ -14,7 +14,7 @@ namespace MaskShop.Infra.Common
     {
 
         protected internal DbContext db;
-        protected internal DbSet<TData> dbSet;
+        public DbSet<TData> dbSet;
 
         protected BaseRepository(DbContext c, DbSet<TData> s)
         {
