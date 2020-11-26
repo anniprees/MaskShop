@@ -11,9 +11,9 @@ namespace MaskShop.Domain.Common
 
         Task Delete (string id);
 
-        Task Add(T obj);
+        Task<T> Add(T obj);
 
-        Task Update (T obj);
+        Task<T> Update (T obj);
 
     }
 }

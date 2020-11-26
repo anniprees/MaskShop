@@ -9,12 +9,14 @@ namespace MaskShop.Domain.Products
 
         public Product(ProductData d) : base(d) { }
 
-        public string ProductCategoryId
-        {
-            get => Data?.ProductCategoryId ?? Unspecified;
-            set => throw new System.NotImplementedException();
-        }
+        public string ProductCategoryId => Data?.ProductCategoryId ?? Unspecified;
+        
 
-        //public ProductCategory ProductCategory => new GetFrom<IProductCategoriesRepository, ProductCategory>().ById(ProductCategoryId);
+        public ProductCategory ProductCategory => new GetFrom<IProductCategoriesRepository, ProductCategory>().ById(ProductCategoryId);
+
+
+        public string MeasureId => Data?.MeasureId ?? Unspecified;
+
+        public Measure Measure => measure ?? new GetFrom<IMeasuresRepository, Measure>().ById(MeasureId);
     }
 }
