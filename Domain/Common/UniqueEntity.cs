@@ -8,11 +8,8 @@ namespace MaskShop.Domain.Common
 
         protected internal UniqueEntity(T d = null) : base(d) { }
 
-        public virtual string Id
-        {
-            get => Data?.Id ?? Unspecified;
-            set => throw new NotImplementedException();
-        }
+        public virtual string Id => Data?.Id ?? Unspecified;
+            
     }
 
 }

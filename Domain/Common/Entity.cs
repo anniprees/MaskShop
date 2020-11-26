@@ -9,17 +9,9 @@ namespace MaskShop.Domain.Common
 
         protected internal Entity(TData d = null) : base(d) { }
 
-        public virtual DateTime ValidFrom
-        {
-            get => Data?.ValidFrom ?? UnspecifiedValidFrom;
-            set => throw new NotImplementedException();
-        }
+        public virtual DateTime ValidFrom => Data?.ValidFrom ?? UnspecifiedValidFrom;
 
-        public virtual DateTime ValidTo
-        {
-            get => Data?.ValidTo ?? UnspecifiedValidTo;
-            set => throw new NotImplementedException();
-        }
+        public virtual DateTime ValidTo => Data?.ValidTo ?? UnspecifiedValidTo;
     }
 
 }
