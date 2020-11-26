@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 namespace BlazorApp.Client.Services
 {
     //TODO: Implement IRepository ja GetById
-    public class APIRepository<TEntity> : ICrudMethods<TEntity> where TEntity : class
+    public class APIRepository<TDomain> : ICrudMethods<TDomain> where TDomain : class
     {
         protected string ControllerName;
         protected string PrimaryKeyName;
@@ -24,18 +24,18 @@ namespace BlazorApp.Client.Services
         }
 
 
-        public async Task<List<TEntity>> Get()
+        public async Task<List<TDomain>> Get()
         {
             try
             {
                 var result = await HttpClient.GetAsync(ControllerName);
                 result.EnsureSuccessStatusCode();
                 string responseBody = await result.Content.ReadAsStringAsync();
-                var response = JsonConvert.DeserializeObject<APIListOfEntityResponse<TEntity>>(responseBody);
+                var response = JsonConvert.DeserializeObject<APIListOfEntityResponse<TDomain>>(responseBody);
                 if (response.Success)
                     return response.Data;
                 else
-                    return new List<TEntity>();
+                    return new List<TDomain>();
             }
             catch (Exception ex)
             {
@@ -43,7 +43,7 @@ namespace BlazorApp.Client.Services
             }
         }
 
-        public async Task<TEntity> Get(string id)
+        public async Task<TDomain> Get(string id)
         {
             try
             {
@@ -52,7 +52,7 @@ namespace BlazorApp.Client.Services
                 var result = await HttpClient.GetAsync(url);
                 result.EnsureSuccessStatusCode();
                 string responseBody = await result.Content.ReadAsStringAsync();
-                var response = JsonConvert.DeserializeObject<APIEntityResponse<TEntity>>(responseBody);
+                var response = JsonConvert.DeserializeObject<APIEntityResponse<TDomain>>(responseBody);
                 if (response.Success)
                     return response.Data;
                 else
@@ -65,45 +65,45 @@ namespace BlazorApp.Client.Services
             }
         }
 
-        public async Task<TEntity> Add(TEntity entity)
+        public async Task Add(TDomain entity)
         {
-            try
-            {
-                var result = await HttpClient.PostAsJsonAsync(ControllerName, entity);
-                result.EnsureSuccessStatusCode();
-                string responseBody = await result.Content.ReadAsStringAsync();
-                var response = JsonConvert.DeserializeObject<APIEntityResponse<TEntity>>(responseBody);
-                if (response.Success)
-                    return response.Data;
-                else
-                    return null;
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
+            //try
+            //{
+            //    var result = await HttpClient.PostAsJsonAsync(ControllerName, entity);
+            //    result.EnsureSuccessStatusCode();
+            //    string responseBody = await result.Content.ReadAsStringAsync();
+            //    var response = JsonConvert.DeserializeObject<APIEntityResponse<TDomain>>(responseBody);
+            //    if (response.Success)
+            //        return response.Data;
+            //    else
+            //        return;
+            //}
+            //catch (Exception ex)
+            //{
+            //    return ;
+            //}
         }
 
-        public async Task<TEntity> Update(TEntity entityToUpdate)
+        public async Task Update(TDomain entityToUpdate)
         {
-            try
-            {
-                var result = await HttpClient.PutAsJsonAsync(ControllerName, entityToUpdate);
-                result.EnsureSuccessStatusCode();
-                string responseBody = await result.Content.ReadAsStringAsync();
-                var response = JsonConvert.DeserializeObject<APIEntityResponse<TEntity>>(responseBody);
-                if (response.Success)
-                    return response.Data;
-                else
-                    return null;
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
+            //try
+            //{
+            //    var result = await HttpClient.PutAsJsonAsync(ControllerName, entityToUpdate);
+            //    result.EnsureSuccessStatusCode();
+            //    string responseBody = await result.Content.ReadAsStringAsync();
+            //    var response = JsonConvert.DeserializeObject<APIEntityResponse<TDomain>>(responseBody);
+            //    if (response.Success)
+            //        return response.Data;
+            //    else
+            //        return;
+            //}
+            //catch (Exception ex)
+            //{
+            //    return ;
+            //}
         }
 
-        public async Task<bool> Delete(TEntity entityToDelete)
+        public async Task<bool> Delete(TDomain entityToDelete)
         {
             try
             {
