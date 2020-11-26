@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MaskShop.Tests.Facade.Products
 {
-    [TestClass] public class ProductFeatureTypeViewTests : SealedClassTests<ProductFeatureCategoryView, DefinedView>
+    [TestClass] public class ProductFeatureTypeViewTests : SealedClassTests<ProductFeatureTypeView, DefinedView>
     {
         [TestMethod]
         public void IsMandatoryTest() => IsProperty<bool>("Is Mandatory Feature");

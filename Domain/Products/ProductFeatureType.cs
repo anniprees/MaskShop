@@ -3,10 +3,10 @@ using MaskShop.Domain.Common;
 
 namespace MaskShop.Domain.Products
 {
-    public sealed class ProductFeatureCategory: DefinedEntity<ProductFeatureTypeData>
+    public sealed class ProductFeatureType: DefinedEntity<ProductFeatureTypeData>
     {
-        public ProductFeatureCategory() : this(null) { }
+        public ProductFeatureType() : this(null) { }
 
-        public ProductFeatureCategory(ProductFeatureTypeData d) : base(d) { }
+        public ProductFeatureType(ProductFeatureTypeData d) : base(d) { }
     }
 }

@@ -9,15 +9,15 @@ namespace MaskShop.Tests.Facade.Products
     [TestClass]
     public class ProductFeatureTypeViewFactoryTests : BaseTests
     {
-        [TestInitialize] public void TestInitialize() => type = typeof(ProductFeatureCategoryViewFactory);
+        [TestInitialize] public void TestInitialize() => type = typeof(ProductFeatureTypeViewFactory);
 
         [TestMethod] public void CreateTest() { }
 
         [TestMethod]
         public void CreateObjectTest()
         {
-            var view = GetRandom.Object<ProductFeatureCategoryView>();
-            var data = ProductFeatureCategoryViewFactory.Create(view).Data;
+            var view = GetRandom.Object<ProductFeatureTypeView>();
+            var data = ProductFeatureTypeViewFactory.Create(view).Data;
 
             TestArePropertyValuesEqual(view, data);
 
@@ -27,7 +27,7 @@ namespace MaskShop.Tests.Facade.Products
         public void CreateViewTest()
         {
             var data = GetRandom.Object<ProductFeatureTypeData>();
-            var view = ProductFeatureCategoryViewFactory.Create(new ProductFeatureCategory(data));
+            var view = ProductFeatureTypeViewFactory.Create(new ProductFeatureType(data));
 
             TestArePropertyValuesEqual(view, data);
 

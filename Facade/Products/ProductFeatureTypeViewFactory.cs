@@ -5,18 +5,18 @@ using MaskShop.Domain.Products;
 
 namespace MaskShop.Facade.Products
 {
-    public static class ProductFeatureCategoryViewFactory
+    public static class ProductFeatureTypeViewFactory
     {
-        public static ProductFeatureCategory Create(ProductFeatureCategoryView v)
+        public static ProductFeatureType Create(ProductFeatureTypeView v)
         {
             var d = new ProductFeatureTypeData();
             Copy.Members(v, d);
-            return new ProductFeatureCategory(d);
+            return new ProductFeatureType(d);
         }
 
-        public static ProductFeatureCategoryView Create(ProductFeatureCategory o)
+        public static ProductFeatureTypeView Create(ProductFeatureType o)
         {
-            var v = new ProductFeatureCategoryView();
+            var v = new ProductFeatureTypeView();
             Copy.Members(o?.Data, v);
             return v;
         }
