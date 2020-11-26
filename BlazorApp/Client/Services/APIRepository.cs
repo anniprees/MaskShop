@@ -65,6 +65,7 @@ namespace BlazorApp.Client.Services
             }
         }
 
+
         public async Task Add(TDomain entity)
         {
             //try
@@ -80,7 +81,7 @@ namespace BlazorApp.Client.Services
             //}
             //catch (Exception ex)
             //{
-            //    return ;
+            //    return;
             //}
         }
 

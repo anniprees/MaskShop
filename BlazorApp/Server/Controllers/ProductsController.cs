@@ -31,10 +31,6 @@ namespace BlazorApp.Server.Controllers
 
             return name == null ? aa : aa.Where(x => x.Name.ToLower().Contains(name.ToLower())).ToList();
 
-
-            //return ProductViewFactory.Create(result);
-            //return result.Where(x => x.Name.ToLower().Contains(name.ToLower())).ToList();
-            //return await _context.Products.ToListAsync();
         }
 
         // GET: api/Products/5
@@ -55,32 +51,14 @@ namespace BlazorApp.Server.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduct(string id, Product product)
+        public async Task<IActionResult> PutProduct(string id, ProductView product)
         {
             if (id != product.Id)
             {
                 return BadRequest();
             }
 
-            await _pr.Update(product);
-
-            //_context.Entry(product).State = EntityState.Modified;
-
-            //try
-            //{
-            //    await _context.SaveChangesAsync();
-            //}
-            //catch (DbUpdateConcurrencyException)
-            //{
-            //    if (!ProductExists(id))
-            //    {
-            //        return NotFound();
-            //    }
-            //    else
-            //    {
-            //        throw;
-            //    }
-            //}
+            await _pr.Update(ProductViewFactory.Create(product));
 
             return NoContent();
         }
@@ -89,25 +67,9 @@ namespace BlazorApp.Server.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<ProductView>> PostProduct(Product product)
+        public async Task<ActionResult<ProductView>> PostProduct(ProductView product)
         {
-            await _pr.Add(product);
-            //_context.Products.Add(product);
-            //try
-            //{
-            //    await _context.SaveChangesAsync();
-            //}
-            //catch (DbUpdateException)
-            //{
-            //    if (ProductExists(product.Id))
-            //    {
-            //        return Conflict();
-            //    }
-            //    else
-            //    {
-            //        throw;
-            //    }
-            //}
+            await _pr.Add(ProductViewFactory.Create(product));
 
             return CreatedAtAction("GetProduct", new { id = product.Id }, product);
         }
@@ -119,16 +81,6 @@ namespace BlazorApp.Server.Controllers
             await _pr.Delete(id);
 
             return NoContent();
-            //var product = await _context.Products.FindAsync(id);
-            //if (product == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //_context.Products.Remove(product);
-            //await _context.SaveChangesAsync();
-
-            //return product;
         }
 
         //private bool ProductExists(string id)
