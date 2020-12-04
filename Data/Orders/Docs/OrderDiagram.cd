@@ -1,35 +1,77 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="MaskShop.Data.Orders.OrderData" Collapsed="true">
-    <Position X="2.25" Y="2" Width="1.5" />
+  <Class Name="MaskShop.Data.Orders.OrderData">
+    <Position X="0.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAABAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAABAAAAAA=</HashCode>
       <FileName>Orders\OrderData.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MaskShop.Data.Orders.OrderItemData" Collapsed="true">
-    <Position X="4.25" Y="2" Width="1.5" />
+  <Class Name="MaskShop.Data.Orders.OrderItemData">
+    <Position X="5.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>MAAAAAAAAAgAAAAAAAAAAAAAAAAAEAAAAAABgAAAAAA=</HashCode>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
       <FileName>Orders\OrderItemData.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MaskShop.Data.Orders.OrderStatusData" Collapsed="true">
-    <Position X="6.25" Y="2" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
-      <FileName>Orders\OrderStatusData.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Data.Common.UniqueEntityData" Collapsed="true">
-    <Position X="4.25" Y="0.75" Width="1.5" />
+  <Class Name="MaskShop.Data.Common.UniqueEntityData">
+    <Position X="4.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Common\UniqueEntityData.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="MaskShop.Data.Orders.ItemProductData">
+    <Position X="6.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Orders\ItemProductData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MaskShop.Data.Common.PeriodData">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAACAAAAAAAAA=</HashCode>
+      <FileName>Common\PeriodData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MaskShop.Data.Orders.PartyProductsData">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Orders\PartyProductsData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MaskShop.Data.Common.NamedEntityData">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\NamedEntityData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MaskShop.Data.Common.DefinedEntityData">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\DefinedEntityData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MaskShop.Data.Orders.BasketData">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Orders\BasketData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MaskShop.Data.Orders.BasketItemData">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Orders\BasketItemData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Enum Name="MaskShop.Data.Orders.OrderStatusTypeData">
-    <Position X="6.25" Y="3" Width="1.5" />
+    <Position X="8.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAADAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Orders\OrderStatusTypeData.cs</FileName>

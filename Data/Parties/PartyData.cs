@@ -4,9 +4,9 @@ namespace MaskShop.Data.Parties
 {
     public sealed class PartyData : UniqueEntityData
     {
-        public string Description { get; set; }
-
         public string PartyNameId { get; set; }
+        public string PartyRoleId { get; set; }
+        public string ContactMechanismId { get; set; }
 
         //public string OrganizationTypeId { get; set; }
 

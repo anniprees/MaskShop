@@ -2,6 +2,6 @@
 {
     public sealed class PartyRoleData : PartyAttributeData
     {
-
+        public string PartyRole { get; set; }
     }
 }
