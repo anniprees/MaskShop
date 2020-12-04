@@ -4,18 +4,11 @@ namespace MaskShop.Data.Parties
 {
     public sealed class ContactMechanismData : UniqueEntityData
     {
-        public string CountryId { get; set; }
-
-        public string NationalDirectDialingPrefix { get; set; }
-
+        public string Country { get; set; }
+        public string State { get; set; }
+        public string City { get; set; }
         public string Address { get; set; }
-
-        public string CityOrAreaCode { get; set; }
-
-        public string RegionOrStateOrCountryCode { get; set; }
-
-        public string ZipOrPostCodeOrExtension { get; set; }
-
-        public ContactMechanismTypeData ContactMechanismType { get; set; }
+        public string ZipOrPostCode { get; set; }
+        public string ElectronicMail { get; set; }
     }
 }

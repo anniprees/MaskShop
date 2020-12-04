@@ -10,7 +10,5 @@
 
         public string PreferredName { get; set; }
 
-        public PartyTypeData PartyType { get; set; }
-
     }
 }
