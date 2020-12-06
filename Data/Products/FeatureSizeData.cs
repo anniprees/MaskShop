@@ -6,5 +6,6 @@ namespace MaskShop.Data.Products
 {
     public sealed class FeatureSizeData : ProductFeatureData
     {
+        public string Size { get; set; }
     }
 }

@@ -8,50 +8,43 @@
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Data.Products.PriceComponentData">
-    <Position X="8.5" Y="2.5" Width="1.5" />
+    <Position X="8.25" Y="2.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAQAAEAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAABAAACAAA=</HashCode>
       <FileName>Products\PriceComponentData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Data.Products.ProductCategoryData">
-    <Position X="6.75" Y="2.5" Width="1.5" />
+    <Position X="6.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Products\ProductCategoryData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Data.Products.ProductData">
-    <Position X="5" Y="2.5" Width="1.5" />
+    <Position X="3.25" Y="2.5" Width="2.75" />
     <InheritanceLine Type="MaskShop.Data.Common.NamedEntityData" FixedToPoint="true">
       <Path>
-        <Point X="6.25" Y="1.733" />
-        <Point X="6.25" Y="2.125" />
-        <Point X="5.75" Y="2.125" />
-        <Point X="5.75" Y="2.5" />
+        <Point X="4.25" Y="1.733" />
+        <Point X="4.25" Y="2.125" />
+        <Point X="4.625" Y="2.125" />
+        <Point X="4.625" Y="2.5" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAgAAAAAAQgAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <HashCode>AAgAgAABAQAAAgAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
       <FileName>Products\ProductData.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MaskShop.Data.Products.ProductFeatureTypeData">
-    <Position X="0.75" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Products\ProductFeatureTypeData.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="MaskShop.Data.Products.ProductFeatureData">
-    <Position X="2.75" Y="2.5" Width="2" />
+    <Position X="0.75" Y="2.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Products\ProductFeatureData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Data.Common.UniqueEntityData">
-    <Position X="9.25" Y="0.5" Width="1.5" />
+    <Position X="8.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Common\UniqueEntityData.cs</FileName>
@@ -65,7 +58,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Data.Common.NamedEntityData">
-    <Position X="5.5" Y="0.5" Width="1.5" />
+    <Position X="3.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Common\NamedEntityData.cs</FileName>
@@ -79,17 +72,24 @@
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Data.Products.FeatureColorData">
-    <Position X="4.25" Y="4.75" Width="1.5" />
+    <Position X="2.25" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Products\FeatureColorData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Data.Products.FeatureSizeData">
-    <Position X="2" Y="4.75" Width="1.5" />
+    <Position X="0.5" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Products\FeatureSizeData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MaskShop.Data.Products.ProductFeatureApplicability">
+    <Position X="12.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Products\ProductFeatureApplicabilityData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
