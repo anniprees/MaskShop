@@ -2,7 +2,7 @@
 
 namespace MaskShop.Domain.Products
 {
-    public interface IProductFeaturesRepository:IRepository<ProductFeature>
-    {
-    }
+    //public interface IProductFeaturesRepository:IRepository<ProductFeature> 
+    //{
+    //}
 }

@@ -12,19 +12,13 @@ namespace MaskShop.Tests.Domain.Products
         protected override PriceComponent CreateObject() => new PriceComponent(GetRandom.Object<PriceComponentData>());
 
         [TestMethod]
-        public void PriceTest() => IsReadOnlyProperty(obj.Data.Price);
-
-        [TestMethod]
-        public void PercentTest() => IsReadOnlyProperty(obj.Data.DiscountComponent);
+        public void DiscountPercentageTest() => IsReadOnlyProperty(obj.Data.DiscountPercentage);
 
         [TestMethod]
         public void CommentTest() => IsReadOnlyProperty(obj.Data.Comment);
 
         [TestMethod]
-        public void ProductIdTest() => IsReadOnlyProperty(obj.Data.ProductId);
-
-        [TestMethod]
-        public void ConsumerRoleTypeIdTest() => IsReadOnlyProperty(obj.Data.ConsumerRoleTypeId);
+        public void PartyRoleIdTest() => IsReadOnlyProperty(obj.Data.PartyRoleId);
 
         //[TestMethod]
         //public void ProductTest() =>

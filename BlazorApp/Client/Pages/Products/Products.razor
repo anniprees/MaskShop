@@ -1,6 +1,6 @@
-﻿@page "/productlist"
+﻿@page "/products"
 
-<h2>List of products</h2>
+<h2>Products</h2>
 
 <div class="row mb-3">
     <div class="col-md-7">
@@ -21,7 +21,7 @@
     </div>
 </div>
 
-@if (productsList == null)
+@if (_products == null)
 {
     <p>Loading...</p>
 }
@@ -32,18 +32,22 @@ else
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Product Category ID</th>
+                <th>Product Category</th>
+                <th>Price</th>
+                <th>Picture</th>
                 <th>From</th>
                 <th>To</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var product in productsList)
+            @foreach (var product in _products)
             {
                 <tr>
                     <td>@product.Id</td>
                     <td>@product.Name</td>
                     <td>@product.ProductCategoryId</td>
+                    <td>@product.Price</td>
+                    <td>@product.PictureUri</td>
                     <td>@product.ValidFrom</td>
                     <td>@product.ValidTo</td>
                     <td>
@@ -75,6 +79,10 @@ else
                         <label for="Product Category" class="control-label">Product Category</label>
                         <InputText id="Product Category" class="form-control" @bind-Value="Product.ProductCategoryId" />
                         <ValidationMessage For="@(() => Product.ProductCategoryId)" />
+
+                        <label for="Price" class="control-label">Price</label>
+                        <InputNumber id="Price" class="form-control" @bind-Value="Product.Price" />
+                        <ValidationMessage For="@(() => Product.Price)" />
 
                         <label for="Valid From" class="control-label">Valid From</label>
                         <InputDate id="Valid From" class="form-control" @bind-Value="Product.ValidFrom" />
@@ -118,6 +126,10 @@ else
                     <tr>
                         <td>Product Category</td>
                         <td>@Product.ProductCategoryId</td>
+                    </tr>
+                    <tr>
+                        <td>Price</td>
+                        <td>@Product.Price</td>
                     </tr>
                     <tr>
                         <td>Valid From</td>

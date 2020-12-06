@@ -193,7 +193,22 @@ namespace BlazorApp.Server.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("Picture")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("PictureUri")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<string>("PriceComponentId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ProductCategoryId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductFeatureApplicabilityId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ValidFrom")

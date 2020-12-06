@@ -7,18 +7,16 @@ namespace MaskShop.Tests.Data.Parties
     [TestClass]
     public class ContactMechanismDataTests : SealedClassTests <ContactMechanismData, UniqueEntityData>
     {
-        [TestMethod] public void CountryIdTest() => IsNullableProperty(() => obj.CountryId, x => obj.CountryId = x);
+        [TestMethod] public void CountryTest() => IsNullableProperty(() => obj.Country, x => obj.Country = x);
 
-        [TestMethod] public void NationalDirectDialingPrefixTest() => IsNullableProperty(() => obj.NationalDirectDialingPrefix, x => obj.NationalDirectDialingPrefix = x);
+        [TestMethod] public void StateTest() => IsNullableProperty(() => obj.State, x => obj.State = x);
+
+        [TestMethod] public void CityTest() => IsNullableProperty(() => obj.City, x => obj.City = x);
 
         [TestMethod] public void AddressTest() => IsNullableProperty(() => obj.Address, x => obj.Address = x);
 
-        [TestMethod] public void CityOrAreaCodeTest() => IsNullableProperty(() => obj.CityOrAreaCode, x => obj.CityOrAreaCode = x);
+        [TestMethod] public void ZipOrPostCodeTest() => IsNullableProperty(() => obj.ZipOrPostCode, x => obj.ZipOrPostCode = x);
 
-        [TestMethod] public void RegionOrStateOrCountryCodeTest() => IsNullableProperty(() => obj.RegionOrStateOrCountryCode, x => obj.RegionOrStateOrCountryCode = x);
-
-        [TestMethod] public void ZipOrPostCodeOrExtensionTest() => IsNullableProperty(() => obj.ZipOrPostCodeOrExtension, x => obj.ZipOrPostCodeOrExtension = x);
-
-        [TestMethod] public void ContactMechanismTypeTest() => IsProperty(() => obj.ContactMechanismType, x => obj.ContactMechanismType = x);
+        [TestMethod] public void ElectronicMailTest() => IsProperty(() => obj.ElectronicMail, x => obj.ElectronicMail = x);
     }
 }

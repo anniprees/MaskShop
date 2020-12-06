@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorApp.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201130081632_initial")]
-    partial class initial
+    [Migration("20201206203801_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -195,7 +195,22 @@ namespace BlazorApp.Server.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("Picture")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("PictureUri")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<string>("PriceComponentId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ProductCategoryId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductFeatureApplicabilityId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ValidFrom")

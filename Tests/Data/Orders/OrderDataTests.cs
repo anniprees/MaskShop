@@ -11,8 +11,5 @@ namespace MaskShop.Tests.Data.Orders
         public void ContactMechanismIdTest()
             => IsNullableProperty(() => obj.ContactMechanismId, x => obj.ContactMechanismId = x);
 
-        [TestMethod]
-        public void PartyRoleIdTest()
-            => IsNullableProperty(() => obj.PartyRoleId, x => obj.PartyRoleId = x);
     }
 }

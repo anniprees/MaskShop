@@ -7,9 +7,6 @@ namespace MaskShop.Data.Parties
         public string PartyNameId { get; set; }
         public string PartyRoleId { get; set; }
         public string ContactMechanismId { get; set; }
-
-        //public string OrganizationTypeId { get; set; }
-
         public PartyTypeData PartyType { get; set; }
     }
 }

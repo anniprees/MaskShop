@@ -10,6 +10,5 @@ namespace MaskShop.Tests.Data.Parties
         [TestMethod] public void GivenNameTest() => IsNullableProperty(() => obj.GivenName, x => obj.GivenName = x);
         [TestMethod] public void MiddleNameTest() => IsNullableProperty(() => obj.MiddleName, x => obj.MiddleName = x);
         [TestMethod] public void PreferredNameTest() => IsNullableProperty(() => obj.PreferredName, x => obj.PreferredName = x);
-        [TestMethod] public void PartyTypeTest() => IsProperty(() => obj.PartyType, x => obj.PartyType = x);
     }
 }

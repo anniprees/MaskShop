@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace BlazorApp.Client.Pages.Products
 {
     [Authorize]
-    public partial class ProductList
+    public partial class Products
     {
         [Inject] private NavigationManager NavigationManager { get; set; }
         [Inject] private HttpClient HttpClient { get; set; }
@@ -23,7 +23,7 @@ namespace BlazorApp.Client.Pages.Products
         [Parameter]
         public string SearchTerm { get; set; } = string.Empty;
 
-        ProductView[] productsList;
+        ProductView[] _products;
         private HubConnection hubConnection;
 
         protected ProductView Product = new ProductView
@@ -69,7 +69,7 @@ namespace BlazorApp.Client.Pages.Products
 
         protected async Task LoadData()
         {
-            productsList = await HttpClient.GetJsonAsync<ProductView[]>("api/products");
+            _products = await HttpClient.GetJsonAsync<ProductView[]>("api/products");
             StateHasChanged();
         }
 
@@ -77,11 +77,11 @@ namespace BlazorApp.Client.Pages.Products
         {
             if (string.IsNullOrEmpty(SearchTerm))
             {
-                productsList = await HttpClient.GetJsonAsync<ProductView[]>(("api/products/") + "?name=" + SearchTerm);
+                _products = await HttpClient.GetJsonAsync<ProductView[]>(("api/products/") + "?name=" + SearchTerm);
                 return;
             }
 
-            productsList = await HttpClient.GetJsonAsync<ProductView[]>(("api/products/") + "?name=" + SearchTerm);
+            _products = await HttpClient.GetJsonAsync<ProductView[]>(("api/products/") + "?name=" + SearchTerm);
             StateHasChanged();
         }
 
@@ -96,7 +96,7 @@ namespace BlazorApp.Client.Pages.Products
         protected async Task ClearSearch()
         {
             SearchTerm = string.Empty;
-            productsList = await HttpClient.GetJsonAsync<ProductView[]>("api/products/");
+            _products = await HttpClient.GetJsonAsync<ProductView[]>("api/products/");
             StateHasChanged();
         }
 
