@@ -3,8 +3,8 @@ using MaskShop.Domain.Common;
 
 namespace MaskShop.Domain.Products
 {
-    public sealed class ProductFeature: NamedEntity<ProductFeatureData>
+    public abstract class ProductFeature<TData>: NamedEntity<TData> where TData: ProductFeatureData, new()
     {
-        public ProductFeature(ProductFeatureData d = null) : base(d) { }
+        protected ProductFeature(TData d) : base(d) { }
     }
 }
