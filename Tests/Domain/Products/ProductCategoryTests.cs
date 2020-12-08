@@ -5,8 +5,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MaskShop.Tests.Domain.Products
 {
-    //[TestClass]
-    //public class ProductCategoryTests : SealedClassTests<ProductCategory, NamedEntity<ProductCategoryData>>
-    //{
-    //}
+    [TestClass]
+    public class ProductCategoryTests : SealedClassTests<ProductCategory, NamedEntity<ProductCategoryData>>
+    {
+    }
 }
