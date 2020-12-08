@@ -10,7 +10,6 @@ namespace MaskShop.Tests.Facade.Products
     public class InventoryItemViewFactoryTests : BaseTests
     {
         [TestInitialize] public void TestInitialize() => type = typeof(InventoryItemViewFactory);
-
         [TestMethod] public void CreateTest() { }
 
         [TestMethod]
@@ -18,9 +17,7 @@ namespace MaskShop.Tests.Facade.Products
         {
             var view = GetRandom.Object<InventoryItemView>();
             var data = InventoryItemViewFactory.Create(view).Data;
-
-            TestArePropertyValuesEqual(view, data);
-
+            TestArePropertiesEqual(view, data);
         }
 
         [TestMethod]
@@ -28,9 +25,7 @@ namespace MaskShop.Tests.Facade.Products
         {
             var data = GetRandom.Object<InventoryItemData>();
             var view = InventoryItemViewFactory.Create(new InventoryItem(data));
-            TestArePropertyValuesEqual(view, data);
+            TestArePropertiesEqual(view, data);
         }
-
     }
-
 }

@@ -20,11 +20,5 @@ namespace MaskShop.Tests.Facade.Common
         {
             IsNullableProperty(() => obj.Name, x => obj.Name = x);
         }
-        [TestMethod]
-        public void CodeTest()
-        {
-            IsNullableProperty(() => obj.Code, x => obj.Code = x);
-        }
     }
-
 }
