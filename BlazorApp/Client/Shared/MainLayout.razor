@@ -1,6 +1,5 @@
 ﻿@inherits LayoutComponentBase
-@inject LocalStorage Storage
-@inject Microsoft.AspNetCore.Components.NavigationManager UriHelper
+
     <ToastContainer />
 
 <div class="sidebar">
@@ -19,21 +18,3 @@
     </div>
 
 </div>
-
-@*@code {
-    protected override void OnInitialized()
-    {
-        Storage.SetItem("environment_uri", String.Empty);
-        Storage.SetItem("environment_uri", UriHelper.BaseUri + "api");
-
-        //if (UriHelper.BaseUri == "https://localhost:44377/")
-        //{
-        //    Storage.SetItem("environment_uri", "https://localhost:44377/api");
-        //}
-        //else
-        //{
-        //    // Changed URI to reflect hosted environment, not seperate APIs
-        //    Storage.SetItem("environment_uri", "https://becksblazor.azurewebsites.net/api");
-        //}
-    }
-}*@
