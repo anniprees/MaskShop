@@ -4,14 +4,12 @@ using MaskShop.Facade.Common;
 
 namespace MaskShop.Facade.Products
 {
-    public sealed class ProductFeatureView : DefinedView
+    public abstract class ProductFeatureView : NamedView
     {
         [Required]
-        [DisplayName("Product Id")]
-        public string ProductId { get; set; }
+        [DisplayName("Product Id")] public string ProductId { get; set; }
 
         [Required]
-        [DisplayName("Product Feature Type Id")]
-        public string ProductFeatureTypeId { get; set; }
+        [DisplayName("Product Feature Type Id")] public string ProductFeatureTypeId { get; set; }
     }
 }

@@ -3,7 +3,7 @@ using MaskShop.Domain.Common;
 
 namespace MaskShop.Domain.Products
 {
-    public sealed class ProductFeatureApplicability : Entity<ProductFeatureApplicabilityData>
+    public sealed class ProductFeatureApplicability : UniqueEntity<ProductFeatureApplicabilityData>
     {
         public ProductFeatureApplicability(ProductFeatureApplicabilityData d) : base(d) { }
         public string ProductId => Data?.ProductId ?? Unspecified;
