@@ -50,7 +50,7 @@ namespace MaskShop.Tests
 
         private static void Report(string message, params object[] parameters)
         {
-            Assert.Inconclusive(message, parameters);
+            Assert.Fail(message, parameters);
         }
 
         private static List<Type> GetAssemblyClasses(string assemblyName)

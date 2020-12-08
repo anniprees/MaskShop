@@ -77,7 +77,7 @@
       <FileName>Products\FeatureSizeData.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MaskShop.Data.Products.ProductFeatureApplicability">
+  <Class Name="MaskShop.Data.Products.ProductFeatureApplicabilityData">
     <Position X="12.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>

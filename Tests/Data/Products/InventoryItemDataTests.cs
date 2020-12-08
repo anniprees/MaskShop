@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MaskShop.Tests.Data.Products
 {
     [TestClass]
-    public class InventoryItemDataClassTests : SealedClassTests<InventoryItemData, UniqueEntityData> 
+    public class InventoryItemDataTests : SealedClassTests<InventoryItemData, UniqueEntityData> 
     {
         [TestMethod] public void QuantityOnHandTest() => IsProperty(() => obj.QuantityOnHand, x => obj.QuantityOnHand = x);
 

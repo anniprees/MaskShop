@@ -5,9 +5,26 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MaskShop.Tests.Data.Products
 {
     [TestClass]
-    public class ProductDataClassTests : SealedClassTests<ProductData, NamedEntityData>
+    public class ProductDataTests : SealedClassTests<ProductData, NamedEntityData>
     {
-        [TestMethod] public void ProductCategoryIdTest() => IsNullableProperty<string>(() => obj.ProductCategoryId, x => obj.ProductCategoryId = x);
+        [TestMethod] public void ProductCategoryIdTest() => IsNullableProperty<string>(() 
+            => obj.ProductCategoryId, x => obj.ProductCategoryId = x);
+
+        [TestMethod] public void PriceComponentIdTest() => IsNullableProperty<string>(() 
+            => obj.PriceComponentId, x => obj.PriceComponentId = x);
+
+        [TestMethod] public void PriceTest() => IsProperty<double>(() 
+            => obj.Price, x => obj.Price = x);
+
+        [TestMethod] public void ProductFeatureApplicabilityIdTest() => IsNullableProperty<string>(() 
+            => obj.ProductFeatureApplicabilityId, x => obj.ProductFeatureApplicabilityId = x);
+
+        [TestMethod] public void PictureUriTest() => IsNullableProperty<string>(() 
+            => obj.PictureUri, x => obj.PictureUri = x);
+
+        [TestMethod] public void PictureTest() => IsNullableProperty<string>(() 
+            => obj.ProductCategoryId, x => obj.ProductCategoryId = x);
+
     }
 }
 
