@@ -11,6 +11,11 @@ namespace MaskShop.Infra.Products
 
         public DbSet<ProductData> Products { get; set; }
         public DbSet<ProductCategoryData> ProductCategories { get; set; }
+        public DbSet<FeatureColorData> FeatureColors { get; set; }
+        public DbSet<FeatureSizeData> FeatureSizes { get; set; }
+        public DbSet<InventoryItemData> InventoryItems { get; set; }
+        public DbSet<PriceComponentData> PriceComponents { get; set; }
+        public DbSet<ProductFeatureApplicabilityData> ProductFeatureApplicabilities { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -23,6 +28,11 @@ namespace MaskShop.Infra.Products
             if (builder is null) return;
             builder.Entity<ProductData>().ToTable(nameof(Products));
             builder.Entity<ProductCategoryData>().ToTable(nameof(ProductCategories));
+            builder.Entity<FeatureColorData>().ToTable(nameof(FeatureColors));
+            builder.Entity<FeatureSizeData>().ToTable(nameof(FeatureSizes));
+            builder.Entity<InventoryItemData>().ToTable(nameof(InventoryItems));
+            builder.Entity<PriceComponentData>().ToTable(nameof(PriceComponents));
+            builder.Entity<ProductFeatureApplicabilityData>().ToTable(nameof(ProductFeatureApplicabilities));
         }
 
         //public DbSet<ProductData> Products { get; set; }

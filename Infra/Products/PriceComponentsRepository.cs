@@ -4,12 +4,10 @@ using MaskShop.Infra.Common;
 
 namespace MaskShop.Infra.Products
 {
-    //public sealed class BasePricesRepository : UniqueEntityRepository<BasePrice, BasePriceData>, IBasePricesRepository
-    //{
-    //    public BasePricesRepository(ProductDbContext c = null) : base(c, c?.BasePrices)
-    //    {
-    //    }
+    public sealed class PriceComponentsRepository : UniqueEntityRepository<PriceComponent, PriceComponentData>, IPriceComponentsRepository
+    {
+        public PriceComponentsRepository(ProductDbContext c = null) : base(c, c?.PriceComponents) { }
 
-    //    protected override BasePrice ToDomainObject(BasePriceData d) => new BasePrice(d);
-    //}
+        protected override PriceComponent ToDomainObject(PriceComponentData d) => new PriceComponent(d);
+    }
 }

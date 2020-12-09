@@ -11,4 +11,3 @@ namespace MaskShop.Infra.Products
         protected override ProductCategory ToDomainObject(ProductCategoryData d) => new ProductCategory(d);
     }
 }
-
