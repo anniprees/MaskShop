@@ -2,7 +2,5 @@
 
 namespace MaskShop.Domain.Products
 {
-    public interface IInventoryItemsRepository : IRepository<InventoryItem>
-    {
-    }
+    public interface IInventoryItemsRepository : IRepository<InventoryItem> { }
 }

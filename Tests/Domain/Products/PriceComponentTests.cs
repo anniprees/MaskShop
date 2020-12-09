@@ -20,9 +20,9 @@ namespace MaskShop.Tests.Domain.Products
         [TestMethod]
         public void PartyRoleIdTest() => IsReadOnlyProperty(obj.Data.PartyRoleId);
 
-        //[TestMethod]
-        //public void ProductTest() =>
-        //    GetFromRepository<ProductData, Product, IProductsRepository>(obj.ProductId, () => obj.Product.Data, d => new Product(d));
+        [TestMethod]
+        public void PartyRoleTest() =>
+            IsReadOnlyProperty(obj, nameof(obj.PartyRoleId), obj.Data.PartyRoleId);
 
     }
 }

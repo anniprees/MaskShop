@@ -2,7 +2,7 @@
 
 namespace MaskShop.Domain.Products
 
-{ public interface IPriceComponentRepository : IRepository<PriceComponent>
+{ public interface IPriceComponentsRepository : IRepository<PriceComponent>
     {
     }
 }

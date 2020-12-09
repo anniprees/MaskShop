@@ -8,14 +8,10 @@ namespace MaskShop.Tests.Facade.Products
     [TestClass] public class PriceComponentViewTests : SealedClassTests<PriceComponentView, UniqueEntityView>
     {
         [TestMethod]
-        public void PriceTest() => IsProperty<double>("Price");
-        [TestMethod]
-        public void DiscountComponentTest() => IsProperty<double>("Discount Component");
+        public void DiscountPercentageTest() => IsProperty<double>("Discount Percentage");
         [TestMethod]
         public void CommentTest() => IsNullableProperty<string>("Comment");
         [TestMethod]
-        public void ProductIdTest() => IsNullableProperty<string>("Product Id");
-        [TestMethod]
-        public void ConsumerRoleTypeIdTest() => IsNullableProperty<string>("Consumer role type Id");
+        public void PartyRoleIdTest() => IsNullableProperty<string>("Party Role Id");
     }
 }

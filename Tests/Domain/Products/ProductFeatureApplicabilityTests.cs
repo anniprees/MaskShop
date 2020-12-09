@@ -7,18 +7,18 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MaskShop.Tests.Domain.Products
 {
     [TestClass]
-    public class InventoryItemTests : SealedClassTests<InventoryItem, UniqueEntity<InventoryItemData>>
+    public class ProductFeatureApplicabilityTests : SealedClassTests<ProductFeatureApplicability, Entity<ProductFeatureApplicabilityData>>
     {
-        protected override InventoryItem CreateObject() => new InventoryItem(GetRandom.Object<InventoryItemData>());
+        protected override ProductFeatureApplicability CreateObject() => new ProductFeatureApplicability(GetRandom.Object<ProductFeatureApplicabilityData>());
 
-        [TestMethod]
-        public void QuantityOnHandTest() => IsReadOnlyProperty(obj.Data.QuantityOnHand);
         [TestMethod]
         public void ProductIdTest() => IsReadOnlyProperty(obj.Data.ProductId);
 
         [TestMethod]
+        public void ProductFeatureIdTest() => IsReadOnlyProperty(obj.Data.ProductFeatureId);
+
+        [TestMethod]
         public void ProductTest() =>
             IsReadOnlyProperty(obj, nameof(obj.ProductId), obj.Data.ProductId);
-
     }
 }

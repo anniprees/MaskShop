@@ -1,5 +1,4 @@
-﻿using MaskShop.Aids;
-using MaskShop.Data.Common;
+﻿using MaskShop.Data.Common;
 using MaskShop.Data.Products;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
