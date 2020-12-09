@@ -6,7 +6,7 @@ namespace MaskShop.Data.Products
     {
         public string ProductCategoryId { get; set; }
         public string PriceComponentId { get; set; }
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         public string ProductFeatureApplicabilityId { get; set; }
         public string PictureUri { get; set; }
         public byte[] Picture { get; set; }

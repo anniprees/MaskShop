@@ -16,7 +16,7 @@ namespace MaskShop.Domain.Products
 
         public string ProductFeatureApplicabilityId => Data?.ProductFeatureApplicabilityId ?? Unspecified;
 
-        public double Price => Data?.Price ?? UnspecifiedDouble;
+        public decimal Price => Data?.Price ?? UnspecifiedDecimal;
 
         public string PictureUri => Data?.PictureUri ?? Unspecified;
 
