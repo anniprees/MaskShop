@@ -1,5 +1,6 @@
 ﻿using BlazorApp.Server.Models;
 using IdentityServer4.EntityFramework.Options;
+using MaskShop.Infra.Orders;
 using MaskShop.Infra.Products;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,7 @@ namespace BlazorApp.Server.Data
         internal void InitializeTables(ModelBuilder builder)
         {
             ProductDbContext.InitializeTables(builder);
+            OrderDbContext.InitializeTables(builder);
         }
     }
 }

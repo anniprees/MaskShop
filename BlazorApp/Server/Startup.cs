@@ -10,7 +10,9 @@ using System.Linq;
 using BlazorApp.Server.Data;
 using BlazorApp.Server.Hubs;
 using BlazorApp.Server.Models;
+using MaskShop.Domain.Orders;
 using MaskShop.Domain.Products;
+using MaskShop.Infra.Orders;
 using MaskShop.Infra.Products;
 
 namespace BlazorApp.Server
@@ -42,11 +44,15 @@ namespace BlazorApp.Server
             //TODO ProductDbContext
             services.AddDbContext<ProductDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<OrderDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddScoped<IProductsRepository, ProductsRepository>();
+            services.AddScoped<IBasketsRepository, BasketsRepository>();
+            services.AddScoped<IBasketItemsRepository, BasketItemsRepository>();
 
             services.AddIdentityServer()
                 .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
