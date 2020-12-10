@@ -8,6 +8,6 @@ namespace MaskShop.Infra.Products
     {
         public FeatureColorsRepository(ProductDbContext c = null) : base(c, c?.FeatureColors) { }
 
-        protected override FeatureColor ToDomainObject(FeatureColorData d) => new FeatureColor(d);
+        protected internal override FeatureColor ToDomainObject(FeatureColorData d) => new FeatureColor(d);
     }
 }

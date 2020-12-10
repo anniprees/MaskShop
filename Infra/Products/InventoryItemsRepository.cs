@@ -8,6 +8,6 @@ namespace MaskShop.Infra.Products
     {
         public InventoryItemsRepository(ProductDbContext c = null) : base(c, c?.InventoryItems) { }
 
-        protected override InventoryItem ToDomainObject(InventoryItemData d) => new InventoryItem(d);
+        protected internal override InventoryItem ToDomainObject(InventoryItemData d) => new InventoryItem(d);
     }
 }

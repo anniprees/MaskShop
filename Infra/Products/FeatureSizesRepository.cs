@@ -8,6 +8,6 @@ namespace MaskShop.Infra.Products
     {
         public FeatureSizesRepository(ProductDbContext c = null) : base(c, c?.FeatureSizes) { }
 
-        protected override FeatureSize ToDomainObject(FeatureSizeData d) => new FeatureSize(d);
+        protected internal override FeatureSize ToDomainObject(FeatureSizeData d) => new FeatureSize(d);
     }
 }

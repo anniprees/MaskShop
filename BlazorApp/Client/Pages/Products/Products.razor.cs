@@ -136,7 +136,6 @@ namespace BlazorApp.Client.Pages.Products
             this.ModalTitle = "Delete product";
         }
 
-
         protected async Task CreateProduct()
         {
             if (CurrentProductId == null)

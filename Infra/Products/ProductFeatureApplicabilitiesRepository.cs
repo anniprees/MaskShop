@@ -8,6 +8,6 @@ namespace MaskShop.Infra.Products
     {
         public ProductFeatureApplicabilitiesRepository(ProductDbContext c = null) : base(c, c?.ProductFeatureApplicabilities) { }
 
-        protected override ProductFeatureApplicability ToDomainObject(ProductFeatureApplicabilityData d) => new ProductFeatureApplicability(d);
+        protected internal override ProductFeatureApplicability ToDomainObject(ProductFeatureApplicabilityData d) => new ProductFeatureApplicability(d);
     }
 }
