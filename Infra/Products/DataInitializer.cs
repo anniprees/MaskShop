@@ -21,7 +21,7 @@ namespace MaskShop.Infra.Products
                     .RuleFor(o => o.Id, f => f.IndexFaker.ToString())
                     .RuleFor(p => p.Name, f => f.PickRandom(productNames))
                     .RuleFor(o => o.ProductCategoryId, f => f.PickRandom(categoryId))
-                    .RuleFor(p => p.Price, f => f.Random.Double())
+                    .RuleFor(p => p.Price, f => f.Random.Decimal(5.1M, 20.9M))
                     .RuleFor(p => p.ValidFrom, f=> f.Date.Recent(14))
                     .RuleFor(p => p.ValidTo, f => f.Date.Soon(14));
                 var products = testProducts.Generate(20);

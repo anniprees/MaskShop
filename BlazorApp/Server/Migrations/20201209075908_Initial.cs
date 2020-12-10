@@ -64,6 +64,51 @@ namespace BlazorApp.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FeatureColors",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    ValidFrom = table.Column<DateTime>(nullable: true),
+                    ValidTo = table.Column<DateTime>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    ColorCode = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FeatureColors", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FeatureSizes",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    ValidFrom = table.Column<DateTime>(nullable: true),
+                    ValidTo = table.Column<DateTime>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    Size = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FeatureSizes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "InventoryItems",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    ValidFrom = table.Column<DateTime>(nullable: true),
+                    ValidTo = table.Column<DateTime>(nullable: true),
+                    QuantityOnHand = table.Column<int>(nullable: false),
+                    ProductId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_InventoryItems", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PersistedGrants",
                 columns: table => new
                 {
@@ -81,6 +126,22 @@ namespace BlazorApp.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PriceComponents",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    ValidFrom = table.Column<DateTime>(nullable: true),
+                    ValidTo = table.Column<DateTime>(nullable: true),
+                    DiscountPercentage = table.Column<double>(nullable: false),
+                    Comment = table.Column<string>(nullable: true),
+                    PartyRoleId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PriceComponents", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ProductCategories",
                 columns: table => new
                 {
@@ -95,6 +156,21 @@ namespace BlazorApp.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ProductFeatureApplicabilities",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    ValidFrom = table.Column<DateTime>(nullable: true),
+                    ValidTo = table.Column<DateTime>(nullable: true),
+                    ProductId = table.Column<string>(nullable: true),
+                    ProductFeatureId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductFeatureApplicabilities", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
@@ -104,7 +180,7 @@ namespace BlazorApp.Server.Migrations
                     Name = table.Column<string>(nullable: true),
                     ProductCategoryId = table.Column<string>(nullable: true),
                     PriceComponentId = table.Column<string>(nullable: true),
-                    Price = table.Column<double>(nullable: false),
+                    Price = table.Column<decimal>(nullable: false),
                     ProductFeatureApplicabilityId = table.Column<string>(nullable: true),
                     PictureUri = table.Column<string>(nullable: true),
                     Picture = table.Column<byte[]>(nullable: true)
@@ -302,10 +378,25 @@ namespace BlazorApp.Server.Migrations
                 name: "DeviceCodes");
 
             migrationBuilder.DropTable(
+                name: "FeatureColors");
+
+            migrationBuilder.DropTable(
+                name: "FeatureSizes");
+
+            migrationBuilder.DropTable(
+                name: "InventoryItems");
+
+            migrationBuilder.DropTable(
                 name: "PersistedGrants");
 
             migrationBuilder.DropTable(
+                name: "PriceComponents");
+
+            migrationBuilder.DropTable(
                 name: "ProductCategories");
+
+            migrationBuilder.DropTable(
+                name: "ProductFeatureApplicabilities");
 
             migrationBuilder.DropTable(
                 name: "Products");

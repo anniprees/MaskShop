@@ -2,7 +2,7 @@
 
 namespace MaskShop.Domain.Parties
 {
-    public interface IPartiesRepository: IRepository<IParty>
+    public interface IPartiesRepository: IRepository<Party>
     {
     }
 }

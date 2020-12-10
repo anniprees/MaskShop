@@ -14,7 +14,7 @@ namespace MaskShop.Domain.Parties
 
         public string PartyId => Data?.PartyId ?? Unspecified;
 
-        public IParty Party => new GetFrom<IPartiesRepository, IParty>().ById(PartyId);
+        public Party Party => new GetFrom<IPartiesRepository, Party>().ById(PartyId);
     }
 }
 

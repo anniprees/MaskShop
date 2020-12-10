@@ -20,7 +20,6 @@ namespace BlazorApp.Server.Controllers
             _pr = pr;
         }
 
-        // GET: api/Products
         [HttpGet]
         public async Task<ActionResult<List<ProductView>>> GetProducts(string name)
         {
@@ -33,7 +32,6 @@ namespace BlazorApp.Server.Controllers
 
         }
 
-        // GET: api/Products/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductView>> GetProduct(string id)
         {
@@ -46,10 +44,7 @@ namespace BlazorApp.Server.Controllers
 
             return ProductViewFactory.Create(product);
         }
-        //TODO kas update
-        // PUT: api/Products/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+       
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduct(string id, ProductView product)
         {
@@ -63,9 +58,6 @@ namespace BlazorApp.Server.Controllers
             return NoContent();
         }
 
-        // POST: api/Products
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         public async Task<ActionResult<ProductView>> PostProduct(ProductView product)
         {
@@ -74,7 +66,6 @@ namespace BlazorApp.Server.Controllers
             return CreatedAtAction("GetProduct", new { id = product.Id }, product);
         }
 
-        // DELETE: api/Products/5
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteProduct(string id)
         {
@@ -82,10 +73,5 @@ namespace BlazorApp.Server.Controllers
 
             return NoContent();
         }
-
-        //private bool ProductExists(string id)
-        //{
-        //    return _context.Products.Any(e => e.Id == id);
-        //}
     }
 }

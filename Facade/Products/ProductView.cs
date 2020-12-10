@@ -8,7 +8,7 @@ namespace MaskShop.Facade.Products
     public sealed class ProductView : NamedView
     {
         [Required]
-        [DisplayName("Product Price")] public double Price { get; set; }
+        [DisplayName("Product Price")] public decimal Price { get; set; }
 
         [Required]
         [DisplayName("Product Category Id")] public string ProductCategoryId { get; set; }

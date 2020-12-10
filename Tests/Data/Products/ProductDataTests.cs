@@ -13,7 +13,7 @@ namespace MaskShop.Tests.Data.Products
         [TestMethod] public void PriceComponentIdTest() => IsNullableProperty<string>(() 
             => obj.PriceComponentId, x => obj.PriceComponentId = x);
 
-        [TestMethod] public void PriceTest() => IsProperty<double>(() 
+        [TestMethod] public void PriceTest() => IsProperty<decimal>(() 
             => obj.Price, x => obj.Price = x);
 
         [TestMethod] public void ProductFeatureApplicabilityIdTest() => IsNullableProperty<string>(() 
