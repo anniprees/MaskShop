@@ -1,10 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using MaskShop.Aids.Methods;
+using MaskShop.Data.Parties;
+using MaskShop.Domain.Parties;
 
 namespace MaskShop.Facade.Parties
 {
-    class ContactMechanismViewFactory
+    public static class ContactMechanismViewFactory
     {
+        public static ContactMechanism Create(ContactMechanismView v)
+        {
+            var d = new ContactMechanismData();
+            Copy.Members(v, d);
+            return new ContactMechanism(d);
+        }
+
+        public static ContactMechanismView Create(ContactMechanism o)
+        {
+            var v = new ContactMechanismView();
+            Copy.Members(o?.Data, v);
+            return v;
+        }
     }
 }
+
