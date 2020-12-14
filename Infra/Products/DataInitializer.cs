@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using Bogus;
+using MaskShop.Aids;
 using MaskShop.Data.Products;
 using MaskShop.Domain.Products;
 
@@ -32,6 +34,22 @@ namespace MaskShop.Infra.Products
                 }
                 productContext.SaveChanges();
             }
+
+            //järgnev kood on selleks, et pilti sisestada wwwroot images kaustast
+
+            //var dir = Directory.GetCurrentDirectory() + "\\wwwroot\\images";
+            //var files = Directory.GetFiles(dir);
+
+            //var idx = GetRandom.Int32(0, files.Length);
+            //Picture = ConvertToByteArray(files[idx])
+
+            //private static byte[] ConvertToByteArray(string filePath)
+            //{
+            //    var file = File.OpenRead(filePath);
+            //    var stream = new MemoryStream();
+            //    file.CopyTo(stream);
+            //    return stream.ToArray();
+            //}
 
             if (productContext.ProductCategories.Count() == 0)
             {

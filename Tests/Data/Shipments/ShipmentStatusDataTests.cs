@@ -8,7 +8,7 @@ namespace MaskShop.Tests.Data.Shipments
     [TestClass]
     public class ShipmentStatusDataClassTests : SealedClassTests<ShipmentStatusData, UniqueEntityData>
     {
-        [TestMethod] public void ShipmentStatusTypeTest() => IsProperty<ShipmentStatusTypeData>();
+        [TestMethod] public void ShipmentStatusTypeTest() => IsProperty<ShipmentStatus>();
     }
 }
 

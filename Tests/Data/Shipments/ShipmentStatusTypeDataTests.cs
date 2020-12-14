@@ -7,31 +7,31 @@ namespace MaskShop.Tests.Data.Shipments
     [TestClass]
     public class ShipmentStatusTypeDataTests: BaseTests
     {
-        [TestInitialize] public void TestInitialize() => type = typeof(ShipmentStatusTypeData);
+        [TestInitialize] public void TestInitialize() => type = typeof(ShipmentStatus);
 
         [TestMethod]
         public void CountTest()
-        => Assert.AreEqual(5, GetEnum.Count<ShipmentStatusTypeData>());
+        => Assert.AreEqual(5, GetEnum.Count<ShipmentStatus>());
 
         [TestMethod]
         public void ScheduledTest() =>
-        Assert.AreEqual(0, (int)ShipmentStatusTypeData.Scheduled);
+        Assert.AreEqual(0, (int)ShipmentStatus.Scheduled);
 
         [TestMethod]
         public void ShippedTest() =>
-        Assert.AreEqual(1, (int)ShipmentStatusTypeData.Shipped);
+        Assert.AreEqual(1, (int)ShipmentStatus.Shipped);
 
         [TestMethod]
         public void InRouteTest() =>
-        Assert.AreEqual(2, (int)ShipmentStatusTypeData.InRoute);
+        Assert.AreEqual(2, (int)ShipmentStatus.InRoute);
 
         [TestMethod]
         public void DeliveredTest() =>
-        Assert.AreEqual(3, (int)ShipmentStatusTypeData.Delivered);
+        Assert.AreEqual(3, (int)ShipmentStatus.Delivered);
         
         [TestMethod]
         public void CanceledTest() =>
-        Assert.AreEqual(4, (int)ShipmentStatusTypeData.Canceled);
+        Assert.AreEqual(4, (int)ShipmentStatus.Canceled);
     }
 }
 
