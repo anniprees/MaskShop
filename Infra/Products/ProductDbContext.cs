@@ -28,7 +28,7 @@ namespace MaskShop.Infra.Products
             if (builder is null) return;
             builder.Entity<ProductData>().ToTable(nameof(Products))
                 .Property(x => x.Price)
-                .HasColumnType("decimal(16, 4)");
+                .HasColumnType("decimal(16, 2)");
             builder.Entity<ProductCategoryData>().ToTable(nameof(ProductCategories));
             builder.Entity<FeatureColorData>().ToTable(nameof(FeatureColors));
             builder.Entity<FeatureSizeData>().ToTable(nameof(FeatureSizes));

@@ -31,6 +31,14 @@ namespace BlazorApp.Client.Pages.Products
             Name = "",
             Id = "",
             ProductCategoryId = "",
+            Price = 0,
+            Picture = null,
+            PriceComponentId = "",
+            PictureUri = null,
+            ProductFeatureApplicabilityId = null,
+            ValidFrom = null,
+            ValidTo = null
+
         };
 
         protected string CurrentProductId { get; set; }
@@ -162,12 +170,7 @@ namespace BlazorApp.Client.Pages.Products
 
         protected void CloseModal()
         {
-            Product = new ProductView
-            {
-                Name = "",
-                Id = "",
-                ProductCategoryId = "",
-            };
+            Product = new ProductView { };
             CurrentProductId = null;
             this.IsAdd = false;
             this.IsView = false;
