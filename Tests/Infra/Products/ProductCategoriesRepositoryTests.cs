@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MaskShop.Tests.Infra.Products
 {
     [TestClass]
-    public class ProductCategoriesDbContextTests : ProductDbContextTests<ProductCategoriesRepository, ProductCategory,
+    public class ProductCategoriesRepositoryTests : ProductDbContextTests<ProductCategoriesRepository, ProductCategory,
         ProductCategoryData>
     {
 

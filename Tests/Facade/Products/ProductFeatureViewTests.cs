@@ -4,15 +4,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MaskShop.Tests.Facade.Products
 {
-    [TestClass] public class ProductFeatureViewTests : AbstractClassTests<ProductFeatureView, NamedView>
+    [TestClass] public class ProductFeatureViewTests : SealedClassTests<ProductFeatureView, DefinedView>
     {
-        private class TestClass : ProductFeatureView { }
-
-        [TestInitialize]
-        public override void TestInitialize()
-        {
-            base.TestInitialize();
-            obj = new TestClass();
-        }
+        [TestMethod]
+        public void NumericCodeTest() => IsProperty<int>("Numeric Code");
     }
 }

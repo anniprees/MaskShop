@@ -8,7 +8,7 @@ namespace MaskShop.Tests.Facade.Products
     [TestClass] public class ProductViewTests : SealedClassTests<ProductView, NamedView>
     {
         [TestMethod]
-        public void PriceTest() => IsProperty<double>("Product Price");
+        public void PriceTest() => IsProperty<decimal>("Product Price");
 
         [TestMethod]
         public void ProductCategoryIdTest() => IsNullableProperty<string>("Product Category Id");

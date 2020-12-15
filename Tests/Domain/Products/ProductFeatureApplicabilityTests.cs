@@ -7,7 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MaskShop.Tests.Domain.Products
 {
     [TestClass]
-    public class ProductFeatureApplicabilityTests : SealedClassTests<ProductFeatureApplicability, Entity<ProductFeatureApplicabilityData>>
+    public class ProductFeatureApplicabilityTests : SealedClassTests<ProductFeatureApplicability, UniqueEntity<ProductFeatureApplicabilityData>>
     {
         protected override ProductFeatureApplicability CreateObject() => new ProductFeatureApplicability(GetRandom.Object<ProductFeatureApplicabilityData>());
 
@@ -20,5 +20,9 @@ namespace MaskShop.Tests.Domain.Products
         [TestMethod]
         public void ProductTest() =>
             IsReadOnlyProperty(obj, nameof(obj.ProductId), obj.Data.ProductId);
+
+        [TestMethod]
+        public void ProductFeatureTest() =>
+            IsReadOnlyProperty(obj, nameof(obj.ProductFeatureId), obj.Data.ProductFeatureId);
     }
 }
