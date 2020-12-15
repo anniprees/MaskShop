@@ -1,10 +1,7 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using Bogus;
-using MaskShop.Aids;
 using MaskShop.Data.Products;
-using MaskShop.Domain.Products;
 
 namespace MaskShop.Infra.Products
 {

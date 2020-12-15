@@ -10,8 +10,6 @@ namespace MaskShop.Domain.Products
         public string ProductFeatureId => Data?.ProductFeatureId ?? Unspecified;
 
         public Product Product => new GetFrom<IProductsRepository, Product>().ById(ProductId);
-
-        //TODO ProductFeatureID
-        //public ProductFeature ProductFeature => new GetFrom<IProductFeaturesRepository, Product>().ById(ProductFeatureId);
+        public ProductFeature ProductFeature => new GetFrom<IProductFeaturesRepository, ProductFeature>().ById(ProductFeatureId);
     }
 }

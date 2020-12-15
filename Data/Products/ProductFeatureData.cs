@@ -2,7 +2,8 @@
 
 namespace MaskShop.Data.Products
 {
-    public abstract class ProductFeatureData : NamedEntityData
+    public sealed class ProductFeatureData : DefinedEntityData
     {
+        public int NumericCode { get; set; }
     }
 }

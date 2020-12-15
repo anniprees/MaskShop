@@ -15,23 +15,23 @@
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Data.Products.ProductCategoryData">
-    <Position X="6.5" Y="2.5" Width="1.5" />
+    <Position X="6.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Products\ProductCategoryData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Data.Products.ProductData">
-    <Position X="0.75" Y="2.5" Width="2.75" />
+    <Position X="3" Y="2.5" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAgAgAABAQAAAgAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
       <FileName>Products\ProductData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Data.Products.ProductFeatureData">
-    <Position X="4" Y="2.5" Width="2" />
+    <Position X="0.5" Y="2.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
       <FileName>Products\ProductFeatureData.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -61,20 +61,6 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Common\DefinedEntityData.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="MaskShop.Data.Products.FeatureColorData">
-    <Position X="5.25" Y="5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Products\FeatureColorData.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="MaskShop.Data.Products.FeatureSizeData">
-    <Position X="3.5" Y="5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Products\FeatureSizeData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Data.Products.ProductFeatureApplicabilityData">

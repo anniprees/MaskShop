@@ -338,7 +338,7 @@ namespace BlazorApp.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(16, 4)");
+                        .HasColumnType("decimal(16, 2)");
 
                     b.Property<string>("PriceComponentId")
                         .HasColumnType("nvarchar(max)");

@@ -3,8 +3,10 @@ using MaskShop.Domain.Common;
 
 namespace MaskShop.Domain.Products
 {
-    public abstract class ProductFeature<TData>: NamedEntity<TData> where TData: ProductFeatureData, new()
+    public sealed class ProductFeature: DefinedEntity<ProductFeatureData>
     {
-        protected ProductFeature(TData d) : base(d) { }
+        public ProductFeature() : this(null) { }
+        public ProductFeature(ProductFeatureData d) : base(d) { }
+        public int NumericCode => Data?.NumericCode ?? UnspecifiedInteger;
     }
 }

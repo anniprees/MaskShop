@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BlazorApp.Server.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -211,7 +211,7 @@ namespace BlazorApp.Server.Migrations
                     Name = table.Column<string>(nullable: true),
                     ProductCategoryId = table.Column<string>(nullable: true),
                     PriceComponentId = table.Column<string>(nullable: true),
-                    Price = table.Column<decimal>(type: "decimal(16, 4)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(16, 2)", nullable: false),
                     ProductFeatureApplicabilityId = table.Column<string>(nullable: true),
                     PictureUri = table.Column<string>(nullable: true),
                     Picture = table.Column<byte[]>(nullable: true)

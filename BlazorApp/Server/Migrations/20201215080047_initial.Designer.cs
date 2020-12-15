@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorApp.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201214151413_Initial")]
-    partial class Initial
+    [Migration("20201215080047_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -340,7 +340,7 @@ namespace BlazorApp.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(16, 4)");
+                        .HasColumnType("decimal(16, 2)");
 
                     b.Property<string>("PriceComponentId")
                         .HasColumnType("nvarchar(max)");

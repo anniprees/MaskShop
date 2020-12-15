@@ -1,5 +1,4 @@
 ﻿using MaskShop.Data.Products;
-using MaskShop.Domain.Products;
 using Microsoft.EntityFrameworkCore;
 
 namespace MaskShop.Infra.Products
@@ -11,8 +10,7 @@ namespace MaskShop.Infra.Products
 
         public DbSet<ProductData> Products { get; set; }
         public DbSet<ProductCategoryData> ProductCategories { get; set; }
-        public DbSet<FeatureColorData> FeatureColors { get; set; }
-        public DbSet<FeatureSizeData> FeatureSizes { get; set; }
+        public DbSet<ProductFeatureData> ProductFeatures { get; set; }
         public DbSet<InventoryItemData> InventoryItems { get; set; }
         public DbSet<PriceComponentData> PriceComponents { get; set; }
         public DbSet<ProductFeatureApplicabilityData> ProductFeatureApplicabilities { get; set; }
@@ -30,8 +28,7 @@ namespace MaskShop.Infra.Products
                 .Property(x => x.Price)
                 .HasColumnType("decimal(16, 2)");
             builder.Entity<ProductCategoryData>().ToTable(nameof(ProductCategories));
-            builder.Entity<FeatureColorData>().ToTable(nameof(FeatureColors));
-            builder.Entity<FeatureSizeData>().ToTable(nameof(FeatureSizes));
+            builder.Entity<ProductFeatureData>().ToTable(nameof(ProductFeatures));
             builder.Entity<InventoryItemData>().ToTable(nameof(InventoryItems));
             builder.Entity<PriceComponentData>().ToTable(nameof(PriceComponents));
             builder.Entity<ProductFeatureApplicabilityData>().ToTable(nameof(ProductFeatureApplicabilities));

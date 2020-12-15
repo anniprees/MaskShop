@@ -4,5 +4,8 @@ using MaskShop.Facade.Common;
 
 namespace MaskShop.Facade.Products
 {
-    public abstract class ProductFeatureView : NamedView { }
+    public sealed class ProductFeatureView : DefinedView
+    {
+        [DisplayName("Numeric Code")] public int NumericCode { get; set; }
+    }
 }
