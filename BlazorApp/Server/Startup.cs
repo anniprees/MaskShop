@@ -12,6 +12,7 @@ using BlazorApp.Server.Hubs;
 using BlazorApp.Server.Models;
 using MaskShop.Domain.Orders;
 using MaskShop.Domain.Products;
+using MaskShop.Infra;
 using MaskShop.Infra.Orders;
 using MaskShop.Infra.Products;
 
@@ -41,16 +42,14 @@ namespace BlazorApp.Server
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            //TODO ProductDbContext
-            services.AddDbContext<ProductDbContext>(options =>
+            services.AddDbContext<ShopDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDbContext<OrderDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
+            
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddScoped<IProductsRepository, ProductsRepository>();
+            services.AddScoped<IProductCategoriesRepository, ProductCategoriesRepository>();
             services.AddScoped<IBasketsRepository, BasketsRepository>();
             services.AddScoped<IBasketItemsRepository, BasketItemsRepository>();
 

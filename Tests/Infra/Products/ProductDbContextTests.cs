@@ -4,6 +4,7 @@ using System.Text;
 using MaskShop.Aids;
 using MaskShop.Data.Common;
 using MaskShop.Domain.Common;
+using MaskShop.Infra;
 using MaskShop.Infra.Common;
 using MaskShop.Infra.Products;
 using Microsoft.EntityFrameworkCore;
@@ -19,15 +20,15 @@ namespace MaskShop.Tests.Infra.Products
         where TDomain : IEntity<TData>
     {
 
-        protected ProductDbContext db;
+        protected ShopDbContext db;
 
         [TestInitialize]
         public override void TestInitialize()
         {
             base.TestInitialize();
-            //var options = new DbContextOptionsBuilder<ProductDbContext>().UseInMemoryDatabase("TestDb").Options;
-            var options = new DbContextOptionsBuilder<ProductDbContext>().Options;
-            db = new ProductDbContext(options);
+            //var options = new DbContextOptionsBuilder<ShopDbContext>().UseInMemoryDatabase("TestDb").Options;
+            var options = new DbContextOptionsBuilder<ShopDbContext>().Options;
+            db = new ShopDbContext(options);
         }
 
         //[TestMethod]
@@ -38,9 +39,9 @@ namespace MaskShop.Tests.Infra.Products
         //    Assert.AreSame(GetSet(db), obj.dbSet);
         //}
 
-        protected abstract TRepository GetObject(ProductDbContext db);
+        protected abstract TRepository GetObject(ShopDbContext db);
 
-        protected abstract DbSet<TData> GetSet(ProductDbContext db);
+        protected abstract DbSet<TData> GetSet(ShopDbContext db);
 
         //[TestMethod]
         //public virtual void ToDomainObjectTest()

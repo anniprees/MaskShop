@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MaskShop.Aids;
 using MaskShop.Data.Products;
 using MaskShop.Domain.Products;
+using MaskShop.Infra;
 using MaskShop.Infra.Common;
 using MaskShop.Infra.Products;
 using Microsoft.EntityFrameworkCore;
@@ -40,8 +41,8 @@ namespace MaskShop.Tests.Infra.Common
         public override void TestInitialize()
         {
             base.TestInitialize();
-            var options = new DbContextOptionsBuilder<ProductDbContext>().Options;
-            var c = new ProductDbContext(options);
+            var options = new DbContextOptionsBuilder<ShopDbContext>().Options;
+            var c = new ShopDbContext(options);
             obj = new TestClass(c, c.Products);
         }
 

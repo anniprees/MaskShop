@@ -1,4 +1,5 @@
 ﻿using System;
+using MaskShop.Infra;
 using MaskShop.Infra.Products;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
@@ -19,8 +20,8 @@ namespace BlazorApp.Server
 
                 try
                 {
-                    var productContext = services.GetRequiredService<ProductDbContext>();
-                    DataInitializer.Initialize(productContext);
+                    var shopContext = services.GetRequiredService<ShopDbContext>();
+                    DataInitializer.Initialize(shopContext);
                 }
                 catch (Exception ex)
                 {

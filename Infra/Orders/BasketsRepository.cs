@@ -10,7 +10,7 @@ namespace MaskShop.Infra.Orders
 {
     public sealed class BasketsRepository : UniqueEntityRepository<Basket, BasketData>, IBasketsRepository
     {
-        public BasketsRepository(OrderDbContext c = null) : base(c, c?.Baskets) { }
+        public BasketsRepository(ShopDbContext c = null) : base(c, c?.Baskets) { }
 
         protected internal override Basket ToDomainObject(BasketData d) 
             => new Basket(d);

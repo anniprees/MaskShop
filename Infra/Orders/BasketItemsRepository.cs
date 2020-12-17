@@ -12,7 +12,7 @@ namespace MaskShop.Infra.Orders
 {
     public class BasketItemsRepository : PaginatedRepository<BasketItem, BasketItemData>, IBasketItemsRepository
     {
-        public BasketItemsRepository(OrderDbContext c) : base(c, c.BasketItems) { }
+        public BasketItemsRepository(ShopDbContext c) : base(c, c.BasketItems) { }
 
         protected override async Task<BasketItemData> GetData(string id)
         {

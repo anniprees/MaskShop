@@ -6,7 +6,7 @@ namespace MaskShop.Infra.Products
 {
     public sealed class ProductCategoriesRepository : UniqueEntityRepository<ProductCategory, ProductCategoryData>, IProductCategoriesRepository
     {
-        public ProductCategoriesRepository(ProductDbContext c = null) : base(c, c?.ProductCategories) { }
+        public ProductCategoriesRepository(ShopDbContext c = null) : base(c, c?.ProductCategories) { }
 
         protected internal override ProductCategory ToDomainObject(ProductCategoryData d) => new ProductCategory(d);
     }

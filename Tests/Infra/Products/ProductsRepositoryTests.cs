@@ -1,6 +1,7 @@
 ﻿using System;
 using MaskShop.Data.Products;
 using MaskShop.Domain.Products;
+using MaskShop.Infra;
 using MaskShop.Infra.Common;
 using MaskShop.Infra.Products;
 using Microsoft.EntityFrameworkCore;
@@ -14,8 +15,8 @@ namespace MaskShop.Tests.Infra.Products
 
         protected override Type GetBaseClass() => typeof(UniqueEntityRepository<Product, ProductData>);
 
-        protected override ProductsRepository GetObject(ProductDbContext c) => new ProductsRepository(c);
+        protected override ProductsRepository GetObject(ShopDbContext c) => new ProductsRepository(c);
 
-        protected override DbSet<ProductData> GetSet(ProductDbContext c) => c.Products;
+        protected override DbSet<ProductData> GetSet(ShopDbContext c) => c.Products;
     }
 }

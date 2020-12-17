@@ -80,9 +80,9 @@ else
                         <InputText id="Product Category" class="form-control" @bind-Value="Product.ProductCategoryId" />
                         <ValidationMessage For="@(() => Product.ProductCategoryId)" />
 
-                        <label for="Feature Applicability" class="control-label">Feature Applicability</label>
+                        @*<label for="Feature Applicability" class="control-label">Feature Applicability</label>
                         <InputText id="Feature Applicability" class="form-control" @bind-Value="Product.ProductFeatureApplicabilityId" />
-                        <ValidationMessage For="@(() => Product.ProductFeatureApplicabilityId)" />
+                        <ValidationMessage For="@(() => Product.ProductFeatureApplicabilityId)" />*@
 
                         <label for="Price" class="control-label">Price</label>
                         <InputNumber id="Price" class="form-control" @bind-Value="Product.Price" />

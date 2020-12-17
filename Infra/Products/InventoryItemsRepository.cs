@@ -6,7 +6,7 @@ namespace MaskShop.Infra.Products
 {
     public sealed class InventoryItemsRepository : UniqueEntityRepository<InventoryItem, InventoryItemData>, IInventoryItemsRepository
     {
-        public InventoryItemsRepository(ProductDbContext c = null) : base(c, c?.InventoryItems) { }
+        public InventoryItemsRepository(ShopDbContext c = null) : base(c, c?.InventoryItems) { }
 
         protected internal override InventoryItem ToDomainObject(InventoryItemData d) => new InventoryItem(d);
     }
