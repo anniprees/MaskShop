@@ -2,7 +2,6 @@
 {
     public static class Copy
     {
-
         public static void Members(object from, object to)
         {
             if (from is null) return;

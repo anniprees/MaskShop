@@ -17,7 +17,7 @@ namespace MaskShop.Facade.Parties
         [DisplayName("Contact Mechanism Id")] public string ContactMechanismId { get; set; }
 
         [Required]
-        [DisplayName("Party Type")] public PartyTypeData PartyType { get; set; }
+        [DisplayName("Party Type")] public PartyType PartyType { get; set; }
     }
 }
 

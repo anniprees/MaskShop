@@ -11,7 +11,7 @@ namespace MaskShop.Tests.Domain.Parties
         protected override PartyName CreateObject() => new PartyName(GetRandom.Object<PartyNameData>());
 
         [TestMethod] public void NameTest() => IsReadOnlyProperty(obj.Data.Name);
-        [TestMethod] public void GivenNameTest() => IsReadOnlyProperty(obj.Data.GivenName);
+        [TestMethod] public void GivenNameTest() => IsReadOnlyProperty(obj.Data.FirstName);
         [TestMethod] public void MiddleNameTest() => IsReadOnlyProperty(obj.Data.MiddleName);
         [TestMethod] public void PreferredNameTest() => IsReadOnlyProperty(obj.Data.PreferredName);
     }

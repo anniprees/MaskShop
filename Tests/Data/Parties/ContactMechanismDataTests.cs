@@ -15,7 +15,7 @@ namespace MaskShop.Tests.Data.Parties
 
         [TestMethod] public void AddressTest() => IsNullableProperty(() => obj.Address, x => obj.Address = x);
 
-        [TestMethod] public void ZipOrPostCodeTest() => IsNullableProperty(() => obj.ZipOrPostCode, x => obj.ZipOrPostCode = x);
+        [TestMethod] public void ZipOrPostCodeTest() => IsNullableProperty(() => obj.ZipCode, x => obj.ZipCode = x);
 
         [TestMethod] public void ElectronicMailTest() => IsProperty(() => obj.ElectronicMail, x => obj.ElectronicMail = x);
     }

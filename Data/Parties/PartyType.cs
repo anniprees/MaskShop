@@ -1,6 +1,6 @@
 ﻿namespace MaskShop.Data.Parties
 {
-    public enum PartyTypeData
+    public enum PartyType
     {
         Unspecified = 0,
         Person = 1,

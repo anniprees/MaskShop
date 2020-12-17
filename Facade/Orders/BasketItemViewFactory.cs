@@ -16,7 +16,7 @@ namespace MaskShop.Facade.Orders
         public override BasketItemView Create(BasketItem o)
         {
             var v = base.Create(o);
-            v.ProductName = o.Product.ToString();
+            v.ProductName = o.Product.Name;
             string s = Convert.ToBase64String(
                 o.Product.Picture, 0,
                 o.Product.Picture.Length);

@@ -16,12 +16,15 @@ namespace MaskShop.Domain.Orders
 
         public string ContactMechanismId => Data?.ContactMechanismId ?? Unspecified;
 
+        public string PartyNameId => Data?.PartyNameId ?? Unspecified;
+
         public OrderStatus OrderStatus => Data?.OrderStatus?? OrderStatus.Unspecified;
 
         public IReadOnlyList<OrderItem> Items =>
         new GetFrom<IOrderItemsRepository, OrderItem>().ListBy(_orderId, Id);
         
         public ContactMechanism ContactMechanism => new GetFrom<IContactMechanismsRepository, ContactMechanism>().ById(ContactMechanismId);
+        public PartyName PartyName => new GetFrom<IPartyNamesRepository, PartyName>().ById(PartyNameId);
 
         public decimal TotalPrice
         {

@@ -7,23 +7,23 @@ namespace MaskShop.Tests.Data.Parties
     [TestClass]
     public class PartyTypeDataTests : BaseTests
     {
-        [TestInitialize] public void TestInitialize() => type = typeof(PartyTypeData);
+        [TestInitialize] public void TestInitialize() => type = typeof(PartyType);
 
         [TestMethod]
         public void CountTest()
-            => Assert.AreEqual(4, GetEnum.Count<PartyTypeData>());
+            => Assert.AreEqual(4, GetEnum.Count<PartyType>());
 
         [TestMethod]
         public void UnspecifiedTest() =>
-            Assert.AreEqual(0, (int)PartyTypeData.Unspecified);
+            Assert.AreEqual(0, (int)PartyType.Unspecified);
         [TestMethod]
         public void PersonTest() =>
-            Assert.AreEqual(1, (int)PartyTypeData.Person);
+            Assert.AreEqual(1, (int)PartyType.Person);
         [TestMethod]
         public void OrganizationTest() =>
-            Assert.AreEqual(2, (int)PartyTypeData.Organization);
+            Assert.AreEqual(2, (int)PartyType.Organization);
         [TestMethod]
         public void AutomatedAgentTest() =>
-            Assert.AreEqual(3, (int)PartyTypeData.AutomatedAgent);
+            Assert.AreEqual(3, (int)PartyType.AutomatedAgent);
     }
 }

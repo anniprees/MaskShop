@@ -1,6 +1,6 @@
 ﻿namespace MaskShop.Data.Parties
 {
-    public enum ContactMechanismTypeData
+    public enum ContactMechanismType
     {
         Unspecified = 0,
         PostalAddress = 1,

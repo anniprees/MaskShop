@@ -16,10 +16,6 @@ namespace MaskShop.Domain.Parties
         public string ContactMechanismId => Data?.ContactMechanismId ?? Unspecified;
         public ContactMechanism ContactMechanism => new GetFrom<IContactMechanismsRepository, ContactMechanism>().ById(ContactMechanismId);
 
-        public PartyTypeData PartyType => Data?.PartyType ?? PartyTypeData.Unspecified;
-
+        public PartyType PartyType => Data?.PartyType ?? PartyType.Unspecified;
     }
 }
-
-
-
