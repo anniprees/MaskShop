@@ -110,6 +110,40 @@ namespace BlazorApp.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "OrderItems",
+                columns: table => new
+                {
+                    ProductId = table.Column<string>(nullable: false),
+                    OrderId = table.Column<string>(nullable: false),
+                    ValidFrom = table.Column<DateTime>(nullable: true),
+                    ValidTo = table.Column<DateTime>(nullable: true),
+                    Quantity = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderItems", x => new { x.OrderId, x.ProductId });
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    ValidFrom = table.Column<DateTime>(nullable: true),
+                    ValidTo = table.Column<DateTime>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    Definition = table.Column<string>(nullable: true),
+                    PartyId = table.Column<string>(nullable: true),
+                    ContactMechanismId = table.Column<string>(nullable: true),
+                    PartyNameId = table.Column<string>(nullable: true),
+                    OrderStatus = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PersistedGrants",
                 columns: table => new
                 {
@@ -402,6 +436,12 @@ namespace BlazorApp.Server.Migrations
 
             migrationBuilder.DropTable(
                 name: "InventoryItems");
+
+            migrationBuilder.DropTable(
+                name: "OrderItems");
+
+            migrationBuilder.DropTable(
+                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "PersistedGrants");

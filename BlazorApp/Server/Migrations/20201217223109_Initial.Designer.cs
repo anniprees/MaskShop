@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorApp.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201217081249_Initial")]
+    [Migration("20201217223109_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -213,6 +213,62 @@ namespace BlazorApp.Server.Migrations
                     b.HasKey("BasketId", "ProductId");
 
                     b.ToTable("BasketItems");
+                });
+
+            modelBuilder.Entity("MaskShop.Data.Orders.OrderData", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ContactMechanismId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Definition")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OrderStatus")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PartyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PartyNameId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ValidFrom")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ValidTo")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("MaskShop.Data.Orders.OrderItemData", b =>
+                {
+                    b.Property<string>("OrderId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProductId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ValidFrom")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ValidTo")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("OrderId", "ProductId");
+
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("MaskShop.Data.Products.InventoryItemData", b =>
