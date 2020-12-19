@@ -16,12 +16,17 @@ namespace MaskShop.Facade.Parties
         [DisplayName("City")] public string City { get; set; }
 
         [Required]
-        [DisplayName("Address")] public string Address { get; set; }
+        [DisplayName("Street")] public string Street { get; set; }
+
+        //[Required]
+        //[DisplayName("Address")] public string Address { get; set; }
 
         [Required]
-        [DisplayName("Zip or postcode")] public string ZipOrPostCode { get; set; }
+        [DisplayName("Zipcode")] public string ZipCode { get; set; }
 
         [Required]
         [DisplayName("E-mail")] public string ElectronicMail { get; set; }
     }
 }
+
+
