@@ -7,6 +7,7 @@ namespace MaskShop.Tests.Data.Parties
     [TestClass]
     public class ContactMechanismDataTests : SealedClassTests <ContactMechanismData, UniqueEntityData>
     {
+        [TestMethod] public void StreetTest() => IsNullableProperty(() => obj.Street, x => obj.Street = x);
         [TestMethod] public void CountryTest() => IsNullableProperty(() => obj.Country, x => obj.Country = x);
 
         [TestMethod] public void StateTest() => IsNullableProperty(() => obj.State, x => obj.State = x);
