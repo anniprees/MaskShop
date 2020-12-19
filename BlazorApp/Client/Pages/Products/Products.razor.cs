@@ -1,27 +1,35 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Net.Http;
 using System.Threading.Tasks;
+using MaskShop.Aids.Constants;
+using MaskShop.Data.Common;
 using MaskShop.Data.Products;
+using MaskShop.Domain.Common;
 using MaskShop.Domain.Products;
 using MaskShop.Facade.Products;
-using MaskShop.Pages.Common;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
 
 namespace BlazorApp.Client.Pages.Products
 {
     [Authorize]
     public partial class Products
     {
+
         [Inject] private NavigationManager NavigationManager { get; set; }
         [Inject] private HttpClient HttpClient { get; set; }
 
-        [Parameter]
-        public string Page { get; set; } = "1";
+        [Parameter] public string Page { get; set; } = "1";
 
-        [Parameter]
-        public string SearchTerm { get; set; } = string.Empty;
+        [Parameter] public string SearchTerm { get; set; } = string.Empty;
 
         ProductView[] _products;
         private HubConnection hubConnection;
@@ -69,10 +77,7 @@ namespace BlazorApp.Client.Pages.Products
 
         private void CallLoadData()
         {
-            Task.Run(async () =>
-            {
-                await LoadData();
-            });
+            Task.Run(async () => { await LoadData(); });
         }
 
         protected async Task LoadData()
@@ -156,6 +161,7 @@ namespace BlazorApp.Client.Pages.Products
                 await HttpClient.PutJsonAsync("api/products/" + CurrentProductId, Product);
                 if (IsConnected) await SendMessage();
             }
+
             CloseModal();
             await OnParametersSetAsync();
         }
@@ -181,7 +187,105 @@ namespace BlazorApp.Client.Pages.Products
         protected void PagerPageChanged(int page)
         {
             NavigationManager.NavigateTo("/productlist/" + page);
-
         }
+
+//        public IEnumerable<SelectListItem> ProductCategory { get; }
+
+//        public Products(IProductsRepository a, IProductCategoriesRepository b)
+//        {
+//            ProductCategory = NewItemsList<ProductCategory, ProductCategoryData>(b);
+//        }
+
+//        public string CategoryName(string id) => ItemName(ProductCategory, id);
+
+//        protected void CreateColumn<TResult>(Expression<Func<Products, TResult>> e) => Columns.Add(e);
+
+//        public List<LambdaExpression> Columns { get; }
+//            = new List<LambdaExpression>();
+
+//        public ProductView Item { get; set; }
+
+//        protected void CreateTableColumns()
+//        {
+//            CreateColumn(x => Item.Id);
+//            CreateColumn(x => Item.Name);
+//            CreateColumn(x => Item.Price);
+//            CreateColumn(x => Item.Picture);
+//            CreateColumn(x => Item.PictureUri);
+//            CreateColumn(x => Item.ProductCategoryId);
+//            CreateColumn(x => Item.ValidFrom);
+//            CreateColumn(x => Item.ValidTo);
+//        }
+
+
+//        protected internal static IEnumerable<SelectListItem> NewItemsList<TTDomain, TTData>(
+//            IRepository<TTDomain> r,
+//            Func<TTDomain, bool> condition = null,
+//            Func<TTData, string> getName = null)
+//            where TTDomain : IEntity<TTData>
+//            where TTData : NamedEntityData, new()
+//        {
+//            Func<TTData, string> name = d => (getName is null) ? d.Name : getName(d);
+//            var items = r?.Get().GetAwaiter().GetResult();
+//            var l = items is null
+//                ? new List<SelectListItem>()
+//                : condition is null ?
+//                    items
+//                        .Select(m => new SelectListItem())
+//                        .ToList() :
+//                    items
+//                        .Where(condition)
+//                        .Select(m => new SelectListItem())
+//                        .ToList();
+//            l.Insert(0, new SelectListItem());
+//            return l;
+//        }
+
+//        protected internal static string ItemName(IEnumerable<SelectListItem> list, string id)
+//        {
+//            if (list is null) return Word.Unspecified;
+
+//            foreach (var m in list)
+//                if (m.Value == id)
+//                    return m.Text;
+
+//            return Word.Unspecified;
+//        }
+
+//        protected IHtmlContent GetRaw<TResult>(IHtmlHelper h, TResult r) => h.Raw(r.ToString());
+
+//        private bool IsCorrectIndex<TList>(int i, IList<TList> l) => i >= 0 && i < l?.Count;
+
+//        public string Undefined => "Undefined";
+
+//        protected string getName<TResult>(IHtmlHelper<Products> h, int i)
+//        {
+//            if (IsCorrectIndex(i, Columns))
+//                return h.DisplayNameFor(Columns[i] as Expression<Func<Products, TResult>>);
+//            return Undefined;
+//        }
+
+//        protected IHtmlContent getValue<TResult>(IHtmlHelper<Products> h, int i)
+//        {
+//            if (IsCorrectIndex(i, Columns))
+//                return h.DisplayFor(Columns[i] as Expression<Func<Products, TResult>>);
+//            return null;
+//        }
+
+//        public string GetName(IHtmlHelper<Products> h, int i) => i switch
+//        {
+//            4 => getName<decimal>(h, i),
+//            8 | 9 => getName<DateTime?>(h, i),
+//        _ => GetName(h, i)
+//        };
+
+//        public IHtmlContent GetValue(IHtmlHelper<Products> h, int i) => i switch
+//        {
+//            4 => getValue<decimal>(h, i),
+//            6 => GetRaw(h, (Item.ProductCategoryId)),
+//            8 | 9 => getValue<DateTime?>(h, i),
+//        _ => GetValue(h, i)
+//        };
     }
+
 }
