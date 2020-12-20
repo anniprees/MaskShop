@@ -46,8 +46,7 @@ namespace BlazorApp.Client.Pages.Products
             ProductFeatureApplicabilityId = null,
             ValidFrom = null,
             ValidTo = null
-
-        };
+    };
 
         protected string CurrentProductId { get; set; }
         protected string ModalTitle { get; set; }
@@ -189,103 +188,98 @@ namespace BlazorApp.Client.Pages.Products
             NavigationManager.NavigateTo("/productlist/" + page);
         }
 
-//        public IEnumerable<SelectListItem> ProductCategory { get; }
+        public IEnumerable<SelectListItem> ProductCategory { get; }
 
-//        public Products(IProductsRepository a, IProductCategoriesRepository b)
-//        {
-//            ProductCategory = NewItemsList<ProductCategory, ProductCategoryData>(b);
-//        }
+        public Products(IProductsRepository a, IProductCategoriesRepository b)
+        {
+            ProductCategory = NewItemsList<ProductCategory, ProductCategoryData>(b);
+        }
 
-//        public string CategoryName(string id) => ItemName(ProductCategory, id);
+        public string CategoryName(string id) => ItemName(ProductCategory, id);
 
-//        protected void CreateColumn<TResult>(Expression<Func<Products, TResult>> e) => Columns.Add(e);
+        public List<LambdaExpression> Columns { get; }
+            = new List<LambdaExpression>();
 
-//        public List<LambdaExpression> Columns { get; }
-//            = new List<LambdaExpression>();
-
-//        public ProductView Item { get; set; }
-
-//        protected void CreateTableColumns()
-//        {
-//            CreateColumn(x => Item.Id);
-//            CreateColumn(x => Item.Name);
-//            CreateColumn(x => Item.Price);
-//            CreateColumn(x => Item.Picture);
-//            CreateColumn(x => Item.PictureUri);
-//            CreateColumn(x => Item.ProductCategoryId);
-//            CreateColumn(x => Item.ValidFrom);
-//            CreateColumn(x => Item.ValidTo);
-//        }
+        public ProductView Item { get; set; }
 
 
-//        protected internal static IEnumerable<SelectListItem> NewItemsList<TTDomain, TTData>(
-//            IRepository<TTDomain> r,
-//            Func<TTDomain, bool> condition = null,
-//            Func<TTData, string> getName = null)
-//            where TTDomain : IEntity<TTData>
-//            where TTData : NamedEntityData, new()
-//        {
-//            Func<TTData, string> name = d => (getName is null) ? d.Name : getName(d);
-//            var items = r?.Get().GetAwaiter().GetResult();
-//            var l = items is null
-//                ? new List<SelectListItem>()
-//                : condition is null ?
-//                    items
-//                        .Select(m => new SelectListItem())
-//                        .ToList() :
-//                    items
-//                        .Where(condition)
-//                        .Select(m => new SelectListItem())
-//                        .ToList();
-//            l.Insert(0, new SelectListItem());
-//            return l;
-//        }
+        protected internal static IEnumerable<SelectListItem> NewItemsList<TTDomain, TTData>(
+            IRepository<TTDomain> r,
+            Func<TTDomain, bool> condition = null,
+            Func<TTData, string> getName = null)
+            where TTDomain : IEntity<TTData>
+            where TTData : NamedEntityData, new()
+        {
+            Func<TTData, string> name = d => (getName is null) ? d.Name : getName(d);
+            var items = r?.Get().GetAwaiter().GetResult();
+            var l = items is null
+                ? new List<SelectListItem>()
+                : condition is null ?
+                    items
+                        .Select(m => new SelectListItem())
+                        .ToList() :
+                    items
+                        .Where(condition)
+                        .Select(m => new SelectListItem())
+                        .ToList();
+            l.Insert(0, new SelectListItem());
+            return l;
+        }
 
-//        protected internal static string ItemName(IEnumerable<SelectListItem> list, string id)
-//        {
-//            if (list is null) return Word.Unspecified;
+        protected internal static IEnumerable<SelectListItem> NewCategoryList<TTDomain, TTData>(
+            IRepository<TTDomain> r)
+            where TTDomain : Entity<TTData>
+            where TTData : NamedEntityData, new()
+        {
+            var items = r?.Get().GetAwaiter().GetResult();
+            return items.Select(m => new SelectListItem()).ToList();
+        }
 
-//            foreach (var m in list)
-//                if (m.Value == id)
-//                    return m.Text;
+        protected internal static string ItemName(IEnumerable<SelectListItem> list, string id)
+        {
+            if (list is null) return Word.Unspecified;
 
-//            return Word.Unspecified;
-//        }
+            foreach (var m in list)
+                if (m.Value == id)
+                    return m.Text;
 
-//        protected IHtmlContent GetRaw<TResult>(IHtmlHelper h, TResult r) => h.Raw(r.ToString());
+            return Word.Unspecified;
+        }
 
-//        private bool IsCorrectIndex<TList>(int i, IList<TList> l) => i >= 0 && i < l?.Count;
+        protected IHtmlContent GetRaw<TResult>(IHtmlHelper h, TResult r) => h.Raw(r.ToString());
 
-//        public string Undefined => "Undefined";
+        private bool IsCorrectIndex<TList>(int i, IList<TList> l) => i >= 0 && i < l?.Count;
 
-//        protected string getName<TResult>(IHtmlHelper<Products> h, int i)
-//        {
-//            if (IsCorrectIndex(i, Columns))
-//                return h.DisplayNameFor(Columns[i] as Expression<Func<Products, TResult>>);
-//            return Undefined;
-//        }
+        public string Undefined => "Undefined";
 
-//        protected IHtmlContent getValue<TResult>(IHtmlHelper<Products> h, int i)
-//        {
-//            if (IsCorrectIndex(i, Columns))
-//                return h.DisplayFor(Columns[i] as Expression<Func<Products, TResult>>);
-//            return null;
-//        }
+        protected string getName<TResult>(IHtmlHelper<Products> h, int i)
+        {
+            if (IsCorrectIndex(i, Columns))
+                return h.DisplayNameFor(Columns[i] as Expression<Func<Products, TResult>>);
+            return Undefined;
+        }
 
-//        public string GetName(IHtmlHelper<Products> h, int i) => i switch
-//        {
-//            4 => getName<decimal>(h, i),
-//            8 | 9 => getName<DateTime?>(h, i),
-//        _ => GetName(h, i)
-//        };
+        protected IHtmlContent getValue<TResult>(IHtmlHelper<Products> h, int i)
+        {
+            if (IsCorrectIndex(i, Columns))
+                return h.DisplayFor(Columns[i] as Expression<Func<Products, TResult>>);
+            return null;
+        }
 
-//        public IHtmlContent GetValue(IHtmlHelper<Products> h, int i) => i switch
-//        {
-//            4 => getValue<decimal>(h, i),
-//            6 => GetRaw(h, (Item.ProductCategoryId)),
-//            8 | 9 => getValue<DateTime?>(h, i),
-//        _ => GetValue(h, i)
-//        };
+        public string GetName(IHtmlHelper<Products> h, int i) => i switch
+        {
+            4 => getName<decimal>(h, i),
+            8 | 9 => getName<DateTime?>(h, i),
+            _ => GetName(h, i)
+        };
+
+        public IHtmlContent GetValue(IHtmlHelper<Products> h, int i) => i switch
+        {
+            4 => getValue<decimal>(h, i),
+            6 => GetRaw(h, (Item.ProductCategoryId)),
+            8 | 9 => getValue<DateTime?>(h, i),
+            _ => GetValue(h, i)
+        };
     }
 
 }
