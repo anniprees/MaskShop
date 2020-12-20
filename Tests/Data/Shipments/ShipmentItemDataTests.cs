@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MaskShop.Tests.Data.Shipments
 {
     [TestClass]
-    public class ShipmentItemDataClassTests : SealedClassTests<ShipmentItemData, UniqueEntityData> 
+    public class ShipmentItemDataTests : SealedClassTests<ShipmentItemData, UniqueEntityData> 
     {
         [TestMethod] public void QuantityTest() => IsProperty<int>(() => obj.Quantity, x => obj.Quantity = x);
         [TestMethod] public void ShipmentIdTest() => IsNullableProperty<string>(() => obj.ShipmentId, x => obj.ShipmentId = x);
