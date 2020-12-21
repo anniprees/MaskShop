@@ -1,5 +1,138 @@
-﻿<h3>ProductCategories</h3>
+﻿@page "/productcategories"
 
-@code {
+<h2>Product Categories</h2>
 
+<div class="row mb-3">
+    <div class="col-md-7">
+        <BSButton Class="btn btn-outline-primary" @onclick="AddProductCategory">Add New Product Category</BSButton>
+    </div>
+</div>
+<div class="input-group col-md-5 text-md-right">
+    <input name="SearchInput" type="text" class="form-control" placeholder="Product Category Name" @bind="this.SearchTerm" @onkeyup="SearchBoxKeyPress" />
+    <div class="input-group-btn">
+        <button name="SearchButton" class="btn btn-default" @onclick="SearchClick">
+            <i class="oi oi-magnifying-glass" title="search" aria-hidden="true"></i>
+        </button>
+    </div>
+    <div class="input-group-btn">
+        <button name="SearchClear" class="btn btn-default" @onclick="ClearSearch">
+            <i class="oi oi-x" title="clear" aria-hidden="true"></i>
+        </button>
+    </div>
+</div>
+
+@if (_categories == null)
+{
+    <p>Loading...</p>
 }
+else
+{
+    <BSTable IsResponsive="true" class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>From</th>
+                <th>To</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var category in _categories)
+            {
+                <tr>
+                    <td>@category.Id</td>
+                    <td>@category.Name</td>
+                    <td>@category.ValidFrom</td>
+                    <td>@category.ValidTo</td>
+                    <td>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-eye text-primary" @onclick="@(async () => await ViewProductCategory(category.Id))"></BSButton>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-pencil text-warning" @onclick="@(async () => await EditProductCategory(category.Id))"></BSButton>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-trash text-danger" @onclick="@(async () => await DeleteProductCategory(category.Id))"></BSButton>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </BSTable>
+}
+
+<div>
+    <BSModal @bind-IsOpen="@IsAdd" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
+        <BSModalHeader @onclick="CloseModal">@ModalTitle</BSModalHeader>
+        <BSModalBody>
+            <div class="col-md-12">
+                <EditForm Model="@ProductCategory" OnValidSubmit="@CreateProductCategory">
+                    <div class="form-group">
+                        <label for="Id" class="control-label">ID</label>
+                        <InputText id="Id" class="form-control" @bind-Value="ProductCategory.Id" />
+                        <ValidationMessage For="@(() => ProductCategory.Id)" />
+
+                        <label for="Name" class="control-label">Name</label>
+                        <InputText id="Name" class="form-control" @bind-Value="ProductCategory.Name" />
+                        <ValidationMessage For="@(() => ProductCategory.Name)" />                        
+
+                        <label for="Valid From" class="control-label">Valid From</label>
+                        <InputDate id="Valid From" class="form-control" @bind-Value="ProductCategory.ValidFrom" />
+                        <ValidationMessage For="@(() => ProductCategory.ValidFrom)" />
+
+                        <label for="Valid To" class="control-label">Valid To</label>
+                        <InputDate id="Valid To" class="form-control" @bind-Value="ProductCategory.ValidTo" />
+                        <ValidationMessage For="@(() => ProductCategory.ValidTo)" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success" @onclick=@(async () => await CreateProductCategory())>Save</button>
+                        <button class="btn btn-primary" @onclick="CloseModal">Cancel</button>
+                    </div>
+                </EditForm>
+            </div>
+        </BSModalBody>
+    </BSModal>
+</div>
+
+<div>
+    <BSModal @bind-IsOpen="IsView" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
+        <BSModalHeader @onclick="CloseModal">@ModalTitle</BSModalHeader>
+        <BSModalBody>
+            <div class="col-md-12">
+                @if (IsDelete)
+                {
+                    <BSAlert Color="Color.Danger">Please review carefully before deleting.</BSAlert>
+                }
+                <hr />
+                <h5>Product</h5>
+                <hr />
+                <BSTable IsResponsive="true" class="table">
+                    <tr>
+                        <td>Id</td>
+                        <td>@ProductCategory.Id</td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>@ProductCategory.Name</td>
+                    </tr>
+                    <tr>
+                        <td>Valid From</td>
+                        <td>@ProductCategory.ValidFrom</td>
+                    </tr>
+                    <tr>
+                        <td>Valid To</td>
+                        <td>@ProductCategory.ValidTo</td>
+                    </tr>
+                </BSTable>
+
+                <div class="form-group">
+                    @if (IsDelete)
+                    {
+                        <button type="button" class="btn btn-danger" @onclick=@RemoveProductCategory>Delete</button>
+                        <button class="btn btn-primary" @onclick="CloseModal">Cancel</button>
+                    }
+                    @if (!IsDelete)
+                    {
+                        <button class="btn btn-primary" @onclick="CloseModal">Back</button>
+                        <button class="btn btn-primary"><i class="oi oi-cart"></i>  Add to basket</button>
+                        //TODO onclick event add to basket nupule
+                    }
+                </div>
+            </div>
+        </BSModalBody>
+    </BSModal>
+</div>

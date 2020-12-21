@@ -63,7 +63,7 @@ namespace BlazorApp.Client.Pages.Products
 
         protected async Task LoadData()
         {
-            _categories = await HttpClient.GetJsonAsync<ProductCategoryView[]>("api/products");
+            _categories = await HttpClient.GetJsonAsync<ProductCategoryView[]>("api/productcategories");
             StateHasChanged();
         }
 
@@ -71,11 +71,11 @@ namespace BlazorApp.Client.Pages.Products
         {
             if (string.IsNullOrEmpty(SearchTerm))
             {
-                _categories = await HttpClient.GetJsonAsync<ProductCategoryView[]>(("api/products/") + "?name=" + SearchTerm);
+                _categories = await HttpClient.GetJsonAsync<ProductCategoryView[]>(("api/productcategories/") + "?name=" + SearchTerm);
                 return;
             }
 
-            _categories = await HttpClient.GetJsonAsync<ProductCategoryView[]>(("api/products/") + "?name=" + SearchTerm);
+            _categories = await HttpClient.GetJsonAsync<ProductCategoryView[]>(("api/productcategories/") + "?name=" + SearchTerm);
             StateHasChanged();
         }
 
@@ -90,7 +90,7 @@ namespace BlazorApp.Client.Pages.Products
         protected async Task ClearSearch()
         {
             SearchTerm = string.Empty;
-            _categories = await HttpClient.GetJsonAsync<ProductCategoryView[]>("api/products/");
+            _categories = await HttpClient.GetJsonAsync<ProductCategoryView[]>("api/productcategories/");
             StateHasChanged();
         }
 
@@ -99,47 +99,47 @@ namespace BlazorApp.Client.Pages.Products
             _ = hubConnection.DisposeAsync();
         }
 
-        protected void AddProduct()
+        protected void AddProductCategory()
         {
             this.IsAdd = true;
-            this.ModalTitle = "Create product";
+            this.ModalTitle = "Create product category";
         }
 
-        protected async Task ViewProduct(string productCategoryId)
+        protected async Task ViewProductCategory(string productCategoryId)
         {
-            ProductCategory = await HttpClient.GetJsonAsync<ProductCategoryView>("api/products/" + productCategoryId);
+            ProductCategory = await HttpClient.GetJsonAsync<ProductCategoryView>("api/productcategories/" + productCategoryId);
             CurrentProductCategoryId = productCategoryId;
             this.IsView = true;
             this.ModalTitle = "View product";
         }
 
-        protected async Task EditProduct(string productCategoryId)
+        protected async Task EditProductCategory(string productCategoryId)
         {
-            ProductCategory = await HttpClient.GetJsonAsync<ProductCategoryView>("api/products/" + productCategoryId);
+            ProductCategory = await HttpClient.GetJsonAsync<ProductCategoryView>("api/productcategories/" + productCategoryId);
             CurrentProductCategoryId = productCategoryId;
             this.IsAdd = true;
             this.ModalTitle = "Edit product";
         }
 
-        protected async Task DeleteProduct(string productCategoryId)
+        protected async Task DeleteProductCategory(string productCategoryId)
         {
-            ProductCategory = await HttpClient.GetJsonAsync<ProductCategoryView>("api/products/" + productCategoryId);
+            ProductCategory = await HttpClient.GetJsonAsync<ProductCategoryView>("api/productcategories/" + productCategoryId);
             CurrentProductCategoryId = productCategoryId;
             this.IsView = true;
             this.IsDelete = true;
             this.ModalTitle = "Delete product";
         }
 
-        protected async Task CreateProduct()
+        protected async Task CreateProductCategory()
         {
             if (CurrentProductCategoryId == null)
             {
-                await HttpClient.SendJsonAsync(HttpMethod.Post, "api/products", ProductCategory);
+                await HttpClient.SendJsonAsync(HttpMethod.Post, "api/productcategories", ProductCategory);
                 if (IsConnected) await SendMessage();
             }
             else
             {
-                await HttpClient.PutJsonAsync("api/products/" + CurrentProductCategoryId, ProductCategory);
+                await HttpClient.PutJsonAsync("api/productcategories/" + CurrentProductCategoryId, ProductCategory);
                 if (IsConnected) await SendMessage();
             }
 
@@ -147,9 +147,9 @@ namespace BlazorApp.Client.Pages.Products
             await OnParametersSetAsync();
         }
 
-        protected async Task RemoveProduct()
+        protected async Task RemoveProductCategory()
         {
-            await HttpClient.DeleteAsync("api/products/" + CurrentProductCategoryId);
+            await HttpClient.DeleteAsync("api/productcategories/" + CurrentProductCategoryId);
             if (IsConnected) await SendMessage();
             CloseModal();
             await OnParametersSetAsync();
@@ -163,11 +163,6 @@ namespace BlazorApp.Client.Pages.Products
             this.IsView = false;
             this.IsDelete = false;
             StateHasChanged();
-        }
-
-        protected void PagerPageChanged(int page)
-        {
-            NavigationManager.NavigateTo("/productlist/" + page);
         }
     }
 }
