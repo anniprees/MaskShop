@@ -10,7 +10,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MaskShop.Tests.Infra.Products
 {
     [TestClass]
-    public class ProductFeaturesRepositoryTests : ProductDbContextTests<ProductFeaturesRepository, ProductFeature, ProductFeatureData>
+    public class ProductFeaturesRepositoryTests : ShopDbContextTests<ProductFeaturesRepository, ProductFeature, ProductFeatureData>
     {
 
         protected override Type GetBaseClass() => typeof(UniqueEntityRepository<ProductFeature, ProductFeatureData>);

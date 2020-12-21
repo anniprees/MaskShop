@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MaskShop.Aids;
-using MaskShop.Data.Common;
+﻿using MaskShop.Data.Common;
 using MaskShop.Domain.Common;
 using MaskShop.Infra;
 using MaskShop.Infra.Common;
-using MaskShop.Infra.Products;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace MaskShop.Tests.Infra.Products
+namespace MaskShop.Tests.Infra
 {
     public abstract class
-        ProductDbContextTests<TRepository, TDomain, TData> : SealedClassTests<TRepository,
+        ShopDbContextTests<TRepository, TDomain, TData> : SealedClassTests<TRepository,
             PaginatedRepository<TDomain, TData>>
         where TRepository : PaginatedRepository<TDomain, TData>
         where TData : PeriodData, new()

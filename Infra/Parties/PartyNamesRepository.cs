@@ -6,7 +6,7 @@ namespace MaskShop.Infra.Parties
 {
     public sealed class PartyNamesRepository : UniqueEntityRepository<PartyName, PartyNameData>, IPartyNamesRepository
     {
-        public PartyNamesRepository(PartyDbContext c = null) : base(c, c?.PartyNames) { }
+        public PartyNamesRepository(ShopDbContext c = null) : base(c, c?.PartyNames) { }
 
         protected internal override PartyName ToDomainObject(PartyNameData d) => new PartyName(d);
     }
