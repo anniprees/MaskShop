@@ -13,13 +13,12 @@ namespace MaskShop.Facade.Products
         [Required]
         [DisplayName("Product Category Id")] public string ProductCategoryId { get; set; }
 
-       
         [DisplayName("Product feature applicability")] public string ProductFeatureApplicabilityId { get; set; }
 
         [DisplayName("Price Component Id")] public string PriceComponentId { get; set; }
 
-        [DisplayName("Picture URI")] public string PictureUri { get; set; }
+        [DisplayName("Picture")] public string PictureUri { get; set; }
 
-        [DisplayName("Picture")] public IFormFile Picture { get; set; }
+        [DisplayName("Picture")] public IFormFile PictureFile { get; set; }
     }
 }

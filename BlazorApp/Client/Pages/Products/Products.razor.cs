@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using MaskShop.Data.Products;
 using MaskShop.Domain.Products;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components.Forms;
 
 namespace BlazorApp.Client.Pages.Products
 {
@@ -32,7 +34,7 @@ namespace BlazorApp.Client.Pages.Products
             Id = "",
             ProductCategoryId = "",
             Price = 0,
-            Picture = null,
+            PictureFile = null,
             PriceComponentId = "",
             PictureUri = null,
             ProductFeatureApplicabilityId = null,
@@ -111,6 +113,16 @@ namespace BlazorApp.Client.Pages.Products
         public void Dispose()
         {
             _ = hubConnection.DisposeAsync();
+        }
+
+        async Task OnFileChange(InputFileChangeEventArgs e)
+        {
+            var format = "image/png";
+            var resizedImage = await e.File.RequestImageFileAsync(format, 300, 300);
+            var buffer = new byte[resizedImage.Size];
+            await resizedImage.OpenReadStream().ReadAsync(buffer);
+            var imageData = $"data:{format};base64,{Convert.ToBase64String(buffer)}";
+            Product.PictureUri = imageData;
         }
 
         protected void AddProduct()
