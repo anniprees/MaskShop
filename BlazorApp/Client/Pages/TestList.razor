@@ -2,6 +2,7 @@
 
 @using BlazorApp.Client.Configuration.Datagrid
 @using MaskShop.Domain.Products
+@using MaskShop.Facade.Products
 @using Microsoft.AspNetCore.SignalR.Client
 
 @inject NavigationManager NavigationManager
@@ -11,199 +12,79 @@
 <h3>Testing DataGrid</h3>
 
 <br />
-@*<DataGridComponent TItem="Product"
-                   DataItems="productsList"
-                   Columns="columnsDefinition"
+<DataGridComponent TItem="Product"
+                   DataItems="_productsList"
+                   Columns="_columnsDefinition"
                    Paging="@(new PagingConfig {
                                Enabled = true,
                                CustomPager = false,
                                PageSize = 3
-                           })"></DataGridComponent>*@
+                           })"></DataGridComponent>
 
 @code {
 
-    //private List<Product> productsList;
-    //private List<ColumnDefinition> columnsDefinition;
-
-    //protected override void OnInitialized()
-    //{
-    //    base.OnInitialized();
-    //    Initialize();
-
-    //}
+    private List<Product> _productsList;
+    private List<ProductView> _productsView;
+    private HubConnection _hubConnection;
+    private List<ColumnDefinition> _columnsDefinition;
 
 
-    //private void Initialize()
-    //{
-    //    if (columnsDefinition == null)
-    //    {
-    //        columnsDefinition = new List<ColumnDefinition>();
-    //        columnsDefinition.AddRange(
-    //            new ColumnDefinition[] {
-    //                new ColumnDefinition { DataField = "Id", Caption="Product Id" },
-    //                new ColumnDefinition { DataField = "Name", Caption="Name"},
-    //                new ColumnDefinition { DataField = "ProductCategoryId", Caption="Category Id", SortDirection = SortDirection.Desc},
-    //                new ColumnDefinition { DataField = "From", Caption="Valid From", Format = "yyyy/MM/dd", DataType = DataType.Date },
-    //                new ColumnDefinition { DataField = "To", Caption="Valid To"},
-    //                }
-    //        );
-    //    }
+    protected override async Task OnInitializedAsync()
+    {
+        _hubConnection = new HubConnectionBuilder()
+            .WithUrl(NavigationManager.ToAbsoluteUri("/ProductHub"))
+            .Build();
 
-    //    if (productsList == null)
-    //    {
-    //        productsList = new List<Product>();
-    //        productsList.AddRange(
-    //            new Product[]
-    //            {
-    //                new Product
-    //                {
-    //                    Id = "1",
-    //                    Name = "Two Layer Mask",
-    //                    ProductCategoryId = "REU002",
-    //                    ValidFrom = DateTime.Now,
-    //                    ValidTo = DateTime.Now
-    //                },
-    //                new Product
-    //                {
-    //                    Id = "2",
-    //                    Name = "Three Layer Mask",
-    //                    ProductCategoryId = "REU003",
-    //                    ValidFrom = DateTime.Now,
-    //                    ValidTo = DateTime.Now
-    //                },
-    //                new Product
-    //                {
-    //                    Id = "3",
-    //                    Name = "Single Use Mask",
-    //                    ProductCategoryId = "SIN001",
-    //                    ValidFrom = DateTime.Now,
-    //                    ValidTo = DateTime.Now
-    //                },
-    //                new Product
-    //                {
-    //                    Id = "4",
-    //                    Name = "Single Use Plastic Mask",
-    //                    ProductCategoryId = "SIN002",
-    //                    ValidFrom = DateTime.Now,
-    //                    ValidTo = DateTime.Now
-    //                },
-    //                new Product
-    //                {
-    //                    Id = "5",
-    //                    Name = "Single Use 3M Mask",
-    //                    ProductCategoryId = "SIN003",
-    //                    ValidFrom = DateTime.Now,
-    //                    ValidTo = DateTime.Now
-    //                },
-    //                new Product
-    //                {
-    //                    Id = "6",
-    //                    Name = "Medical Mask",
-    //                    ProductCategoryId = "MED001",
-    //                    ValidFrom = DateTime.Now,
-    //                    ValidTo = DateTime.Now
-    //                },
-    //                new Product
-    //                {
-    //                    Id = "7",
-    //                    Name = "Surgical Mask",
-    //                    ProductCategoryId = "MED002",
-    //                    ValidFrom = DateTime.Now,
-    //                    ValidTo = DateTime.Now
-    //                },
-    //                new Product
-    //                {
-    //                    Id = "8",
-    //                    Name = "Three Layer Cotton Mask",
-    //                    ProductCategoryId = "REU003",
-    //                    ValidFrom = DateTime.Now,
-    //                    ValidTo = DateTime.Now
-    //                },
-    //                new Product
-    //                {
-    //                    Id = "9",
-    //                    Name = "Three Layer HEPA Mask",
-    //                    ProductCategoryId = "REU004",
-    //                    ValidFrom = DateTime.Now,
-    //                    ValidTo = DateTime.Now
-    //                },
-    //                new Product
-    //                {
-    //                    Id = "10",
-    //                    Name = "Single Use Wire Mask",
-    //                    ProductCategoryId = "SIN002",
-    //                    ValidFrom = DateTime.Now,
-    //                    ValidTo = DateTime.Now
-    //                },
-    //                new Product
-    //                {
-    //                    Id = "11",
-    //                    Name = "Two Layer Antiseptic Mask",
-    //                    ProductCategoryId = "REU005",
-    //                    ValidFrom = DateTime.Now,
-    //                    ValidTo = DateTime.Now
-    //                }
-    //            }
-    //        );
-    //    }
-    //}
+        _hubConnection.On("ReceiveMessage", () =>
+        {
+            CallLoadData();
+            StateHasChanged();
+        });
 
-    //private List <Product> productsList;
-    //private HubConnection hubConnection;
+        await _hubConnection.StartAsync();
+        await LoadData();
+        DefineColumnDefinitions();
+    }
 
-    //private List<ColumnDefinition> columnsDefinition;
+    private void DefineColumnDefinitions()
+    {
+        if (_columnsDefinition == null)
+        {
+            _columnsDefinition = new List<ColumnDefinition>();
+            _columnsDefinition.AddRange(
+                new ColumnDefinition[]{
+                    new ColumnDefinition {DataField = "Id", Caption = "Product Id"},
+                    new ColumnDefinition {DataField = "Name", Caption = "Product Name"},
+                    new ColumnDefinition {DataField = "ProductCategoryId", Caption = "Product Category Id"},
+                    new ColumnDefinition {DataField = "From", Caption = "Valid From", Format = "yyyy/MM/dd", DataType = DataType.Date},
+                    new ColumnDefinition {DataField = "To", Caption = "Valid To", Format = "yyyy/MM/dd", DataType = DataType.Date},
+                }
+            );
+        }
+    }
 
-    //protected override async Task OnInitializedAsync()
-    //{
-    //    hubConnection = new HubConnectionBuilder()
-    //        .WithUrl(NavigationManager.ToAbsoluteUri("/ProductHub"))
-    //        .Build();
+    private void CallLoadData()
+    {
+        Task.Run(async () =>
+        {
+            await LoadData();
+        });
+    }
 
-    //    hubConnection.On("ReceiveMessage", () =>
-    //    {
-    //        CallLoadData();
-    //        StateHasChanged();
-    //    });
+    protected async Task LoadData()
+    {
 
-    //    await hubConnection.StartAsync();
-    //    await LoadData();
-    //    DefineColumnDefinitions();
-    //}
+        var result = await HttpClient.GetJsonAsync<List<ProductView>>("api/products");
+        var aa = new List<Product>();
+        result.ForEach(x => aa.Add(ProductViewFactory.Create(x)));
+        _productsList = aa;
 
-    //private void DefineColumnDefinitions()
-    //{
-    //    if (columnsDefinition == null)
-    //    {
-    //        columnsDefinition = new List<ColumnDefinition>();
-    //        columnsDefinition.AddRange(
-    //            new ColumnDefinition[]{
-    //                new ColumnDefinition {DataField = "Id", Caption = "Product Id"},
-    //                new ColumnDefinition {DataField = "Name", Caption = "Product Name"},
-    //                new ColumnDefinition {DataField = "ProductCategoryId", Caption = "Product Category Id"},
-    //                new ColumnDefinition {DataField = "From", Caption = "Valid From", Format = "yyyy/MM/dd", DataType = DataType.Date},
-    //                new ColumnDefinition {DataField = "To", Caption = "Valid To", Format = "yyyy/MM/dd", DataType = DataType.Date},
-    //            }
-    //        );
-    //    }
-    //}
+        StateHasChanged();
+    }
 
-    //private void CallLoadData()
-    //{
-    //    Task.Run(async () =>
-    //    {
-    //        await LoadData();
-    //    });
-    //}
-
-    //protected async Task LoadData()
-    //{
-    //    productsList = await HttpClient.GetJsonAsync<List<Product>>("api/products");
-    //    StateHasChanged();
-    //}
-
-    //public void Dispose()
-    //{
-    //    _ = hubConnection.DisposeAsync();
-    //}
+    public void Dispose()
+    {
+        _ = _hubConnection.DisposeAsync();
+    }
 
 }

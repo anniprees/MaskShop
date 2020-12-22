@@ -1,4 +1,5 @@
 ﻿using MaskShop.Data.Orders;
+using MaskShop.Data.Parties;
 using MaskShop.Data.Products;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +20,10 @@ namespace MaskShop.Infra
         public DbSet<BasketItemData> BasketItems { get; set; }
         public DbSet<OrderData> Orders { get; set; }
         public DbSet<OrderItemData> OrderItems { get; set; }
+        public DbSet<PartyData> Parties { get; set; }
+        public DbSet<PartyNameData> PartyNames { get; set; }
+        public DbSet<PartyRoleData> PartyRoles { get; set; }
+        public DbSet<ContactMechanismData> ContactMechanisms { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -43,6 +48,10 @@ namespace MaskShop.Infra
             builder.Entity<OrderData>().ToTable(nameof(Orders));
             builder.Entity<OrderItemData>().ToTable(nameof(OrderItems))
                 .HasKey(x => new { x.OrderId, x.ProductId });
+            builder.Entity<PartyData>().ToTable(nameof(Parties));
+            builder.Entity<PartyNameData>().ToTable(nameof(PartyNames));
+            builder.Entity<PartyRoleData>().ToTable(nameof(PartyRoles));
+            builder.Entity<ContactMechanismData>().ToTable(nameof(ContactMechanisms));
         }
     }
 }

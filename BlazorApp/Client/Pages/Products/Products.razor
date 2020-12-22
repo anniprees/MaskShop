@@ -47,7 +47,7 @@ else
                     <td>@product.Name</td>
                     <td>@product.ProductCategoryId</td>
                     <td>@product.Price</td>
-                    <td>@product.PictureUri</td>
+                    <td><img src="@product.PictureUri"width="200"/></td>
                     <td>@product.ValidFrom</td>
                     <td>@product.ValidTo</td>
                     <td>
@@ -67,7 +67,7 @@ else
         <BSModalBody>
             <div class="col-md-12">
                 <EditForm Model="@Product" OnValidSubmit="@CreateProduct">
-                    <div class="form-group">
+                    <div class="form-control-file">
                         <label for="Id" class="control-label">ID</label>
                         <InputText id="Id" class="form-control" @bind-Value="Product.Id" />
                         <ValidationMessage For="@(() => Product.Id)" />
@@ -81,12 +81,15 @@ else
                         <ValidationMessage For="@(() => Product.ProductCategoryId)" />
 
                         @*<label for="Feature Applicability" class="control-label">Feature Applicability</label>
-                        <InputText id="Feature Applicability" class="form-control" @bind-Value="Product.ProductFeatureApplicabilityId" />
-                        <ValidationMessage For="@(() => Product.ProductFeatureApplicabilityId)" />*@
+        <InputText id="Feature Applicability" class="form-control" @bind-Value="Product.ProductFeatureApplicabilityId" />
+        <ValidationMessage For="@(() => Product.ProductFeatureApplicabilityId)" />*@
 
                         <label for="Price" class="control-label">Price</label>
                         <InputNumber id="Price" class="form-control" @bind-Value="Product.Price" />
                         <ValidationMessage For="@(() => Product.Price)" />
+
+                        <label for="Picture" class="control-label">Picture</label>
+                        <InputFile OnChange="OnFileChange" class="form-control" />
 
                         <label for="Valid From" class="control-label">Valid From</label>
                         <InputDate id="Valid From" class="form-control" @bind-Value="Product.ValidFrom" />
@@ -134,6 +137,10 @@ else
                     <tr>
                         <td>Price</td>
                         <td>@Product.Price</td>
+                    </tr>
+                    <tr>
+                        <td>Picture</td>
+                        <td><img src="@Product.PictureUri"/></td>
                     </tr>
                     <tr>
                         <td>Valid From</td>
