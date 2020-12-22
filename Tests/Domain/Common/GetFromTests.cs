@@ -1,0 +1,88 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using MaskShop.Aids;
+using MaskShop.Aids.Methods;
+using MaskShop.Data.Products;
+using MaskShop.Domain.Common;
+using MaskShop.Domain.Products;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace MaskShop.Tests.Domain.Common
+{
+    [TestClass]
+    public class GetFromTests : SealedClassTests<GetFrom<IProductsRepository, Product>,object>
+    {
+        protected IProductsRepository repository;
+        protected string id;
+        protected string ProductCategoryId;
+
+        protected ProductData data;
+        protected Product item;
+        private Product CreateItem() => new Product(data);
+
+        [TestInitialize]
+        public override void TestInitialize()
+        {
+            base.TestInitialize();
+            repository = GetRepository.Instance<IProductsRepository>();
+            data = GetRandom.Object<ProductData>();
+            ProductCategoryId = GetRandom.String();
+            id = ProductCategoryId;
+            item = CreateItem();
+        }
+
+        [TestMethod] public void RepositoryTest() => Assert.Inconclusive();
+
+        [TestMethod]
+        public void ByIdTest() => Assert.Inconclusive();
+        //{
+        //    var t = obj.ById(id);
+        //    Assert.IsNotNull(t);
+        //    Assert.IsInstanceOfType(t, typeof(Product));
+        //    Assert.IsTrue(t.IsUnspecified);
+        //}
+
+        [TestMethod]
+        public void GetByIdTest() => Assert.Inconclusive();
+        //{
+        //    repository.Add(item).GetAwaiter();
+        //    TestArePropertiesEqual(data, obj.ById(id).Data);
+        //}
+
+        protected void ListTest()
+        {
+            var t = getList();
+            Assert.IsNotNull(t);
+            Assert.IsInstanceOfType(t, typeof(IReadOnlyList<Product>));
+            Assert.AreEqual(0, t.Count);
+        }
+
+        protected virtual IReadOnlyList<Product> getList() => obj.ListBy("ProductCategoryId", ProductCategoryId);
+
+        protected void ContentTest()
+        {
+            ListTest();
+            var count = GetRandom.UInt8(10, 30);
+
+            for (var i = 0; i < count; i++)
+            {
+                data = GetRandom.Object<ProductData>();
+                if (i % 4 == 0) UpdateData(i);
+                repository.Add(CreateItem()).GetAwaiter();
+            }
+            var c = (int)Math.Ceiling(count / 4.0);
+            var t = getList();
+            Assert.AreEqual(c, t.Count);
+        }
+
+        private void UpdateData(int idx)
+        {
+            if (idx % 4 == 0) data.ProductCategoryId = ProductCategoryId;
+        }
+
+        [TestMethod] public void ListByTest() => Assert.Inconclusive();
+
+        //[TestMethod] public void ListContextTest() => ContentTest();
+    }
+}

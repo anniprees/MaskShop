@@ -15,9 +15,10 @@ namespace MaskShop.Tests.Domain.Parties
         [TestMethod] public void CountryTest() => IsReadOnlyProperty(obj.Data.Country);
         [TestMethod] public void StateTest() => IsReadOnlyProperty(obj.Data.State);
         [TestMethod] public void CityTest() => IsReadOnlyProperty(obj.Data.City);
-        //[TestMethod] public void AddressTest() => IsReadOnlyProperty(obj.Data.Address);
+        [TestMethod] public void AddressTest() => IsReadOnlyProperty(obj.Address);
         [TestMethod] public void ZipCodeTest() => IsReadOnlyProperty(obj.Data.ZipCode);
         [TestMethod] public void ElectronicMailTest() => IsReadOnlyProperty(obj.Data.ElectronicMail);
+        [TestMethod] public void ToStringTest() => Assert.Inconclusive();
     }
 }
 

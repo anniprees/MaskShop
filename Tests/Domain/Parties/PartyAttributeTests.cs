@@ -17,5 +17,6 @@ namespace MaskShop.Tests.Domain.Parties
             obj = new TestClass();
         }
 
+        [TestMethod] public void PartyIdTest() => Assert.Inconclusive();
     }
 }
