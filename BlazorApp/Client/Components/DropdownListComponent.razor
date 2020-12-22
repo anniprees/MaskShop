@@ -1,0 +1,12 @@
+﻿@*@page "/dropdown"
+@inherits DropdownListBase
+<h3>Dropdown katsetus</h3>
+
+<EditForm Model ="Masks">
+    <InputSelectNumber Id="MasksList" class="form-group" @bind-Value="Masks.MaskId">
+        @foreach (var item in masksList)
+        {
+            <option value="@item.MaskId">"item.Title</option>
+        }
+    </InputSelectNumber>
+</EditForm>*@
