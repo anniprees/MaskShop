@@ -19,11 +19,11 @@ namespace MaskShop.Facade.Common
             return ToObject(d);
         }
 
-        internal protected abstract TObject ToObject(TData d);
+        protected internal abstract TObject ToObject(TData d);
 
-        internal protected virtual void CopyMembers(TView v, TData d) => Copy.Members(v, d);
+        protected internal virtual void CopyMembers(TView v, TData d) => Copy.Members(v, d);
 
-        internal protected virtual void CopyMembers(TData d, TView v) => Copy.Members(d, v);
+        protected internal virtual void CopyMembers(TData d, TView v) => Copy.Members(d, v);
 
         public virtual TView Create(TObject o)
         {

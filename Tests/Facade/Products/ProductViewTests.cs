@@ -20,10 +20,10 @@ namespace MaskShop.Tests.Facade.Products
         public void PriceComponentIdTest() => IsNullableProperty<string>("Price Component Id");
 
         [TestMethod]
-        public void PictureUriTest() => IsNullableProperty<string>("Picture URI");
+        public void PictureUriTest() => IsNullableProperty<string>("Picture Uri");
 
         [TestMethod]
-        public void PictureTest() => IsProperty<IFormFile>("Picture");
+        public void PictureFileTest() => IsProperty<IFormFile>("Picture");
 
     }
 }
