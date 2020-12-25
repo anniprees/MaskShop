@@ -4,7 +4,7 @@ namespace MaskShop.Facade.Common
 {
     public abstract class UniqueEntityView : PeriodView
     {
-        [Required]
+        [Required(ErrorMessage = "Id is required")]
         public string Id { get; set; }
 
         public override string GetId() => Id;
