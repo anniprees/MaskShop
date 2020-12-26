@@ -7,6 +7,7 @@
             DataType = DataType.NotSet;
             Alignment = Alignment.NotSet;
             SortDirection = SortDirection.NotSet;
+            DataField = "";
         }
         public string DataField { get; set; }
         public string Caption { get; set; }

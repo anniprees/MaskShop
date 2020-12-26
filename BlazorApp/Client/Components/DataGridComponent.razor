@@ -4,53 +4,50 @@
 @typeparam TItem
 @inject HttpClient HttpClient
 
-@*<div class="input-group col-md-5 text-md-right">
-    <input name="ProductSearchInput" type="text" class="form-control" placeholder="Search" @bind="this.SearchString" />
-    <div class="input-group">
-        <button name="ProductSearchButton" class="btn btn-default" @onclick="SearchClick">
-            <i class="oi oi-magnifying-glass" title="search" aria-hidden="true"></i>
-        </button>
-    </div>
-</div>*@
+
 
 <table class="table" is-striped>
     <thead>
         <tr>
-            @if (Columns == null || Columns.Count <= 0)
+            @if (Columns != null)
             {
-                //TODO Header ilma andmeteta
-            }
-            else
-            {
-                @foreach (var column in Columns)
+                foreach (var column in Columns)
                 {
-                    <th class="@(SetTableAlignment(column))" @onclick="@(()=> SortData(column))">
+                    <th class="@(SetTableAlignment(column))">
                         @column.Caption
-                        <span style="float:right" class="@(SortClass(column))"></span>
                     </th>
                 }
             }
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in DataItems
-           .Skip(Paging.NumOfItemsToSkip(CurrentPageNumber))
-           .Take(Paging.NumOfItemsToTake(DataItems.Count())))
+        @if (DataItems != null)
         {
-            <tr>
-                @foreach (var column in Columns)
-                {
-                    @if (column.Alignment != Alignment.NotSet)
-                    {
-                        <td align="@column.Alignment.ToString().ToLower()">@FormatItemValue(item, column)</td>
-                    }
+            @foreach (var item in DataItems
+                .Skip(Paging.NumOfItemsToSkip(CurrentPageNumber))
+                .Take(Paging.NumOfItemsToTake(DataItems.Count())))
+            {
+                <tr>
+                    @if(Columns is null || Columns.Count <= 0) { }
                     else
                     {
-                        <td>@FormatItemValue(item, column)</td>
+                        foreach (var column in Columns)
+                        {
+                            if (column.Alignment != Alignment.NotSet)
+                            {
+                                <td align="@column.Alignment.ToString().ToLower()">@FormatItemValue(item, column)</td>
+                            }
+                            else
+                            {
+                                <td>@FormatItemValue(item, column)</td>
+                            }
+                        }
                     }
-                }
-            </tr>
+                
+                </tr>
+            }
         }
+        
     </tbody>
 </table>
 <div>
@@ -92,39 +89,7 @@
     [Parameter]
     public string SearchString { get; set; }
 
-    protected override void OnParametersSet()
-    {
-        base.OnParametersSet();
-        SortData();
-    }
 
-    //TODO: abstraktne Search box meetod
-
-    //internal List<TItem> SearchClick(List<TItem> query )
-    //{
-    //        filterOn = false;
-    //        var expression = CreateWhereExpression();
-
-    //        return query.Where(expression);
-    //}
-
-    //Expression<Func<TItem, bool>> CreateWhereExpression()
-    //{
-    //        var param = Expression.Parameter(typeof(TItem), "s");
-
-    //        Expression predicate = null;
-
-    //        foreach (var p in typeof(TItem).GetProperties())
-    //        {
-    //            Expression body = Expression.Property(param, p);
-
-    //            body = Expression.Call(body, "Contains", null, Expression.Constant(SearchString));
-    //            predicate = predicate is null ? body : Expression.Or(predicate, body);
-
-    //        }
-    //        return predicate is null ? null : Expression.Lambda<Func<TItem, bool>>(predicate, param);
-    //    }
-    
     public void GoToPrevPage()
     {
         CurrentPageNumber = Paging.PrevPageNumber(CurrentPageNumber);
@@ -136,60 +101,6 @@
     }
 
     public int MaxPageNumber => Paging.MaxPageNumber(DataItems.Count());
-
-    private string SortClass(ColumnDefinition column)
-    {
-        if (column.SortDirection != SortDirection.NotSet)
-        {
-            return $"sort {column.SortDirection.ToString().ToLower()}";
-        }
-
-        return "no-sort";
-    }
-
-    private void SortData(ColumnDefinition sortByColumn = null)
-    {
-        bool initial = (sortByColumn == null);
-        if (sortByColumn == null)
-        {
-            sortByColumn = Columns.FirstOrDefault(x => x.SortDirection != SortDirection.NotSet);
-            if (sortByColumn == null) return;
-        }
-
-        foreach (var column in Columns)
-        {
-            if (column.DataField != sortByColumn.DataField) column.SortDirection = SortDirection.NotSet;
-        }
-
-        if (!initial)
-            switch (sortByColumn.SortDirection)
-            {
-                case SortDirection.NotSet:
-                    sortByColumn.SortDirection = SortDirection.Asc;
-                    break;
-                case SortDirection.Asc:
-                    sortByColumn.SortDirection = SortDirection.Desc;
-                    break;
-                case SortDirection.Desc:
-                    sortByColumn.SortDirection = SortDirection.Asc;
-                    break;
-                default:
-                    sortByColumn.SortDirection = SortDirection.Asc;
-                    break;
-            }
-
-        if (sortByColumn.SortDirection == SortDirection.Asc)
-        {
-            DataItems.Sort((x, y) => typeof(TItem).GetProperty(sortByColumn.DataField).GetValue(x).ToString()
-                .CompareTo(typeof(TItem).GetProperty(sortByColumn.DataField).GetValue(y).ToString()));
-        }
-        else
-        {
-            DataItems.Sort((x, y) => typeof(TItem).GetProperty(sortByColumn.DataField).GetValue(y).ToString()
-                .CompareTo(typeof(TItem).GetProperty(sortByColumn.DataField).GetValue(x).ToString()));
-        }
-
-    }
 
     private string SetTableAlignment(ColumnDefinition column)
     {
@@ -225,21 +136,19 @@
             {
                 case DataType.Date:
                 case DataType.DateTime:
-                    value = DateTime.Parse(typeof(TItem).GetProperty(column.DataField).GetValue(item).ToString()).ToString(column.Format);
+                    value = DateTime.Parse(typeof(TItem).GetProperty(column.DataField)?.GetValue(item).ToString()).ToString(column.Format);
                     break;
                 case DataType.Boolean:
-                    value = bool.Parse(typeof(TItem).GetProperty(column.DataField).GetValue(item).ToString()).ToString();
+                    value = bool.Parse(typeof(TItem).GetProperty(column.DataField)?.GetValue(item).ToString()).ToString();
                     break;
                 case DataType.Currency:
                     value = Math.Round(double.Parse(typeof(TItem).GetProperty(column.DataField).GetValue(item).ToString()), 2).ToString("c");
-                    break;
-                default:
                     break;
             }
         }
         else
         {
-            return typeof(TItem).GetProperty(column.DataField).GetValue(item).ToString();
+            return typeof(TItem).GetProperty(column.DataField)?.GetValue(item).ToString();
         }
 
         return value;

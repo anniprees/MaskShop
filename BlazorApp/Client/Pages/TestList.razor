@@ -1,8 +1,9 @@
 ﻿@page "/testlist"
 
 @using BlazorApp.Client.Configuration.Datagrid
-@using MaskShop.Domain.Products
 @using MaskShop.Facade.Products
+@using MaskShop.Domain.Products
+@using Microsoft.AspNetCore.Mvc.ViewFeatures
 @using Microsoft.AspNetCore.SignalR.Client
 
 @inject NavigationManager NavigationManager
@@ -12,8 +13,8 @@
 <h3>Testing DataGrid</h3>
 
 <br />
-<DataGridComponent TItem="Product"
-                   DataItems="_productsList"
+<DataGridComponent TItem="ProductCategoryView"
+                   DataItems="_categories"
                    Columns="_columnsDefinition"
                    Paging="@(new PagingConfig {
                                Enabled = true,
@@ -23,25 +24,20 @@
 
 @code {
 
-    private List<Product> _productsList;
-    private List<ProductView> _productsView;
-    private HubConnection _hubConnection;
-    private List<ColumnDefinition> _columnsDefinition;
+    protected List<ProductCategoryView> _categories;
+    protected List<ColumnDefinition> _columnsDefinition;
+
+    protected ProductCategoryView productCategory = new ProductCategoryView
+    {
+        Id = "",
+        Name = "",
+        ValidFrom = DateTime.Now,
+        ValidTo = DateTime.Now
+    };
 
 
     protected override async Task OnInitializedAsync()
     {
-        _hubConnection = new HubConnectionBuilder()
-            .WithUrl(NavigationManager.ToAbsoluteUri("/ProductHub"))
-            .Build();
-
-        _hubConnection.On("ReceiveMessage", () =>
-        {
-            CallLoadData();
-            StateHasChanged();
-        });
-
-        await _hubConnection.StartAsync();
         await LoadData();
         DefineColumnDefinitions();
     }
@@ -53,11 +49,10 @@
             _columnsDefinition = new List<ColumnDefinition>();
             _columnsDefinition.AddRange(
                 new ColumnDefinition[]{
-                    new ColumnDefinition {DataField = "Id", Caption = "Product Id"},
-                    new ColumnDefinition {DataField = "Name", Caption = "Product Name"},
-                    new ColumnDefinition {DataField = "ProductCategoryId", Caption = "Product Category Id"},
-                    new ColumnDefinition {DataField = "From", Caption = "Valid From", Format = "yyyy/MM/dd", DataType = DataType.Date},
-                    new ColumnDefinition {DataField = "To", Caption = "Valid To", Format = "yyyy/MM/dd", DataType = DataType.Date},
+                    new ColumnDefinition {DataField = "Id", Caption = "Id"},
+                    new ColumnDefinition {DataField = "Name", Caption = "Product Category"},
+                    new ColumnDefinition {DataField = "From", Caption = "Valid From"},
+                    new ColumnDefinition {DataField = "To", Caption = "Valid To"},
                 }
             );
         }
@@ -73,18 +68,8 @@
 
     protected async Task LoadData()
     {
-
-        var result = await HttpClient.GetJsonAsync<List<ProductView>>("api/products");
-        var aa = new List<Product>();
-        result.ForEach(x => aa.Add(ProductViewFactory.Create(x)));
-        _productsList = aa;
-
+        _categories = await HttpClient.GetJsonAsync<List<ProductCategoryView>>("api/productcategories");
         StateHasChanged();
     }
-
-    public void Dispose()
-    {
-        _ = _hubConnection.DisposeAsync();
-    }
-
+    
 }
