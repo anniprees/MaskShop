@@ -67,37 +67,39 @@ else
         <BSModalBody>
             <div class="col-md-12">
                 <EditForm Model="@Product" OnValidSubmit="@CreateProduct">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
                     <div class="form-control-file">
                         <label for="Id" class="control-label">ID</label>
-                        <InputText id="Id" class="form-control" @bind-Value="Product.Id" />
-                        <ValidationMessage For="@(() => Product.Id)" />
+                        <InputText id="Id" class="form-control" @bind-Value="Product.Id"/>
+                        <ValidationMessage For="@(() => Product.Id)"/>
 
                         <label for="Name" class="control-label">Name</label>
-                        <InputText id="Name" class="form-control" @bind-Value="Product.Name" />
-                        <ValidationMessage For="@(() => Product.Name)" />
+                        <InputText id="Name" class="form-control" @bind-Value="Product.Name"/>
+                        <ValidationMessage For="@(() => Product.Name)"/>
 
                         <label for="Product Category" class="control-label">Product Category</label>
-                        <InputText id="Product Category" class="form-control" @bind-Value="Product.ProductCategoryId" />
-                        <ValidationMessage For="@(() => Product.ProductCategoryId)" />
+                        <InputText id="Product Category" class="form-control" @bind-Value="Product.ProductCategoryId"/>
+                        <ValidationMessage For="@(() => Product.ProductCategoryId)"/>
 
                         @*<label for="Feature Applicability" class="control-label">Feature Applicability</label>
         <InputText id="Feature Applicability" class="form-control" @bind-Value="Product.ProductFeatureApplicabilityId" />
         <ValidationMessage For="@(() => Product.ProductFeatureApplicabilityId)" />*@
 
                         <label for="Price" class="control-label">Price</label>
-                        <InputNumber id="Price" class="form-control" @bind-Value="Product.Price" />
-                        <ValidationMessage For="@(() => Product.Price)" />
+                        <InputNumber id="Price" class="form-control" @bind-Value="Product.Price"/>
+                        <ValidationMessage For="@(() => Product.Price)"/>
 
                         <label for="Picture" class="control-label">Picture</label>
-                        <InputFile OnChange="OnFileChange" class="form-control" />
+                        <InputFile OnChange="OnFileChange" class="form-control"/>
 
                         <label for="Valid From" class="control-label">Valid From</label>
-                        <InputDate id="Valid From" class="form-control" @bind-Value="Product.ValidFrom" />
-                        <ValidationMessage For="@(() => Product.ValidFrom)" />
+                        <InputDate id="Valid From" class="form-control" @bind-Value="Product.ValidFrom"/>
+                        <ValidationMessage For="@(() => Product.ValidFrom)"/>
 
                         <label for="Valid To" class="control-label">Valid To</label>
-                        <InputDate id="Valid To" class="form-control" @bind-Value="Product.ValidTo" />
-                        <ValidationMessage For="@(() => Product.ValidTo)" />
+                        <InputDate id="Valid To" class="form-control" @bind-Value="Product.ValidTo"/>
+                        <ValidationMessage For="@(() => Product.ValidTo)"/>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-success" @onclick=@(async () => await CreateProduct())>Save</button>

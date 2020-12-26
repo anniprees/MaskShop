@@ -7,10 +7,10 @@ namespace MaskShop.Facade.Products
 {
     public sealed class ProductView : NamedView
     {
-        [Required]
+        [Required(ErrorMessage = "Product price is required")]
         [DisplayName("Product Price")] public decimal Price { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Product category is required")]
         [DisplayName("Product Category Id")] public string ProductCategoryId { get; set; }
 
         [DisplayName("Product feature applicability")] public string ProductFeatureApplicabilityId { get; set; }
