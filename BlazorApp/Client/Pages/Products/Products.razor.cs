@@ -29,6 +29,8 @@ namespace BlazorApp.Client.Pages.Products
         [Parameter] public string SearchTerm { get; set; } = string.Empty;
 
         ProductView[] _products;
+        ProductCategoryView[] _categories;
+
         private HubConnection hubConnection;
 
         protected ProductView Product = new ProductView
@@ -82,6 +84,12 @@ namespace BlazorApp.Client.Pages.Products
             StateHasChanged();
         }
 
+        protected async Task LoadCategoriesData()
+        {
+            _categories = await HttpClient.GetJsonAsync<ProductCategoryView[]>("api/productcategories");
+            //StateHasChanged();
+        }
+
         protected async Task SearchClick()
         {
             if (string.IsNullOrEmpty(SearchTerm))
@@ -124,10 +132,11 @@ namespace BlazorApp.Client.Pages.Products
             Product.PictureUri = imageData;
         }
 
-        protected void AddProduct()
+        protected async Task AddProduct()
         {
             this.IsAdd = true;
             this.ModalTitle = "Create product";
+            await LoadCategoriesData();
         }
 
         protected async Task ViewProduct(string productId)
@@ -144,6 +153,7 @@ namespace BlazorApp.Client.Pages.Products
             CurrentProductId = productId;
             this.IsAdd = true;
             this.ModalTitle = "Edit product";
+            await LoadCategoriesData();
         }
 
         protected async Task DeleteProduct(string productId)
