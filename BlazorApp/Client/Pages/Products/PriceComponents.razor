@@ -1,0 +1,156 @@
+﻿@page "/pricecomponents"
+
+<h2>Price Components</h2>
+
+<div class="row mb-3">
+    <div class="col-md-7">
+        <BSButton Class="btn btn-outline-primary" @onclick="AddPriceComponent">Add New Product Category</BSButton>
+    </div>
+</div>
+<div class="input-group col-md-5 text-md-right">
+    <input name="SearchInput" type="text" class="form-control" placeholder="Product Category Name" @bind="this.SearchTerm" @onkeyup="SearchBoxKeyPress" />
+    <div class="input-group-btn">
+        <button name="SearchButton" class="btn btn-default" @onclick="SearchClick">
+            <i class="oi oi-magnifying-glass" title="search" aria-hidden="true"></i>
+        </button>
+    </div>
+    <div class="input-group-btn">
+        <button name="SearchClear" class="btn btn-default" @onclick="ClearSearch">
+            <i class="oi oi-x" title="clear" aria-hidden="true"></i>
+        </button>
+    </div>
+</div>
+
+@if (_priceComponents == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <BSTable IsResponsive="true" class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>ID</th>
+                <th>Discount</th>
+                <th>Comment</th>
+                <th>Party Role Id</th>
+                <th>From</th>
+                <th>To</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in _priceComponents)
+            {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.DiscountPercentage</td>
+                <td>@item.Comment</td>
+                <td>@item.PartyRoleId</td>
+                <td>@item.ValidFrom</td>
+                <td>@item.ValidTo</td>
+                <td>
+                    <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-eye text-primary" @onclick="@(async () => await ViewPriceComponent(item.Id))"></BSButton>
+                    <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-pencil text-warning" @onclick="@(async () => await EditPriceComponent(item.Id))"></BSButton>
+                    <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-trash text-danger" @onclick="@(async () => await DeletePriceComponent(item.Id))"></BSButton>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </BSTable>
+}
+
+<div>
+    <BSModal @bind-IsOpen="@IsAdd" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
+        <BSModalHeader @onclick="CloseModal">@ModalTitle</BSModalHeader>
+        <BSModalBody>
+            <div class="col-md-12">
+                <EditForm Model="@PriceComponent" OnValidSubmit="@CreatePriceComponent">
+                    <div class="form-group">
+                        <label for="Id" class="control-label">ID</label>
+                        <InputText id="Id" class="form-control" @bind-Value="PriceComponent.Id" />
+                        <ValidationMessage For="@(() => PriceComponent.Id)" />
+
+                        <label for="DiscountPercentage" class="control-label">Name</label>
+                        <InputNumber id="DiscountPercentage" class="form-control" @bind-Value="PriceComponent.DiscountPercentage" />
+                        <ValidationMessage For="@(() => PriceComponent.DiscountPercentage)" />
+
+                        <label for="Comment" class="control-label">Name</label>
+                        <InputText id="Comment" class="form-control" @bind-Value="PriceComponent.Comment" />
+                        <ValidationMessage For="@(() => PriceComponent.Comment)" />
+
+                        <label for="PartyRoleId" class="control-label">Name</label>
+                        <InputText id="PartyRoleId" class="form-control" @bind-Value="PriceComponent.PartyRoleId" />
+                        <ValidationMessage For="@(() => PriceComponent.PartyRoleId)" />
+
+                        <label for="Valid From" class="control-label">Valid From</label>
+                        <InputDate id="Valid From" class="form-control" @bind-Value="PriceComponent.ValidFrom" />
+                        <ValidationMessage For="@(() => PriceComponent.ValidFrom)" />
+
+                        <label for="Valid To" class="control-label">Valid To</label>
+                        <InputDate id="Valid To" class="form-control" @bind-Value="PriceComponent.ValidTo" />
+                        <ValidationMessage For="@(() => PriceComponent.ValidTo)" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success" @onclick=@(async () => await CreatePriceComponent())>Save</button>
+                        <button class="btn btn-primary" @onclick="CloseModal">Cancel</button>
+                    </div>
+                </EditForm>
+            </div>
+        </BSModalBody>
+    </BSModal>
+</div>
+
+<div>
+    <BSModal @bind-IsOpen="IsView" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
+        <BSModalHeader @onclick="CloseModal">@ModalTitle</BSModalHeader>
+        <BSModalBody>
+            <div class="col-md-12">
+                @if (IsDelete)
+                {
+                    <BSAlert Color="Color.Danger">Please review carefully before deleting.</BSAlert>
+                }
+                <hr />
+                <h5>Product</h5>
+                <hr />
+                <BSTable IsResponsive="true" class="table">
+                    <tr>
+                        <td>Id</td>
+                        <td>@PriceComponent.Id</td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>@PriceComponent.DiscountPercentage</td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>@PriceComponent.Comment</td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>@PriceComponent.PartyRoleId</td>
+                    </tr>
+                    <tr>
+                        <td>Valid From</td>
+                        <td>@PriceComponent.ValidFrom</td>
+                    </tr>
+                    <tr>
+                        <td>Valid To</td>
+                        <td>@PriceComponent.ValidTo</td>
+                    </tr>
+                </BSTable>
+
+                <div class="form-group">
+                    @if (IsDelete)
+                    {
+                        <button type="button" class="btn btn-danger" @onclick=@RemovePriceComponent>Delete</button>
+                        <button class="btn btn-primary" @onclick="CloseModal">Cancel</button>
+                    }
+                    @if (!IsDelete)
+                    {
+                        <button class="btn btn-primary" @onclick="CloseModal">Back</button>
+                    }
+                </div>
+            </div>
+        </BSModalBody>
+    </BSModal>
+</div>
