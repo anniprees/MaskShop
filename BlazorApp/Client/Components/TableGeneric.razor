@@ -1,0 +1,47 @@
+﻿@typeparam TItem
+
+@if (Items is null)
+{
+    if (NullTemplate is null)
+    {
+        <p>Loading...</p>
+    }
+    else
+    {
+        @NullTemplate
+    }
+}
+else if (Items.Count == 0)
+{
+    if (EmptyTemplate is null)
+    {
+        <p>No records in the database.</p>
+    }
+    else
+    {
+        @EmptyTemplate
+    }
+}
+else
+{
+    if (WithIndividualItemsTemplate is null)
+    {
+        @WithItemsTemplate
+    }
+    else
+    {
+        foreach (var item in Items)
+        {
+            @WithIndividualItemsTemplate(item)
+        }
+    }
+}
+
+@code {
+    [Parameter] public List<TItem> Items { get; set; }
+    [Parameter] public RenderFragment NullTemplate { get; set; }
+    [Parameter] public RenderFragment EmptyTemplate { get; set; }
+    [Parameter] public RenderFragment WithItemsTemplate { get; set; }
+    [Parameter] public RenderFragment<TItem> WithIndividualItemsTemplate { get; set; }
+
+}

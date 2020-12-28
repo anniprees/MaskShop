@@ -21,14 +21,10 @@
     </div>
 </div>
 
-@if (_priceComponents == null)
-{
-    <p>Loading...</p>
-}
-else
-{
-    <BSTable IsResponsive="true" class="table">
-        <thead class="thead-light">
+<TableGeneric Items="_priceComponents">    
+    <WithItemsTemplate>
+       <table class="table" is-striped>
+            <thead class="thead-light">
             <tr>
                 <th>ID</th>
                 <th>Discount</th>
@@ -37,10 +33,10 @@ else
                 <th>From</th>
                 <th>To</th>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in _priceComponents)
-            {
+            </thead>
+        @foreach (var item in _priceComponents)
+        {
+            <tbody>
             <tr>
                 <td>@item.Id</td>
                 <td>@item.DiscountPercentage</td>
@@ -54,10 +50,11 @@ else
                     <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-trash text-danger" @onclick="@(async () => await DeletePriceComponent(item.Id))"></BSButton>
                 </td>
             </tr>
-            }
-        </tbody>
-    </BSTable>
-}
+            </tbody>
+        }
+        </table>
+    </WithItemsTemplate>
+</TableGeneric>
 
 <div>
     <BSModal @bind-IsOpen="@IsAdd" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
@@ -70,15 +67,15 @@ else
                         <InputText id="Id" class="form-control" @bind-Value="PriceComponent.Id" />
                         <ValidationMessage For="@(() => PriceComponent.Id)" />
 
-                        <label for="DiscountPercentage" class="control-label">Name</label>
+                        <label for="DiscountPercentage" class="control-label">Discount</label>
                         <InputNumber id="DiscountPercentage" class="form-control" @bind-Value="PriceComponent.DiscountPercentage" />
                         <ValidationMessage For="@(() => PriceComponent.DiscountPercentage)" />
 
-                        <label for="Comment" class="control-label">Name</label>
+                        <label for="Comment" class="control-label">Comment</label>
                         <InputText id="Comment" class="form-control" @bind-Value="PriceComponent.Comment" />
                         <ValidationMessage For="@(() => PriceComponent.Comment)" />
 
-                        <label for="PartyRoleId" class="control-label">Name</label>
+                        <label for="PartyRoleId" class="control-label">Party Role Id</label>
                         <InputText id="PartyRoleId" class="form-control" @bind-Value="PriceComponent.PartyRoleId" />
                         <ValidationMessage For="@(() => PriceComponent.PartyRoleId)" />
 
