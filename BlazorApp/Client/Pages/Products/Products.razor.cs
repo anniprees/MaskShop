@@ -7,6 +7,7 @@ using MaskShop.Data.Common;
 using MaskShop.Data.Products;
 using MaskShop.Domain.Common;
 using MaskShop.Domain.Products;
+using MaskShop.Facade.Orders;
 using MaskShop.Facade.Products;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -29,6 +30,7 @@ namespace BlazorApp.Client.Pages.Products
         [Parameter] public string SearchTerm { get; set; } = string.Empty;
 
         ProductView[] _products;
+
         private HubConnection hubConnection;
 
         protected ProductView Product = new ProductView
@@ -44,6 +46,19 @@ namespace BlazorApp.Client.Pages.Products
             ValidFrom = null,
             ValidTo = null
     };
+
+        protected BasketItemView BasketItem = new BasketItemView
+        {
+            BasketId = "",
+            ProductId = "",
+            ProductImage = "",
+            ProductName = "",
+            Quantity = 0,
+            TotalPrice = 0,
+            UnitPrice = 0,
+            ValidFrom = null,
+            ValidTo = null
+        };
 
         protected string CurrentProductId { get; set; }
         protected string ModalTitle { get; set; }
@@ -179,6 +194,26 @@ namespace BlazorApp.Client.Pages.Products
             CloseModal();
             await OnParametersSetAsync();
         }
+
+        //protected async Task CreateBasketItem()
+        //{
+        //    BasketItem = new BasketItemView
+        //    {
+        //        BasketId = "",
+        //        ProductId = CurrentProductId,
+        //        ProductImage = Product.PictureUri,
+        //        ProductName = Product.Name,
+        //        Quantity = 1,
+        //        ValidFrom = DateTime.Now,
+        //        ValidTo = null,
+        //        TotalPrice = 0,
+        //        UnitPrice = Product.Price
+        //    };
+        //    await HttpClient.SendJsonAsync(HttpMethod.Post, "api/basketitems", BasketItem);
+        //    if (IsConnected) await SendMessage();
+        //    CloseModal();
+        //    await OnParametersSetAsync();
+        //}
 
         protected void CloseModal()
         {
