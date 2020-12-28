@@ -36,35 +36,35 @@ namespace BlazorApp.Server.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<PriceComponentView>> GetPriceComponent(string id)
         {
-            var category = await _pr.Get(id);
+            var priceComponent = await _pr.Get(id);
 
-            if (category == null)
+            if (priceComponent == null)
             {
                 return NotFound();
             }
 
-            return PriceComponentViewFactory.Create(category);
+            return PriceComponentViewFactory.Create(priceComponent);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPriceComponent(string id, PriceComponentView category)
+        public async Task<IActionResult> PutPriceComponent(string id, PriceComponentView priceComponent)
         {
-            if (id != category.Id)
+            if (id != priceComponent.Id)
             {
                 return BadRequest();
             }
 
-            await _pr.Update(PriceComponentViewFactory.Create(category));
+            await _pr.Update(PriceComponentViewFactory.Create(priceComponent));
 
             return NoContent();
         }
 
         [HttpPost]
-        public async Task<ActionResult<PriceComponentView>> PostPriceComponent(PriceComponentView category)
+        public async Task<ActionResult<PriceComponentView>> PostPriceComponent(PriceComponentView priceComponent)
         {
-            await _pr.Add(PriceComponentViewFactory.Create(category));
+            await _pr.Add(PriceComponentViewFactory.Create(priceComponent));
 
-            return CreatedAtAction("GetPriceComponent", new { id = category.Id }, category);
+            return CreatedAtAction("GetPriceComponent", new { id = priceComponent.Id }, priceComponent);
         }
 
         [HttpDelete("{id}")]

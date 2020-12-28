@@ -28,6 +28,7 @@ namespace MaskShop.Infra
             InitializeParties(db);
             InitializePartyRoles(db);
             InitializePartyNames(db);
+            InitializePriceComponents(db);
         }
 
         private static void InitializeContactMechanisms(ShopDbContext db)
@@ -214,6 +215,22 @@ namespace MaskShop.Infra
             };
 
             db.InventoryItems.AddRange(inventoryItems);
+            db.SaveChanges();
+
+        }
+
+        private static void InitializePriceComponents(ShopDbContext db)
+        {
+            if (db.PriceComponents.Count() != 0) return;
+
+            var priceComponents = new[]
+            {
+                new PriceComponentData {Id = "1", DiscountPercentage = 5, Comment = "New user", PartyRoleId = "1", ValidFrom = Convert.ToDateTime("10/06/2019 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")},
+                new PriceComponentData {Id = "1", DiscountPercentage = 10, Comment = "Fifth purchase", PartyRoleId = "2", ValidFrom = Convert.ToDateTime("10/06/2019 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")},
+                new PriceComponentData {Id = "1", DiscountPercentage = 20, Comment = "Sell old stock", PartyRoleId = "3", ValidFrom = Convert.ToDateTime("10/06/2019 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")}
+            };
+
+            db.PriceComponents.AddRange(priceComponents);
             db.SaveChanges();
 
         }

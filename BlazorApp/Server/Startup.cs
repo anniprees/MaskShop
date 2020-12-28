@@ -50,6 +50,7 @@ namespace BlazorApp.Server
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddScoped<IPriceComponentsRepository, PriceComponentsRepository>();
             services.AddScoped<IProductsRepository, ProductsRepository>();
             services.AddScoped<IProductCategoriesRepository, ProductCategoriesRepository>();
             services.AddScoped<IProductFeaturesRepository, ProductFeaturesRepository>();

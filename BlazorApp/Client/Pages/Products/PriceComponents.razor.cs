@@ -34,7 +34,7 @@ namespace BlazorApp.Client.Pages.Products
         protected bool IsView { get; set; }
         protected bool IsDelete { get; set; }
 
-        protected override async Task OnInitializedAsync()
+        protected override async Task OnParametersSetAsync()
         {
             await LoadData();
         }
@@ -47,7 +47,7 @@ namespace BlazorApp.Client.Pages.Products
         protected async Task LoadData()
         {
             _priceComponents = await HttpClient.GetJsonAsync<List<PriceComponentView>>("api/pricecomponents");
-            StateHasChanged();
+            //StateHasChanged();
         }
 
         protected async Task SearchClick()
@@ -132,7 +132,15 @@ namespace BlazorApp.Client.Pages.Products
 
         protected void CloseModal()
         {
-            PriceComponent = new PriceComponentView();
+            PriceComponent = new PriceComponentView
+            {
+                Id = "",
+                DiscountPercentage = 0,
+                Comment = "",
+                PartyRoleId = "",
+                ValidFrom = null,
+                ValidTo = null
+            };
             SelectedId = null;
             this.IsAdd = false;
             this.IsView = false;
