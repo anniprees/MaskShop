@@ -11,9 +11,11 @@ using BlazorApp.Server.Data;
 using BlazorApp.Server.Hubs;
 using BlazorApp.Server.Models;
 using MaskShop.Domain.Orders;
+using MaskShop.Domain.Parties;
 using MaskShop.Domain.Products;
 using MaskShop.Infra;
 using MaskShop.Infra.Orders;
+using MaskShop.Infra.Parties;
 using MaskShop.Infra.Products;
 
 namespace BlazorApp.Server
@@ -50,8 +52,16 @@ namespace BlazorApp.Server
 
             services.AddScoped<IProductsRepository, ProductsRepository>();
             services.AddScoped<IProductCategoriesRepository, ProductCategoriesRepository>();
+            services.AddScoped<IProductFeaturesRepository, ProductFeaturesRepository>();
             services.AddScoped<IBasketsRepository, BasketsRepository>();
             services.AddScoped<IBasketItemsRepository, BasketItemsRepository>();
+            services.AddScoped<IOrdersRepository, OrdersRepository>();
+            services.AddScoped<IPartiesRepository, PartiesRepository>();
+            services.AddScoped<IPartyNamesRepository, PartyNamesRepository>();
+            services.AddScoped<IPartyRolesRepository, PartyRolesRepository>();
+            services.AddScoped<IContactMechanismsRepository, ContactMechanismsRepository>();
+            services.AddScoped<IInventoryItemsRepository, InventoryItemsRepository>();
+
 
             services.AddIdentityServer()
                 .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();

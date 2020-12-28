@@ -4,6 +4,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using MaskShop.Aids;
+using MaskShop.Data.Orders;
+using MaskShop.Data.Parties;
 using MaskShop.Data.Products;
 
 namespace MaskShop.Infra
@@ -18,6 +20,141 @@ namespace MaskShop.Infra
         {
             InitializeProducts(db);
             InitializeProductCategories(db);
+            InitializeProductFeatures(db);
+            InitializeInventoryItems(db);
+            InitializeContactMechanisms(db);
+            InitializeOrders(db);
+            InitializeBaskets(db);
+            InitializeParties(db);
+            InitializePartyRoles(db);
+            InitializePartyNames(db);
+        }
+
+        private static void InitializeContactMechanisms(ShopDbContext db)
+        {
+            if (db.ContactMechanisms.Count() != 0) return;
+
+            var contactMechanisms = new[]
+            {
+                new ContactMechanismData {Id = "1", Street = "Viru", City= "Tallinn", State= "Harjumaa", Country= "Eesti", ZipCode= "10114" ,ElectronicMail="silvi.orav@mail.com" ,ValidFrom = Convert.ToDateTime("10/06/2019 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")},
+                new ContactMechanismData {Id = "2", Street = "Noole", City= "Tallinn", State= "Harjumaa", Country= "Eesti", ZipCode= "10116" ,ElectronicMail="mari.karu@mail.com" ,ValidFrom = Convert.ToDateTime("1/06/2019 09:00"), ValidTo = Convert.ToDateTime("14/04/2021 09:00")},
+                new ContactMechanismData {Id = "3", Street = "Kadaka tee", City= "Tallinn", State= "Harjumaa", Country= "Eesti", ZipCode= "10119" ,ElectronicMail="kati.lumi@mail.com" ,ValidFrom = Convert.ToDateTime("25/06/2019 09:00"), ValidTo = Convert.ToDateTime("1/12/2021 09:00")},
+                new ContactMechanismData {Id = "4", Street = "Kalda", City= "Tartu", State= "Tartumaa", Country= "Eesti", ZipCode= "10114" ,ElectronicMail="silver.aun@mail.com" ,ValidFrom = Convert.ToDateTime("1/09/2019 09:00"), ValidTo = Convert.ToDateTime("10/04/2028 09:00")},
+                new ContactMechanismData {Id = "5", Street = "Pae", City= "Narva", State= "Ida-Virumaa", Country= "Eesti", ZipCode= "10214" ,ElectronicMail="olga.onegin@mail.com" ,ValidFrom = Convert.ToDateTime("11/09/2000 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")},
+                new ContactMechanismData {Id = "6", Street = "Valli", City= "Valga", State= "Valgamaa", Country= "Eesti", ZipCode= "10314" ,ElectronicMail="mati.maasikasv@mail.com" ,ValidFrom = Convert.ToDateTime("1/06/2010 09:00"), ValidTo = Convert.ToDateTime("1/12/2026 09:00")},
+
+            };
+
+            db.ContactMechanisms.AddRange(contactMechanisms);
+            db.SaveChanges();
+
+        }
+
+        private static void InitializeProductFeatures(ShopDbContext db)
+        {
+            if (db.ProductFeatures.Count() != 0) return;
+
+            var productFeatures = new[]
+            {
+                new ProductFeatureData {Id = "1", Name = "Color", Definition = "Red", NumericCode = 2000, ValidFrom = Convert.ToDateTime("10/06/2019 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")},
+                new ProductFeatureData {Id = "2", Name = "Color", Definition = "Blue", NumericCode = 2100, ValidFrom = Convert.ToDateTime("17/06/2018 09:00"), ValidTo = Convert.ToDateTime("21/04/2022 09:00")},
+
+            };
+
+            db.ProductFeatures.AddRange(productFeatures);
+            db.SaveChanges();
+
+        }
+
+        private static void InitializeOrders(ShopDbContext db)
+        {
+            if (db.Orders.Count() != 0) return;
+
+            var orders = new[]
+            {
+                new OrderData {Id = "1", Name = "Order1", ContactMechanismId   = "1", OrderStatus = OrderStatus.Approved, ValidFrom = Convert.ToDateTime("10/06/2019 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")},
+                new OrderData {Id = "2", Name = "Order2", ContactMechanismId   = "3", OrderStatus = OrderStatus.Approved, ValidFrom = Convert.ToDateTime("17/06/2018 09:00"), ValidTo = Convert.ToDateTime("21/04/2022 09:00")},
+
+            };
+
+            db.Orders.AddRange(orders);
+            db.SaveChanges();
+
+        }
+
+        private static void InitializeBaskets(ShopDbContext db)
+        {
+            if (db.Baskets.Count() != 0) return;
+
+            var baskets = new[]
+            {
+                new BasketData {Id = "1", Name = "Basket1", ValidFrom = Convert.ToDateTime("10/06/2019 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")},
+                new BasketData {Id = "2", Name = "Basket2", ValidFrom = Convert.ToDateTime("17/06/2018 09:00"), ValidTo = Convert.ToDateTime("21/04/2022 09:00")},
+
+            };
+
+            db.Baskets.AddRange(baskets);
+            db.SaveChanges();
+
+        }
+
+
+        private static void InitializeParties(ShopDbContext db)
+        {
+            if (db.Parties.Count() != 0) return;
+
+            var parties = new[]
+            {
+                new PartyData {Id = "1", PartyNameId = "4", PartyRoleId = "4", ContactMechanismId = "1", PartyType = PartyType.Person , ValidFrom = Convert.ToDateTime("10/06/2019 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")},
+                new PartyData {Id = "2", PartyNameId = "1", PartyRoleId = "1", ContactMechanismId = "2" , PartyType =PartyType.Unspecified , ValidFrom = Convert.ToDateTime("17/06/2016 09:00"), ValidTo = Convert.ToDateTime("29/04/2026 09:00")},
+                new PartyData {Id = "3", PartyNameId = "3", PartyRoleId = "3", ContactMechanismId = "3" , PartyType = PartyType.Person, ValidFrom = null, ValidTo = null},
+                new PartyData {Id = "4", PartyNameId = "2", PartyRoleId = "2", ContactMechanismId = "4" , PartyType = PartyType.Organization, ValidFrom = null, ValidTo = null},
+                new PartyData {Id = "5", PartyNameId = "6", PartyRoleId = "6", ContactMechanismId = "5" , PartyType =PartyType.Person , ValidFrom = null, ValidTo = null},
+                new PartyData {Id = "6", PartyNameId = "5", PartyRoleId = "5", ContactMechanismId = "6" , PartyType = PartyType.Person, ValidFrom = null, ValidTo = null},
+
+            };
+
+            db.Parties.AddRange(parties);
+            db.SaveChanges();
+
+        }
+
+        private static void InitializePartyRoles(ShopDbContext db)
+        {
+            if (db.PartyRoles.Count() != 0) return;
+
+            var roles = new[]
+            {
+                new PartyRoleData {Id = "1", Role = "Webmaster", ValidFrom = Convert.ToDateTime("1/08/2019 09:00"), ValidTo = Convert.ToDateTime("10/04/2025 09:00")},
+                new PartyRoleData {Id = "2", Role = "Employee", ValidFrom = Convert.ToDateTime("1/06/2012 09:00"), ValidTo = Convert.ToDateTime("1/04/2021 09:00")},
+                new PartyRoleData {Id = "3", Role = "Customer", ValidFrom = null, ValidTo = null},
+                new PartyRoleData {Id = "4", Role = "Visitor", ValidFrom = null, ValidTo = null},
+
+            };
+
+            db.PartyRoles.AddRange(roles);
+            db.SaveChanges();
+
+        }
+
+        private static void InitializePartyNames(ShopDbContext db)
+        {
+            if (db.PartyNames.Count() != 0) return;
+
+            var names = new[]
+            {
+                new PartyNameData {Id = "1", FirstName = "Silvi", LastName = "Orav", ValidFrom = Convert.ToDateTime("1/06/2019 09:00"), ValidTo = Convert.ToDateTime("1/04/2021 09:00")},
+                new PartyNameData {Id = "2", FirstName = "Mari", LastName = "Karu", ValidFrom = Convert.ToDateTime("1/06/2019 09:00"), ValidTo = Convert.ToDateTime("1/04/2021 09:00")},
+                new PartyNameData {Id = "3", FirstName = "Kati", LastName = "Lumi",  ValidFrom = Convert.ToDateTime("10/06/2015 09:00"), ValidTo = Convert.ToDateTime("1/04/2022 09:00")},
+                new PartyNameData {Id = "4", FirstName = "Silver", LastName = "Aun", ValidFrom = Convert.ToDateTime("21/07/2012 09:00"), ValidTo = Convert.ToDateTime("31/02/2021 09:00")},
+                new PartyNameData {Id = "5", FirstName = "Olga", LastName = "Onegin", ValidFrom = Convert.ToDateTime("1/08/2019 09:00"), ValidTo = Convert.ToDateTime("1/02/2023 09:00")},
+                new PartyNameData {Id = "6", FirstName = "Mati", LastName = "Maasikas", ValidFrom = Convert.ToDateTime("1/12/2019 09:00"), ValidTo = Convert.ToDateTime("10/04/2050 09:00")},
+
+            };
+
+            db.PartyNames.AddRange(names);
+            db.SaveChanges();
+
         }
 
         private static void InitializeProductCategories(ShopDbContext db)
@@ -37,10 +174,10 @@ namespace MaskShop.Infra
                 new ProductCategoryData {Id = "9", Name = "REUCM", ValidFrom = null, ValidTo = null},
                 new ProductCategoryData {Id = "10", Name = "EN166", ValidFrom = null, ValidTo = null},
             };
-                
-            db.ProductCategories.AddRange(categories); 
+
+            db.ProductCategories.AddRange(categories);
             db.SaveChanges();
-            
+
         }
 
         private static void InitializeProducts(ShopDbContext db)
@@ -59,6 +196,26 @@ namespace MaskShop.Infra
 
             db.Products.AddRange(products);
             db.SaveChanges();
+        }
+
+        private static void InitializeInventoryItems(ShopDbContext db)
+        {
+            if (db.InventoryItems.Count() != 0) return;
+
+            var inventoryItems = new[]
+            {
+                new InventoryItemData {Id = "1", ProductId = "1", QuantityOnHand = 7, ValidFrom = Convert.ToDateTime("10/06/2019 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")},
+                new InventoryItemData {Id = "2", ProductId = "2", QuantityOnHand = 55, ValidFrom = Convert.ToDateTime("1/06/2019 09:00"), ValidTo = Convert.ToDateTime("14/04/2021 09:00")},
+                new InventoryItemData {Id = "3", ProductId = "3", QuantityOnHand = 98, ValidFrom = Convert.ToDateTime("25/06/2019 09:00"), ValidTo = Convert.ToDateTime("1/12/2021 09:00")},
+                new InventoryItemData {Id = "4", ProductId = "4", QuantityOnHand = 4, ValidFrom = Convert.ToDateTime("1/09/2019 09:00"), ValidTo = Convert.ToDateTime("10/04/2028 09:00")},
+                new InventoryItemData {Id = "5", ProductId = "5", QuantityOnHand = 315, ValidFrom = Convert.ToDateTime("11/09/2000 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")},
+                new InventoryItemData {Id = "6", ProductId = "6", QuantityOnHand = 99, ValidFrom = Convert.ToDateTime("1/06/2010 09:00"), ValidTo = Convert.ToDateTime("1/12/2026 09:00")},
+
+            };
+
+            db.InventoryItems.AddRange(inventoryItems);
+            db.SaveChanges();
+
         }
 
         private static byte[] ConvertToByteArray(string filePath)
