@@ -79,9 +79,7 @@ else
                         <ValidationMessage For="@(() => Product.Name)" />
 
                         <label for="Product Category" class="control-label">Product Category</label>
-                        <InputSelect Id="Product Category" class="form-control" @bind-Value="Product.ProductCategoryId">
-                            @*<option value="1"> yks</option><option value="2"> kaks</option>
-                                <option value="3"> kolm</option>*@
+                        <InputSelect Id="Product Category" class="form-control" @bind-Value="Product.ProductCategoryId">                            
                             @if (_categories != null)
                             {
                                 foreach (var category in _categories)
@@ -91,13 +89,9 @@ else
                             }
                         </InputSelect>
 
-                        @*<label for="Product Category" class="control-label">Product Category</label>
-        <InputText id="Product Category" class="form-control" @bind-Value="Product.ProductCategoryId"/>
-        <ValidationMessage For="@(() => Product.ProductCategoryId)"/>*@
-
-                        @*<label for="Feature Applicability" class="control-label">Feature Applicability</label>
-        <InputText id="Feature Applicability" class="form-control" @bind-Value="Product.ProductFeatureApplicabilityId" />
-        <ValidationMessage For="@(() => Product.ProductFeatureApplicabilityId)" />*@
+                        <label for="Feature Applicability" class="control-label">Feature Applicability</label>
+                        <InputText id="Feature Applicability" class="form-control" @bind-Value="Product.ProductFeatureApplicabilityId" />
+                        <ValidationMessage For="@(() => Product.ProductFeatureApplicabilityId)" />
 
                         <label for="Price" class="control-label">Price</label>
                         <InputNumber id="Price" class="form-control" @bind-Value="Product.Price" />
