@@ -4,8 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using MaskShop.Domain.Products;
 using MaskShop.Facade.Products;
+using MaskShop.Pages.Common;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using System.Collections;
+using BlazorApp.Server.Helpers;
+using MaskShop.Infra.Common;
 
 namespace BlazorApp.Server.Controllers
 {
@@ -29,9 +36,26 @@ namespace BlazorApp.Server.Controllers
 
             result.ForEach(x => aa.Add(PriceComponentViewFactory.Create(x)));
 
-            return name == null ? aa : aa.Where(x => x.PartyRoleId.ToLower().Contains(name.ToLower())).ToList();
+            return name == null ? aa : aa.Where(x => x.Comment.ToLower().Contains(name.ToLower())).ToList();
 
         }
+
+        //[HttpGet("pagination")]
+        //public async Task<ActionResult<List<PriceComponentView>>> GetPaginated([FromQuery] PaginationDTO pagination)
+        //{
+        //    var result = await _pr.Get();
+        //    var aa = new List<PriceComponentView>();
+        //    result.ForEach(x => aa.Add(PriceComponentViewFactory.Create(x)));
+
+        //    var queryable = aa.AsQueryable();
+        //    if (name != null)
+        //    {
+        //        queryable = queryable.Where(x => x.Comment.Contains(name));
+        //    }
+
+        //    await HttpContext.InsertPaginationParameterInResponse(queryable, pagination.PageSize);
+        //    return await queryable.Paginate(pagination).ToListAsync();
+        //}
 
         [HttpGet("{id}")]
         public async Task<ActionResult<PriceComponentView>> GetPriceComponent(string id)

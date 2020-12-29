@@ -1,20 +1,27 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
+using BlazorApp.Client.Services;
+using MaskShop.Domain.Products;
 using MaskShop.Facade.Products;
+using MaskShop.Pages.Products;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 
 namespace BlazorApp.Client.Pages.Products
 {
     public partial class PriceComponents
     {
-        [Inject] private NavigationManager NavigationManager { get; set; }
         [Inject] private HttpClient HttpClient { get; set; }
-
-        [Parameter] public string Page { get; set; } = "1";
-
         [Parameter] public string SearchTerm { get; set; } = string.Empty;
+
+        private int totalPagesQuantity = 1;
+        private int currentPage = 1;
+
 
         List<PriceComponentView> _priceComponents;
 
@@ -33,22 +40,38 @@ namespace BlazorApp.Client.Pages.Products
         protected bool IsAdd { get; set; }
         protected bool IsView { get; set; }
         protected bool IsDelete { get; set; }
-
+        
         protected override async Task OnParametersSetAsync()
         {
             await LoadData();
         }
 
-        private void CallLoadData()
-        {
-            Task.Run(async () => { await LoadData(); });
-        }
+        //private async Task SelectedPage(int page)
+        //{
+        //    currentPage = page;
+        //    await LoadPagedData(page);
+        //}
 
         protected async Task LoadData()
         {
             _priceComponents = await HttpClient.GetJsonAsync<List<PriceComponentView>>("api/pricecomponents");
-            //StateHasChanged();
         }
+
+        //protected async Task LoadPagedData(int page = 1, int pageSize = 10)
+        //{
+        //    var httpResponse = await HttpClient.GetAsync($"api/pricecomponents/?page={page}&pageSize={pageSize}");
+        //    if (httpResponse.IsSuccessStatusCode)
+        //    {
+        //        totalPagesQuantity = int.Parse(httpResponse.Headers.GetValues("totalPages").FirstOrDefault());
+        //        var responseString = await httpResponse.Content.ReadAsStringAsync();
+        //        _priceComponents = JsonSerializer.Deserialize<List<PriceComponentView>>(responseString,
+        //            new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+        //    }
+        //    else
+        //    {
+        //        //TODO error handling
+        //    }
+        //}
 
         protected async Task SearchClick()
         {

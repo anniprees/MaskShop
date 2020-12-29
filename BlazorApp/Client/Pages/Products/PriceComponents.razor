@@ -4,11 +4,11 @@
 
 <div class="row mb-3">
     <div class="col-md-7">
-        <BSButton Class="btn btn-outline-primary" @onclick="AddPriceComponent">Add New Product Category</BSButton>
+        <BSButton Class="btn btn-outline-primary" @onclick="AddPriceComponent">Add New Price Component</BSButton>
     </div>
 </div>
 <div class="input-group col-md-5 text-md-right">
-    <input name="SearchInput" type="text" class="form-control" placeholder="Product Category Name" @bind="this.SearchTerm" @onkeyup="SearchBoxKeyPress" />
+    <input name="SearchInput" type="text" class="form-control" placeholder="Search Comment" @bind="this.SearchTerm" @onkeyup="SearchBoxKeyPress" />
     <div class="input-group-btn">
         <button name="SearchButton" class="btn btn-default" @onclick="SearchClick">
             <i class="oi oi-magnifying-glass" title="search" aria-hidden="true"></i>
@@ -20,6 +20,12 @@
         </button>
     </div>
 </div>
+
+@*<Pagination 
+            TotalPagesQuantity="totalPagesQuantity" 
+            CurrentPage="currentPage" 
+            Radius="2"
+            SelectedPage="SelectedPage"></Pagination>*@
 
 <TableGeneric Items="_priceComponents">    
     <WithItemsTemplate>

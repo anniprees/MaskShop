@@ -38,7 +38,8 @@ namespace BlazorApp.Server
                 builder=>builder
                     .AllowAnyOrigin()
                     .AllowAnyMethod()
-                    .AllowAnyHeader());});
+                    .AllowAnyHeader()
+                    .WithExposedHeaders("X-Pagination"));});
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
