@@ -19,6 +19,15 @@
             <i class="oi oi-x" title="clear" aria-hidden="true"></i>
         </button>
     </div>
+    <div>
+        <select class="form-control" @onchange="FilterCategory">
+            <option value="-1">- Filter by category -</option>
+            <option value="1">CAT1</option>
+            <option value="2">CAT2</option>
+            <option value="3">CAT3</option>
+        </select>
+    
+    </div>
 </div>
 
 @if (_products == null)

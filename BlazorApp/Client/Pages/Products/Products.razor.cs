@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using MaskShop.Aids.Constants;
@@ -29,7 +30,7 @@ namespace BlazorApp.Client.Pages.Products
 
         [Parameter] public string SearchTerm { get; set; } = string.Empty;
 
-        ProductView[] _products;
+        List<ProductView> _products;
         ProductCategoryView[] _categories;
 
         private HubConnection hubConnection;
@@ -94,7 +95,7 @@ namespace BlazorApp.Client.Pages.Products
 
         protected async Task LoadData()
         {
-            _products = await HttpClient.GetJsonAsync<ProductView[]>("api/products");
+            _products = await HttpClient.GetJsonAsync<List<ProductView>>("api/products");
             StateHasChanged();
         }
 
@@ -107,11 +108,11 @@ namespace BlazorApp.Client.Pages.Products
         {
             if (string.IsNullOrEmpty(SearchTerm))
             {
-                _products = await HttpClient.GetJsonAsync<ProductView[]>(("api/products/") + "?name=" + SearchTerm);
+                _products = await HttpClient.GetJsonAsync<List<ProductView>>(("api/products/") + "?name=" + SearchTerm);
                 return;
             }
 
-            _products = await HttpClient.GetJsonAsync<ProductView[]>(("api/products/") + "?name=" + SearchTerm);
+            _products = await HttpClient.GetJsonAsync<List<ProductView>>(("api/products/") + "?name=" + SearchTerm);
             StateHasChanged();
         }
 
@@ -126,7 +127,7 @@ namespace BlazorApp.Client.Pages.Products
         protected async Task ClearSearch()
         {
             SearchTerm = string.Empty;
-            _products = await HttpClient.GetJsonAsync<ProductView[]>("api/products/");
+            _products = await HttpClient.GetJsonAsync<List<ProductView>>("api/products/");
             StateHasChanged();
         }
 
@@ -236,6 +237,17 @@ namespace BlazorApp.Client.Pages.Products
         protected void PagerPageChanged(int page)
         {
             NavigationManager.NavigateTo("/productlist/" + page);
+        }
+
+        protected async Task FilterCategory(ChangeEventArgs eventArgs)
+        {
+            if (eventArgs.Value.ToString() == "-1")
+                return;
+
+            var filteredList = await HttpClient.GetJsonAsync<List<ProductView>>("api/products");
+            _products = filteredList.Where(p => p.ProductCategoryId.Equals(eventArgs.Value.ToString())).ToList();
+            
+            StateHasChanged();
         }
     }
 
