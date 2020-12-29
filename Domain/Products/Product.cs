@@ -26,6 +26,5 @@ namespace MaskShop.Domain.Products
         public PriceComponent PriceComponent => new GetFrom<IPriceComponentsRepository, PriceComponent>().ById(PriceComponentId);
         public ProductFeatureApplicability ProductFeatureApplicability 
             => new GetFrom<IProductFeatureApplicabilitiesRepository, ProductFeatureApplicability>().ById(ProductFeatureApplicabilityId);
-
     }
 }

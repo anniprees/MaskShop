@@ -80,8 +80,6 @@ else
 
                         <label for="Product Category" class="control-label">Product Category</label>
                         <InputSelect Id="Product Category" class="form-control" @bind-Value="Product.ProductCategoryId">
-                            @*<option value="1"> yks</option><option value="2"> kaks</option>
-                                <option value="3"> kolm</option>*@
                             @if (_categories != null)
                             {
                                 foreach (var category in _categories)
@@ -176,7 +174,7 @@ else
                     @if (!IsDelete)
                     {
                         <button class="btn btn-primary" @onclick="CloseModal">Back</button>
-                        @*<button class="btn btn-primary" @onclick=@CreateBasketItem><i class="oi oi-cart"></i> Add to basket</button>*@
+                        <button class="btn btn-primary" @onclick=@(async () => await CreateBasketItem())><i class="oi oi-cart"></i> Add to basket</button>
                         //TODO onclick event add to basket nupule
                     }
                 </div>

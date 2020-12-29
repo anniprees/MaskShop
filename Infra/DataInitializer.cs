@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using MaskShop.Aids;
+using MaskShop.Data.Orders;
 using MaskShop.Data.Products;
 
 namespace MaskShop.Infra
@@ -18,6 +19,20 @@ namespace MaskShop.Infra
         {
             InitializeProducts(db);
             InitializeProductCategories(db);
+            InitializeBasketItems(db);
+        }
+
+        private static void InitializeBasketItems(ShopDbContext db)
+        {
+            if (db.BasketItems.Count() != 0) return;
+            var basketItems = new[]
+            {
+                new BasketItemData{BasketId = "1",ProductId = "1", Quantity = 1},
+                new BasketItemData{BasketId = "1",ProductId = "2", Quantity = 2},
+            };
+
+            db.BasketItems.AddRange(basketItems);
+            db.SaveChanges();
         }
 
         private static void InitializeProductCategories(ShopDbContext db)
@@ -49,7 +64,7 @@ namespace MaskShop.Infra
 
             var products = new[]
             {
-                new ProductData{Id = "1", Name = "Reusable cloth mask", Price = 8, ProductCategoryId = "9", ValidFrom = Convert.ToDateTime("1/04/2020 09:00"), ValidTo = null},
+                new ProductData{Id = "1", Name = "Reusable cloth mask", Price = 8, ProductCategoryId = "9",PictureUri = "", ValidFrom = Convert.ToDateTime("1/04/2020 09:00"), ValidTo = null},
                 new ProductData{Id = "2", Name = "Face shield", Price = 15, ProductCategoryId = "10", ValidFrom = Convert.ToDateTime("15/05/2020 09:00"), ValidTo = null},
                 new ProductData{Id = "3", Name = "N95 respirator", Price = 10, ProductCategoryId = "7", ValidFrom = Convert.ToDateTime("10/04/2020 09:00"), ValidTo = null},
                 new ProductData{Id = "4", Name = " 3-layer surgical mask", Price = 5, ProductCategoryId = "1", ValidFrom = Convert.ToDateTime("13/03/2020 09:00"), ValidTo = null},

@@ -2,6 +2,130 @@
 
 <h3>My basket</h3>
 
-@code {
+<div class="input-group col-md-5 text-md-right">
+    <input name="SearchInput" type="text" class="form-control" placeholder="Product Category Name" @bind="this.SearchTerm" @onkeyup="SearchBoxKeyPress" />
+    <div class="input-group-btn">
+        <button name="SearchButton" class="btn btn-default" @onclick="SearchClick">
+            <i class="oi oi-magnifying-glass" title="search" aria-hidden="true"></i>
+        </button>
+    </div>
+    <div class="input-group-btn">
+        <button name="SearchClear" class="btn btn-default" @onclick="ClearSearch">
+            <i class="oi oi-x" title="clear" aria-hidden="true"></i>
+        </button>
+    </div>
+</div>
 
+@if (_basketItems == null)
+{
+    <p>There are no items in the basket</p>
 }
+else
+{
+    <BSTable IsResponsive="true" class="table">
+        <thead class="thead-light">
+            <tr>
+                @*<th>ID</th>*@
+                @*<th>Name</th>*@
+        @*<th>From</th>
+        <th>To</th>*@
+                <th>Basket</th>
+                <th>Product</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var basketItem in _basketItems)
+            {
+                <tr>
+                    <td>@basketItem.BasketId</td>
+                    <td>@basketItem.ProductId</td>
+                    <td>@basketItem.Quantity</td>
+                    @*<td>@basketItem.ProductName</td>*@
+                    @*<td>@basketItem.ProductImage</td>
+                <td>@basketItem.UnitPrice</td>*@
+                    <td>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-pencil text-warning" @onclick="@(async () => await EditBasketItem(basketItem.GetId()))"></BSButton>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-trash text-danger" @onclick="@(async () => await DeleteBasketItem(basketItem.GetId()))"></BSButton>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </BSTable>
+}
+
+<div>
+    <BSModal @bind-IsOpen="@IsEdit" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
+        <BSModalHeader @onclick="CloseModal">@ModalTitle</BSModalHeader>
+        <BSModalBody>
+            <div class="col-md-12">
+                <EditForm Model="@BasketItem" OnValidSubmit="@UpdateBasketItem">
+                    <div class="form-group">
+                        <label for="Quantity" class="control-label">Quantity</label>
+                        <InputNumber id="Quantity" class="form-control" @bind-Value="BasketItem.Quantity" />
+                        <ValidationMessage For="@(() => BasketItem.Quantity)" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success" @onclick=@(async () => await UpdateBasketItem())>Save</button>
+                        <button class="btn btn-primary" @onclick="CloseModal">Cancel</button>
+                    </div>
+                </EditForm>
+            </div>
+        </BSModalBody>
+    </BSModal>
+</div>
+
+<div>
+    <BSModal @bind-IsOpen="IsDelete" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
+        <BSModalHeader @onclick="CloseModal">@ModalTitle</BSModalHeader>
+        <BSModalBody>
+            <div class="col-md-12">
+                <BSAlert Color="Color.Danger">Please review carefully before deleting.</BSAlert>
+                <hr />
+                <h5>Item</h5>
+                <hr />
+                <BSTable IsResponsive="true" class="table">
+                    @*<tr>
+            <td>Product name</td>
+            <td>@BasketItem.ProductName</td>
+        </tr>*@
+        @*<tr>
+            <td>Image</td>
+            <td>@BasketItem.ProductImage</td>
+        </tr>
+        <tr>
+            <td>Unit Price</td>
+            <td>@BasketItem.UnitPrice</td>
+        </tr>
+        <tr>
+            <td>Total price</td>
+            <td>@BasketItem.TotalPrice</td>
+        </tr>*@
+                    <tr>
+                        <td>Product</td>
+                        <td>@BasketItem.ProductId</td>
+                    </tr>
+                    <tr>
+                        <td>Basket</td>
+                        <td>@BasketItem.BasketId</td>
+                    </tr>
+                    <tr>
+                        <td>Quantity</td>
+                        <td>@BasketItem.Quantity</td>
+                    </tr>
+                </BSTable>
+
+                <div class="form-group">
+                    <button type="button" class="btn btn-danger" @onclick=@RemoveBasketItem>Delete</button>
+                    <button class="btn btn-primary" @onclick="CloseModal">Cancel</button>
+                </div>
+            </div>
+        </BSModalBody>
+    </BSModal>
+</div>
+
+<div class="input-group-btn">
+    <button name="AddOrder" class="btn btn-default" @*@onclick="AddOrder"*@>
+        <i class="oi oi-euro" title="AddOrder" aria-hidden="true"></i> Buy
+    </button>
+</div>

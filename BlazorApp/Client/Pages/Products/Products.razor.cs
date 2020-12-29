@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
-using MaskShop.Aids.Constants;
-using MaskShop.Data.Common;
-using MaskShop.Data.Products;
-using MaskShop.Domain.Common;
-using MaskShop.Domain.Products;
+using System.Security.Claims;
+using MaskShop.Domain.Orders;
 using MaskShop.Facade.Orders;
 using MaskShop.Facade.Products;
 using Microsoft.AspNetCore.Components;
@@ -14,7 +12,9 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Forms;
-
+using System.Web.Providers.Entities;
+using MaskShop.Domain.Products;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorApp.Client.Pages.Products
 {
@@ -50,15 +50,11 @@ namespace BlazorApp.Client.Pages.Products
 
         protected BasketItemView BasketItem = new BasketItemView
         {
-            BasketId = "",
-            ProductId = "",
-            ProductImage = "",
-            ProductName = "",
-            Quantity = 0,
-            TotalPrice = 0,
-            UnitPrice = 0,
-            ValidFrom = null,
-            ValidTo = null
+            //BasketId = "",
+            //ProductId = "",
+            //Quantity = 0,
+            //ValidFrom = null,
+            //ValidTo = null
         };
 
         protected string CurrentProductId { get; set; }
@@ -204,25 +200,19 @@ namespace BlazorApp.Client.Pages.Products
             await OnParametersSetAsync();
         }
 
-        //protected async Task CreateBasketItem()
-        //{
-        //    BasketItem = new BasketItemView
-        //    {
-        //        BasketId = "",
-        //        ProductId = CurrentProductId,
-        //        ProductImage = Product.PictureUri,
-        //        ProductName = Product.Name,
-        //        Quantity = 1,
-        //        ValidFrom = DateTime.Now,
-        //        ValidTo = null,
-        //        TotalPrice = 0,
-        //        UnitPrice = Product.Price
-        //    };
-        //    await HttpClient.SendJsonAsync(HttpMethod.Post, "api/basketitems", BasketItem);
-        //    if (IsConnected) await SendMessage();
-        //    CloseModal();
-        //    await OnParametersSetAsync();
-        //}
+        protected async Task CreateBasketItem()
+        {
+            BasketItem.ProductId = CurrentProductId;
+            BasketItem.Quantity = 1;
+            BasketItem.BasketId = "1";
+
+            //await HttpClient.PutJsonAsync("api/basketitems/", BasketItem);
+            await HttpClient.PostAsJsonAsync("api/basketitems", BasketItem);
+            //await HttpClient.SendJsonAsync(HttpMethod.Post, "api/basketitems", BasketItem);
+            if (IsConnected) await SendMessage();
+            CloseModal();
+            await OnParametersSetAsync();
+        }
 
         protected void CloseModal()
         {
@@ -238,99 +228,5 @@ namespace BlazorApp.Client.Pages.Products
         {
             NavigationManager.NavigateTo("/productlist/" + page);
         }
-
-        //public IEnumerable<SelectListItem> ProductCategory { get; }
-
-        //public Products(IProductsRepository a, IProductCategoriesRepository b)
-        //{
-        //    ProductCategory = NewItemsList<ProductCategory, ProductCategoryData>(b);
-        //}
-
-        //public string CategoryName(string id) => ItemName(ProductCategory, id);
-
-        //public List<LambdaExpression> Columns { get; }
-        //    = new List<LambdaExpression>();
-
-        //public ProductView Item { get; set; }
-
-
-        //protected internal static IEnumerable<SelectListItem> NewItemsList<TTDomain, TTData>(
-        //    IRepository<TTDomain> r,
-        //    Func<TTDomain, bool> condition = null,
-        //    Func<TTData, string> getName = null)
-        //    where TTDomain : IEntity<TTData>
-        //    where TTData : NamedEntityData, new()
-        //{
-        //    Func<TTData, string> name = d => (getName is null) ? d.Name : getName(d);
-        //    var items = r?.Get().GetAwaiter().GetResult();
-        //    var l = items is null
-        //        ? new List<SelectListItem>()
-        //        : condition is null ?
-        //            items
-        //                .Select(m => new SelectListItem())
-        //                .ToList() :
-        //            items
-        //                .Where(condition)
-        //                .Select(m => new SelectListItem())
-        //                .ToList();
-        //    l.Insert(0, new SelectListItem());
-        //    return l;
-        //}
-
-        //protected internal static IEnumerable<SelectListItem> NewCategoryList<TTDomain, TTData>(
-        //    IRepository<TTDomain> r)
-        //    where TTDomain : Entity<TTData>
-        //    where TTData : NamedEntityData, new()
-        //{
-        //    var items = r?.Get().GetAwaiter().GetResult();
-        //    return items.Select(m => new SelectListItem()).ToList();
-        //}
-
-        //protected internal static string ItemName(IEnumerable<SelectListItem> list, string id)
-        //{
-        //    if (list is null) return Word.Unspecified;
-
-        //    foreach (var m in list)
-        //        if (m.Value == id)
-        //            return m.Text;
-
-        //    return Word.Unspecified;
-        //}
-
-        //protected IHtmlContent GetRaw<TResult>(IHtmlHelper h, TResult r) => h.Raw(r.ToString());
-
-        //private bool IsCorrectIndex<TList>(int i, IList<TList> l) => i >= 0 && i < l?.Count;
-
-        //public string Undefined => "Undefined";
-
-        //protected string getName<TResult>(IHtmlHelper<Products> h, int i)
-        //{
-        //    if (IsCorrectIndex(i, Columns))
-        //        return h.DisplayNameFor(Columns[i] as Expression<Func<Products, TResult>>);
-        //    return Undefined;
-        //}
-
-        //protected IHtmlContent getValue<TResult>(IHtmlHelper<Products> h, int i)
-        //{
-        //    if (IsCorrectIndex(i, Columns))
-        //        return h.DisplayFor(Columns[i] as Expression<Func<Products, TResult>>);
-        //    return null;
-        //}
-
-        //public string GetName(IHtmlHelper<Products> h, int i) => i switch
-        //{
-        //    4 => getName<decimal>(h, i),
-        //    8 | 9 => getName<DateTime?>(h, i),
-        //    _ => GetName(h, i)
-        //};
-
-        //public IHtmlContent GetValue(IHtmlHelper<Products> h, int i) => i switch
-        //{
-        //    4 => getValue<decimal>(h, i),
-        //    6 => GetRaw(h, (Item.ProductCategoryId)),
-        //    8 | 9 => getValue<DateTime?>(h, i),
-        //    _ => GetValue(h, i)
-        //};
     }
-
 }

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MaskShop.Domain.Orders;
+using MaskShop.Domain.Products;
 using MaskShop.Facade.Orders;
+using MaskShop.Facade.Products;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,12 +17,14 @@ namespace BlazorApp.Server.Controllers
     public class BasketItemsController : ControllerBase
     {
         private readonly IBasketItemsRepository _bir;
-        private readonly BasketItemViewFactory _bivf;
+        private readonly IProductsRepository _pr;
+        private readonly IBasketsRepository _br;
 
-        public  BasketItemsController(IBasketItemsRepository bir, BasketItemViewFactory bivf)
+        public  BasketItemsController(IBasketItemsRepository bir, IProductsRepository pr, IBasketsRepository br)
         {
             _bir = bir;
-            _bivf = bivf;
+            _pr = pr;
+            _br = br;
         }
 
         [HttpGet]
@@ -29,9 +33,9 @@ namespace BlazorApp.Server.Controllers
             var result = await _bir.Get();
             var aa = new List<BasketItemView>();
 
-            result.ForEach(x => aa.Add(_bivf.Create(x)));
+            result.ForEach(x => aa.Add(BasketItemViewFactory.Create(x)));
 
-            return name == null ? aa : aa.Where(x => x.ProductName.ToLower().Contains(name.ToLower())).ToList();
+            return name == null ? aa : aa.Where(x => x.ProductId.ToLower().Contains(name.ToLower())).ToList();
 
         }
 
@@ -45,7 +49,7 @@ namespace BlazorApp.Server.Controllers
                 return NotFound();
             }
 
-            return _bivf.Create(basketItem);
+            return BasketItemViewFactory.Create(basketItem);
         }
 
         [HttpPut("{id}")]
@@ -56,18 +60,32 @@ namespace BlazorApp.Server.Controllers
                 return BadRequest();
             }
 
-            await _bir.Update(_bivf.Create(basketItem));
+            await _bir.Update(BasketItemViewFactory.Create(basketItem));
 
             return NoContent();
         }
 
         [HttpPost]
-        public async Task<ActionResult<BasketItemView>> PostBasketItem(BasketItemView basketItem)
+        public async Task<ActionResult<BasketItemView>> PostBasketItem(string productId, BasketItemView basketItem)
         {
-            await _bir.Add(_bivf.Create(basketItem));
+            //Product product = await _pr.Get(productId);
+            //Basket basket = await _br.GetLatestForUser(User.Identity.Name);
+            //await _bir.Add(basket, product);
 
-            return CreatedAtAction("GetBasketItem", new { id = basketItem.BasketId }, basketItem);
+            await _bir.Add(BasketItemViewFactory.Create(basketItem));
+            return CreatedAtAction("GetBasketItem", new { id = basketItem.GetId() }, basketItem);
         }
+
+        //[HttpPost]
+        //public async Task<ActionResult<BasketItemView>> PostBasketItem(string productId, BasketItemView basketItem)
+        //{
+        //    Product product = _pr.Get(productId);
+        //Basket basket = _br.GetLatestForUser(User.Identity.Name);
+        //    BasketItem i = await _bir.Add(basket, product);
+        //    //await _bir.Add(_bivf.Create(basketItem));
+
+        //    return CreatedAtAction("GetBasketItem", new { id = basketItem.GetId() }, basketItem);
+        //}
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteBasketItem(string id)
