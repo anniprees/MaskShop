@@ -88,7 +88,6 @@ else
                         <ValidationMessage For="@(() => Product.Name)" />
 
                         <label for="Product Category" class="control-label">Product Category</label>
-                        <InputSelect Id="Product Category" class="form-control" @bind-Value="Product.ProductCategoryId">
                         <InputSelect Id="Product Category" class="form-control" @bind-Value="Product.ProductCategoryId">                            
                             @if (_categories != null)
                             {

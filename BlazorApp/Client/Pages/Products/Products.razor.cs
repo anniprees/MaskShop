@@ -229,5 +229,16 @@ namespace BlazorApp.Client.Pages.Products
         {
             NavigationManager.NavigateTo("/productlist/" + page);
         }
+
+        protected async Task FilterCategory(ChangeEventArgs eventArgs)
+        {
+            if (eventArgs.Value.ToString() == "-1")
+                return;
+
+            var filteredList = await HttpClient.GetJsonAsync<List<ProductView>>("api/products");
+            _products = filteredList.Where(p => p.ProductCategoryId.Equals(eventArgs.Value.ToString())).ToList();
+
+            StateHasChanged();
+        }
     }
 }
