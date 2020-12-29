@@ -35,11 +35,11 @@
                         {
                             if (column.Alignment != Alignment.NotSet)
                             {
-                                <td align="@column.Alignment.ToString().ToLower()">@FormatItemValue(item, column)</td>
+                                <td align="@column.Alignment.ToString().ToLower()">@item</td>
                             }
                             else
                             {
-                                <td>@FormatItemValue(item, column)</td>
+                                <td>@item</td>
                             }
                         }
                     }
@@ -126,31 +126,31 @@
         return alignment;
     }
 
-    private string FormatItemValue(TItem item, ColumnDefinition column)
-    {
-        string value = string.Empty;
+    //private string FormatItemValue(TItem item, ColumnDefinition column)
+    //{
+    //    string value = string.Empty;
 
-        if (!string.IsNullOrWhiteSpace(column.Format) && column.DataType != DataType.NotSet)
-        {
-            switch (column.DataType)
-            {
-                case DataType.Date:
-                case DataType.DateTime:
-                    value = DateTime.Parse(typeof(TItem).GetProperty(column.DataField)?.GetValue(item).ToString()).ToString(column.Format);
-                    break;
-                case DataType.Boolean:
-                    value = bool.Parse(typeof(TItem).GetProperty(column.DataField)?.GetValue(item).ToString()).ToString();
-                    break;
-                case DataType.Currency:
-                    value = Math.Round(double.Parse(typeof(TItem).GetProperty(column.DataField).GetValue(item).ToString()), 2).ToString("c");
-                    break;
-            }
-        }
-        else
-        {
-            return typeof(TItem).GetProperty(column.DataField)?.GetValue(item).ToString();
-        }
+    //    if (!string.IsNullOrWhiteSpace(column.Format) && column.DataType != DataType.NotSet)
+    //    {
+    //        switch (column.DataType)
+    //        {
+    //            case DataType.Date:
+    //            case DataType.DateTime:
+    //                value = DateTime.Parse(typeof(TItem).GetProperty(column.DataField)?.GetValue(item).ToString()).ToString(column.Format);
+    //                break;
+    //            case DataType.Boolean:
+    //                value = bool.Parse(typeof(TItem).GetProperty(column.DataField)?.GetValue(item).ToString()).ToString();
+    //                break;
+    //            case DataType.Currency:
+    //                value = Math.Round(double.Parse(typeof(TItem).GetProperty(column.DataField).GetValue(item).ToString()), 2).ToString("c");
+    //                break;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        return typeof(TItem).GetProperty(column.DataField)?.GetValue(item).ToString();
+    //    }
 
-        return value;
-    }
+    //    return value;
+    //}
 }

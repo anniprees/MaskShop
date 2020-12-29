@@ -19,6 +19,15 @@
             <i class="oi oi-x" title="clear" aria-hidden="true"></i>
         </button>
     </div>
+    <div>
+        <select class="form-control" @onchange="FilterCategory">
+            <option value="-1">- Filter by category -</option>
+            <option value="1">CAT1</option>
+            <option value="2">CAT2</option>
+            <option value="3">CAT3</option>
+        </select>
+    
+    </div>
 </div>
 
 @if (_products == null)
@@ -80,6 +89,7 @@ else
 
                         <label for="Product Category" class="control-label">Product Category</label>
                         <InputSelect Id="Product Category" class="form-control" @bind-Value="Product.ProductCategoryId">
+                        <InputSelect Id="Product Category" class="form-control" @bind-Value="Product.ProductCategoryId">                            
                             @if (_categories != null)
                             {
                                 foreach (var category in _categories)
@@ -89,13 +99,9 @@ else
                             }
                         </InputSelect>
 
-                        @*<label for="Product Category" class="control-label">Product Category</label>
-        <InputText id="Product Category" class="form-control" @bind-Value="Product.ProductCategoryId"/>
-        <ValidationMessage For="@(() => Product.ProductCategoryId)"/>*@
-
-                        @*<label for="Feature Applicability" class="control-label">Feature Applicability</label>
-        <InputText id="Feature Applicability" class="form-control" @bind-Value="Product.ProductFeatureApplicabilityId" />
-        <ValidationMessage For="@(() => Product.ProductFeatureApplicabilityId)" />*@
+                        <label for="Feature Applicability" class="control-label">Feature Applicability</label>
+                        <InputText id="Feature Applicability" class="form-control" @bind-Value="Product.ProductFeatureApplicabilityId" />
+                        <ValidationMessage For="@(() => Product.ProductFeatureApplicabilityId)" />
 
                         <label for="Price" class="control-label">Price</label>
                         <InputNumber id="Price" class="form-control" @bind-Value="Product.Price" />

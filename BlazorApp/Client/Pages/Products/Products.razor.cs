@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -29,7 +31,7 @@ namespace BlazorApp.Client.Pages.Products
 
         [Parameter] public string SearchTerm { get; set; } = string.Empty;
 
-        ProductView[] _products;
+        List<ProductView> _products;
         ProductCategoryView[] _categories;
 
         private HubConnection hubConnection;
@@ -90,25 +92,24 @@ namespace BlazorApp.Client.Pages.Products
 
         protected async Task LoadData()
         {
-            _products = await HttpClient.GetJsonAsync<ProductView[]>("api/products");
+            _products = await HttpClient.GetJsonAsync<List<ProductView>>("api/products");
             StateHasChanged();
         }
 
         protected async Task LoadCategoriesData()
         {
             _categories = await HttpClient.GetJsonAsync<ProductCategoryView[]>("api/productcategories");
-            //StateHasChanged();
         }
 
         protected async Task SearchClick()
         {
             if (string.IsNullOrEmpty(SearchTerm))
             {
-                _products = await HttpClient.GetJsonAsync<ProductView[]>(("api/products/") + "?name=" + SearchTerm);
+                _products = await HttpClient.GetJsonAsync<List<ProductView>>(("api/products/") + "?name=" + SearchTerm);
                 return;
             }
 
-            _products = await HttpClient.GetJsonAsync<ProductView[]>(("api/products/") + "?name=" + SearchTerm);
+            _products = await HttpClient.GetJsonAsync<List<ProductView>>(("api/products/") + "?name=" + SearchTerm);
             StateHasChanged();
         }
 
@@ -123,7 +124,7 @@ namespace BlazorApp.Client.Pages.Products
         protected async Task ClearSearch()
         {
             SearchTerm = string.Empty;
-            _products = await HttpClient.GetJsonAsync<ProductView[]>("api/products/");
+            _products = await HttpClient.GetJsonAsync<List<ProductView>>("api/products/");
             StateHasChanged();
         }
 

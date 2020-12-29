@@ -17,7 +17,7 @@
                    DataItems="_categories"
                    Columns="_columnsDefinition"
                    Paging="@(new PagingConfig {
-                               Enabled = true,
+                               Enabled = false,
                                CustomPager = false,
                                PageSize = 3
                            })"></DataGridComponent>
@@ -51,8 +51,8 @@
                 new ColumnDefinition[]{
                     new ColumnDefinition {DataField = "Id", Caption = "Id"},
                     new ColumnDefinition {DataField = "Name", Caption = "Product Category"},
-                    new ColumnDefinition {DataField = "From", Caption = "Valid From"},
-                    new ColumnDefinition {DataField = "To", Caption = "Valid To"},
+                    new ColumnDefinition {DataField = "ValidFrom", Caption = "Valid From"},
+                    new ColumnDefinition {DataField = "ValidTo", Caption = "Valid To"},
                 }
             );
         }
