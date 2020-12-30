@@ -1,0 +1,171 @@
+﻿@page "/parties"
+
+<h2>Parties</h2>
+
+<div class="row mb-3">
+    <div class="col-md-7">
+        <BSButton Class="btn btn-outline-primary" @onclick="AddParty">Add Party</BSButton>
+    </div>
+</div>
+<div class="input-group col-md-5 text-md-right">
+    <input name="SearchInput" type="text" class="form-control" placeholder="Search Name" @bind="this.SearchTerm" @onkeyup="SearchBoxKeyPress" />
+    <div class="input-group-btn">
+        <button name="SearchButton" class="btn btn-default" @onclick="SearchClick">
+            <i class="oi oi-magnifying-glass" title="search" aria-hidden="true"></i>
+        </button>
+    </div>
+    <div class="input-group-btn">
+        <button name="SearchClear" class="btn btn-default" @onclick="ClearSearch">
+            <i class="oi oi-x" title="clear" aria-hidden="true"></i>
+        </button>
+    </div>
+</div>
+
+@*<Pagination 
+            TotalPagesQuantity="totalPagesQuantity" 
+            CurrentPage="currentPage" 
+            Radius="2"
+            SelectedPage="SelectedPage"></Pagination>*@
+
+<TableGeneric Items="_parties">    
+    <WithItemsTemplate>
+       <table class="table" is-striped>
+            <thead class="thead-light">
+                <tr>
+                    <th>ID</th>
+                    <th>PartyNameId</th>
+                    <th>PartyRoleId</th>
+                    <th>ContactMechanismId</th>
+                    <th>PartyType</th>
+                    <th>From</th>
+                    <th>To</th>
+                </tr>
+            </thead>
+        @foreach (var item in _parties)
+        {
+            <tbody>
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.PartyNameId</td>
+                    <td>@item.PartyRoleId</td>
+                    <td>@item.ContactMechanismId</td>
+                    <td>@item.PartyType</td>
+                    <td>@item.ValidFrom</td>
+                    <td>@item.ValidTo</td>
+                    <td>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-eye text-primary" @onclick="@(async () => await ViewParty(item.Id))"></BSButton>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-pencil text-warning" @onclick="@(async () => await EditParty(item.Id))"></BSButton>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-trash text-danger" @onclick="@(async () => await DeleteParty(item.Id))"></BSButton>
+                    </td>
+                </tr>
+            </tbody>
+        }
+        </table>
+    </WithItemsTemplate>
+</TableGeneric>
+
+<div>
+    <BSModal @bind-IsOpen="@IsAdd" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
+        <BSModalHeader @onclick="CloseModal">@ModalTitle</BSModalHeader>
+        <BSModalBody>
+            <div class="col-md-12">
+                <EditForm Model="@Party" OnValidSubmit="@CreateParty">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+                    <div class="form-group">
+                        <label for="Id" class="control-label">ID</label>
+                        <InputText id="Id" class="form-control" @bind-Value="Party.Id" />
+                        <ValidationMessage For="@(() => Party.Id)" />
+
+                        <label for="PartyNameId" class="control-label">PartyNameId</label>
+                        <InputText id="PartyNameId" class="form-control" @bind-Value="Party.PartyNameId" />
+                        <ValidationMessage For="@(() => Party.PartyNameId)" />
+
+                        <label for="PartyRoleId" class="control-label">PartyRoleId</label>
+                        <InputText id="PartyRoleId" class="form-control" @bind-Value="Party.PartyRoleId" />
+                        <ValidationMessage For="@(() => Party.PartyRoleId)" />
+
+                        <label for="ContactMechanismId" class="control-label">ContactMechanismId</label>
+                        <InputText id="ContactMechanismId" class="form-control" @bind-Value="Party.ContactMechanismId" />
+                        <ValidationMessage For="@(() => Party.ContactMechanismId)" />
+
+                        <label for="PartyType" class="control-label">Party Type</label>
+                        <InputSelect id="PartyType" class="form-control" @bind-Value="Party.PartyType" />
+                        <ValidationMessage For="@(() => Party.PartyType)" />
+
+                        <label for="Valid From" class="control-label">Valid From</label>
+                        <InputDate id="Valid From" class="form-control" @bind-Value="Party.ValidFrom" />
+                        <ValidationMessage For="@(() => Party.ValidFrom)" />
+
+                        <label for="Valid To" class="control-label">Valid To</label>
+                        <InputDate id="Valid To" class="form-control" @bind-Value="Party.ValidTo" />
+                        <ValidationMessage For="@(() => Party.ValidTo)" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success" @onclick=@(async () => await CreateParty())>Save</button>
+                        <button class="btn btn-primary" @onclick="CloseModal">Cancel</button>
+                    </div>
+                </EditForm>
+            </div>
+        </BSModalBody>
+    </BSModal>
+</div>
+
+<div>
+    <BSModal @bind-IsOpen="IsView" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
+        <BSModalHeader @onclick="CloseModal">@ModalTitle</BSModalHeader>
+        <BSModalBody>
+            <div class="col-md-12">
+                @if (IsDelete)
+                {
+                    <BSAlert Color="Color.Danger">Please review carefully before deleting.</BSAlert>
+                }
+                <hr />
+                <h5>Party</h5>
+                <hr />
+                <BSTable IsResponsive="true" class="table">
+                    <tr>
+                        <td>Id</td>
+                        <td>@Party.Id</td>
+                    </tr>
+                    <tr>
+                        <td>PartyNameId</td>
+                        <td>@Party.PartyNameId</td>
+                    </tr>
+                    <tr>
+                        <td>PartyRoleId</td>
+                        <td>@Party.PartyRoleId</td>
+                    </tr>
+                    <tr>
+                        <td>ContactMechanismId</td>
+                        <td>@Party.ContactMechanismId</td>
+                    </tr>
+                    <tr>
+                        <td>PartyType</td>
+                        <td>@Party.PartyType</td>
+                    </tr>
+                    <tr>
+                        <td>Valid From</td>
+                        <td>@Party.ValidFrom</td>
+                    </tr>
+                    <tr>
+                        <td>Valid To</td>
+                        <td>@Party.ValidTo</td>
+                    </tr>
+                </BSTable>
+
+                <div class="form-group">
+                    @if (IsDelete)
+                    {
+                        <button type="button" class="btn btn-danger" @onclick=@RemoveParty>Delete</button>
+                        <button class="btn btn-primary" @onclick="CloseModal">Cancel</button>
+                    }
+                    @if (!IsDelete)
+                    {
+                        <button class="btn btn-primary" @onclick="CloseModal">Back</button>
+                    }
+                </div>
+            </div>
+        </BSModalBody>
+    </BSModal>
+</div>
