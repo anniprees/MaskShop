@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MaskShop.Tests.Data.Parties
 {
     [TestClass]
-    public class PartyTypeDataTests : BaseTests
+    public class PartyTypeTests : BaseTests
     {
         [TestInitialize] public void TestInitialize() => type = typeof(PartyType);
 
