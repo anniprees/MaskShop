@@ -1,0 +1,151 @@
+﻿@page "/partyroles"
+
+<h2>Party Roles</h2>
+
+<div class="row mb-3">
+    <div class="col-md-7">
+        <BSButton Class="btn btn-outline-primary" @onclick="AddPartyRole">Add Party Role</BSButton>
+    </div>
+</div>
+<div class="input-group col-md-5 text-md-right">
+    <input name="SearchInput" type="text" class="form-control" placeholder="Search Role" @bind="this.SearchTerm" @onkeyup="SearchBoxKeyPress" />
+    <div class="input-group-btn">
+        <button name="SearchButton" class="btn btn-default" @onclick="SearchClick">
+            <i class="oi oi-magnifying-glass" title="search" aria-hidden="true"></i>
+        </button>
+    </div>
+    <div class="input-group-btn">
+        <button name="SearchClear" class="btn btn-default" @onclick="ClearSearch">
+            <i class="oi oi-x" title="clear" aria-hidden="true"></i>
+        </button>
+    </div>
+</div>
+
+@*<Pagination 
+            TotalPagesQuantity="totalPagesQuantity" 
+            CurrentPage="currentPage" 
+            Radius="2"
+            SelectedPage="SelectedPage"></Pagination>*@
+
+<TableGeneric Items="_partyRoles">    
+    <WithItemsTemplate>
+       <table class="table" is-striped>
+            <thead class="thead-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Role</th>
+                    <th>PartyId</th>
+                    <th>From</th>
+                    <th>To</th>
+                </tr>
+            </thead>
+        @foreach (var item in _partyRoles)
+        {
+            <tbody>
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Role</td>
+                    <td>@item.PartyId</td>
+                    <td>@item.ValidFrom</td>
+                    <td>@item.ValidTo</td>
+                    <td>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-eye text-primary" @onclick="@(async () => await ViewPartyRole(item.Id))"></BSButton>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-pencil text-warning" @onclick="@(async () => await EditPartyRole(item.Id))"></BSButton>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-trash text-danger" @onclick="@(async () => await DeletePartyRole(item.Id))"></BSButton>
+                    </td>
+                </tr>
+            </tbody>
+        }
+        </table>
+    </WithItemsTemplate>
+</TableGeneric>
+
+<div>
+    <BSModal @bind-IsOpen="@IsAdd" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
+        <BSModalHeader @onclick="CloseModal">@ModalTitle</BSModalHeader>
+        <BSModalBody>
+            <div class="col-md-12">
+                <EditForm Model="@PartyRole" OnValidSubmit="@CreatePartyRole">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+                    <div class="form-group">
+                        <label for="Id" class="control-label">ID</label>
+                        <InputText id="Id" class="form-control" @bind-Value="PartyRole.Id" />
+                        <ValidationMessage For="@(() => PartyRole.Id)" />
+
+                        <label for="Role" class="control-label">Role</label>
+                        <InputText id="Role" class="form-control" @bind-Value="PartyRole.Role" />
+                        <ValidationMessage For="@(() => PartyRole.Role)" />
+
+                        <label for="PartyId" class="control-label">PartyId</label>
+                        <InputText id="PartyId" class="form-control" @bind-Value="PartyRole.PartyId" />
+                        <ValidationMessage For="@(() => PartyRole.PartyId)" />
+
+                        <label for="Valid From" class="control-label">Valid From</label>
+                        <InputDate id="Valid From" class="form-control" @bind-Value="PartyRole.ValidFrom" />
+                        <ValidationMessage For="@(() => PartyRole.ValidFrom)" />
+
+                        <label for="Valid To" class="control-label">Valid To</label>
+                        <InputDate id="Valid To" class="form-control" @bind-Value="PartyRole.ValidTo" />
+                        <ValidationMessage For="@(() => PartyRole.ValidTo)" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success" @onclick=@(async () => await CreatePartyRole())>Save</button>
+                        <button class="btn btn-primary" @onclick="CloseModal">Cancel</button>
+                    </div>
+                </EditForm>
+            </div>
+        </BSModalBody>
+    </BSModal>
+</div>
+
+<div>
+    <BSModal @bind-IsOpen="IsView" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
+        <BSModalHeader @onclick="CloseModal">@ModalTitle</BSModalHeader>
+        <BSModalBody>
+            <div class="col-md-12">
+                @if (IsDelete)
+                {
+                    <BSAlert Color="Color.Danger">Please review carefully before deleting.</BSAlert>
+                }
+                <hr />
+                <h5>PartyRole</h5>
+                <hr />
+                <BSTable IsResponsive="true" class="table">
+                    <tr>
+                        <td>Id</td>
+                        <td>@PartyRole.Id</td>
+                    </tr>
+                    <tr>
+                        <td>Role</td>
+                        <td>@PartyRole.Role</td>
+                    </tr>
+                    <tr>
+                        <td>PartyId</td>
+                        <td>@PartyRole.PartyId</td>
+                    </tr>
+                    <tr>
+                        <td>Valid From</td>
+                        <td>@PartyRole.ValidFrom</td>
+                    </tr>
+                    <tr>
+                        <td>Valid To</td>
+                        <td>@PartyRole.ValidTo</td>
+                    </tr>
+                </BSTable>
+
+                <div class="form-group">
+                    @if (IsDelete)
+                    {
+                        <button type="button" class="btn btn-danger" @onclick=@RemovePartyRole>Delete</button>
+                        <button class="btn btn-primary" @onclick="CloseModal">Cancel</button>
+                    }
+                    @if (!IsDelete)
+                    {
+                        <button class="btn btn-primary" @onclick="CloseModal">Back</button>
+                    }
+                </div>
+            </div>
+        </BSModalBody>
+    </BSModal>
+</div>

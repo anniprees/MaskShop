@@ -4,11 +4,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using MaskShop.Facade.Parties;
-using MaskShop.Domain.Parties;
 
 namespace BlazorApp.Client.Pages.Party
 {
-    public partial class PartyNames
+    public partial class PartyRoles
     {
         [Inject] private HttpClient HttpClient { get; set; }
         [Parameter] public string SearchTerm { get; set; } = string.Empty;
@@ -17,14 +16,12 @@ namespace BlazorApp.Client.Pages.Party
         private int currentPage = 1;
 
 
-        List<PartyNameView> _partyNames;
+        List<PartyRoleView> _partyRoles;
 
-        protected PartyNameView PartyName = new PartyNameView()
+        protected PartyRoleView PartyRole = new PartyRoleView()
         {
             Id ="",
-            FirstName = "",
-            MiddleName = "",
-            LastName = "",
+            Role = "",
             PartyId = "",
             ValidFrom = null,
             ValidTo = null
@@ -49,17 +46,17 @@ namespace BlazorApp.Client.Pages.Party
 
         protected async Task LoadData()
         {
-            _partyNames = await HttpClient.GetJsonAsync<List<PartyNameView>>("api/partynames");
+            _partyRoles = await HttpClient.GetJsonAsync<List<PartyRoleView>>("api/partyroles");
         }
 
         //protected async Task LoadPagedData(int page = 1, int pageSize = 10)
         //{
-        //    var httpResponse = await HttpClient.GetAsync($"api/partynames/?page={page}&pageSize={pageSize}");
+        //    var httpResponse = await HttpClient.GetAsync($"api/partyroles/?page={page}&pageSize={pageSize}");
         //    if (httpResponse.IsSuccessStatusCode)
         //    {
         //        totalPagesQuantity = int.Parse(httpResponse.Headers.GetValues("totalPages").FirstOrDefault());
         //        var responseString = await httpResponse.Content.ReadAsStringAsync();
-        //        _contactMechanisms = JsonSerializer.Deserialize<List<PartyNameView>>(responseString,
+        //        _partyroles = JsonSerializer.Deserialize<List<PartyRoleView>>(responseString,
         //            new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         //    }
         //    else
@@ -72,11 +69,11 @@ namespace BlazorApp.Client.Pages.Party
         {
             if (string.IsNullOrEmpty(SearchTerm))
             {
-                _partyNames = await HttpClient.GetJsonAsync<List<PartyNameView>>(("api/partynames/") + "?name=" + SearchTerm);
+                _partyRoles = await HttpClient.GetJsonAsync<List<PartyRoleView>>(("api/partyroles/") + "?name=" + SearchTerm);
                 return;
             }
 
-            _partyNames = await HttpClient.GetJsonAsync<List<PartyNameView>>(("api/partynames/") + "?name=" + SearchTerm);
+            _partyRoles = await HttpClient.GetJsonAsync<List<PartyRoleView>>(("api/partyroles/") + "?name=" + SearchTerm);
             StateHasChanged();
         }
 
@@ -91,71 +88,69 @@ namespace BlazorApp.Client.Pages.Party
         protected async Task ClearSearch()
         {
             SearchTerm = string.Empty;
-            _partyNames = await HttpClient.GetJsonAsync<List<PartyNameView>>("api/partynames/");
+            _partyRoles = await HttpClient.GetJsonAsync<List<PartyRoleView>>("api/partyroles/");
             StateHasChanged();
         }
         
-        protected void AddPartyName()
+        protected void AddPartyRole()
         {
             this.IsAdd = true;
-            this.ModalTitle = "Create party name";
+            this.ModalTitle = "Create party role";
         }
 
-        protected async Task ViewPartyName(string Id)
+        protected async Task ViewPartyRole(string Id)
         {
-            PartyName = await HttpClient.GetJsonAsync<PartyNameView>("api/partynames/" + Id);
+            PartyRole = await HttpClient.GetJsonAsync<PartyRoleView>("api/partyroles/" + Id);
             SelectedId = Id;
             this.IsView = true;
-            this.ModalTitle = "View party name";
+            this.ModalTitle = "View party role";
         }
 
-        protected async Task EditPartyName(string Id)
+        protected async Task EditPartyRole(string Id)
         {
-            PartyName = await HttpClient.GetJsonAsync<PartyNameView>("api/partynames/" + Id);
+            PartyRole = await HttpClient.GetJsonAsync<PartyRoleView>("api/partyroles/" + Id);
             SelectedId = Id;
             this.IsAdd = true;
-            this.ModalTitle = "Edit party name";
+            this.ModalTitle = "Edit party role";
         }
 
-        protected async Task DeletePartyName(string Id)
+        protected async Task DeletePartyRole(string Id)
         {
-            PartyName = await HttpClient.GetJsonAsync<PartyNameView>("api/partynames/" + Id);
+            PartyRole = await HttpClient.GetJsonAsync<PartyRoleView>("api/partyroles/" + Id);
             SelectedId = Id;
             this.IsView = true;
             this.IsDelete = true;
-            this.ModalTitle = "Delete party name";
+            this.ModalTitle = "Delete party role";
         }
 
-        protected async Task CreatePartyName()
+        protected async Task CreatePartyRole()
         {
             if (SelectedId == null)
             {
-                await HttpClient.SendJsonAsync(HttpMethod.Post, "api/partynames", PartyName);
+                await HttpClient.SendJsonAsync(HttpMethod.Post, "api/partyroles", PartyRole);
             }
             else
             {
-                await HttpClient.PutJsonAsync("api/partynames/" + SelectedId, PartyName);
+                await HttpClient.PutJsonAsync("api/partyroles/" + SelectedId, PartyRole);
             }
 
             CloseModal();
             await OnParametersSetAsync();
         }
 
-        protected async Task RemovePartyName()
+        protected async Task RemovePartyRole()
         {
-            await HttpClient.DeleteAsync("api/partynames/" + SelectedId);
+            await HttpClient.DeleteAsync("api/partyroles/" + SelectedId);
             CloseModal();
             await OnParametersSetAsync();
         }
 
         protected void CloseModal()
         {
-            PartyName = new PartyNameView()
+            PartyRole = new PartyRoleView()
             {
                 Id = "",
-                FirstName = "",
-                MiddleName = "",
-                LastName = "",
+                Role = "",
                 PartyId = "",
                 ValidFrom = null,
                 ValidTo = null
