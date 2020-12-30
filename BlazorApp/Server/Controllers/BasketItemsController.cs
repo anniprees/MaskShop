@@ -56,7 +56,7 @@ namespace BlazorApp.Server.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBasketItem(string id, BasketItemView basketItem)
         {
-            if (id != basketItem.BasketId)
+            if (id != basketItem.GetId())
             {
                 return BadRequest();
             }

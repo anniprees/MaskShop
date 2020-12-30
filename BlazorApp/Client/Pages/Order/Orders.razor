@@ -1,5 +1,4 @@
 ﻿@page "/orders"
-@using MaskShop.Domain.Products
 
 <h3>Orders</h3>
 
@@ -33,7 +32,7 @@ else
                 <th>Buyer ID</th>
                 <th>Buyer name</th>
                 <th>Contact</th>
-                <th>Total price</th>
+                @*<th>Total price</th>*@
                 <th>Order date</th>
                 <th>To</th>
             </tr>
@@ -47,7 +46,7 @@ else
                     <td>@order.PartyId</td>
                     <td>@order.PartyNameId</td>
                     <td>@order.ContactMechanismId</td>
-                    <td>@order.TotalPrice</td>
+                    @*<td>@order.TotalPrice</td>*@
                     <td>@order.ValidFrom</td>
                     <td>@order.ValidTo</td>
                     <td>

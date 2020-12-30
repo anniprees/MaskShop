@@ -24,13 +24,13 @@ namespace MaskShop.Facade.Orders
         {
             var v = new BasketItemView();
             Copy.Members(o?.Data, v);
-            //v.ProductName = o?.Product.ToString();
-            //    string s = Convert.ToBase64String(
-            //        o.Product.Picture, 0,
-            //        o.Product.Picture.Length);
-            //    v.ProductImage = "data:image/jpg;base64," + s;
-            //v.UnitPrice = o.Product.Price;
-            //v.TotalPrice = o.TotalPrice;
+            v.ProductName = o?.Product.ToString();
+            string s = Convert.ToBase64String(
+                o.Product.Picture, 0,
+                o.Product.Picture.Length);
+            v.ProductImage = "data:image/jpg;base64," + s;
+            v.UnitPrice = o.Product.Price;
+            v.TotalPrice = v.UnitPrice * v.Quantity;
             return v;
         }
 

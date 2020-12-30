@@ -26,29 +26,34 @@ else
         <thead class="thead-light">
             <tr>
                 @*<th>ID</th>*@
-                @*<th>Name</th>*@
         @*<th>From</th>
         <th>To</th>*@
                 <th>Basket</th>
                 <th>Product</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Price</th>
                 <th>Quantity</th>
+                <th>Total price</th>
+
             </tr>
         </thead>
         <tbody>
             @foreach (var basketItem in _basketItems)
             {
-                <tr>
-                    <td>@basketItem.BasketId</td>
-                    <td>@basketItem.ProductId</td>
-                    <td>@basketItem.Quantity</td>
-                    @*<td>@basketItem.ProductName</td>*@
-                    @*<td>@basketItem.ProductImage</td>
-                <td>@basketItem.UnitPrice</td>*@
-                    <td>
-                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-pencil text-warning" @onclick="@(async () => await EditBasketItem(basketItem.GetId()))"></BSButton>
-                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-trash text-danger" @onclick="@(async () => await DeleteBasketItem(basketItem.GetId()))"></BSButton>
-                    </td>
-                </tr>
+            <tr>
+                <td>@basketItem.BasketId</td>
+                <td>@basketItem.ProductId</td>
+                <td>@basketItem.ProductName</td>
+                <td><img src="@basketItem.ProductImage" width="200" /></td>
+                <td>@basketItem.UnitPrice</td>
+                <td>@basketItem.Quantity</td>
+                <td>@basketItem.TotalPrice</td>
+                <td>
+                    <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-pencil text-warning" @onclick="@(async () => await EditBasketItem(basketItem.GetId()))"></BSButton>
+                    <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-trash text-danger" @onclick="@(async () => await DeleteBasketItem(basketItem.GetId()))"></BSButton>
+                </td>
+            </tr>
             }
         </tbody>
     </BSTable>
@@ -124,8 +129,6 @@ else
     </BSModal>
 </div>
 
-<div class="input-group-btn">
-    <button name="AddOrder" class="btn btn-default" @*@onclick="AddOrder"*@>
-        <i class="oi oi-euro" title="AddOrder" aria-hidden="true"></i> Buy
+    <button class="btn btn-primary" @onclick=@(async () => await CreateOrder())>
+    <i class="oi oi-euro"></i>  Buy
     </button>
-</div>

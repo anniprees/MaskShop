@@ -132,11 +132,11 @@ namespace BlazorApp.Client.Pages.Basket
 
         protected async Task CreateOrder()
         {
-            Order.Id = "";
-            Order.Name = "";
-            Order.PartyId = "";
-            Order.PartyNameId = "";
-            Order.ContactMechanismId = "";
+            Order.Id = "1";
+            Order.Name = "Order name";
+            Order.PartyId = "1";
+            Order.PartyNameId = "1";
+            Order.ContactMechanismId = "1";
             Order.ValidFrom = DateTime.Now;
             Order.ValidTo = null;
 
