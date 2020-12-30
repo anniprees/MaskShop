@@ -10,6 +10,7 @@ using System.Linq;
 using BlazorApp.Server.Data;
 using BlazorApp.Server.Hubs;
 using BlazorApp.Server.Models;
+using MaskShop.Domain.Common;
 using MaskShop.Domain.Orders;
 using MaskShop.Domain.Parties;
 using MaskShop.Domain.Products;
@@ -34,23 +35,55 @@ namespace BlazorApp.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options => {options.AddPolicy("_myAllowSpecificOrigins", 
-                builder=>builder
-                    .AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .WithExposedHeaders("X-Pagination"));});
+            RegisterDbContexts(services);
+            RegisterAuthentication(services);
+            services.AddRazorPages();
+            services.AddControllersWithViews();
+            RegisterConnections(services);
+            RegisterRepositories(services);
+        }
 
+        private void RegisterDbContexts(IServiceCollection services)
+        {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDbContext<ShopDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            
+        }
+
+        private void RegisterAuthentication(IServiceCollection services)
+        {
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddIdentityServer()
+                .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+
+            services.AddAuthentication()
+                .AddIdentityServerJwt();
+        }
+
+        private void RegisterConnections(IServiceCollection services)
+        {
+            services.AddCors(options => {
+                options.AddPolicy("_myAllowSpecificOrigins",
+                    builder => builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .WithExposedHeaders("X-Pagination"));
+            });
+
+            services.AddSignalR();
+
+            services.AddResponseCompression(option => option.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+                new[] { "application/octet-stream" }));
+        }
+
+        private static void RegisterRepositories(IServiceCollection services)
+        {
             services.AddScoped<IPriceComponentsRepository, PriceComponentsRepository>();
             services.AddScoped<IProductsRepository, ProductsRepository>();
             services.AddScoped<IProductCategoriesRepository, ProductCategoriesRepository>();
@@ -63,19 +96,7 @@ namespace BlazorApp.Server
             services.AddScoped<IPartyRolesRepository, PartyRolesRepository>();
             services.AddScoped<IContactMechanismsRepository, ContactMechanismsRepository>();
             services.AddScoped<IInventoryItemsRepository, InventoryItemsRepository>();
-
-
-            services.AddIdentityServer()
-                .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
-
-            services.AddAuthentication()
-                .AddIdentityServerJwt();
-
-            services.AddSignalR();
-            services.AddControllersWithViews();
-            services.AddRazorPages();
-            services.AddResponseCompression(option=> option.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
-                new[]{"application/octet-stream"}));
+            GetRepository.SetServiceProvider(services.BuildServiceProvider());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

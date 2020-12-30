@@ -18,21 +18,18 @@ namespace MaskShop.Domain.Common
 
             return List(r, field, value);
         }
-
-        //public IReadOnlyList<TObject> ListBy(string field, string value, string searchString)
-        //{
-        //    var r = Repository;
-        //    r.SearchString = searchString;
-
-        //    return List(r, field, value);
-        //}
+        public IReadOnlyList<TObject> ListBy(string field, string value, string searchString)
+        {
+            var r = Repository;
+            r.SearchString = searchString;
+            return List(r, field, value);
+        }
 
         private static IReadOnlyList<TObject> List(TRepository r, string field, string value)
         {
-            //r.FixedFilter = field;
-            //r.FixedValue = value;
-            //r.PageIndex = -1;
-
+            r.FixedFilter = field;
+            r.FixedValue = value;
+            r.PageIndex = -1;
             return r.Get().GetAwaiter().GetResult();
         }
     }

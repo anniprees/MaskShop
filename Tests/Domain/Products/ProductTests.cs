@@ -1,4 +1,5 @@
-﻿using MaskShop.Aids;
+﻿using System.Threading.Tasks;
+using MaskShop.Aids;
 using MaskShop.Data.Products;
 using MaskShop.Domain.Common;
 using MaskShop.Domain.Products;
@@ -12,13 +13,13 @@ namespace MaskShop.Tests.Domain.Products
         protected override Product CreateObject() => new Product(GetRandom.Object<ProductData>());
 
         [TestMethod]
-        public void ProductCategoryIdTest() => IsReadOnlyProperty(obj.Data.ProductCategoryId);
-        
-        [TestMethod]
-        public void PriceComponentIdTest() => IsReadOnlyProperty(obj.Data.PriceComponentId);
+        public void ProductCategoryIdTest() => IsReadOnlyProperty(obj, nameof(obj.ProductCategoryId), obj.Data.ProductCategoryId);
 
         [TestMethod]
-        public void ProductFeatureApplicabilityIdTest() => IsReadOnlyProperty(obj.Data.ProductFeatureApplicabilityId);
+        public void PriceComponentIdTest() => IsReadOnlyProperty(obj, nameof(obj.PriceComponentId),obj.Data.PriceComponentId);
+
+        [TestMethod]
+        public void ProductFeatureApplicabilityIdTest() => IsReadOnlyProperty(obj, nameof(obj.ProductFeatureApplicabilityId), obj.Data.ProductFeatureApplicabilityId);
 
         [TestMethod]
         public void PriceTest() => IsReadOnlyProperty(obj.Data.Price);
@@ -31,15 +32,18 @@ namespace MaskShop.Tests.Domain.Products
 
         [TestMethod]
         public void ProductCategoryTest() =>
-            IsReadOnlyProperty(obj, nameof(obj.ProductCategoryId), obj.Data.ProductCategoryId);
+            GetFromRepository<ProductCategoryData, ProductCategory, IProductCategoriesRepository>(
+                obj.ProductCategoryId, () => obj.ProductCategory.Data, d => new ProductCategory(d));
 
         [TestMethod]
         public void PriceComponentTest() =>
-            IsReadOnlyProperty(obj, nameof(obj.PriceComponentId), obj.Data.PriceComponentId);
+            GetFromRepository<PriceComponentData, PriceComponent, IPriceComponentsRepository>(
+                obj.PriceComponentId, () => obj.PriceComponent.Data, d => new PriceComponent(d));
 
         [TestMethod]
-        public void ProductFeatureApplicabilityTest() =>
-            IsReadOnlyProperty(obj, nameof(obj.ProductFeatureApplicabilityId), obj.Data.ProductFeatureApplicabilityId);
+        public void ProductFeatureApplicabilityTest() => 
+            GetFromRepository<ProductFeatureApplicabilityData, ProductFeatureApplicability, IProductFeatureApplicabilitiesRepository>(
+                obj.ProductFeatureApplicabilityId, () => obj.ProductFeatureApplicability.Data, d=> new ProductFeatureApplicability(d));
 
     }
 }

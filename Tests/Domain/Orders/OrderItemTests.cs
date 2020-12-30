@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MaskShop.Data.Orders;
+﻿using MaskShop.Data.Orders;
 using MaskShop.Domain.Orders;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MaskShop.Tests.Domain.Orders
 {
+    [TestClass]
     public class OrderItemTests : SealedClassTests<OrderItem, ItemProduct<OrderItemData>>
     {
         [TestMethod]

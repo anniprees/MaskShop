@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MaskShop.Data.Orders;
+﻿using MaskShop.Data.Orders;
 using MaskShop.Domain.Orders;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MaskShop.Tests.Domain.Orders
 {
+    [TestClass]
     public class OrderTests : SealedClassTests<Order, PartyProducts<OrderData>>
     {
         [TestMethod]
@@ -26,5 +24,15 @@ namespace MaskShop.Tests.Domain.Orders
         [TestMethod]
         public void OrderStatusTest() =>
             IsReadOnlyProperty(obj, nameof(obj.OrderStatus), obj.Data.OrderStatus);
+
+        [TestMethod]
+        public void ItemsTest()
+        {
+            GetListFromRepository<OrderItem, OrderItemData, IOrderItemsRepository>(
+                d => d.OrderId = obj.Id, d => new OrderItem(d));
+        }
+
+        [TestMethod]
+        public void TotalPriceTest() => Assert.Inconclusive();
     }
 }
