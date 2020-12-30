@@ -26,17 +26,12 @@ namespace BlazorApp.Client.Pages.Order
         [Parameter] public string SearchTerm { get; set; } = string.Empty;
 
         List<OrderView> _orders;
-        OrderItemView[] _orderItems;
+        List<OrderItemView> _orderItems;
 
         private HubConnection hubConnection;
 
-        protected OrderView Order = new OrderView
-        {
-            //Name = "",
-            //Id = "",
-            //ValidFrom = null,
-            //ValidTo = null
-        };
+        protected OrderView Order = new OrderView { };
+        protected OrderItemView OrderItem = new OrderItemView { };
 
         protected string CurrentOrderId { get; set; }
         protected string ModalTitle { get; set; }
@@ -77,7 +72,8 @@ namespace BlazorApp.Client.Pages.Order
 
         protected async Task LoadOrderItemsData()
         {
-            _orderItems = await HttpClient.GetJsonAsync<OrderItemView[]>("api/orderitems");
+            _orderItems = await HttpClient.GetJsonAsync<List<OrderItemView>>("api/orderitems/" + CurrentOrderId);
+            StateHasChanged();
         }
 
         protected async Task SearchClick()
@@ -112,28 +108,15 @@ namespace BlazorApp.Client.Pages.Order
             _ = hubConnection.DisposeAsync();
         }
 
-        protected void AddOrder()
-        {
-            this.IsAdd = true;
-            this.ModalTitle = "Create order";
-        }
 
         protected async Task ViewOrder(string orderId)
         {
-            Order = await HttpClient.GetJsonAsync<OrderView>("api/orders/" + orderId);
-            await LoadOrderItemsData();
             CurrentOrderId = orderId;
+            await LoadOrderItemsData();
+            //OrderItem = await HttpClient.GetJsonAsync<OrderItemView>("api/orderitems/" + orderId);
             this.IsView = true;
             this.ModalTitle = "View order";
         }
-
-        //protected async Task EditOrder(string orderId)
-        //{
-        //    Order = await HttpClient.GetJsonAsync<OrderView>("api/orders/" + orderId);
-        //    CurrentOrderId = orderId;
-        //    this.IsAdd = true;
-        //    this.ModalTitle = "Edit order";
-        //}
 
         //protected async Task DeleteOrder(string orderId)
         //{
@@ -144,13 +127,6 @@ namespace BlazorApp.Client.Pages.Order
         //    this.ModalTitle = "Delete order";
         //}
 
-        //protected async Task UpdateOrder()
-        //{
-        //    await HttpClient.PutJsonAsync("api/orders/" + CurrentOrderId, Order);
-        //    if (IsConnected) await SendMessage();
-        //    CloseModal();
-        //    await OnParametersSetAsync();
-        //}
 
         //protected async Task RemoveOrder()
         //{
@@ -170,10 +146,6 @@ namespace BlazorApp.Client.Pages.Order
             StateHasChanged();
         }
 
-        protected void PagerPageChanged(int page)
-        {
-            NavigationManager.NavigateTo("/productlist/" + page);
-        }
     }
 }
 

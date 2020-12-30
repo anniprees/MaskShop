@@ -32,6 +32,7 @@ else
                 <th>Buyer ID</th>
                 <th>Buyer name</th>
                 <th>Contact</th>
+                <th>Order status</th>
                 @*<th>Total price</th>*@
                 <th>Order date</th>
                 <th>To</th>
@@ -46,6 +47,7 @@ else
                     <td>@order.PartyId</td>
                     <td>@order.PartyNameId</td>
                     <td>@order.ContactMechanismId</td>
+                    <td>@order.OrderStatus</td>
                     @*<td>@order.TotalPrice</td>*@
                     <td>@order.ValidFrom</td>
                     <td>@order.ValidTo</td>
@@ -117,47 +119,40 @@ else
     </BSModal>
 </div>*@
 
-<div>
+@*<div>
     <BSModal @bind-IsOpen="IsView" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
         <BSModalHeader @onclick="CloseModal">@ModalTitle</BSModalHeader>
         <BSModalBody>
             <div class="col-md-12">
                 <hr />
-                <h5>Product</h5>
+                <h5>Order</h5>
                 <hr />
                 <BSTable IsResponsive="true" class="table">
-                    <tr>
-                        <td>Id</td>
-                        <td>@Order.Id</td>
-                    </tr>
-                    <tr>
-                        <td>Name</td>
-                        <td>@Order.Name</td>
-                    </tr>
-                    <tr>
-                        <td>Buyer ID</td>
-                        <td>@Order.PartyId</td>
-                    </tr>
-                    <tr>
-                        <td>Buyer Name</td>
-                        <td>@Order.PartyNameId</td>
-                    </tr>
-                    <tr>
-                        <td>Contact</td>
-                        <td>@Order.ContactMechanismId</td>
-                    </tr>
-                    <tr>
-                        <td>Total price</td>
-                        <td>@Order.TotalPrice</td>
-                    </tr>
-                    <tr>
-                        <td>Order date</td>
-                        <td>@Order.ValidFrom</td>
-                    </tr>
-                    <tr>
-                        <td>Valid To</td>
-                        <td>@Order.ValidTo</td>
-                    </tr>
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Order</th>
+                            <th>Product</th>
+                            <th>Product name</th>
+                            <th>Product image</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var orderItem in _orderItems)
+                    {
+                        <tr>
+                            <td>@orderItem.OrderId</td>
+                            <td>@orderItem.ProductId</td>
+                            <td>@orderItem.ProductName</td>
+                            <td><img src="@orderItem.PictureUri" width="200"/></td>
+                            <td>@orderItem.Quantity</td>
+                            <td>@orderItem.TotalPrice</td>
+
+                        </tr>
+                    }
+                    </tbody>
                 </BSTable>
 
                 <div class="form-group">
@@ -166,4 +161,4 @@ else
             </div>
         </BSModalBody>
     </BSModal>
-</div>
+</div>*@

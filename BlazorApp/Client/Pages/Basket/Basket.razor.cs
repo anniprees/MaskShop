@@ -26,7 +26,7 @@ namespace BlazorApp.Client.Pages.Basket
         private HubConnection hubConnection;
 
         protected BasketItemView BasketItem = new BasketItemView { };
-
+        protected OrderItemView OrderItem = new OrderItemView { };
         protected OrderView Order = new OrderView { };
 
         protected string CurrentBasketItemId { get; set; }
@@ -141,10 +141,28 @@ namespace BlazorApp.Client.Pages.Basket
             Order.ValidTo = null;
 
             await HttpClient.PostAsJsonAsync("api/orders", Order);
+            await CreateOrderItems();
+
             if (IsConnected) await SendMessage();
-            CloseModal();
             await OnParametersSetAsync();
         }
+
+        protected async Task CreateOrderItems()
+        {
+            _basketItems = await HttpClient.GetJsonAsync<BasketItemView[]>("api/basketitems");
+
+            foreach (var basketItem in _basketItems)
+            {
+                OrderItem.ProductId = basketItem.ProductId;
+                OrderItem.OrderId = basketItem.BasketId;
+                OrderItem.Quantity = basketItem.Quantity;
+                OrderItem.ValidFrom = DateTime.Now;
+                OrderItem.ValidTo = null;
+
+                await HttpClient.PostAsJsonAsync("api/orderitems", OrderItem);
+            }
+        }
+
 
         protected void CloseModal()
         {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using MaskShop.Data.Orders;
 
 namespace MaskShop.Facade.Orders
 {
@@ -15,5 +16,8 @@ namespace MaskShop.Facade.Orders
 
         [DisplayName("Total price")]
         public decimal TotalPrice { get; set; }
+
+        [DisplayName("Order status")]
+        public OrderStatus OrderStatus { get; set; }
     }
 }

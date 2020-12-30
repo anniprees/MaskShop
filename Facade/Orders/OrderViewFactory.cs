@@ -22,10 +22,11 @@ namespace MaskShop.Facade.Orders
         public static OrderView Create(Order o)
         {
             var v = new OrderView();
-            //Copy.Members(o?.Data, v);
-            v.PartyNameId = o.Party.PartyName.Name;
+            Copy.Members(o?.Data, v);
+            v.PartyNameId = o.PartyName.Name;
             v.ContactMechanismId = o.Party.ContactMechanism.Address;
             v.TotalPrice = o.TotalPrice;
+            v.OrderStatus = OrderStatus.Received;
             return v;
         }
     }
