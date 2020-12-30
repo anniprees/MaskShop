@@ -31,8 +31,6 @@ namespace BlazorApp.Server
         private readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             RegisterDbContexts(services);
@@ -91,6 +89,7 @@ namespace BlazorApp.Server
             services.AddScoped<IBasketsRepository, BasketsRepository>();
             services.AddScoped<IBasketItemsRepository, BasketItemsRepository>();
             services.AddScoped<IOrdersRepository, OrdersRepository>();
+            services.AddScoped<IOrderItemsRepository, OrderItemsRepository>();
             services.AddScoped<IPartiesRepository, PartiesRepository>();
             services.AddScoped<IPartyNamesRepository, PartyNamesRepository>();
             services.AddScoped<IPartyRolesRepository, PartyRolesRepository>();
@@ -99,7 +98,6 @@ namespace BlazorApp.Server
             GetRepository.SetServiceProvider(services.BuildServiceProvider());
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseResponseCompression();

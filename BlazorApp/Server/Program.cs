@@ -17,7 +17,6 @@ namespace BlazorApp.Server
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-
                 try
                 {
                     var shopContext = services.GetRequiredService<ShopDbContext>();

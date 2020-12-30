@@ -28,13 +28,11 @@ namespace BlazorApp.Client
             builder.Services.AddHttpClient("BlazorApp.ServerAPI", client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
                 .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
-            // Supply HttpClient instances that include access tokens when making requests to the server project
             builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("BlazorApp.ServerAPI"));
 
             builder.Services.AddApiAuthorization();
 
             var host = builder.Build();
-            // Add component initialization, if required
             await host.RunAsync();
         }
     }
