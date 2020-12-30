@@ -162,7 +162,7 @@ namespace MaskShop.Infra
                 new PartyNameData {Id = "1", FirstName = "Silvi", LastName = "Orav", ValidFrom = Convert.ToDateTime("1/06/2019 09:00"), ValidTo = Convert.ToDateTime("1/04/2021 09:00")},
                 new PartyNameData {Id = "2", FirstName = "Mari", LastName = "Karu", ValidFrom = Convert.ToDateTime("1/06/2019 09:00"), ValidTo = Convert.ToDateTime("1/04/2021 09:00")},
                 new PartyNameData {Id = "3", FirstName = "Kati", LastName = "Lumi",  ValidFrom = Convert.ToDateTime("10/06/2015 09:00"), ValidTo = Convert.ToDateTime("1/04/2022 09:00")},
-                new PartyNameData {Id = "4", FirstName = "Silver", LastName = "Aun", ValidFrom = Convert.ToDateTime("21/07/2012 09:00"), ValidTo = Convert.ToDateTime("31/02/2021 09:00")},
+                new PartyNameData {Id = "4", FirstName = "Silver", LastName = "Aun", ValidFrom = Convert.ToDateTime("21/07/2012 09:00"), ValidTo = Convert.ToDateTime("10/02/2021 09:00")},
                 new PartyNameData {Id = "5", FirstName = "Olga", LastName = "Onegin", ValidFrom = Convert.ToDateTime("1/08/2019 09:00"), ValidTo = Convert.ToDateTime("1/02/2023 09:00")},
                 new PartyNameData {Id = "6", FirstName = "Mati", LastName = "Maasikas", ValidFrom = Convert.ToDateTime("1/12/2019 09:00"), ValidTo = Convert.ToDateTime("10/04/2050 09:00")},
 
@@ -241,8 +241,8 @@ namespace MaskShop.Infra
             var priceComponents = new[]
             {
                 new PriceComponentData {Id = "1", DiscountPercentage = 5, Comment = "New user", PartyRoleId = "1", ValidFrom = Convert.ToDateTime("10/06/2019 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")},
-                new PriceComponentData {Id = "1", DiscountPercentage = 10, Comment = "Fifth purchase", PartyRoleId = "2", ValidFrom = Convert.ToDateTime("10/06/2019 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")},
-                new PriceComponentData {Id = "1", DiscountPercentage = 20, Comment = "Sell old stock", PartyRoleId = "3", ValidFrom = Convert.ToDateTime("10/06/2019 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")}
+                new PriceComponentData {Id = "2", DiscountPercentage = 10, Comment = "Fifth purchase", PartyRoleId = "2", ValidFrom = Convert.ToDateTime("10/06/2019 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")},
+                new PriceComponentData {Id = "3", DiscountPercentage = 20, Comment = "Sell old stock", PartyRoleId = "3", ValidFrom = Convert.ToDateTime("10/06/2019 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")}
             };
 
             db.PriceComponents.AddRange(priceComponents);
