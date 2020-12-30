@@ -1,0 +1,191 @@
+﻿@page "/contactmechanisms"
+
+<h2>Contact Mechanisms</h2>
+
+<div class="row mb-3">
+    <div class="col-md-7">
+        <BSButton Class="btn btn-outline-primary" @onclick="AddContactMechanism">Add Contact Mechanism</BSButton>
+    </div>
+</div>
+<div class="input-group col-md-5 text-md-right">
+    <input name="SearchInput" type="text" class="form-control" placeholder="Search Street" @bind="this.SearchTerm" @onkeyup="SearchBoxKeyPress" />
+    <div class="input-group-btn">
+        <button name="SearchButton" class="btn btn-default" @onclick="SearchClick">
+            <i class="oi oi-magnifying-glass" title="search" aria-hidden="true"></i>
+        </button>
+    </div>
+    <div class="input-group-btn">
+        <button name="SearchClear" class="btn btn-default" @onclick="ClearSearch">
+            <i class="oi oi-x" title="clear" aria-hidden="true"></i>
+        </button>
+    </div>
+</div>
+
+@*<Pagination 
+            TotalPagesQuantity="totalPagesQuantity" 
+            CurrentPage="currentPage" 
+            Radius="2"
+            SelectedPage="SelectedPage"></Pagination>*@
+
+<TableGeneric Items="_contactMechanisms">    
+    <WithItemsTemplate>
+       <table class="table" is-striped>
+            <thead class="thead-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Street</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Country</th>
+                    <th>ZipCode</th>
+                    <th>ElectronicMail</th>
+                    <th>From</th>
+                    <th>To</th>
+                </tr>
+            </thead>
+        @foreach (var item in _contactMechanisms)
+        {
+            <tbody>
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Street</td>
+                    <td>@item.City</td>
+                    <td>@item.State</td>
+                    <td>@item.Country</td>
+                    <td>@item.ZipCode</td>
+                    <td>@item.ElectronicMail</td>
+                    <td>@item.ValidFrom</td>
+                    <td>@item.ValidTo</td>
+                    <td>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-eye text-primary" @onclick="@(async () => await ViewContactMechanism(item.Id))"></BSButton>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-pencil text-warning" @onclick="@(async () => await EditContactMechanism(item.Id))"></BSButton>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-trash text-danger" @onclick="@(async () => await DeleteContactMechanism(item.Id))"></BSButton>
+                    </td>
+                </tr>
+            </tbody>
+        }
+        </table>
+    </WithItemsTemplate>
+</TableGeneric>
+
+<div>
+    <BSModal @bind-IsOpen="@IsAdd" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
+        <BSModalHeader @onclick="CloseModal">@ModalTitle</BSModalHeader>
+        <BSModalBody>
+            <div class="col-md-12">
+                <EditForm Model="@ContactMechanism" OnValidSubmit="@CreateContactMechanism">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+                    <div class="form-group">
+                        <label for="Id" class="control-label">ID</label>
+                        <InputText id="Id" class="form-control" @bind-Value="ContactMechanism.Id" />
+                        <ValidationMessage For="@(() => ContactMechanism.Id)" />
+
+                        <label for="Street" class="control-label">Street</label>
+                        <InputText id="Street" class="form-control" @bind-Value="ContactMechanism.Street" />
+                        <ValidationMessage For="@(() => ContactMechanism.Street)" />
+
+                        <label for="City" class="control-label">City</label>
+                        <InputText id="City" class="form-control" @bind-Value="ContactMechanism.City" />
+                        <ValidationMessage For="@(() => ContactMechanism.City)" />
+
+                        <label for="State" class="control-label">State</label>
+                        <InputText id="State" class="form-control" @bind-Value="ContactMechanism.State" />
+                        <ValidationMessage For="@(() => ContactMechanism.State)" />
+
+                        <label for="Country" class="control-label">Country</label>
+                        <InputText id="Country" class="form-control" @bind-Value="ContactMechanism.Country" />
+                        <ValidationMessage For="@(() => ContactMechanism.Country)" />
+
+                        <label for="ZipCode" class="control-label">ZipCode</label>
+                        <InputText id="ZipCode" class="form-control" @bind-Value="ContactMechanism.ZipCode" />
+                        <ValidationMessage For="@(() => ContactMechanism.ZipCode)" />
+
+                        <label for="ElectronicMail" class="control-label">ElectronicMail</label>
+                        <InputText id="ElectronicMail" class="form-control" @bind-Value="ContactMechanism.ElectronicMail" />
+                        <ValidationMessage For="@(() => ContactMechanism.ElectronicMail)" />
+
+                        <label for="Valid From" class="control-label">Valid From</label>
+                        <InputDate id="Valid From" class="form-control" @bind-Value="ContactMechanism.ValidFrom" />
+                        <ValidationMessage For="@(() => ContactMechanism.ValidFrom)" />
+
+                        <label for="Valid To" class="control-label">Valid To</label>
+                        <InputDate id="Valid To" class="form-control" @bind-Value="ContactMechanism.ValidTo" />
+                        <ValidationMessage For="@(() => ContactMechanism.ValidTo)" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success" @onclick=@(async () => await CreateContactMechanism())>Save</button>
+                        <button class="btn btn-primary" @onclick="CloseModal">Cancel</button>
+                    </div>
+                </EditForm>
+            </div>
+        </BSModalBody>
+    </BSModal>
+</div>
+
+<div>
+    <BSModal @bind-IsOpen="IsView" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
+        <BSModalHeader @onclick="CloseModal">@ModalTitle</BSModalHeader>
+        <BSModalBody>
+            <div class="col-md-12">
+                @if (IsDelete)
+                {
+                    <BSAlert Color="Color.Danger">Please review carefully before deleting.</BSAlert>
+                }
+                <hr />
+                <h5>Contact Mechanism</h5>
+                <hr />
+                <BSTable IsResponsive="true" class="table">
+                    <tr>
+                        <td>Id</td>
+                        <td>@ContactMechanism.Id</td>
+                    </tr>
+                    <tr>
+                        <td>Discount Percentage</td>
+                        <td>@ContactMechanism.Street</td>
+                    </tr>
+                    <tr>
+                        <td>City</td>
+                        <td>@ContactMechanism.City</td>
+                    </tr>
+                    <tr>
+                        <td>State</td>
+                        <td>@ContactMechanism.State</td>
+                    </tr>
+                    <tr>
+                        <td>Country</td>
+                        <td>@ContactMechanism.Country</td>
+                    </tr>
+                    <tr>
+                        <td>Zip Code</td>
+                        <td>@ContactMechanism.ZipCode</td>
+                    </tr>
+                    <tr>
+                        <td>Electronic Mail</td>
+                        <td>@ContactMechanism.ElectronicMail</td>
+                    </tr>
+                    <tr>
+                        <td>Valid From</td>
+                        <td>@ContactMechanism.ValidFrom</td>
+                    </tr>
+                    <tr>
+                        <td>Valid To</td>
+                        <td>@ContactMechanism.ValidTo</td>
+                    </tr>
+                </BSTable>
+
+                <div class="form-group">
+                    @if (IsDelete)
+                    {
+                        <button type="button" class="btn btn-danger" @onclick=@RemoveContactMechanism>Delete</button>
+                        <button class="btn btn-primary" @onclick="CloseModal">Cancel</button>
+                    }
+                    @if (!IsDelete)
+                    {
+                        <button class="btn btn-primary" @onclick="CloseModal">Back</button>
+                    }
+                </div>
+            </div>
+        </BSModalBody>
+    </BSModal>
+</div>
