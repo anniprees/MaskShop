@@ -31,25 +31,27 @@ namespace MaskShop.Tests.Domain.Common
             id = ProductCategoryId;
             item = CreateItem();
         }
+        protected virtual IReadOnlyList<Product> getList() => obj.ListBy("ProductCategoryId", ProductCategoryId);
 
         [TestMethod] public void RepositoryTest() => Assert.Inconclusive();
 
         [TestMethod]
-        public void ByIdTest() => Assert.Inconclusive();
-        //{
-        //    var t = obj.ById(id);
-        //    Assert.IsNotNull(t);
-        //    Assert.IsInstanceOfType(t, typeof(Product));
-        //    Assert.IsTrue(t.IsUnspecified);
-        //}
+        public void ByIdTest()
+        {
+            var t = obj.ById(id);
+            Assert.IsNotNull(t);
+            Assert.IsInstanceOfType(t, typeof(Product));
+            Assert.IsTrue(t.IsUnspecified);
+        }
 
         [TestMethod]
-        public void GetByIdTest() => Assert.Inconclusive();
-        //{
-        //    repository.Add(item).GetAwaiter();
-        //    TestArePropertiesEqual(data, obj.ById(id).Data);
-        //}
+        public void GetByIdTest()
+        {
+            repository.Add(item).GetAwaiter();
+            TestArePropertiesEqual(data, obj.ById(id).Data);
+        }
 
+        [TestMethod]
         protected void ListTest()
         {
             var t = getList();
@@ -58,8 +60,7 @@ namespace MaskShop.Tests.Domain.Common
             Assert.AreEqual(0, t.Count);
         }
 
-        protected virtual IReadOnlyList<Product> getList() => obj.ListBy("ProductCategoryId", ProductCategoryId);
-
+        [TestMethod]
         protected void ContentTest()
         {
             ListTest();
@@ -75,7 +76,8 @@ namespace MaskShop.Tests.Domain.Common
             var t = getList();
             Assert.AreEqual(c, t.Count);
         }
-
+        
+        [TestMethod]
         private void UpdateData(int idx)
         {
             if (idx % 4 == 0) data.ProductCategoryId = ProductCategoryId;
@@ -83,6 +85,6 @@ namespace MaskShop.Tests.Domain.Common
 
         [TestMethod] public void ListByTest() => Assert.Inconclusive();
 
-        //[TestMethod] public void ListContextTest() => ContentTest();
+        [TestMethod] public void ListContextTest() => ContentTest();
     }
 }
