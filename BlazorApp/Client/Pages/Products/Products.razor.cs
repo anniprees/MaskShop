@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using System.Security.Claims;
-using MaskShop.Domain.Orders;
 using MaskShop.Facade.Orders;
 using MaskShop.Facade.Products;
 using Microsoft.AspNetCore.Components;
@@ -14,9 +11,6 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Forms;
-using System.Web.Providers.Entities;
-using MaskShop.Domain.Products;
-using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorApp.Client.Pages.Products
 {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
 using MaskShop.Aids;
+using MaskShop.Data.Common;
 using MaskShop.Domain.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -216,26 +217,32 @@ namespace MaskShop.Tests
             Assert.AreEqual((int)Math.Ceiling(valuesCount / 4.0), t?.Count);
         }
 
-        //protected void testRelatedList<TObject, TData, TRelatedObject, TRepository>(
-        //    Func<IReadOnlyList<TObject>> getList,
-        //    Func<IReadOnlyList<TRelatedObject>> getRelatedList,
-        //    Func<TData, TRelatedObject, TObject> getObject,
-        //    Action relatedMethod)
-        //    where TRepository : IRepository<TObject>
-        //{
-        //    var n = GetPropertyNameAfter("testRelatedList");
-        //    IsReadOnlyProperty(obj, n);
-        //    Assert.AreEqual(0, getList().Count);
-        //    relatedMethod();
+        protected void GetFromRepository<TData, TObject, TRepository>(string id, Func<TData> getData,
+            Func<TData, TObject> toObject)
 
-        //    foreach (var e in getRelatedList())
-        //    {
-        //        var d = GetRandom.Object<TData>();
-        //        GetRepository.Instance<TRepository>().Add(getObject(d, e)).GetAwaiter();
-        //    }
+            where TData : UniqueEntityData, new()
+            where TObject : IUniqueEntity<TData>
+            where TRepository : IRepository<TObject>
+        {
+            var d = GetRandom.Object<TData>();
+            GetRepository.Instance<TRepository>().Add(toObject(d)).GetAwaiter();
+            Assert.IsNotNull(getData());
+            TestArePropertiesEqual(getData(), new TData(), "Id");
+            d.Id = id;
+            GetRepository.Instance<TRepository>().Add(toObject(d)).GetAwaiter();
+            TestArePropertiesEqual(d, getData());
+        }
 
-        //    Assert.AreNotEqual(0, getList().Count);
-        //    Assert.AreEqual(getRelatedList().Count, getList().Count);
-        //}
+        protected void GetFromRepository<TData, TObject, TRepository>(
+            TData d, Func<TData> getData, Func<TData, TObject> toObject)
+
+            where TData : PeriodData, new()
+            where TObject : IEntity<TData>
+            where TRepository : IRepository<TObject>
+        {
+            GetRepository.Instance<TRepository>().Add(toObject(d)).GetAwaiter();
+            TestArePropertiesEqual(d, getData());
+        }
+
     }
 }
