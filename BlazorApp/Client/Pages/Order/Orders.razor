@@ -1,0 +1,170 @@
+﻿@page "/orders"
+@using MaskShop.Domain.Products
+
+<h3>Orders</h3>
+
+
+<div class="input-group col-md-5 text-md-right">
+    <input name="ProductSearchInput" type="text" class="form-control" placeholder="Product Name" @bind="this.SearchTerm" @onkeyup="SearchBoxKeyPress" />
+    <div class="input-group-btn">
+        <button name="ProductSearchButton" class="btn btn-default" @onclick="SearchClick">
+            <i class="oi oi-magnifying-glass" title="search" aria-hidden="true"></i>
+        </button>
+    </div>
+    <div class="input-group-btn">
+        <button name="ProductSearchClear" class="btn btn-default" @onclick="ClearSearch">
+            <i class="oi oi-x" title="clear" aria-hidden="true"></i>
+        </button>
+    </div>
+    
+</div>
+
+@if (_orders == null)
+{
+    <p>You don't have any orders yet...</p>
+}
+else
+{
+    <BSTable IsResponsive="true" class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Buyer ID</th>
+                <th>Buyer name</th>
+                <th>Contact</th>
+                <th>Total price</th>
+                <th>Order date</th>
+                <th>To</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in _orders)
+            {
+                <tr>
+                    <td>@order.Id</td>
+                    <td>@order.Name</td>
+                    <td>@order.PartyId</td>
+                    <td>@order.PartyNameId</td>
+                    <td>@order.ContactMechanismId</td>
+                    <td>@order.TotalPrice</td>
+                    <td>@order.ValidFrom</td>
+                    <td>@order.ValidTo</td>
+                    <td>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-eye text-primary" @onclick="@(async () => await ViewOrder(order.Id))"></BSButton>
+                        @*<BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-pencil text-warning" @onclick="@(async () => await EditProduct(product.Id))"></BSButton>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-trash text-danger" @onclick="@(async () => await DeleteProduct(product.Id))"></BSButton>*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </BSTable>
+}
+
+@*<div>
+    <BSModal @bind-IsOpen="@IsAdd" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
+        <BSModalHeader @onclick="CloseModal">@ModalTitle</BSModalHeader>
+        <BSModalBody>
+            <div class="col-md-12">
+                <EditForm Model="@Product" OnValidSubmit="@CreateProduct">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+                    <div class="form-control-file">
+                        <label for="Id" class="control-label">ID</label>
+                        <InputText id="Id" class="form-control" @bind-Value="Product.Id" />
+                        <ValidationMessage For="@(() => Product.Id)" />
+
+                        <label for="Name" class="control-label">Name</label>
+                        <InputText id="Name" class="form-control" @bind-Value="Product.Name" />
+                        <ValidationMessage For="@(() => Product.Name)" />
+
+                        <label for="Product Category" class="control-label">Product Category</label>
+                        <InputSelect Id="Product Category" class="form-control" @bind-Value="Product.ProductCategoryId">
+                            @if (_categories != null)
+                            {
+                                foreach (var category in _categories)
+                                {
+                                    <option value="@category.Id">@category.Name</option>
+                                }
+                            }
+                        </InputSelect>
+
+                        <label for="Feature Applicability" class="control-label">Feature Applicability</label>
+                        <InputText id="Feature Applicability" class="form-control" @bind-Value="Product.ProductFeatureApplicabilityId" />
+                        <ValidationMessage For="@(() => Product.ProductFeatureApplicabilityId)" />
+
+                        <label for="Price" class="control-label">Price</label>
+                        <InputNumber id="Price" class="form-control" @bind-Value="Product.Price" />
+                        <ValidationMessage For="@(() => Product.Price)" />
+
+                        <label for="Picture" class="control-label">Picture</label>
+                        <InputFile OnChange="OnFileChange" class="form-control" />
+
+                        <label for="Valid From" class="control-label">Valid From</label>
+                        <InputDate id="Valid From" class="form-control" @bind-Value="Product.ValidFrom" />
+                        <ValidationMessage For="@(() => Product.ValidFrom)" />
+
+                        <label for="Valid To" class="control-label">Valid To</label>
+                        <InputDate id="Valid To" class="form-control" @bind-Value="Product.ValidTo" />
+                        <ValidationMessage For="@(() => Product.ValidTo)" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success" @onclick=@(async () => await CreateProduct())>Save</button>
+                        <button class="btn btn-primary" @onclick="CloseModal">Cancel</button>
+                    </div>
+                </EditForm>
+            </div>
+        </BSModalBody>
+    </BSModal>
+</div>*@
+
+<div>
+    <BSModal @bind-IsOpen="IsView" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
+        <BSModalHeader @onclick="CloseModal">@ModalTitle</BSModalHeader>
+        <BSModalBody>
+            <div class="col-md-12">
+                <hr />
+                <h5>Product</h5>
+                <hr />
+                <BSTable IsResponsive="true" class="table">
+                    <tr>
+                        <td>Id</td>
+                        <td>@Order.Id</td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>@Order.Name</td>
+                    </tr>
+                    <tr>
+                        <td>Buyer ID</td>
+                        <td>@Order.PartyId</td>
+                    </tr>
+                    <tr>
+                        <td>Buyer Name</td>
+                        <td>@Order.PartyNameId</td>
+                    </tr>
+                    <tr>
+                        <td>Contact</td>
+                        <td>@Order.ContactMechanismId</td>
+                    </tr>
+                    <tr>
+                        <td>Total price</td>
+                        <td>@Order.TotalPrice</td>
+                    </tr>
+                    <tr>
+                        <td>Order date</td>
+                        <td>@Order.ValidFrom</td>
+                    </tr>
+                    <tr>
+                        <td>Valid To</td>
+                        <td>@Order.ValidTo</td>
+                    </tr>
+                </BSTable>
+
+                <div class="form-group">
+                    <button class="btn btn-primary" @onclick="CloseModal">Back</button>
+                </div>
+            </div>
+        </BSModalBody>
+    </BSModal>
+</div>

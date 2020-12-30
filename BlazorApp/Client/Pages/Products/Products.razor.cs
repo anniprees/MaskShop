@@ -50,14 +50,7 @@ namespace BlazorApp.Client.Pages.Products
             ValidTo = null
     };
 
-        protected BasketItemView BasketItem = new BasketItemView
-        {
-            //BasketId = "",
-            //ProductId = "",
-            //Quantity = 0,
-            //ValidFrom = null,
-            //ValidTo = null
-        };
+        protected BasketItemView BasketItem = new BasketItemView { };
 
         protected string CurrentProductId { get; set; }
         protected string ModalTitle { get; set; }

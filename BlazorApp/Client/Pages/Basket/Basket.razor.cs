@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
+using System.Web.Providers.Entities;
 using MaskShop.Facade.Orders;
 using MaskShop.Facade.Products;
 using Microsoft.AspNetCore.Components;
@@ -24,6 +26,8 @@ namespace BlazorApp.Client.Pages.Basket
         private HubConnection hubConnection;
 
         protected BasketItemView BasketItem = new BasketItemView { };
+
+        protected OrderView Order = new OrderView { };
 
         protected string CurrentBasketItemId { get; set; }
         protected string ModalTitle { get; set; }
@@ -121,6 +125,22 @@ namespace BlazorApp.Client.Pages.Basket
         protected async Task RemoveBasketItem()
         {
             await HttpClient.DeleteAsync("api/basketitems/" + CurrentBasketItemId);
+            if (IsConnected) await SendMessage();
+            CloseModal();
+            await OnParametersSetAsync();
+        }
+
+        protected async Task CreateOrder()
+        {
+            Order.Id = "";
+            Order.Name = "";
+            Order.PartyId = "";
+            Order.PartyNameId = "";
+            Order.ContactMechanismId = "";
+            Order.ValidFrom = DateTime.Now;
+            Order.ValidTo = null;
+
+            await HttpClient.PostAsJsonAsync("api/orders", Order);
             if (IsConnected) await SendMessage();
             CloseModal();
             await OnParametersSetAsync();

@@ -15,6 +15,7 @@ namespace BlazorApp.Server.Controllers
     {
         private readonly IProductsRepository _pr;
 
+
         public ProductsController(IProductsRepository pr)
         {
             _pr = pr;
