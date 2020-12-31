@@ -12,7 +12,6 @@ namespace MaskShop.Tests.Infra.Products
     [TestClass]
     public class ProductsRepositoryTests : ShopDbContextTests<ProductsRepository, Product, ProductData>
     {
-
         protected override Type GetBaseClass() => typeof(UniqueEntityRepository<Product, ProductData>);
 
         protected override ProductsRepository GetObject(ShopDbContext c) => new ProductsRepository(c);

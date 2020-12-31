@@ -62,73 +62,17 @@ else
     </BSTable>
 }
 
-@*<div>
-    <BSModal @bind-IsOpen="@IsAdd" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
-        <BSModalHeader @onclick="CloseModal">@ModalTitle</BSModalHeader>
-        <BSModalBody>
-            <div class="col-md-12">
-                <EditForm Model="@Product" OnValidSubmit="@CreateProduct">
-                    <DataAnnotationsValidator />
-                    <ValidationSummary />
-                    <div class="form-control-file">
-                        <label for="Id" class="control-label">ID</label>
-                        <InputText id="Id" class="form-control" @bind-Value="Product.Id" />
-                        <ValidationMessage For="@(() => Product.Id)" />
-
-                        <label for="Name" class="control-label">Name</label>
-                        <InputText id="Name" class="form-control" @bind-Value="Product.Name" />
-                        <ValidationMessage For="@(() => Product.Name)" />
-
-                        <label for="Product Category" class="control-label">Product Category</label>
-                        <InputSelect Id="Product Category" class="form-control" @bind-Value="Product.ProductCategoryId">
-                            @if (_categories != null)
-                            {
-                                foreach (var category in _categories)
-                                {
-                                    <option value="@category.Id">@category.Name</option>
-                                }
-                            }
-                        </InputSelect>
-
-                        <label for="Feature Applicability" class="control-label">Feature Applicability</label>
-                        <InputText id="Feature Applicability" class="form-control" @bind-Value="Product.ProductFeatureApplicabilityId" />
-                        <ValidationMessage For="@(() => Product.ProductFeatureApplicabilityId)" />
-
-                        <label for="Price" class="control-label">Price</label>
-                        <InputNumber id="Price" class="form-control" @bind-Value="Product.Price" />
-                        <ValidationMessage For="@(() => Product.Price)" />
-
-                        <label for="Picture" class="control-label">Picture</label>
-                        <InputFile OnChange="OnFileChange" class="form-control" />
-
-                        <label for="Valid From" class="control-label">Valid From</label>
-                        <InputDate id="Valid From" class="form-control" @bind-Value="Product.ValidFrom" />
-                        <ValidationMessage For="@(() => Product.ValidFrom)" />
-
-                        <label for="Valid To" class="control-label">Valid To</label>
-                        <InputDate id="Valid To" class="form-control" @bind-Value="Product.ValidTo" />
-                        <ValidationMessage For="@(() => Product.ValidTo)" />
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-success" @onclick=@(async () => await CreateProduct())>Save</button>
-                        <button class="btn btn-primary" @onclick="CloseModal">Cancel</button>
-                    </div>
-                </EditForm>
-            </div>
-        </BSModalBody>
-    </BSModal>
-</div>*@
 
 @*<div>
-    <BSModal @bind-IsOpen="IsView" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
-        <BSModalHeader @onclick="CloseModal">@ModalTitle</BSModalHeader>
-        <BSModalBody>
-            <div class="col-md-12">
-                <hr />
-                <h5>Order</h5>
-                <hr />
-                <BSTable IsResponsive="true" class="table">
-                    <thead class="thead-light">
+        <BSModal @bind-IsOpen="IsView" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
+            <BSModalHeader @onclick="CloseModal">@ModalTitle</BSModalHeader>
+            <BSModalBody>
+                <div class="col-md-12">
+                    <hr/>
+                    <h5>Order</h5>
+                    <hr/>
+                    <BSTable IsResponsive="true" class="table">
+                        <thead class="thead-light">
                         <tr>
                             <th>Order</th>
                             <th>Product</th>
@@ -138,27 +82,27 @@ else
                             <th>Quantity</th>
                             <th>Total price</th>
                         </tr>
-                    </thead>
-                    <tbody>
-                    @foreach (var orderItem in _orderItems)
-                    {
-                        <tr>
-                            <td>@orderItem.OrderId</td>
-                            <td>@orderItem.ProductId</td>
-                            <td>@orderItem.ProductName</td>
-                            <td><img src="@orderItem.PictureUri" width="200"/></td>
-                            <td>@orderItem.Quantity</td>
-                            <td>@orderItem.TotalPrice</td>
+                        </thead>
+                        <tbody>
+                        @foreach (var orderItem in _orderItems)
+                        {
+                            <tr>
+                                <td>@orderItem.OrderId</td>
+                                <td>@orderItem.ProductId</td>
+                                <td>@orderItem.ProductName</td>
+                                <td><img src="@orderItem.PictureUri" width="200"/></td>
+                                <td>@orderItem.Quantity</td>
+                                <td>@orderItem.TotalPrice</td>
 
-                        </tr>
-                    }
-                    </tbody>
-                </BSTable>
+                            </tr>
+                        }
+                        </tbody>
+                    </BSTable>
 
-                <div class="form-group">
-                    <button class="btn btn-primary" @onclick="CloseModal">Back</button>
+                    <div class="form-group">
+                        <button class="btn btn-primary" @onclick="CloseModal">Back</button>
+                    </div>
                 </div>
-            </div>
-        </BSModalBody>
-    </BSModal>
-</div>*@
+            </BSModalBody>
+        </BSModal>
+    </div>*@

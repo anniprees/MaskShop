@@ -14,17 +14,17 @@ namespace BlazorApp.Server.Controllers
     [ApiController]
     public class OrdersController : ControllerBase
     {
-        private readonly IOrdersRepository _ordersRepo;
+        private readonly IOrdersRepository _ordersRepository;
 
-        public OrdersController(IOrdersRepository ordersRepo)
+        public OrdersController (IOrdersRepository ordersRepository)
         {
-            _ordersRepo = ordersRepo;
+            _ordersRepository = ordersRepository;
         }
 
         [HttpGet]
         public async Task<ActionResult<List<OrderView>>> GetOrders(string name)
         {
-            var result = await _ordersRepo.Get();
+            var result = await _ordersRepository.Get();
             var aa = new List<OrderView>();
 
             result.ForEach(x => aa.Add(OrderViewFactory.Create(x)));
@@ -36,7 +36,7 @@ namespace BlazorApp.Server.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<OrderView>> GetOrder(string id)
         {
-            var order = await _ordersRepo.Get(id);
+            var order = await _ordersRepository.Get(id);
 
             if (order == null)
             {
@@ -54,7 +54,7 @@ namespace BlazorApp.Server.Controllers
                 return BadRequest();
             }
 
-            await _ordersRepo.Update(OrderViewFactory.Create(order));
+            await _ordersRepository.Update(OrderViewFactory.Create(order));
 
             return NoContent();
         }
@@ -66,14 +66,14 @@ namespace BlazorApp.Server.Controllers
             //Basket basket = await _br.GetLatestForUser(User.Identity.Name);
             //await _bir.Add(basket, product);
 
-            await _ordersRepo.Add(OrderViewFactory.Create(order));
+            await _ordersRepository.Add(OrderViewFactory.Create(order));
             return CreatedAtAction("GetOrder", new { id = order.Id }, order);
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteOrder(string id)
         {
-            await _ordersRepo.Delete(id);
+            await _ordersRepository.Delete(id);
 
             return NoContent();
         }

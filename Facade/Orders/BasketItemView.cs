@@ -17,9 +17,6 @@ namespace MaskShop.Facade.Orders
         [DisplayName("Basket")]
         public string BasketId { get; set; }
 
-        [DisplayName("Product")]
-        public string ProductName { get; set; }
-
         [DisplayName("Product image")]
         public string ProductImage { get; set; }
 

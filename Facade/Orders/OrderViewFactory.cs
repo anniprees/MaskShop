@@ -24,7 +24,7 @@ namespace MaskShop.Facade.Orders
             var v = new OrderView();
             Copy.Members(o?.Data, v);
             v.PartyNameId = o.PartyName.Name;
-            v.ContactMechanismId = o.Party.ContactMechanism.Address;
+            v.ContactMechanismId = o.ContactMechanism.Address;
             v.TotalPrice = o.TotalPrice;
             v.OrderStatus = OrderStatus.Received;
             return v;

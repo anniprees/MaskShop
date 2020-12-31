@@ -24,7 +24,7 @@ namespace MaskShop.Facade.Orders
         {
             var v = new BasketItemView();
             Copy.Members(o?.Data, v);
-            v.ProductName = o?.Product.ToString();
+            v.ProductId = o?.Product.Name;
             string s = Convert.ToBase64String(
                 o.Product.Picture, 0,
                 o.Product.Picture.Length);
