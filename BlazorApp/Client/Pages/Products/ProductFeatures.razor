@@ -1,0 +1,153 @@
+﻿@page "/productfeatures"
+
+<h2>Product Features</h2>
+
+<div class="row mb-3">
+    <div class="col-md-7">
+        <BSButton Class="btn btn-outline-primary" @onclick="AddProductFeature">Add New Item</BSButton>
+    </div>
+</div>
+<div class="input-group col-md-5 text-md-right">
+    <input name="SearchInput" type="text" class="form-control" placeholder="Search Feature Name" @bind="this.SearchTerm" @onkeyup="SearchBoxKeyPress" />
+    <div class="input-group-btn">
+        <button name="SearchButton" class="btn btn-default" @onclick="SearchClick">
+            <i class="oi oi-magnifying-glass" title="search" aria-hidden="true"></i>
+        </button>
+    </div>
+    <div class="input-group-btn">
+        <button name="SearchClear" class="btn btn-default" @onclick="ClearSearch">
+            <i class="oi oi-x" title="clear" aria-hidden="true"></i>
+        </button>
+    </div>
+</div>
+
+<TableGeneric Items="_productFeatures">
+    <WithItemsTemplate>
+        <table class="table" is-striped>
+            <thead class="thead-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Definiton</th>
+                    <th>Numeric Code</th>
+                    <th>From</th>
+                    <th>To</th>
+                </tr>
+            </thead>
+            @foreach (var item in _productFeatures)
+            {
+                <tbody>
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@item.Definition</td>
+                        <td>@item.NumericCode</td>
+                        <td>@item.ValidFrom</td>
+                        <td>@item.ValidTo</td>
+                        <td>
+                            <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-eye text-primary" @onclick="@(async () => await ViewProductFeature(item.Id))"></BSButton>
+                            <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-pencil text-warning" @onclick="@(async () => await EditProductFeature(item.Id))"></BSButton>
+                            <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-trash text-danger" @onclick="@(async () => await DeleteProductFeature(item.Id))"></BSButton>
+                        </td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    </WithItemsTemplate>
+</TableGeneric>
+
+<div>
+    <BSModal @bind-IsOpen="@IsAdd" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
+        <BSModalHeader @onclick="CloseModal">@ModalTitle</BSModalHeader>
+        <BSModalBody>
+            <div class="col-md-12">
+                <EditForm Model="@ProductFeature" OnValidSubmit="@CreateProductFeature">
+                    <div class="form-group">
+                        <label for="Id" class="control-label">ID</label>
+                        <InputText id="Id" class="form-control" @bind-Value="ProductFeature.Id" />
+                        <ValidationMessage For="@(() => ProductFeature.Id)" />
+
+                        <label for="Name" class="control-label">Name</label>
+                        <InputText id="Name" class="form-control" @bind-Value="ProductFeature.Name" />
+                        <ValidationMessage For="@(() => ProductFeature.Name)" />
+
+                        <label for="Definition" class="control-label">Definition</label>
+                        <InputText id="Definition" class="form-control" @bind-Value="ProductFeature.Definition" />
+                        <ValidationMessage For="@(() => ProductFeature.Definition)" />
+
+                        <label for="NumericCode" class="control-label">Numeric Code</label>
+                        <InputNumber id="NumericCode" class="form-control" @bind-Value="ProductFeature.NumericCode" />
+                        <ValidationMessage For="@(() => ProductFeature.NumericCode)" />
+
+                        <label for="Valid From" class="control-label">Valid From</label>
+                        <InputDate id="Valid From" class="form-control" @bind-Value="ProductFeature.ValidFrom" />
+                        <ValidationMessage For="@(() => ProductFeature.ValidFrom)" />
+
+                        <label for="Valid To" class="control-label">Valid To</label>
+                        <InputDate id="Valid To" class="form-control" @bind-Value="ProductFeature.ValidTo" />
+                        <ValidationMessage For="@(() => ProductFeature.ValidTo)" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success" @onclick=@(async () => await CreateProductFeature())>Save</button>
+                        <button class="btn btn-primary" @onclick="CloseModal">Cancel</button>
+                    </div>
+                </EditForm>
+            </div>
+        </BSModalBody>
+    </BSModal>
+</div>
+
+<div>
+    <BSModal @bind-IsOpen="IsView" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
+        <BSModalHeader @onclick="CloseModal">@ModalTitle</BSModalHeader>
+        <BSModalBody>
+            <div class="col-md-12">
+                @if (IsDelete)
+                {
+                    <BSAlert Color="Color.Danger">Please review carefully before deleting.</BSAlert>
+                }
+                <hr />
+                <h5>Product</h5>
+                <hr />
+                <BSTable IsResponsive="true" class="table">
+                    <tr>
+                        <td>Id</td>
+                        <td>@ProductFeature.Id</td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>@ProductFeature.Name</td>
+                    </tr>
+                    <tr>
+                        <td>Definition</td>
+                        <td>@ProductFeature.Definition</td>
+                    </tr>
+                    <tr>
+                        <td>Numeric Code</td>
+                        <td>@ProductFeature.NumericCode</td>
+                    </tr>
+                    <tr>
+                        <td>Valid From</td>
+                        <td>@ProductFeature.ValidFrom</td>
+                    </tr>
+                    <tr>
+                        <td>Valid To</td>
+                        <td>@ProductFeature.ValidTo</td>
+                    </tr>
+                </BSTable>
+
+                <div class="form-group">
+                    @if (IsDelete)
+                    {
+                        <button type="button" class="btn btn-danger" @onclick=@RemoveProductFeature>Delete</button>
+                        <button class="btn btn-primary" @onclick="CloseModal">Cancel</button>
+                    }
+                    @if (!IsDelete)
+                    {
+                        <button class="btn btn-primary" @onclick="CloseModal">Back</button>
+                    }
+                </div>
+            </div>
+        </BSModalBody>
+    </BSModal>
+</div>
