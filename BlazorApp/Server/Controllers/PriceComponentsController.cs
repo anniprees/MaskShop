@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MaskShop.Domain.Products;
 using MaskShop.Facade.Products;
-using MaskShop.Pages.Common;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using AutoMapper;
-using Microsoft.EntityFrameworkCore;
-using System.Collections;
-using BlazorApp.Server.Helpers;
-using MaskShop.Infra.Common;
 
 namespace BlazorApp.Server.Controllers
 {

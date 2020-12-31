@@ -1,0 +1,143 @@
+﻿@page "/inventoryitems"
+
+<h2>Inventory Items</h2>
+
+<div class="row mb-3">
+    <div class="col-md-7">
+        <BSButton Class="btn btn-outline-primary" @onclick="AddInventoryItem">Add New Item</BSButton>
+    </div>
+</div>
+<div class="input-group col-md-5 text-md-right">
+    <input name="SearchInput" type="text" class="form-control" placeholder="Search Product Id" @bind="this.SearchTerm" @onkeyup="SearchBoxKeyPress" />
+    <div class="input-group-btn">
+        <button name="SearchButton" class="btn btn-default" @onclick="SearchClick">
+            <i class="oi oi-magnifying-glass" title="search" aria-hidden="true"></i>
+        </button>
+    </div>
+    <div class="input-group-btn">
+        <button name="SearchClear" class="btn btn-default" @onclick="ClearSearch">
+            <i class="oi oi-x" title="clear" aria-hidden="true"></i>
+        </button>
+    </div>
+</div>
+
+<TableGeneric Items="_inventoryItems">
+    <WithItemsTemplate>
+        <table class="table" is-striped>
+            <thead class="thead-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Product Id</th>
+                    <th>Quantity On Hand</th>
+                    <th>From</th>
+                    <th>To</th>
+                </tr>
+            </thead>
+            @foreach (var item in _inventoryItems)
+            {
+                <tbody>
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.ProductId</td>
+                        <td>@item.QuantityOnHand</td>
+                        <td>@item.ValidFrom</td>
+                        <td>@item.ValidTo</td>
+                        <td>
+                            <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-eye text-primary" @onclick="@(async () => await ViewInventoryItem(item.Id))"></BSButton>
+                            <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-pencil text-warning" @onclick="@(async () => await EditInventoryItem(item.Id))"></BSButton>
+                            <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-trash text-danger" @onclick="@(async () => await DeleteInventoryItem(item.Id))"></BSButton>
+                        </td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    </WithItemsTemplate>
+</TableGeneric>
+
+<div>
+    <BSModal @bind-IsOpen="@IsAdd" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
+        <BSModalHeader @onclick="CloseModal">@ModalTitle</BSModalHeader>
+        <BSModalBody>
+            <div class="col-md-12">
+                <EditForm Model="@InventoryItem" OnValidSubmit="@CreateInventoryItem">
+                    <div class="form-group">
+                        <label for="Id" class="control-label">ID</label>
+                        <InputText id="Id" class="form-control" @bind-Value="InventoryItem.Id" />
+                        <ValidationMessage For="@(() => InventoryItem.Id)" />
+
+                        <label for="ProductId" class="control-label">Product Id</label>
+                        <InputText id="ProductId" class="form-control" @bind-Value="InventoryItem.ProductId" />
+                        <ValidationMessage For="@(() => InventoryItem.ProductId)" />
+
+                        <label for="QuantityOnHand" class="control-label">Quantity On Hand</label>
+                        <InputNumber id="QuantityOnHand" class="form-control" @bind-Value="InventoryItem.QuantityOnHand" />
+                        <ValidationMessage For="@(() => InventoryItem.QuantityOnHand)" />
+
+                        <label for="Valid From" class="control-label">Valid From</label>
+                        <InputDate id="Valid From" class="form-control" @bind-Value="InventoryItem.ValidFrom" />
+                        <ValidationMessage For="@(() => InventoryItem.ValidFrom)" />
+
+                        <label for="Valid To" class="control-label">Valid To</label>
+                        <InputDate id="Valid To" class="form-control" @bind-Value="InventoryItem.ValidTo" />
+                        <ValidationMessage For="@(() => InventoryItem.ValidTo)" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success" @onclick=@(async () => await CreateInventoryItem())>Save</button>
+                        <button class="btn btn-primary" @onclick="CloseModal">Cancel</button>
+                    </div>
+                </EditForm>
+            </div>
+        </BSModalBody>
+    </BSModal>
+</div>
+
+<div>
+    <BSModal @bind-IsOpen="IsView" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
+        <BSModalHeader @onclick="CloseModal">@ModalTitle</BSModalHeader>
+        <BSModalBody>
+            <div class="col-md-12">
+                @if (IsDelete)
+                {
+                    <BSAlert Color="Color.Danger">Please review carefully before deleting.</BSAlert>
+                }
+                <hr />
+                <h5>Product</h5>
+                <hr />
+                <BSTable IsResponsive="true" class="table">
+                    <tr>
+                        <td>Id</td>
+                        <td>@InventoryItem.Id</td>
+                    </tr>
+                    <tr>
+                        <td>Product Id</td>
+                        <td>@InventoryItem.ProductId</td>
+                    </tr>
+                    <tr>
+                        <td>Quantity On Hand</td>
+                        <td>@InventoryItem.QuantityOnHand</td>
+                    </tr>
+                    <tr>
+                        <td>Valid From</td>
+                        <td>@InventoryItem.ValidFrom</td>
+                    </tr>
+                    <tr>
+                        <td>Valid To</td>
+                        <td>@InventoryItem.ValidTo</td>
+                    </tr>
+                </BSTable>
+
+                <div class="form-group">
+                    @if (IsDelete)
+                    {
+                        <button type="button" class="btn btn-danger" @onclick=@RemoveInventoryItem>Delete</button>
+                        <button class="btn btn-primary" @onclick="CloseModal">Cancel</button>
+                    }
+                    @if (!IsDelete)
+                    {
+                        <button class="btn btn-primary" @onclick="CloseModal">Back</button>
+                    }
+                </div>
+            </div>
+        </BSModalBody>
+    </BSModal>
+</div>
