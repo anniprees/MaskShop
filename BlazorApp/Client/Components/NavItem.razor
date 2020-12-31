@@ -1,0 +1,10 @@
+﻿<li class="nav-item px-3">
+    <NavLink class="nav-link" href="@Route">
+        <span class="oi oi-list-rich" aria-hidden="true"></span> @Title
+    </NavLink>
+</li>
+
+@code {
+    [Parameter] public string Route { get; set; }
+    [Parameter] public string Title { get; set; }
+}
