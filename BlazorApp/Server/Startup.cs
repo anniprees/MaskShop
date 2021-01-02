@@ -96,7 +96,6 @@ namespace BlazorApp.Server
             services.AddScoped<IPartyRolesRepository, PartyRolesRepository>();
             services.AddScoped<IContactMechanismsRepository, ContactMechanismsRepository>();
             services.AddScoped<IInventoryItemsRepository, InventoryItemsRepository>();
-            services.AddScoped<IProductCategoriesPage, ProductCategoriesPage>();
             GetRepository.SetServiceProvider(services.BuildServiceProvider());
         }
 
