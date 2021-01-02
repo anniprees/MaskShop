@@ -1,4 +1,3 @@
-using BlazorApp.CoreIdentity.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlazorApp.CoreIdentity.Data;
 using MaskShop.Domain.Common;
 using MaskShop.Domain.Orders;
 using MaskShop.Domain.Parties;

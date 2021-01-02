@@ -1,8 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>aspnet-BlazorApp.CoreIdentity-4AD183DA-E003-46AA-A2EE-3F88396D5DEE</UserSecretsId>
+    <AssemblyName>BlazorApp.CoreIdentity</AssemblyName>
+    <RootNamespace>BlazorApp.CoreIdentity</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
