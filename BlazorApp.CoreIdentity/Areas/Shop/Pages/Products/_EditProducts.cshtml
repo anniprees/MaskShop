@@ -1,0 +1,14 @@
+﻿@using MaskShop.PagesCore.Common.Extensions;
+@model MaskShop.PagesCore.Shop.Products.ProductsPage;
+
+<body>
+    @Html.Editor(m => m.Item.Id)
+    @Html.Editor(m => m.Item.Name)
+    @Html.DropDown(m => m.Item.ProductCategoryId, Model.Categories)
+    @Html.Editor(m => m.Item.ProductFeatureApplicabilityId)
+    @Html.Editor(m => m.Item.PictureFile)
+    @Html.Editor(m => m.Item.Price)
+    @Html.Editor(m => m.Item.PriceComponentId)
+    @Html.Editor(m => m.Item.ValidFrom)
+    @Html.Editor(m => m.Item.ValidTo)
+</body>
