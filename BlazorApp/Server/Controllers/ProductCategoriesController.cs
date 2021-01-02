@@ -15,12 +15,10 @@ namespace BlazorApp.Server.Controllers
     public class ProductCategoriesController : ControllerBase
     {
         private readonly IProductCategoriesRepository _pr;
-        private readonly IProductCategoriesPage _service;
 
-        public ProductCategoriesController(IProductCategoriesRepository pr, IProductCategoriesPage page)
+        public ProductCategoriesController(IProductCategoriesRepository pr)
         {
             _pr = pr;
-            _service = page;
         }
 
         [HttpGet]

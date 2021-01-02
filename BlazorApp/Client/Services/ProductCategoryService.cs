@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace BlazorApp.Client.Services
 {
-    public class ProductCategoryService : IProductCategoriesPage
-    {
+    //public class ProductCategoryService : IProductCategoriesPage
+    //{
         
-    }
+    //}
 }

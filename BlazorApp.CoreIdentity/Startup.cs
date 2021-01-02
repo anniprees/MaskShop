@@ -62,11 +62,11 @@ namespace BlazorApp.CoreIdentity
         private static void RegisterAuthentication(IServiceCollection s)
             => s.AddDefaultIdentity<IdentityUser>(
                     options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<ApplicationCoreDbContext>();
 
         private void RegisterDbContexts(IServiceCollection s)
         {
-            s.AddDbContext<ApplicationDbContext>(options =>
+            s.AddDbContext<ApplicationCoreDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString(connection)));
 
