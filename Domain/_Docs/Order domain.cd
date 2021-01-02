@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MaskShop.Domain.Orders.Basket">
+    <Position X="6.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAQAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Orders\Basket.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Items" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="MaskShop.Domain.Orders.BasketItem">
+    <Position X="3.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Orders\BasketItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MaskShop.Domain.Orders.ItemProduct&lt;TData&gt;">
+    <Position X="1.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Orders\ItemProduct.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Product" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MaskShop.Domain.Orders.Order">
+    <Position X="6.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAACCAAAAAAAAAAAAAAAUAQAACABAAAAAAA=</HashCode>
+      <FileName>Orders\Order.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ContactMechanism" />
+      <Property Name="PartyName" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Items" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="MaskShop.Domain.Orders.OrderItem">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Orders\OrderItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MaskShop.Domain.Orders.PartyProducts&lt;TData&gt;">
+    <Position X="8.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Orders\PartyProducts.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Party" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MaskShop.Domain.Parties.Party">
+    <Position X="11" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAAAAAAAAAAAAEAAiACABAAAAAAA=</HashCode>
+      <FileName>Parties\Party.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MaskShop.Domain.Products.Product">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAgAABAQAAAgAAAAAAAAAIAAAAAAAAAAACAAAAEAA=</HashCode>
+      <FileName>Products\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MaskShop.Domain.Parties.ContactMechanism">
+    <Position X="14.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQIAAQAAAAAAAAAMAAAACAAAAAIAAgAHAAIABAAAAAA=</HashCode>
+      <FileName>Parties\ContactMechanism.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MaskShop.Domain.Parties.PartyName">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAEAAAABAAAAEAAAQAAQAEAAEAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Parties\PartyName.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

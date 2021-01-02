@@ -1,28 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="MaskShop.Data.Products.InventoryItemData">
-    <Position X="10.5" Y="2.5" Width="1.5" />
+    <Position X="9.5" Y="2.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
       <FileName>Products\InventoryItemData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Data.Products.PriceComponentData">
-    <Position X="8.25" Y="2.5" Width="1.75" />
+    <Position X="7.5" Y="2.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAABAAACAAA=</HashCode>
       <FileName>Products\PriceComponentData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Data.Products.ProductCategoryData">
-    <Position X="6.25" Y="2.5" Width="1.5" />
+    <Position X="5.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Products\ProductCategoryData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Data.Products.ProductData">
-    <Position X="3" Y="2.5" Width="2.75" />
+    <Position X="3" Y="2.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAgAgAABAQAAAgAAAAAAAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
       <FileName>Products\ProductData.cs</FileName>
@@ -36,25 +36,26 @@
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Data.Common.UniqueEntityData">
-    <Position X="8.5" Y="0.5" Width="1.5" />
+    <Position X="7.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Common\UniqueEntityData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Data.Common.PeriodData">
-    <Position X="12.5" Y="0.5" Width="1.5" />
+    <Position X="12" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAACAAAAAAAAA=</HashCode>
       <FileName>Common\PeriodData.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Data.Common.NamedEntityData">
-    <Position X="3.5" Y="0.5" Width="1.5" />
+    <Position X="3.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Common\NamedEntityData.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="MaskShop.Data.Common.DefinedEntityData">
     <Position X="0.75" Y="0.5" Width="1.5" />
@@ -64,7 +65,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Data.Products.ProductFeatureApplicabilityData">
-    <Position X="12.5" Y="2.5" Width="1.5" />
+    <Position X="11.5" Y="2.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>EAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Products\ProductFeatureApplicabilityData.cs</FileName>

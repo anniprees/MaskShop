@@ -1,26 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="MaskShop.Domain.Parties.ContactMechanism">
-    <Position X="12.75" Y="0.5" Width="1.5" />
+    <Position X="11" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQIAAQAAAAAAAAAMAAAACAAAAAIAAgAHAAIABAAAAAA=</HashCode>
       <FileName>Parties\ContactMechanism.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Domain.Parties.Party">
-    <Position X="5.75" Y="0.5" Width="2" />
+    <Position X="4.25" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAgAAAAAAAAAAAAAAAAAAAEAAiACABAAAAAAA=</HashCode>
       <FileName>Parties\Party.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="PartyName" />
-      <Property Name="ContactMechanism" />
       <Property Name="PartyRole" />
+      <Property Name="ContactMechanism" />
     </ShowAsAssociation>
   </Class>
   <Class Name="MaskShop.Domain.Parties.PartyAttribute&lt;T&gt;">
-    <Position X="9.25" Y="4" Width="1.5" />
+    <Position X="7.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AEAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Parties\PartyAttribute.cs</FileName>
@@ -30,21 +30,21 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="MaskShop.Domain.Parties.PartyName">
-    <Position X="5" Y="4.5" Width="1.5" />
+    <Position X="4" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAEAAAABAAAAEAAAQAAQAEAAEAAAAAAAAAAAAAAg=</HashCode>
       <FileName>Parties\PartyName.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Domain.Parties.PartyRole">
-    <Position X="12.75" Y="5.25" Width="1.5" />
+    <Position X="10.25" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Parties\PartyRole.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Domain.Orders.PartyProducts&lt;TData&gt;">
-    <Position X="1" Y="5" Width="1.5" />
+    <Position X="1" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AEAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Orders\PartyProducts.cs</FileName>
@@ -54,14 +54,14 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="MaskShop.Domain.Orders.Order">
-    <Position X="1" Y="0.75" Width="2.25" />
+    <Position X="0.5" Y="0.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAgAACCAAAAAAAAAAAAAAAUAQAACABAAAAAAA=</HashCode>
       <FileName>Orders\Order.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="PartyName" />
       <Property Name="ContactMechanism" />
+      <Property Name="PartyName" />
     </ShowAsAssociation>
   </Class>
   <Font Name="Segoe UI" Size="9" />

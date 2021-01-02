@@ -10,4 +10,9 @@
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Products\Docs\" />
+    <Folder Include="Shipments\Docs\" />
+  </ItemGroup>
+
 </Project>
