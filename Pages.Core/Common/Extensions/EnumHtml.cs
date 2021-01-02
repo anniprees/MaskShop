@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Pages.Core.Common.Extensions {
+namespace MaskShop.PagesCore.Common.Extensions {
 
     public static class EnumHtml {
 

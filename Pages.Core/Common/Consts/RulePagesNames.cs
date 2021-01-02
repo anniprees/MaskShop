@@ -1,5 +1,5 @@
 ﻿
-namespace Pages.Core.Common.Consts {
+namespace MaskShop.PagesCore.Common.Consts {
     public static class RulePagesNames {
         public static string RuleSets => "Rule Sets";
         public static string Rules => "Rules";

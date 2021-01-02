@@ -4,12 +4,12 @@ using System.Linq.Expressions;
 using MaskShop.Aids;
 using MaskShop.Domain.Common;
 using MaskShop.Facade.Common;
+using MaskShop.PagesCore.Common.Extensions;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Pages.Core.Common.Extensions;
 
-namespace Pages.Core.Common {
+namespace MaskShop.PagesCore.Common {
     public abstract class UnifiedPage<TPage, TRepository, TDomain, TView, TData>
         :TitledPage<TRepository, TDomain, TView, TData>, IIndexTable<TPage>
         where TPage : PageModel

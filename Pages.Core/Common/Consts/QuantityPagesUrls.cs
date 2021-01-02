@@ -1,4 +1,4 @@
-﻿namespace Pages.Core.Common.Consts {
+﻿namespace MaskShop.PagesCore.Common.Consts {
     public static class QuantityPagesUrls {
         public static string Measures => "/Quantity/Measures";
         public static string MeasureTerms => "/Quantity/MeasureTerms";

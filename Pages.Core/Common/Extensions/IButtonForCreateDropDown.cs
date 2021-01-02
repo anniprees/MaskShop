@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Pages.Core.Common.Extensions {
+namespace MaskShop.PagesCore.Common.Extensions {
     public interface IButtonForCreateDropDown<TPage, TDropDownEnum> {
         int DropDownEntryCount { get; }
         Uri GetDropDownEntryUri(int i);

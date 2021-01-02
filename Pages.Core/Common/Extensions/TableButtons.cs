@@ -1,4 +1,4 @@
-﻿namespace Pages.Core.Common.Extensions {
+﻿namespace MaskShop.PagesCore.Common.Extensions {
     public class TableButtons {
 
         public TableButtons(string select, string edit, string details, string delete) {

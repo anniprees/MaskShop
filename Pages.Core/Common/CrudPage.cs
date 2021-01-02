@@ -3,7 +3,7 @@ using MaskShop.Domain.Common;
 using MaskShop.Facade.Common;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Pages.Core.Common {
+namespace MaskShop.PagesCore.Common {
 
     public abstract class CrudPage<TRepository, TDomain, TView, TData> :
         BasePage<TRepository, TDomain, TView, TData>

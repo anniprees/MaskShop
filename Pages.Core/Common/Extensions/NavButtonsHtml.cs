@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using MaskShop.Aids;
+using MaskShop.PagesCore.Common.Aids;
+using MaskShop.PagesCore.Common.Consts;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Pages.Core.Common.Aids;
-using Pages.Core.Common.Consts;
 
-namespace Pages.Core.Common.Extensions {
+namespace MaskShop.PagesCore.Common.Extensions {
 
     public static class NavButtonsHtml {
 

@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace Pages.Core.Common.Aids {
+namespace MaskShop.PagesCore.Common.Aids {
 
     public sealed class Args {
 

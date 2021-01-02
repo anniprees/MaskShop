@@ -4,7 +4,7 @@ using MaskShop.Domain.Common;
 using MaskShop.Facade.Common;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Pages.Core.Common {
+namespace MaskShop.PagesCore.Common {
     public abstract class ViewsPage<TPage, TRepository, TDomain, TView, TData> :
         ViewPage<TPage, TRepository, TDomain, TView, TData>
         where TPage : PageModel

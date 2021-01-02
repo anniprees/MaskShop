@@ -7,7 +7,7 @@ using MaskShop.Domain.Common;
 using MaskShop.Facade.Common;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Pages.Core.Common {
+namespace MaskShop.PagesCore.Common {
 
     public abstract class TitledPage<TRepository, TDomain, TView, TData> :
         PagedPage<TRepository, TDomain, TView, TData>

@@ -1,4 +1,4 @@
-﻿namespace Pages.Core.Common.Consts {
+﻿namespace MaskShop.PagesCore.Common.Consts {
 
     public static class MoneyPagesUrls {
         public static string Cards => "/Money/Cards";

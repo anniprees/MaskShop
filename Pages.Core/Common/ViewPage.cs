@@ -5,7 +5,7 @@ using MaskShop.Facade.Common;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Pages.Core.Common {
+namespace MaskShop.PagesCore.Common {
 
     public abstract class ViewPage<TPage, TRepository, TDomain, TView, TData> :
         UnifiedPage<TPage, TRepository, TDomain, TView, TData>

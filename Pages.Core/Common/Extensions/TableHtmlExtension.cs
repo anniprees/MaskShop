@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
+using MaskShop.PagesCore.Common.Aids;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Pages.Core.Common.Aids;
 
-namespace Pages.Core.Common.Extensions {
+namespace MaskShop.PagesCore.Common.Extensions {
     public static class TableHtmlExtension {
         public static IHtmlContent ShowTable<TPage>(this IHtmlHelper<TPage> h,
             IIndexTable<TPage> page, string select = null, string edit = "Edit", 

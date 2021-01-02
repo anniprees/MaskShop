@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using MaskShop.Domain.Common;
 using MaskShop.Facade.Common;
 
-namespace Pages.Core.Common {
+namespace MaskShop.PagesCore.Common {
 
     public abstract class PagedPage<TRepository, TDomain, TView, TData> :
         CrudPage<TRepository, TDomain, TView, TData>
