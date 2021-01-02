@@ -3,7 +3,9 @@ using MaskShop.Data.Products;
 using MaskShop.Domain.Products;
 using MaskShop.Facade.Products;
 using MaskShop.PagesCore.Common;
+using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MaskShop.PagesCore.Shop.Products
 {
@@ -19,6 +21,9 @@ namespace MaskShop.PagesCore.Shop.Products
         {
             createColumn(x => Item.Id);
             createColumn(x => Item.Name);
+            createColumn(x=> Item.ValidFrom);
+            createColumn(x => Item.ValidTo);
         }
+
     }
 }
