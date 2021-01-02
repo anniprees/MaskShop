@@ -1,0 +1,10 @@
+﻿@using MaskShop.PagesCore.Common.Extensions;
+@model MaskShop.PagesCore.Shop.Products.InventoryItemsPage;
+
+<body>
+    @Html.Show(m => m.Item.Id)
+    @Html.Show(m => m.Item.ProductId, Model.ProductName(Model.Item.ProductId))
+    @Html.Show(m => m.Item.QuantityOnHand)
+    @Html.Show(m => m.Item.ValidFrom)
+    @Html.Show(m => m.Item.ValidTo)
+</body>

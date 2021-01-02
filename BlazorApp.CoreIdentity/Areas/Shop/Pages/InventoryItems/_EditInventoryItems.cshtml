@@ -1,0 +1,10 @@
+﻿@using MaskShop.PagesCore.Common.Extensions;
+@model MaskShop.PagesCore.Shop.Products.InventoryItemsPage;
+
+<body>
+    @Html.Editor(m => m.Item.Id)
+    @Html.DropDown(m => m.Item.ProductId, Model.Products)
+    @Html.Editor(m => m.Item.QuantityOnHand)
+    @Html.Editor(m => m.Item.ValidFrom)
+    @Html.Editor(m => m.Item.ValidTo)
+</body>
