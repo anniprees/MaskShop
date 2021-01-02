@@ -16,7 +16,7 @@ namespace MaskShop.PagesCore.Shop.Products
         public IEnumerable<SelectListItem> Categories { get; }
 
         public ProductsPage(IProductsRepository r, IProductCategoriesRepository c, IPriceComponentsRepository p) :
-            base(r, "Categories")
+            base(r, "Products")
         {
             Categories = newItemsList<ProductCategory, ProductCategoryData>(c);
         }
