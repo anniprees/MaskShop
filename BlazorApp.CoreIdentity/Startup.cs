@@ -1,6 +1,10 @@
+using BlazorApp.CoreIdentity.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -16,17 +20,17 @@ using MaskShop.Infra;
 using MaskShop.Infra.Orders;
 using MaskShop.Infra.Parties;
 using MaskShop.Infra.Products;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
-namespace BlazorApp.Core
+namespace BlazorApp.CoreIdentity
 {
     public class Startup
     {
         private static string connection => "DefaultConnection";
-
         public IConfiguration Configuration { get; }
-        public Startup(IConfiguration conf) => Configuration = conf;
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -34,6 +38,7 @@ namespace BlazorApp.Core
             RegisterAuthentication(services);
             services.AddRazorPages();
             RegisterRepositories(services);
+            services.AddDatabaseDeveloperPageExceptionFilter();
         }
 
         private static void RegisterRepositories(IServiceCollection s)
@@ -53,28 +58,29 @@ namespace BlazorApp.Core
             s.AddScoped<IInventoryItemsRepository, InventoryItemsRepository>();
             GetRepository.SetServiceProvider(s.BuildServiceProvider());
         }
-        private void registerAuthentication(IServiceCollection s)
+
+        private static void RegisterAuthentication(IServiceCollection s)
             => s.AddDefaultIdentity<IdentityUser>(
                     options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-        private void registerDbContexts(IServiceCollection s)
+        private void RegisterDbContexts(IServiceCollection s)
         {
-            registerDbContext<ApplicationDbContext>(s);
-            registerDbContext<ShopDbContext>(s);
-        }
-        protected virtual void registerDbContext<T>(IServiceCollection s) where T : DbContext
-        {
-            s.AddDbContext<T>(options =>
+            s.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString(connection)));
+
+            s.AddDbContext<ShopDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString(connection)));
         }
 
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseMigrationsEndPoint();
             }
             else
             {
@@ -88,6 +94,7 @@ namespace BlazorApp.Core
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

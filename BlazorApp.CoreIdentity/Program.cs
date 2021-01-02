@@ -3,7 +3,7 @@ using Microsoft.Extensions.Hosting;
 using MaskShop.Infra;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BlazorApp.Core
+namespace BlazorApp.CoreIdentity
 {
     public class Program
     {
