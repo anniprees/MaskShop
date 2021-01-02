@@ -1,0 +1,35 @@
+﻿@typeparam TItem
+
+<label for="@Model" class="control-label">@Display</label>
+<InputSelect Id="@Model" class="form-control" @bind-Value="@SaveTo">                            
+    @if (SearchList != null)
+    {
+        foreach (var item in SearchList)
+        {
+            string searchFor = $"{item}.{RequestedProperty}";
+            <option value="@item.@InputProperty">@nameof(searchFor)</option>
+        }
+    }
+</InputSelect>
+
+@code {
+
+    [Parameter]
+    public List<TItem> SearchList { get; set; }
+
+    [Parameter]
+    public string Model { get; set; }
+
+    [Parameter]
+    public string Display { get; set; }
+
+    [Parameter]
+    public string InputProperty { get; set; }
+
+    [Parameter]
+    public string RequestedProperty { get; set; }
+
+    [Parameter]
+    public string SaveTo { get; set; }
+
+}

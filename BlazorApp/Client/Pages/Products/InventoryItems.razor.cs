@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using MaskShop.Facade.Products;
@@ -13,6 +15,7 @@ namespace BlazorApp.Client.Pages.Products
         [Parameter] public string SearchTerm { get; set; } = string.Empty;
         
         List<InventoryItemView> _inventoryItems;
+        List<ProductView> _products;
 
         protected InventoryItemView InventoryItem = new InventoryItemView
         {
@@ -66,10 +69,11 @@ namespace BlazorApp.Client.Pages.Products
             StateHasChanged();
         }
 
-        protected void AddInventoryItem()
+        protected async Task AddInventoryItem()
         {
             this.IsAdd = true;
             this.ModalTitle = "Create price component";
+            await LoadProductData();
         }
 
         protected async Task ViewInventoryItem(string Id)
@@ -86,6 +90,7 @@ namespace BlazorApp.Client.Pages.Products
             SelectedId = Id;
             this.IsAdd = true;
             this.ModalTitle = "Edit product";
+            await LoadProductData();
         }
 
         protected async Task DeleteInventoryItem(string Id)
@@ -134,6 +139,22 @@ namespace BlazorApp.Client.Pages.Products
             this.IsView = false;
             this.IsDelete = false;
             StateHasChanged();
+        }
+
+        protected async Task LoadProductData()
+        {
+            _products = await HttpClient.GetJsonAsync<List<ProductView>>("api/products");
+        }
+
+        private string FindProductName(string id)
+        {
+            var name = "";
+            LoadProductData();
+            foreach (var item in _products)
+            {
+                name = _products.Where(p => p.Id == id).Select(x => x.Name).ToString();
+            }
+            return name;
         }
     }
 }

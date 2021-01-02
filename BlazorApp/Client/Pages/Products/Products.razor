@@ -42,6 +42,7 @@ else
                 <th>ID</th>
                 <th>Name</th>
                 <th>Product Category</th>
+                <th>Product Feature Applicability</th>
                 <th>Price</th>
                 <th>Picture</th>
                 <th>From</th>
@@ -49,20 +50,21 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var product in _products)
+            @foreach (var item in _products)
             {
                 <tr>
-                    <td>@product.Id</td>
-                    <td>@product.Name</td>
-                    <td>@product.ProductCategoryId</td>
-                    <td>@product.Price</td>
-                    <td><img src="@product.PictureUri"width="200"/></td>
-                    <td>@product.ValidFrom</td>
-                    <td>@product.ValidTo</td>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.ProductCategoryId</td>
+                    <td>@item.ProductFeatureApplicabilityId</td>
+                    <td>@item.Price</td>
+                    <td><img src="@item.PictureUri"width="200"/></td>
+                    <td>@item.ValidFrom</td>
+                    <td>@item.ValidTo</td>
                     <td>
-                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-eye text-primary" @onclick="@(async () => await ViewProduct(product.Id))"></BSButton>
-                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-pencil text-warning" @onclick="@(async () => await EditProduct(product.Id))"></BSButton>
-                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-trash text-danger" @onclick="@(async () => await DeleteProduct(product.Id))"></BSButton>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-eye text-primary" @onclick="@(async () => await ViewProduct(item.Id))"></BSButton>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-pencil text-warning" @onclick="@(async () => await EditProduct(item.Id))"></BSButton>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-trash text-danger" @onclick="@(async () => await DeleteProduct(item.Id))"></BSButton>
                     </td>
                 </tr>
             }
@@ -151,6 +153,10 @@ else
                     <tr>
                         <td>Product Category</td>
                         <td>@Product.ProductCategoryId</td>
+                    </tr>
+                    <tr>
+                        <td>Product Feature Applicability</td>
+                        <td>@Product.ProductFeatureApplicabilityId</td>
                     </tr>
                     <tr>
                         <td>Price</td>

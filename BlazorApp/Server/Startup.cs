@@ -18,6 +18,7 @@ using MaskShop.Infra;
 using MaskShop.Infra.Orders;
 using MaskShop.Infra.Parties;
 using MaskShop.Infra.Products;
+using MaskShop.Pages.Products;
 
 namespace BlazorApp.Server
 {
@@ -95,6 +96,7 @@ namespace BlazorApp.Server
             services.AddScoped<IPartyRolesRepository, PartyRolesRepository>();
             services.AddScoped<IContactMechanismsRepository, ContactMechanismsRepository>();
             services.AddScoped<IInventoryItemsRepository, InventoryItemsRepository>();
+            services.AddScoped<IProductCategoriesPage, ProductCategoriesPage>();
             GetRepository.SetServiceProvider(services.BuildServiceProvider());
         }
 

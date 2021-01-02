@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using MaskShop.Aids;
-using MaskShop.Data.Orders;
 using MaskShop.Data.Orders;
 using MaskShop.Data.Parties;
 using MaskShop.Data.Products;

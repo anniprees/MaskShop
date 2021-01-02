@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MaskShop.Domain.Products;
 using MaskShop.Facade.Products;
+using MaskShop.Pages.Products;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,10 +15,12 @@ namespace BlazorApp.Server.Controllers
     public class ProductCategoriesController : ControllerBase
     {
         private readonly IProductCategoriesRepository _pr;
+        private readonly IProductCategoriesPage _service;
 
-        public ProductCategoriesController(IProductCategoriesRepository pr)
+        public ProductCategoriesController(IProductCategoriesRepository pr, IProductCategoriesPage page)
         {
             _pr = pr;
+            _service = page;
         }
 
         [HttpGet]

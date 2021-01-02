@@ -65,9 +65,16 @@
                         <InputText id="Id" class="form-control" @bind-Value="InventoryItem.Id" />
                         <ValidationMessage For="@(() => InventoryItem.Id)" />
 
-                        <label for="ProductId" class="control-label">Product Id</label>
+                        <DropdownForeignId SearchList="_products" 
+                                           Model="Product"
+                                           SaveTo="ProductId"
+                                           Display="Product Name" 
+                                           InputProperty="Id"
+                                           RequestedProperty="Name"></DropdownForeignId>
+
+                        @*<label for="ProductId" class="control-label">Product Id</label>
                         <InputText id="ProductId" class="form-control" @bind-Value="InventoryItem.ProductId" />
-                        <ValidationMessage For="@(() => InventoryItem.ProductId)" />
+                        <ValidationMessage For="@(() => InventoryItem.ProductId)" />*@
 
                         <label for="QuantityOnHand" class="control-label">Quantity On Hand</label>
                         <InputNumber id="QuantityOnHand" class="form-control" @bind-Value="InventoryItem.QuantityOnHand" />
