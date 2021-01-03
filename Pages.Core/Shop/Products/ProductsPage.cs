@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MaskShop.PagesCore.Shop.Products
 {
-    public class ProductsPage : ViewPage<ProductsPage, IProductsRepository, Product, ProductView, ProductData>
+    public class ProductsPage<TPage> : ViewPage<ProductsPage, IProductsRepository, Product, ProductView, ProductData>
     {
         public IEnumerable<SelectListItem> Categories { get; }
 
