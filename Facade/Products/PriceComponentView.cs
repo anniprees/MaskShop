@@ -13,6 +13,6 @@ namespace MaskShop.Facade.Products
         [DisplayName("Discount Percentage")] public double DiscountPercentage { get; set; }
         
         [Required]
-        [DisplayName("Party Role Id")] public string PartyRoleId { get; set; }
+        [DisplayName("Party Role")] public string PartyRoleId { get; set; }
     }
 }

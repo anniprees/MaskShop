@@ -10,6 +10,6 @@ namespace MaskShop.Facade.Products
         [DisplayName("Quantity on hand")] public int QuantityOnHand { get; set; }
         
         [Required]
-        [DisplayName("Product Id")]  public string ProductId { get; set; }
+        [DisplayName("Product")]  public string ProductId { get; set; }
     }
 }

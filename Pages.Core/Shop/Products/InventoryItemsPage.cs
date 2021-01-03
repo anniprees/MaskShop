@@ -34,7 +34,6 @@ namespace MaskShop.PagesCore.Shop.Products
             createColumn(x => Item.ValidFrom);
             createColumn(x => Item.ValidTo);
         }
-
         public override IHtmlContent GetValue(IHtmlHelper<InventoryItemsPage> h, int i) => i switch
         {
             1 => getRaw(h, ProductName(Item.ProductId)),

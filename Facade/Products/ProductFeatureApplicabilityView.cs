@@ -7,9 +7,9 @@ namespace MaskShop.Facade.Products
     public sealed class ProductFeatureApplicabilityView : UniqueEntityView
     {
         [Required]
-        [DisplayName("Product Feature Id")] public string ProductFeatureId { get; set; }
+        [DisplayName("Product Feature")] public string ProductFeatureId { get; set; }
 
         [Required]
-        [DisplayName("Product Id")] public string ProductId { get; set; }
+        [DisplayName("Product")] public string ProductId { get; set; }
     }
 }

@@ -11,11 +11,11 @@ namespace MaskShop.Facade.Products
         [DisplayName("Product Price")] public decimal Price { get; set; }
 
         [Required(ErrorMessage = "Product category is required")]
-        [DisplayName("Product Category Id")] public string ProductCategoryId { get; set; }
+        [DisplayName("Product Category")] public string ProductCategoryId { get; set; }
 
         [DisplayName("Product feature applicability")] public string ProductFeatureApplicabilityId { get; set; }
 
-        [DisplayName("Price Component Id")] public string PriceComponentId { get; set; }
+        [DisplayName("Price Component")] public string PriceComponentId { get; set; }
 
         [DisplayName("Picture Uri")] public string PictureUri { get; set; }
 
