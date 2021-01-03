@@ -7,6 +7,7 @@ using MaskShop.Domain.Parties;
 using MaskShop.Domain.Products;
 using MaskShop.Facade.Products;
 using MaskShop.PagesCore.Common;
+using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MaskShop.PagesCore.Shop.Products
@@ -46,6 +47,12 @@ namespace MaskShop.PagesCore.Shop.Products
             createColumn(x => Item.ValidFrom);
             createColumn(x => Item.ValidTo);
         }
+        public override IHtmlContent GetValue(IHtmlHelper<PriceComponentsPage> h, int i) => i switch
+        {
+            3 => getRaw(h, PartyRoleName(Item.PartyRoleId)),
+           _ => base.GetValue(h, i)
+
+        };
     }
 }
         
