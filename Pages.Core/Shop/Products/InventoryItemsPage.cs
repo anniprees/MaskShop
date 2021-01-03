@@ -30,6 +30,7 @@ namespace MaskShop.PagesCore.Shop.Products
         {
             createColumn(x => Item.Id);
             createColumn(x => Item.ProductId);
+            createColumn(x => Item.ProductFeatureApplicabilityId);
             createColumn(x => Item.QuantityOnHand);
             createColumn(x => Item.ValidFrom);
             createColumn(x => Item.ValidTo);
