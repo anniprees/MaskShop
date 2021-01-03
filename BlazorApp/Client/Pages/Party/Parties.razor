@@ -46,7 +46,7 @@
             <tbody>
                 <tr>
                     <td>@item.Id</td>
-                    <td>@item.PartyNameId</td>
+                    @*<td>@item.PartyNameId</td>*@
                     <td>@item.PartyRoleId</td>
                     <td>@item.ContactMechanismId</td>
                     <td>@item.PartyType</td>
@@ -77,9 +77,9 @@
                         <InputText id="Id" class="form-control" @bind-Value="Party.Id" />
                         <ValidationMessage For="@(() => Party.Id)" />
 
-                        <label for="PartyNameId" class="control-label">PartyNameId</label>
+                        @*<label for="PartyNameId" class="control-label">PartyNameId</label>
                         <InputText id="PartyNameId" class="form-control" @bind-Value="Party.PartyNameId" />
-                        <ValidationMessage For="@(() => Party.PartyNameId)" />
+                        <ValidationMessage For="@(() => Party.PartyNameId)" />*@
 
                         <label for="PartyRoleId" class="control-label">PartyRoleId</label>
                         <InputText id="PartyRoleId" class="form-control" @bind-Value="Party.PartyRoleId" />
@@ -128,10 +128,10 @@
                         <td>Id</td>
                         <td>@Party.Id</td>
                     </tr>
-                    <tr>
+                    @*<tr>
                         <td>PartyNameId</td>
                         <td>@Party.PartyNameId</td>
-                    </tr>
+                    </tr>*@
                     <tr>
                         <td>PartyRoleId</td>
                         <td>@Party.PartyRoleId</td>

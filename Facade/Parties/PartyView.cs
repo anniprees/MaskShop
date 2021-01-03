@@ -5,10 +5,10 @@ using MaskShop.Facade.Common;
 
 namespace MaskShop.Facade.Parties
 {
-    public sealed class PartyView: UniqueEntityView
+    public sealed class PartyView: NamedView
     {
-        [Required]
-        [DisplayName("Party Name Id")] public string PartyNameId { get; set; }
+        //[Required]
+        //[DisplayName("Party Name Id")] public string PartyNameId { get; set; }
 
         [Required]
         [DisplayName("Party Role Id")] public string PartyRoleId { get; set; }

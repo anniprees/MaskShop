@@ -7,5 +7,7 @@ namespace MaskShop.Data.Products
         public int QuantityOnHand { get; set; }
 
         public string ProductId { get; set; }
+
+        public string ProductFeatureApplicabilityId { get; set; }
     }
 }

@@ -27,7 +27,7 @@ namespace MaskShop.Infra
             InitializeBaskets(db);
             InitializeParties(db);
             InitializePartyRoles(db);
-            InitializePartyNames(db);
+            //InitializePartyNames(db);
             InitializePriceComponents(db);
         }
 
@@ -133,12 +133,12 @@ namespace MaskShop.Infra
 
             var parties = new[]
             {
-                new PartyData {Id = "1", PartyNameId = "4", PartyRoleId = "4", ContactMechanismId = "1", PartyType = PartyType.Person , ValidFrom = Convert.ToDateTime("10/06/2019 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")},
-                new PartyData {Id = "2", PartyNameId = "1", PartyRoleId = "1", ContactMechanismId = "2" , PartyType =PartyType.Unspecified , ValidFrom = Convert.ToDateTime("17/06/2016 09:00"), ValidTo = Convert.ToDateTime("29/04/2026 09:00")},
-                new PartyData {Id = "3", PartyNameId = "3", PartyRoleId = "3", ContactMechanismId = "3" , PartyType = PartyType.Person, ValidFrom = null, ValidTo = null},
-                new PartyData {Id = "4", PartyNameId = "2", PartyRoleId = "2", ContactMechanismId = "4" , PartyType = PartyType.Organization, ValidFrom = null, ValidTo = null},
-                new PartyData {Id = "5", PartyNameId = "6", PartyRoleId = "6", ContactMechanismId = "5" , PartyType =PartyType.Person , ValidFrom = null, ValidTo = null},
-                new PartyData {Id = "6", PartyNameId = "5", PartyRoleId = "5", ContactMechanismId = "6" , PartyType = PartyType.Person, ValidFrom = null, ValidTo = null},
+                new PartyData {Id = "1", Name = "Silvi Orav", PartyRoleId = "4", ContactMechanismId = "1", PartyType = PartyType.Person , ValidFrom = Convert.ToDateTime("10/06/2019 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")},
+                new PartyData {Id = "2", Name = "Mari Karu", PartyRoleId = "1", ContactMechanismId = "2" , PartyType =PartyType.Unspecified , ValidFrom = Convert.ToDateTime("17/06/2016 09:00"), ValidTo = Convert.ToDateTime("29/04/2026 09:00")},
+                new PartyData {Id = "3", Name = "Kati Lumi", PartyRoleId = "3", ContactMechanismId = "3" , PartyType = PartyType.Person, ValidFrom = null, ValidTo = null},
+                new PartyData {Id = "4", Name = "Silver Aun", PartyRoleId = "2", ContactMechanismId = "4" , PartyType = PartyType.Organization, ValidFrom = null, ValidTo = null},
+                new PartyData {Id = "5", Name = "Olga Onegin", PartyRoleId = "6", ContactMechanismId = "5" , PartyType =PartyType.Person , ValidFrom = null, ValidTo = null},
+                new PartyData {Id = "6", Name = "Mati Maasikas", PartyRoleId = "5", ContactMechanismId = "6" , PartyType = PartyType.Person, ValidFrom = null, ValidTo = null},
 
             };
 
@@ -165,25 +165,25 @@ namespace MaskShop.Infra
 
         }
 
-        private static void InitializePartyNames(ShopDbContext db)
-        {
-            if (db.PartyNames.Count() != 0) return;
+        //private static void InitializePartyNames(ShopDbContext db)
+        //{
+        //    if (db.PartyNames.Count() != 0) return;
 
-            var names = new[]
-            {
-                new PartyNameData {Id = "1", FirstName = "Silvi", LastName = "Orav", ValidFrom = Convert.ToDateTime("1/06/2019 09:00"), ValidTo = Convert.ToDateTime("1/04/2021 09:00")},
-                new PartyNameData {Id = "2", FirstName = "Mari", LastName = "Karu", ValidFrom = Convert.ToDateTime("1/06/2019 09:00"), ValidTo = Convert.ToDateTime("1/04/2021 09:00")},
-                new PartyNameData {Id = "3", FirstName = "Kati", LastName = "Lumi",  ValidFrom = Convert.ToDateTime("10/06/2015 09:00"), ValidTo = Convert.ToDateTime("1/04/2022 09:00")},
-                new PartyNameData {Id = "4", FirstName = "Silver", LastName = "Aun", ValidFrom = Convert.ToDateTime("21/07/2012 09:00"), ValidTo = Convert.ToDateTime("10/02/2021 09:00")},
-                new PartyNameData {Id = "5", FirstName = "Olga", LastName = "Onegin", ValidFrom = Convert.ToDateTime("1/08/2019 09:00"), ValidTo = Convert.ToDateTime("1/02/2023 09:00")},
-                new PartyNameData {Id = "6", FirstName = "Mati", LastName = "Maasikas", ValidFrom = Convert.ToDateTime("1/12/2019 09:00"), ValidTo = Convert.ToDateTime("10/04/2050 09:00")},
+        //    var names = new[]
+        //    {
+        //        new PartyNameData {Id = "1", FirstName = "Silvi", LastName = "Orav", ValidFrom = Convert.ToDateTime("1/06/2019 09:00"), ValidTo = Convert.ToDateTime("1/04/2021 09:00")},
+        //        new PartyNameData {Id = "2", FirstName = "Mari", LastName = "Karu", ValidFrom = Convert.ToDateTime("1/06/2019 09:00"), ValidTo = Convert.ToDateTime("1/04/2021 09:00")},
+        //        new PartyNameData {Id = "3", FirstName = "Kati", LastName = "Lumi",  ValidFrom = Convert.ToDateTime("10/06/2015 09:00"), ValidTo = Convert.ToDateTime("1/04/2022 09:00")},
+        //        new PartyNameData {Id = "4", FirstName = "Silver", LastName = "Aun", ValidFrom = Convert.ToDateTime("21/07/2012 09:00"), ValidTo = Convert.ToDateTime("10/02/2021 09:00")},
+        //        new PartyNameData {Id = "5", FirstName = "Olga", LastName = "Onegin", ValidFrom = Convert.ToDateTime("1/08/2019 09:00"), ValidTo = Convert.ToDateTime("1/02/2023 09:00")},
+        //        new PartyNameData {Id = "6", FirstName = "Mati", LastName = "Maasikas", ValidFrom = Convert.ToDateTime("1/12/2019 09:00"), ValidTo = Convert.ToDateTime("10/04/2050 09:00")},
 
-            };
+        //    };
 
-            db.PartyNames.AddRange(names);
-            db.SaveChanges();
+        //    db.PartyNames.AddRange(names);
+        //    db.SaveChanges();
 
-        }
+        //}
 
         private static void InitializeProductCategories(ShopDbContext db)
         {

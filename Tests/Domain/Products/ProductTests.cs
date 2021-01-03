@@ -19,9 +19,6 @@ namespace MaskShop.Tests.Domain.Products
         public void PriceComponentIdTest() => IsReadOnlyProperty(obj, nameof(obj.PriceComponentId),obj.Data.PriceComponentId);
 
         [TestMethod]
-        public void ProductFeatureApplicabilityIdTest() => IsReadOnlyProperty(obj, nameof(obj.ProductFeatureApplicabilityId), obj.Data.ProductFeatureApplicabilityId);
-
-        [TestMethod]
         public void PriceTest() => IsReadOnlyProperty(obj.Data.Price);
 
         [TestMethod]
@@ -39,11 +36,6 @@ namespace MaskShop.Tests.Domain.Products
         public void PriceComponentTest() =>
             GetFromRepository<PriceComponentData, PriceComponent, IPriceComponentsRepository>(
                 obj.PriceComponentId, () => obj.PriceComponent.Data, d => new PriceComponent(d));
-
-        [TestMethod]
-        public void ProductFeatureApplicabilityTest() => 
-            GetFromRepository<ProductFeatureApplicabilityData, ProductFeatureApplicability, IProductFeatureApplicabilitiesRepository>(
-                obj.ProductFeatureApplicabilityId, () => obj.ProductFeatureApplicability.Data, d=> new ProductFeatureApplicability(d));
 
     }
 }

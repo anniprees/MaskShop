@@ -45,7 +45,7 @@
                 <tr>
                     <td>@item.Id</td>
                     <td>@item.Role</td>
-                    <td>@item.PartyId</td>
+                    @*<td>@item.PartyId</td>*@
                     <td>@item.ValidFrom</td>
                     <td>@item.ValidTo</td>
                     <td>
@@ -77,9 +77,9 @@
                         <InputText id="Role" class="form-control" @bind-Value="PartyRole.Role" />
                         <ValidationMessage For="@(() => PartyRole.Role)" />
 
-                        <label for="PartyId" class="control-label">PartyId</label>
+                        @*<label for="PartyId" class="control-label">PartyId</label>
                         <InputText id="PartyId" class="form-control" @bind-Value="PartyRole.PartyId" />
-                        <ValidationMessage For="@(() => PartyRole.PartyId)" />
+                        <ValidationMessage For="@(() => PartyRole.PartyId)" />*@
 
                         <label for="Valid From" class="control-label">Valid From</label>
                         <InputDate id="Valid From" class="form-control" @bind-Value="PartyRole.ValidFrom" />
@@ -120,10 +120,10 @@
                         <td>Role</td>
                         <td>@PartyRole.Role</td>
                     </tr>
-                    <tr>
+                    @*<tr>
                         <td>PartyId</td>
                         <td>@PartyRole.PartyId</td>
-                    </tr>
+                    </tr>*@
                     <tr>
                         <td>Valid From</td>
                         <td>@PartyRole.ValidFrom</td>

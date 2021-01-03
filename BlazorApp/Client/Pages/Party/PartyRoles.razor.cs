@@ -22,7 +22,7 @@ namespace BlazorApp.Client.Pages.Party
         {
             Id ="",
             Role = "",
-            PartyId = "",
+            //PartyId = "",
             ValidFrom = null,
             ValidTo = null
         };
@@ -151,7 +151,7 @@ namespace BlazorApp.Client.Pages.Party
             {
                 Id = "",
                 Role = "",
-                PartyId = "",
+                //PartyId = "",
                 ValidFrom = null,
                 ValidTo = null
             };

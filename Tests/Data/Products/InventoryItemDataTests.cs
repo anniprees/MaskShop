@@ -10,6 +10,8 @@ namespace MaskShop.Tests.Data.Products
         [TestMethod] public void QuantityOnHandTest() => IsProperty(() => obj.QuantityOnHand, x => obj.QuantityOnHand = x);
 
         [TestMethod] public void ProductIdTest() => IsNullableProperty(() => obj.ProductId, x => obj.ProductId = x);
+        [TestMethod] public void ProductFeatureApplicabilityIdTest() => IsNullableProperty(() => 
+            obj.ProductFeatureApplicabilityId, x => obj.ProductFeatureApplicabilityId = x);
     }
 }
 

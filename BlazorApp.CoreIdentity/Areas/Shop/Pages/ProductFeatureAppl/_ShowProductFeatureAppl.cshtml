@@ -5,6 +5,7 @@
     @Html.Show(m => m.Item.Id)
     @Html.Show(m => m.Item.ProductId, Model.ProductName(Model.Item.ProductId))
     @Html.Show(m => m.Item.ProductFeatureId, Model.ProductFeatureName(Model.Item.ProductFeatureId))
+    @Html.Show(m => m.Item.FeatureDefinition)
     @Html.Show(m => m.Item.ValidFrom)
     @Html.Show(m => m.Item.ValidTo)
 </body>

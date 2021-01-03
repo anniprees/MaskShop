@@ -22,6 +22,7 @@ namespace MaskShop.Domain.Orders
         new GetFrom<IOrderItemsRepository, OrderItem>().ListBy(_orderId, Id);
         
         public ContactMechanism ContactMechanism => new GetFrom<IContactMechanismsRepository, ContactMechanism>().ById(ContactMechanismId);
+        //public PartyName PartyName => new GetFrom<IPartyNamesRepository, PartyName>().ById(PartyNameId);
 
         public decimal TotalPrice
         {

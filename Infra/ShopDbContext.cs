@@ -21,7 +21,6 @@ namespace MaskShop.Infra
         public DbSet<OrderData> Orders { get; set; }
         public DbSet<OrderItemData> OrderItems { get; set; }
         public DbSet<PartyData> Parties { get; set; }
-        public DbSet<PartyNameData> PartyNames { get; set; }
         public DbSet<PartyRoleData> PartyRoles { get; set; }
         public DbSet<ContactMechanismData> ContactMechanisms { get; set; }
 
@@ -49,7 +48,6 @@ namespace MaskShop.Infra
             builder.Entity<OrderItemData>().ToTable(nameof(OrderItems))
                 .HasKey(x => new { x.OrderId, x.ProductId });
             builder.Entity<PartyData>().ToTable(nameof(Parties));
-            builder.Entity<PartyNameData>().ToTable(nameof(PartyNames));
             builder.Entity<PartyRoleData>().ToTable(nameof(PartyRoles));
             builder.Entity<ContactMechanismData>().ToTable(nameof(ContactMechanisms));
         }

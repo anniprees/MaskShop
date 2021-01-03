@@ -1,0 +1,10 @@
+﻿@using MaskShop.PagesCore.Common.Extensions;
+@model MaskShop.PagesCore.Shop.Parties.PartiesPage;
+
+<body>
+    @Html.Show(m => m.Item.Id)
+    @Html.Show(m => m.Item.PartyRoleId, Model.PartyRoleName(Model.Item.PartyRoleId))
+    @Html.Show(m => m.Item.ContactMechanismId)
+   @Html.Show(m => m.Item.ValidFrom)
+    @Html.Show(m => m.Item.ValidTo)
+</body>

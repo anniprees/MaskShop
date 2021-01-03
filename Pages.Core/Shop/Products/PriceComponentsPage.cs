@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using MaskShop.Data.Products;
+using MaskShop.Domain.Common;
 using MaskShop.Domain.Parties;
 using MaskShop.Domain.Products;
 using MaskShop.Facade.Products;
@@ -17,8 +19,7 @@ namespace MaskShop.PagesCore.Shop.Products
         public PriceComponentsPage(IPriceComponentsRepository r, IPartyRolesRepository p) :
             base(r, "Price Discounts")
         {
-            //TODO PartyRoles SelectItem
-            //PartyRoles = newItemsList<PartyRole, PartyRoleData>(p);
+            PartyRoles = CreatePartyRoleSelect(p);
         }
 
         public string PartyRoleName(string id) => itemName(PartyRoles, id);
@@ -29,6 +30,12 @@ namespace MaskShop.PagesCore.Shop.Products
             PriceComponentViewFactory.Create(v);
 
         protected internal override PriceComponentView toView(PriceComponent o) => PriceComponentViewFactory.Create(o);
+
+        protected internal static IEnumerable<SelectListItem> CreatePartyRoleSelect(IRepository<PartyRole> r)
+        {
+            var items = r.Get().GetAwaiter().GetResult();
+            return items.Select(m => new SelectListItem(m.Data.Role, m.Data.Id)).ToList();
+        }
 
         protected override void createTableColumns()
         {

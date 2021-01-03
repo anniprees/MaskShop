@@ -1,8 +1,9 @@
 ﻿using MaskShop.Data.Parties;
+using MaskShop.Domain.Common;
 
 namespace MaskShop.Domain.Parties
 {
-    public sealed class PartyRole: PartyAttribute<PartyRoleData>
+    public sealed class PartyRole: UniqueEntity<PartyRoleData>
     {
         public PartyRole() : this(null) { }
 
