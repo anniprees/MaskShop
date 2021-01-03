@@ -33,7 +33,7 @@ namespace MaskShop.Tests.Domain.Common
         }
         protected virtual IReadOnlyList<Product> getList() => obj.ListBy("ProductCategoryId", ProductCategoryId);
 
-        [TestMethod] public void RepositoryTest() => Assert.Inconclusive();
+        [TestMethod] public void RepositoryTest() => Assert.AreSame(repository, obj.);
 
         [TestMethod]
         public void ByIdTest()
