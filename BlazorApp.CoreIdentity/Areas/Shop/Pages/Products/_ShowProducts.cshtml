@@ -5,10 +5,8 @@
     @Html.Show(m => m.Item.Id)
     @Html.Show(m => m.Item.Name)
     @Html.Show(m => m.Item.ProductCategoryId, Model.CategoryName(Model.Item.ProductCategoryId))
-    @Html.Show(m => m.Item.ProductFeatureApplicabilityId)
     @Html.DisplayImageFor(m => m.Item.PictureUri, 150)
     @Html.Show(m => m.Item.Price)
-    @Html.Show(m => m.Item.PriceComponentId)
     @Html.Show(m => m.Item.ValidFrom)
     @Html.Show(m => m.Item.ValidTo)
 </body>
