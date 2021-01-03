@@ -1,0 +1,13 @@
+﻿@using MaskShop.PagesCore.Common.Extensions;
+@model MaskShop.PagesCore.Shop.Orders.OrderItemsPage
+
+<body>
+    @Html.DropDown(m => m.Item.OrderId, Model.Orders)
+    @Html.DropDown(m => m.Item.ProductId, Model.Products)
+    @Html.Editor(m => m.Item.ProductName)
+    @Html.Editor(m => m.Item.UnitPrice)
+    @Html.Editor(m => m.Item.Quantity)
+    @Html.Editor(m => m.Item.TotalPrice)
+    @Html.Editor(m => m.Item.ValidFrom)
+    @Html.Editor(m => m.Item.ValidTo)
+</body>

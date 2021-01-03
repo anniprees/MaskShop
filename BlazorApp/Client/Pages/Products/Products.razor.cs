@@ -42,7 +42,7 @@ namespace BlazorApp.Client.Pages.Products
             ProductFeatureApplicabilityId = null,
             ValidFrom = null,
             ValidTo = null
-    };
+        };
 
         protected BasketItemView BasketItem = new BasketItemView { };
 

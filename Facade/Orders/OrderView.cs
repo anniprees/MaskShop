@@ -8,8 +8,8 @@ namespace MaskShop.Facade.Orders
 {
     public sealed class OrderView : PartyProductsView
     {
-        [DisplayName("Name")]
-        public string PartyNameId { get; set; }
+        [DisplayName("Buyer name")]
+        public string BuyerName { get; set; }
 
         [DisplayName("Address")]
         public string ContactMechanismId { get; set; }

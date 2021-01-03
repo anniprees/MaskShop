@@ -1,0 +1,13 @@
+﻿@using MaskShop.PagesCore.Common.Extensions;
+@model MaskShop.PagesCore.Shop.Orders.OrdersPage
+
+<body>
+    @Html.Show(m => m.Item.Id)
+    @Html.Show(m => m.Item.PartyId)
+    @Html.Show(m => m.Item.ContactMechanismId)
+    @Html.Show(m => m.Item.TotalPrice)
+    @Html.Show(m => m.Item.OrderStatus)
+    @Html.Show(m => m.Item.ValidFrom)
+    @Html.Show(m => m.Item.ValidTo)
+
+</body>

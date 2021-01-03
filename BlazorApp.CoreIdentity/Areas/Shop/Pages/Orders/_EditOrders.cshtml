@@ -1,0 +1,12 @@
+﻿@using MaskShop.PagesCore.Common.Extensions;
+@model MaskShop.PagesCore.Shop.Orders.OrdersPage
+
+<body>
+    @Html.HiddenFor(m => m.Item.Id)
+    @Html.HiddenFor(m => m.Item.PartyId)
+    @Html.Editor(m => m.Item.ContactMechanismId)
+    @Html.HiddenFor(m => m.Item.TotalPrice)
+    @Html.DropDown(m => m.Item.OrderStatus, Model.OrderStatus)
+    @Html.HiddenFor(m => m.Item.ValidFrom)
+    @Html.Editor(m => m.Item.ValidTo)
+</body>

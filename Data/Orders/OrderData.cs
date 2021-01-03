@@ -6,8 +6,6 @@ namespace MaskShop.Data.Orders
     {
         public string ContactMechanismId { get; set; }
 
-        public string PartyNameId { get; set; }
-
         public OrderStatus OrderStatus { get; set; }
     }
 }

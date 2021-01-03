@@ -1,0 +1,20 @@
+﻿@page
+@using MaskShop.Aids
+@using MaskShop.Data.Orders
+@using MaskShop.PagesCore.Common.Extensions
+@model MaskShop.PagesCore.Shop.Orders.OrdersPage
+
+@{ 
+    Layout = "_Details";
+    string items = "/Shop/OrderItems";
+    var orderId = GetMember.Name<OrderItemData>(x => x.OrderId);
+    var id = Model.Item.Id;
+    var itemsUrl = new Uri($"{items}/Index?handler=index&fixedFilter={orderId}&fixedValue={id}", UriKind.Relative);
+}
+
+<partial name="_ShowOrders" />
+
+@section Details
+{
+    @Html.Link(new MaskShop.PagesCore.Common.Aids.Link(" | Show items", itemsUrl))
+}

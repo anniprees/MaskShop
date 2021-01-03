@@ -113,28 +113,28 @@ namespace BlazorApp.Client.Pages.Order
         {
             CurrentOrderId = orderId;
             await LoadOrderItemsData();
-            //OrderItem = await HttpClient.GetJsonAsync<OrderItemView>("api/orderitems/" + orderId);
+            OrderItem = await HttpClient.GetJsonAsync<OrderItemView>("api/orderitems/" + orderId);
             this.IsView = true;
             this.ModalTitle = "View order";
         }
 
-        //protected async Task DeleteOrder(string orderId)
-        //{
-        //    Order = await HttpClient.GetJsonAsync<OrderView>("api/orders/" + orderId);
-        //    CurrentOrderId = orderId;
-        //    this.IsView = true;
-        //    this.IsDelete = true;
-        //    this.ModalTitle = "Delete order";
-        //}
+        protected async Task DeleteOrder(string orderId)
+        {
+            Order = await HttpClient.GetJsonAsync<OrderView>("api/orders/" + orderId);
+            CurrentOrderId = orderId;
+            this.IsView = true;
+            this.IsDelete = true;
+            this.ModalTitle = "Delete order";
+        }
 
 
-        //protected async Task RemoveOrder()
-        //{
-        //    await HttpClient.DeleteAsync("api/orders/" + CurrentOrderId);
-        //    if (IsConnected) await SendMessage();
-        //    CloseModal();
-        //    await OnParametersSetAsync();
-        //}
+        protected async Task RemoveOrder()
+        {
+            await HttpClient.DeleteAsync("api/orders/" + CurrentOrderId);
+            if (IsConnected) await SendMessage();
+            CloseModal();
+            await OnParametersSetAsync();
+        }
 
         protected void CloseModal()
         {

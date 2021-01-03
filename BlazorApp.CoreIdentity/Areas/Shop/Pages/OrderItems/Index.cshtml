@@ -1,0 +1,16 @@
+﻿@page
+@using MaskShop.PagesCore.Common.Aids
+@using MaskShop.PagesCore.Common.Consts
+@using MaskShop.PagesCore.Common.Extensions
+@model MaskShop.PagesCore.Shop.Orders.OrderItemsPage
+
+@{
+    Layout = "_Index";
+    var page = Model.PageUrl;
+}
+
+@section Create {
+    @Html.Link(string.Empty, new Link(Captions.Create, Model.CreateUrl))
+}
+
+@Html.ShowTable(Model)

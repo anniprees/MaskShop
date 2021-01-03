@@ -15,6 +15,15 @@ namespace MaskShop.Domain.Orders
 
         public int Quantity => Data?.Quantity ?? UnspecifiedInteger;
 
-        public decimal TotalPrice => Product?.Price ?? 0M * Quantity;
+        public decimal TotalPrice
+        {
+            get
+            {
+                var p = Product;
+                var up = p?.Price ?? 0M;
+                var tp = up * Quantity;
+                return tp;
+            }
+        }
     }
 }

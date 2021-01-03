@@ -23,6 +23,7 @@ namespace MaskShop.Infra
             InitializeInventoryItems(db);
             InitializeContactMechanisms(db);
             InitializeOrders(db);
+            InitializeOrderItems(db);
             InitializeBaskets(db);
             InitializeParties(db);
             InitializePartyRoles(db);
@@ -72,14 +73,29 @@ namespace MaskShop.Infra
 
             var orders = new[]
             {
-                new OrderData {Id = "1", Name = "Order1", ContactMechanismId   = "1", OrderStatus = OrderStatus.Approved, ValidFrom = Convert.ToDateTime("10/06/2019 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")},
-                new OrderData {Id = "2", Name = "Order2", ContactMechanismId   = "3", OrderStatus = OrderStatus.Approved, ValidFrom = Convert.ToDateTime("17/06/2018 09:00"), ValidTo = Convert.ToDateTime("21/04/2022 09:00")},
+                new OrderData {Id = "1", Name = "Order1", ContactMechanismId   = "1", OrderStatus = OrderStatus.Received, ValidFrom = Convert.ToDateTime("10/06/2019 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")},
+                new OrderData {Id = "2", Name = "Order2", ContactMechanismId   = "3", OrderStatus = OrderStatus.Received, ValidFrom = Convert.ToDateTime("17/06/2018 09:00"), ValidTo = Convert.ToDateTime("21/04/2022 09:00")},
 
             };
 
             db.Orders.AddRange(orders);
             db.SaveChanges();
 
+        }
+
+        private static void InitializeOrderItems(ShopDbContext db)
+        {
+            if (db.OrderItems.Count() != 0) return;
+
+            var orderItems = new[]
+            {
+                new OrderItemData {OrderId = "1", ProductId = "1", Quantity = 5, ValidFrom = DateTime.Now, ValidTo = null},
+                new OrderItemData {OrderId = "1", ProductId = "2", Quantity = 2, ValidFrom = DateTime.Now, ValidTo = null},
+                new OrderItemData {OrderId = "1", ProductId = "3", Quantity = 2, ValidFrom = DateTime.Now, ValidTo = null},
+            };
+
+            db.OrderItems.AddRange(orderItems);
+            db.SaveChanges();
         }
 
         private static void InitializeBaskets(ShopDbContext db)
@@ -98,6 +114,18 @@ namespace MaskShop.Infra
 
         }
 
+        private static void InitializeBasketItems(ShopDbContext db)
+        {
+            if (db.BasketItems.Count() != 0) return;
+            var basketItems = new[]
+            {
+                new BasketItemData{BasketId = "1",ProductId = "1", Quantity = 1},
+                new BasketItemData{BasketId = "1",ProductId = "2", Quantity = 2},
+            };
+
+            db.BasketItems.AddRange(basketItems);
+            db.SaveChanges();
+        }
 
         private static void InitializeParties(ShopDbContext db)
         {
@@ -135,19 +163,6 @@ namespace MaskShop.Infra
             db.PartyRoles.AddRange(roles);
             db.SaveChanges();
 
-        }
-
-        private static void InitializeBasketItems(ShopDbContext db)
-        {
-            if (db.BasketItems.Count() != 0) return;
-            var basketItems = new[]
-            {
-                new BasketItemData{BasketId = "1",ProductId = "1", Quantity = 1},
-                new BasketItemData{BasketId = "1",ProductId = "2", Quantity = 2},
-            };
-
-            db.BasketItems.AddRange(basketItems);
-            db.SaveChanges();
         }
 
         private static void InitializePartyNames(ShopDbContext db)
