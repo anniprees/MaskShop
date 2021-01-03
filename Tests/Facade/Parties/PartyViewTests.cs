@@ -6,11 +6,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MaskShop.Tests.Facade.Parties
 {
     [TestClass]
-    public class PartyViewTests : SealedClassTests<PartyView, UniqueEntityView>
+    public class PartyViewTests : SealedClassTests<PartyView, NamedView>
     {
-        [TestMethod]
-        public void PartyNameIdTest() => IsNullableProperty<string>("Party Name Id");
-
         [TestMethod]
         public void PartyRoleIdTest() => IsNullableProperty<string>("Party Role Id");
 

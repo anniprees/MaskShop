@@ -11,14 +11,10 @@ namespace MaskShop.Tests.Domain.Parties
     {
         protected override Party CreateObject() => new Party(GetRandom.Object<PartyData>());
 
-        //[TestMethod] public void PartyNameIdTest() => IsReadOnlyProperty(obj.Data.PartyNameId);
         [TestMethod] public void PartyRoleIdTest() => IsReadOnlyProperty(obj.Data.PartyRoleId);
         [TestMethod] public void ContactMechanismIdTest() => IsReadOnlyProperty(obj.Data.ContactMechanismId);
         [TestMethod] public void PartyTypeTest() => IsReadOnlyProperty(obj.Data.PartyType);
 
-        //[TestMethod]
-        //public void PartyNameTest() =>
-        //    IsReadOnlyProperty(obj, nameof(obj.PartyNameId), obj.Data.PartyNameId);
         [TestMethod]
         public void PartyRoleTest() =>
             IsReadOnlyProperty(obj, nameof(obj.PartyRoleId), obj.Data.PartyRoleId);
