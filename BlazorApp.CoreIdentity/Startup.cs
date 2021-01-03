@@ -47,6 +47,7 @@ namespace BlazorApp.CoreIdentity
             s.AddScoped<IProductsRepository, ProductsRepository>();
             s.AddScoped<IProductCategoriesRepository, ProductCategoriesRepository>();
             s.AddScoped<IProductFeaturesRepository, ProductFeaturesRepository>();
+            s.AddScoped<IProductFeatureApplicabilitiesRepository, ProductFeatureApplicabilitiesRepository>();
             s.AddScoped<IBasketsRepository, BasketsRepository>();
             s.AddScoped<IBasketItemsRepository, BasketItemsRepository>();
             s.AddScoped<IOrdersRepository, OrdersRepository>();
