@@ -86,9 +86,6 @@ namespace BlazorApp.CoreIdentity.Migrations
                     b.Property<string>("PartyId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PartyNameId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ValidFrom")
                         .HasColumnType("datetime2");
 
@@ -208,6 +205,9 @@ namespace BlazorApp.CoreIdentity.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("ProductFeatureApplicabilityId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ProductId")
                         .HasColumnType("nvarchar(max)");
 
@@ -290,9 +290,6 @@ namespace BlazorApp.CoreIdentity.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductCategoryId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProductFeatureApplicabilityId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ValidFrom")
