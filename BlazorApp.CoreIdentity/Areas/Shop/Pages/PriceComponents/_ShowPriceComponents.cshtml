@@ -5,7 +5,7 @@
     @Html.Show(m => m.Item.Id)
     @Html.Show(m => m.Item.Comment)
     @Html.Show(m => m.Item.DiscountPercentage)
-    @Html.Show(m => m.Item.PartyRoleId)
+    @Html.Show(m => m.Item.PartyRoleId, Model.PartyRoleName(Model.Item.PartyRoleId))
     @Html.Show(m => m.Item.ValidFrom)
     @Html.Show(m => m.Item.ValidTo)
 </body>

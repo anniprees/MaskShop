@@ -5,7 +5,7 @@
     @Html.Editor(m => m.Item.Id)
     @Html.Editor(m => m.Item.Comment)
     @Html.Editor(m => m.Item.DiscountPercentage)
-    @Html.Editor(m => m.Item.PartyRoleId)
+    @Html.DropDown(m => m.Item.PartyRoleId, Model.PartyRoles)
     @Html.Editor(m => m.Item.ValidFrom)
     @Html.Editor(m => m.Item.ValidTo)
 </body>
