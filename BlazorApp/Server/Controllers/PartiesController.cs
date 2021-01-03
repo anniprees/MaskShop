@@ -28,7 +28,7 @@ namespace BlazorApp.Server.Controllers
 
             result.ForEach(x => aa.Add(PartyViewFactory.Create(x)));
 
-            return name == null ? aa : aa.Where(x => x.PartyNameId.ToLower().Contains(name.ToLower())).ToList();
+            return name == null ? aa : aa.Where(x => x.Name.ToLower().Contains(name.ToLower())).ToList();
 
         }
 

@@ -32,7 +32,7 @@ namespace MaskShop.PagesCore.Shop.Parties
         protected override void createTableColumns()
         {
             createColumn(x => Item.Id);
-            createColumn(x => Item.PartyNameId);
+            createColumn(x => Item.Name);
             createColumn(x => Item.PartyRoleId);
             createColumn(x => Item.ContactMechanismId);
             createColumn(x => Item.PartyType);

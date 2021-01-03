@@ -92,7 +92,7 @@ namespace BlazorApp.Server
             services.AddScoped<IOrdersRepository, OrdersRepository>();
             services.AddScoped<IOrderItemsRepository, OrderItemsRepository>();
             services.AddScoped<IPartiesRepository, PartiesRepository>();
-            services.AddScoped<IPartyNamesRepository, PartyNamesRepository>();
+            //services.AddScoped<IPartyNamesRepository, PartyNamesRepository>();
             services.AddScoped<IPartyRolesRepository, PartyRolesRepository>();
             services.AddScoped<IContactMechanismsRepository, ContactMechanismsRepository>();
             services.AddScoped<IInventoryItemsRepository, InventoryItemsRepository>();

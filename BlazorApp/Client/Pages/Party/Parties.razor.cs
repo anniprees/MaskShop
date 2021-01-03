@@ -22,7 +22,7 @@ namespace BlazorApp.Client.Pages.Party
         protected PartyView Party = new PartyView()
         {
             Id = "",
-            PartyNameId = "",
+            //PartyNameId = "",
             PartyRoleId = "",
             ContactMechanismId = "",
             PartyType = 0,
@@ -154,7 +154,7 @@ namespace BlazorApp.Client.Pages.Party
             Party = new PartyView()
             {
                 Id = "",
-                PartyNameId = "",
+                //PartyNameId = "",
                 PartyRoleId = "",
                 ContactMechanismId = "",
                 PartyType = 0,

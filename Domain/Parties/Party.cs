@@ -3,12 +3,12 @@ using MaskShop.Domain.Common;
 
 namespace MaskShop.Domain.Parties
 {
-    public sealed class Party: UniqueEntity<PartyData>
+    public sealed class Party: NamedEntity<PartyData>
     {
         public Party(PartyData d) : base(d) { }
 
-        public string PartyNameId => Data?.PartyNameId ?? Unspecified;
-        public PartyName PartyName => new GetFrom<IPartyNamesRepository, PartyName>().ById(PartyNameId);
+        //public string PartyNameId => Data?.PartyNameId ?? Unspecified;
+        //public PartyName PartyName => new GetFrom<IPartyNamesRepository, PartyName>().ById(PartyNameId);
 
         public string PartyRoleId => Data?.PartyRoleId ?? Unspecified;
         public PartyRole PartyRole => new GetFrom<IPartyRolesRepository, PartyRole>().ById(PartyRoleId);
