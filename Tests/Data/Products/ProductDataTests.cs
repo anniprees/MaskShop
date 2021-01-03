@@ -16,9 +16,6 @@ namespace MaskShop.Tests.Data.Products
         [TestMethod] public void PriceTest() => IsProperty<decimal>(() 
             => obj.Price, x => obj.Price = x);
 
-        [TestMethod] public void ProductFeatureApplicabilityIdTest() => IsNullableProperty<string>(() 
-            => obj.ProductFeatureApplicabilityId, x => obj.ProductFeatureApplicabilityId = x);
-
         [TestMethod] public void PictureUriTest() => IsNullableProperty<string>(() 
             => obj.PictureUri, x => obj.PictureUri = x);
 
