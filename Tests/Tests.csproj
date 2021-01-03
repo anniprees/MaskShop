@@ -36,4 +36,10 @@
     <ProjectReference Include="..\Infra\Infra.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages.Core\Common\Aids\" />
+    <Folder Include="Pages.Core\Common\Consts\" />
+    <Folder Include="Pages.Core\Common\Extensions\" />
+  </ItemGroup>
+
 </Project>
