@@ -15,7 +15,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Domain\Domain.csproj" />
     <ProjectReference Include="..\..\Infra\Infra.csproj" />
-    <ProjectReference Include="..\Client\BlazorApp.Client.csproj" />
   </ItemGroup>
 
   <ItemGroup>
