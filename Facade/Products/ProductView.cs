@@ -15,7 +15,7 @@ namespace MaskShop.Facade.Products
 
         [DisplayName("Price Component")] public string PriceComponentId { get; set; }
 
-        [DisplayName("Picture Uri")] public string PictureUri { get; set; }
+        [DisplayName("Picture")] public string PictureUri { get; set; }
 
         [DisplayName("Picture")] public IFormFile PictureFile { get; set; }
     }

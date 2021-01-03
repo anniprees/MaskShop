@@ -29,8 +29,8 @@ namespace MaskShop.PagesCore.Shop.Products
 
         protected internal override Uri pageUrl() => new Uri("/Shop/Products", UriKind.Relative);
 
-        protected internal override Product toObject(ProductView v) => ProductViewFactory.Create(v);
-        protected internal override ProductView toView(Product o) => ProductViewFactory.Create(o);
+        protected internal override Product toObject(ProductView v) => new ProductViewFactory().Create(v);
+        protected internal override ProductView toView(Product o) => new ProductViewFactory().Create(o);
 
         protected override void createTableColumns()
         {

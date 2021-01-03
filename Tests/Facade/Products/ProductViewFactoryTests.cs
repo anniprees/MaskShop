@@ -19,7 +19,7 @@ namespace MaskShop.Tests.Facade.Products
         public void CreateObjectTest()
         {
             var view = GetRandom.Object<ProductView>();
-            var data = ProductViewFactory.Create(view).Data;
+            var data =  new ProductViewFactory().Create(view).Data;
 
             TestArePropertyValuesEqual(view, data);
 
@@ -29,7 +29,7 @@ namespace MaskShop.Tests.Facade.Products
         public void CreateViewTest()
         {
             var data = GetRandom.Object<ProductData>();
-            var view = ProductViewFactory.Create(new Product(data));
+            var view = new ProductViewFactory().Create(new Product(data));
 
             TestArePropertyValuesEqual(view, data);
 
