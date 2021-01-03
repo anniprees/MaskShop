@@ -1,0 +1,11 @@
+﻿@using MaskShop.PagesCore.Common.Extensions;
+@model MaskShop.PagesCore.Shop.Products.ProductFeaturesPage;
+
+<body>
+    @Html.Show(m => m.Item.Id)
+    @Html.Show(m => m.Item.Name)
+    @Html.Show(m => m.Item.Definition)
+    @Html.Show(m => m.Item.NumericCode)
+    @Html.Show(m => m.Item.ValidFrom)
+    @Html.Show(m => m.Item.ValidTo)
+</body>
