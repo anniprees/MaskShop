@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using MaskShop.PagesCore.Common.Aids
+@using MaskShop.PagesCore.Common.Extensions
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -18,7 +20,19 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
+                        @Html.DropMenu("Admin",
+                            new Link("Products", new Uri("/Shop/Products/Index?handler=index", UriKind.Relative)),
+                            new Link("Product categories", new Uri("/Shop/ProductCategories/Index?handler=index", UriKind.Relative)),
+                            new Link("Product features", new Uri("/Shop/ProductFeatures/Index?handler=index", UriKind.Relative)),
+                            new Link("Features applicability", new Uri("/Shop/ProductFeatureAppl/Index?handler=index", UriKind.Relative)),
+                            new Link("Inventory", new Uri("/Shop/InventoryItems/Index?handler=index", UriKind.Relative)),
+                            new Link("Pricing", new Uri("/Shop/PriceComponents/Index?handler=index", UriKind.Relative)),
+                            new Link("Orders", new Uri("/Shop/Orders/Index?handler=index", UriKind.Relative)),
+                            new Link("Roles", new Uri("/Shop/PartyRoles/Index?handler=index", UriKind.Relative)),
+                            new Link("Contacts", new Uri("/Shop/ContactMechanisms/Index?handler=index", UriKind.Relative)),
+                            new Link("Parties", new Uri("/Shop/Parties/Index?handler=index", UriKind.Relative))
+                            )
+                        @*<li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Shop" asp-page="/ProductCategories/Index" asp-page-handler="index">Categories</a>
                         </li>
                         <li class="nav-item">
@@ -47,7 +61,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Shop" asp-page="/Orders/Index" asp-page-handler="index">Orders</a>
-                        </li>
+                        </li>*@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>

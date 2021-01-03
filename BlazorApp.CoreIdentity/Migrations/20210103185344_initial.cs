@@ -103,6 +103,7 @@ namespace BlazorApp.CoreIdentity.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     QuantityOnHand = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProductFeatureApplicabilityId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ValidFrom = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ValidTo = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -132,7 +133,6 @@ namespace BlazorApp.CoreIdentity.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ContactMechanismId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PartyNameId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OrderStatus = table.Column<int>(type: "int", nullable: false),
                     ValidFrom = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ValidTo = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -150,33 +150,16 @@ namespace BlazorApp.CoreIdentity.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    PartyNameId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PartyRoleId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ContactMechanismId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PartyType = table.Column<int>(type: "int", nullable: false),
                     ValidFrom = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ValidTo = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    ValidTo = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Parties", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PartyNames",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ValidFrom = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ValidTo = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    PartyId = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PartyNames", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -186,8 +169,7 @@ namespace BlazorApp.CoreIdentity.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Role = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ValidFrom = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ValidTo = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    PartyId = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ValidTo = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -263,7 +245,6 @@ namespace BlazorApp.CoreIdentity.Migrations
                     ProductCategoryId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PriceComponentId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<decimal>(type: "decimal(16,2)", nullable: false),
-                    ProductFeatureApplicabilityId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PictureUri = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Picture = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     ValidFrom = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -458,9 +439,6 @@ namespace BlazorApp.CoreIdentity.Migrations
 
             migrationBuilder.DropTable(
                 name: "Parties");
-
-            migrationBuilder.DropTable(
-                name: "PartyNames");
 
             migrationBuilder.DropTable(
                 name: "PartyRoles");
