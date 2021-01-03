@@ -5,6 +5,7 @@
     @Html.Editor(m => m.Item.Id)
     @Html.DropDown(m => m.Item.ProductId, Model.Products)
     @Html.DropDown(m => m.Item.ProductFeatureId, Model.ProductFeatures)
+    @Html.Editor(m => m.Item.FeatureDefinition)
     @Html.Editor(m => m.Item.ValidFrom)
     @Html.Editor(m => m.Item.ValidTo)
 </body>

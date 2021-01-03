@@ -20,7 +20,7 @@ namespace MaskShop.PagesCore.Shop.Products
 
         public ProductFeatureApplicabilitiesPage(IProductFeatureApplicabilitiesRepository r, IProductsRepository p,
             IProductFeaturesRepository f) :
-            base(r, "Product Feature Applicability")
+            base(r, "Available Features")
         {
             Products = newItemsList<Product, ProductData>(p);
             ProductFeatures = newItemsList<ProductFeature, ProductFeatureData>(f);
@@ -42,6 +42,7 @@ namespace MaskShop.PagesCore.Shop.Products
             createColumn(x => Item.Id);
             createColumn(x => Item.ProductId);
             createColumn(x => Item.ProductFeatureId);
+            createColumn(x => Item.FeatureDefinition);
             createColumn(x => Item.ValidFrom);
             createColumn(x => Item.ValidTo);
         }

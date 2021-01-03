@@ -11,5 +11,7 @@ namespace MaskShop.Facade.Products
 
         [Required]
         [DisplayName("Product")] public string ProductId { get; set; }
+
+        [DisplayName("Product")] public string FeatureDefinition { get; set; }
     }
 }
