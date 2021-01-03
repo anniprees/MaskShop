@@ -17,7 +17,6 @@
   <ItemGroup>
     <Folder Include="ShopAdmin\Parties\" />
     <Folder Include="ShopAdmin\Orders\" />
-    <Folder Include="ShopAdmin\Products\" />
     <Folder Include="ShopClient\Parties\" />
     <Folder Include="ShopClient\Orders\" />
   </ItemGroup>

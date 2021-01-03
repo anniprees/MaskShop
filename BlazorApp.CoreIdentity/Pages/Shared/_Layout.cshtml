@@ -32,36 +32,39 @@
                             new Link("Contacts", new Uri("/Shop/ContactMechanisms/Index?handler=index", UriKind.Relative)),
                             new Link("Parties", new Uri("/Shop/Parties/Index?handler=index", UriKind.Relative))
                             )
+                        @Html.DropMenu("Client",
+                            new Link("Products", new Uri("/Client/Products/Index?handler=index", UriKind.Relative))
+                            )
                         @*<li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Shop" asp-page="/ProductCategories/Index" asp-page-handler="index">Categories</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Shop" asp-page="/Products/Index" asp-page-handler="index">Products</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Shop" asp-page="/PriceComponents/Index" asp-page-handler="index">Price</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Shop" asp-page="/InventoryItems/Index" asp-page-handler="index">Inventory</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Shop" asp-page="/ProductFeatures/Index" asp-page-handler="index">Features</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Shop" asp-page="/ProductFeatureAppl/Index" asp-page-handler="index">Features applicability</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Shop" asp-page="/PartyRoles/Index" asp-page-handler="index">Roles</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Shop" asp-page="/ContactMechanisms/Index" asp-page-handler="index">Contacts</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Shop" asp-page="/Parties/Index" asp-page-handler="index">Parties</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Shop" asp-page="/Orders/Index" asp-page-handler="index">Orders</a>
-                        </li>*@
+            <a class="nav-link text-dark" asp-area="Shop" asp-page="/ProductCategories/Index" asp-page-handler="index">Categories</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Shop" asp-page="/Products/Index" asp-page-handler="index">Products</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Shop" asp-page="/PriceComponents/Index" asp-page-handler="index">Price</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Shop" asp-page="/InventoryItems/Index" asp-page-handler="index">Inventory</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Shop" asp-page="/ProductFeatures/Index" asp-page-handler="index">Features</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Shop" asp-page="/ProductFeatureAppl/Index" asp-page-handler="index">Features applicability</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Shop" asp-page="/PartyRoles/Index" asp-page-handler="index">Roles</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Shop" asp-page="/ContactMechanisms/Index" asp-page-handler="index">Contacts</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Shop" asp-page="/Parties/Index" asp-page-handler="index">Parties</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Shop" asp-page="/Orders/Index" asp-page-handler="index">Orders</a>
+        </li>*@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
