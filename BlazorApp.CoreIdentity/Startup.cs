@@ -33,6 +33,9 @@ namespace BlazorApp.CoreIdentity
             services.AddRazorPages();
             RegisterRepositories(services);
             services.AddDatabaseDeveloperPageExceptionFilter();
+            services.AddServerSideBlazor();
+            services.AddControllersWithViews();
+
         }
 
         private static void RegisterRepositories(IServiceCollection s)
@@ -94,6 +97,7 @@ namespace BlazorApp.CoreIdentity
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapBlazorHub();
             });
         }
     }

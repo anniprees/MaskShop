@@ -1,4 +1,5 @@
 ﻿@page
+@using BlazorApp.CoreIdentity.Pages.Component
 @using MaskShop.PagesCore.Common.Aids
 @using MaskShop.PagesCore.Common.Consts
 @using MaskShop.PagesCore.Common.Extensions
@@ -13,5 +14,39 @@
     @Html.Link(string.Empty, new Link(Captions.Create, Model.CreateUrl))
 }
 
-@Html.ShowTable(Model)
-KLIENDID
+<component>@(await Html.RenderComponentAsync<Counter>(RenderMode.ServerPrerendered))</component>
+
+@*<TableGeneric Items="_priceComponents">    
+    <WithItemsTemplate>
+        <table class="table" is-striped>
+            <thead class="thead-light">
+            <tr>
+                <th>ID</th>
+                <th>Discount</th>
+                <th>Comment</th>
+                <th>Party Role Id</th>
+                <th>From</th>
+                <th>To</th>
+            </tr>
+            </thead>
+            @foreach (var item in _priceComponents)
+            {
+                <tbody>
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.DiscountPercentage</td>
+                    <td>@item.Comment</td>
+                    <td>@item.PartyRoleId</td>
+                    <td>@item.ValidFrom</td>
+                    <td>@item.ValidTo</td>
+                    <td>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-eye text-primary" @onclick="@(async () => await ViewPriceComponent(item.Id))"></BSButton>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-pencil text-warning" @onclick="@(async () => await EditPriceComponent(item.Id))"></BSButton>
+                        <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-trash text-danger" @onclick="@(async () => await DeletePriceComponent(item.Id))"></BSButton>
+                    </td>
+                </tr>
+                </tbody>
+            }
+        </table>
+    </WithItemsTemplate>
+</TableGeneric>*@
