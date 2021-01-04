@@ -3,11 +3,11 @@
 
 <body>
     @Html.DropDown(m => m.Item.BasketId, Model.Baskets)
-    @Html.DropDown(m => m.Item.ProductId, Model.Products)
-    @Html.Editor(m => m.Item.ProductName)
-    @Html.Editor(m => m.Item.UnitPrice)
+    @Html.HiddenFor(m => m.Item.ProductId, Model.Products)
+    @Html.HiddenFor(m => m.Item.ProductName)
+    @Html.HiddenFor(m => m.Item.UnitPrice)
     @Html.Editor(m => m.Item.Quantity)
-    @Html.Editor(m => m.Item.TotalPrice)
+    @Html.HiddenFor(m => m.Item.TotalPrice)
     @Html.Editor(m => m.Item.ValidFrom)
     @Html.Editor(m => m.Item.ValidTo)
 </body>

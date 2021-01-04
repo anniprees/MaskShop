@@ -12,6 +12,6 @@ namespace MaskShop.Tests.Facade.Products
         [TestMethod]
         public void CommentTest() => IsNullableProperty<string>("Comment");
         [TestMethod]
-        public void PartyRoleIdTest() => IsNullableProperty<string>("Party Role Id");
+        public void PartyRoleIdTest() => IsNullableProperty<string>("Party Role");
     }
 }

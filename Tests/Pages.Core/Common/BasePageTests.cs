@@ -4,15 +4,17 @@
 //using MaskShop.Domain.Products;
 //using MaskShop.Facade.Products;
 //using MaskShop.PagesCore.Common;
+//using MaskShop.PagesCore.Shop.Products;
 //using MaskShop.Tests.Data.Common;
 //using Microsoft.AspNetCore.Mvc.RazorPages;
 //using Microsoft.VisualStudio.TestTools.UnitTesting;
+//using static MaskShop.Tests.Pages.Core.Common.AbstractPageTests<TClass, TBaseClass>;
 
 //namespace MaskShop.Tests.Pages.Core.Common
 //{
 //    [TestClass]
 
-//    public class BasePageTests : AbstractPageTests<BasePage<IProductsRepository,
+//    public class BasePageTests : AbstractClassTests<BasePage<IProductsRepository,
 //            Product, ProductView, ProductData>,
 //        PageModel>
 //    {
@@ -23,8 +25,8 @@
 //            obj = new testClass(db);
 //        }
 
-//        [TestMethod] 
-//        public void sortOrderTest()
+//        [TestMethod]
+//        public void SortOrderTest()
 //        {
 //            var s = GetRandom.String();
 //            obj.SortOrder = s;
@@ -32,8 +34,8 @@
 //            Assert.AreEqual(s, obj.SortOrder);
 //        }
 
-//        [TestMethod] 
-//        public void searchStringTest()
+//        [TestMethod]
+//        public void SearchStringTest()
 //        {
 //            var s = GetRandom.String();
 //            obj.SearchString = s;

@@ -5,6 +5,7 @@ using MaskShop.Facade.Products;
 using MaskShop.PagesCore.Common;
 using MaskShop.PagesCore.Common.Consts;
 using MaskShop.PagesCore.Shop.Products;
+using MaskShop.PagesCore.ShopAdmin.Products;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MaskShop.Tests.Pages.Core.Common
@@ -15,20 +16,20 @@ namespace MaskShop.Tests.Pages.Core.Common
     {
 
         internal testRepository db;
-        //internal abstract class testClass : ViewsPage<ProductsPage, IProductsRepository, Product, ProductView, ProductData>
-        //{
+        internal abstract class testClass : ViewsPage<ProductsPage, IProductsRepository, Product, ProductView, ProductData>
+        {
 
         //    internal string subTitle { get; set; } = string.Empty;
 
         //    protected internal testClass(IProductsRepository r) : base(r, QuantityPagesNames.SystemsOfUnits) { }
 
-        //    protected override Uri pageUrl() => new Uri(QuantityPagesUrls.SystemsOfUnits, UriKind.Relative);
+            protected override Uri pageUrl() => new Uri(QuantityPagesUrls.SystemsOfUnits, UriKind.Relative);
 
-        //    protected override Product toObject(ProductView view) => ProductViewFactory.Create(view);
+            protected override Product toObject(ProductView view) => ProductViewFactory.Create(view);
 
-        //    protected override ProductView toView(Product obj) => ProductViewFactory.Create(obj);
+            protected override ProductView toView(Product obj) => ProductViewFactory.Create(obj);
 
-        //    protected override string pageSubtitle() => subTitle;
+            protected override string pageSubtitle() => subTitle;
 
         //}
 

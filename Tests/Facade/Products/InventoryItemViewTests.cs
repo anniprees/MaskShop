@@ -11,6 +11,9 @@ namespace MaskShop.Tests.Facade.Products
         public void QuantityOnHandTest() => IsProperty<int>("Quantity on hand");
 
         [TestMethod]
-        public void ProductIdTest() => IsNullableProperty<string>("Product Id");
+        public void ProductIdTest() => IsNullableProperty<string>("Product");
+
+        [TestMethod]
+        public void ProductFeatureApplicabilityIdTest() => IsNullableProperty<string>("Product Feature");
     }
 }

@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using MaskShop.Aids;
-using MaskShop.Data.Common;
-using MaskShop.Data.Parties;
-using MaskShop.Data.Products;
-using MaskShop.Domain.Parties;
+﻿using MaskShop.Data.Products;
 using MaskShop.Domain.Products;
 using MaskShop.Facade.Common;
-using MaskShop.Facade.Parties;
 using MaskShop.Facade.Products;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MaskShop.Tests.Facade.Common

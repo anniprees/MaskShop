@@ -9,10 +9,10 @@ namespace MaskShop.Tests.Facade.Parties
     public class PartyViewTests : SealedClassTests<PartyView, NamedView>
     {
         [TestMethod]
-        public void PartyRoleIdTest() => IsNullableProperty<string>("Party Role Id");
+        public void PartyRoleIdTest() => IsNullableProperty<string>("Party Role");
 
         [TestMethod]
-        public void ContactMechanismIdTest() => IsNullableProperty<string>("Contact Mechanism Id");
+        public void ContactMechanismIdTest() => IsNullableProperty<string>("Contact Mechanism");
 
         [TestMethod]
         public void PartyTypeTest() => IsProperty<PartyType>("Party Type");
