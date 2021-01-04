@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorApp.CoreIdentity.Migrations
 {
     [DbContext(typeof(ApplicationCoreDbContext))]
-    [Migration("20210104181844_Initial")]
+    [Migration("20210104202943_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -332,6 +332,9 @@ namespace BlazorApp.CoreIdentity.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("Color")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Definition")
                         .HasColumnType("nvarchar(max)");
 
@@ -340,6 +343,9 @@ namespace BlazorApp.CoreIdentity.Migrations
 
                     b.Property<int>("NumericCode")
                         .HasColumnType("int");
+
+                    b.Property<string>("Size")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ValidFrom")
                         .HasColumnType("datetime2");
