@@ -10,7 +10,11 @@
 }
 
 @section Create {
-    @Html.Link(string.Empty, new Link(Captions.Create, Model.CreateUrl))
+    @if (!Model.HasData())
+    {
+        @Html.Link(string.Empty, new Link(Captions.Create, Model.CreateUrl))
+    }
+
 }
 
 @Html.ShowTable(Model)
