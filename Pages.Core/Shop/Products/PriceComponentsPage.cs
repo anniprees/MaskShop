@@ -35,7 +35,7 @@ namespace MaskShop.PagesCore.Shop.Products
         protected internal static IEnumerable<SelectListItem> CreatePartyRoleSelect(IRepository<PartyRole> r)
         {
             var items = r.Get().GetAwaiter().GetResult();
-            return items.Select(m => new SelectListItem(m.Data.Role, m.Data.Id)).ToList();
+            return items.Select(m => new SelectListItem(m.Data.Id, m.Data.Id)).ToList();
         }
 
         protected override void createTableColumns()

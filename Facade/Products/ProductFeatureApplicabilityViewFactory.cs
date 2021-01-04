@@ -17,7 +17,7 @@ namespace MaskShop.Facade.Products
         {
             var v = new ProductFeatureApplicabilityView();
             Copy.Members(o?.Data, v);
-            v.FeatureDefinition = o?.ProductFeature.Definition;
+            v.FeaturesCombo = o?.ProductFeature.ToString();
             return v;
         }
     }

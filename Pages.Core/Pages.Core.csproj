@@ -14,9 +14,4 @@
     <ProjectReference Include="..\Infra\Infra.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ShopAdmin\Parties\" />
-    <Folder Include="ShopClient\Parties\" />
-  </ItemGroup>
-
 </Project>

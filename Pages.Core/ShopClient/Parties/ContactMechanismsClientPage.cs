@@ -31,7 +31,7 @@ namespace MaskShop.PagesCore.ShopClient.Parties
         public bool HasData()
         {
             var userId = User.Identity.Name;
-            var o = db.GetById(userId) as Party;
+            var o = db.GetById(userId) as ContactMechanism;
             return o.Id == userId;
         }
 
