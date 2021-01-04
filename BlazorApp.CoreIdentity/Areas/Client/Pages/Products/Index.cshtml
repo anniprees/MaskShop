@@ -6,20 +6,19 @@
 @model MaskShop.PagesCore.ShopClient.Products.ProductsClientPage
 
 @{
-    Layout = "_IndexBlazor";
+    Layout = "_Index";
     var page = Model.PageUrl;
 }
 
-@section Create {
-    @Html.Link(string.Empty, new Link(Captions.Create, Model.CreateUrl))
-}
+@section Create {}
 
-<body>
+@Html.ShowTable(Model, "Osta", null, "Vaata", null)
 
-<component type="typeof(TableGeneric)" render-mode="ServerPrerendered"
-           param-Items="@Model.Items"/>
+@*<body>
 
-</body>
+        <component type="typeof(TableGeneric)" render-mode="ServerPrerendered"
+                   param-Items="@Model.Items" />
+
+    </body>*@
 
 
- 
