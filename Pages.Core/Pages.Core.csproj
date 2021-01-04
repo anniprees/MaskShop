@@ -16,9 +16,7 @@
 
   <ItemGroup>
     <Folder Include="ShopAdmin\Parties\" />
-    <Folder Include="ShopAdmin\Orders\" />
     <Folder Include="ShopClient\Parties\" />
-    <Folder Include="ShopClient\Orders\" />
   </ItemGroup>
 
 </Project>

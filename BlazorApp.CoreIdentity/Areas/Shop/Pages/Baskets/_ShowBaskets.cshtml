@@ -1,13 +1,12 @@
 ﻿@using MaskShop.PagesCore.Common.Extensions;
-@model MaskShop.PagesCore.ShopAdmin.Orders.OrdersAdminPage
+@model MaskShop.PagesCore.ShopAdmin.Orders.BasketsAdminPage
 
 <body>
     @Html.Show(m => m.Item.Id)
     @Html.Show(m => m.Item.PartyId)
-    @Html.Show(m => m.Item.ContactMechanismId)
+    @Html.Show(m => m.Item.PartyName)
+    @Html.Show(m => m.Item.PartyAddress)
     @Html.Show(m => m.Item.TotalPrice)
-    @Html.Show(m => m.Item.OrderStatus)
     @Html.Show(m => m.Item.ValidFrom)
-    @Html.Show(m => m.Item.ValidTo)
 
 </body>

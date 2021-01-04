@@ -1,7 +1,7 @@
 ﻿@using MaskShop.PagesCore.Common.Extensions;
-@model MaskShop.PagesCore.ShopAdmin.Orders.OrderItemsAdminPage
+@model MaskShop.PagesCore.ShopAdmin.Orders.BasketItemsAdminPage
 <body>
-    @Html.Show(m => m.Item.OrderId)
+    @Html.Show(m => m.Item.BasketId)
     @Html.Show(m => m.Item.ProductId)
     @Html.Show(m => m.Item.ProductId, Model.ProductName(Model.Item.ProductId))
     @Html.Show(m => m.Item.UnitPrice)

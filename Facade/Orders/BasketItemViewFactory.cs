@@ -8,29 +8,29 @@ using MaskShop.Facade.Common;
 
 namespace MaskShop.Facade.Orders
 {
-    public static class BasketItemViewFactory 
+    public class BasketItemViewFactory 
     {
-        //protected internal override BasketItem ToObject(BasketItemData d)
-        //    => new BasketItem(d);
+        protected internal BasketItem ToObject(BasketItemData d)
+            => new BasketItem(d);
 
-        public static BasketItem Create(BasketItemView v)
+        public BasketItem Create(BasketItemView v)
         {
             var d = new BasketItemData();
             Copy.Members(v, d);
             return new BasketItem(d);
         }
 
-        public static BasketItemView Create(BasketItem o)
+        public BasketItemView Create(BasketItem o)
         {
             var v = new BasketItemView();
             Copy.Members(o?.Data, v);
-            v.ProductName = o?.Product.ToString();
+            v.ProductName = o?.Product.Name;
             string s = Convert.ToBase64String(
                 o.Product.Picture, 0,
                 o.Product.Picture.Length);
             v.ProductImage = "data:image/jpg;base64," + s;
             v.UnitPrice = o.Product.Price;
-            v.TotalPrice = v.UnitPrice * v.Quantity;
+            v.TotalPrice = o?.TotalPrice ?? 0M;
             return v;
         }
 

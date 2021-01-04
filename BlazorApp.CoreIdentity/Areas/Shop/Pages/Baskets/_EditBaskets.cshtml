@@ -1,0 +1,11 @@
+﻿@using MaskShop.PagesCore.Common.Extensions;
+@model MaskShop.PagesCore.ShopAdmin.Orders.BasketsAdminPage
+
+<body>
+    @Html.Editor(m => m.Item.Id)
+    @Html.Editor(m => m.Item.PartyId)
+    @Html.Editor(m => m.Item.PartyName)
+    @Html.Editor(m => m.Item.PartyAddress)
+    @Html.Editor(m => m.Item.TotalPrice)
+    @Html.Editor(m => m.Item.ValidFrom)
+</body>
