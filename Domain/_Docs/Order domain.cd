@@ -30,12 +30,11 @@
   <Class Name="MaskShop.Domain.Orders.Order">
     <Position X="6.25" Y="0.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAgAACCAAAAAAAAAAAAAAAUAQAACABAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAgAACCAAAAAAAAAAAAAAAUAQAAAAAAAAAAAA=</HashCode>
       <FileName>Orders\Order.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="ContactMechanism" />
-      <Property Name="PartyName" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="Items" />
@@ -61,29 +60,22 @@
   <Class Name="MaskShop.Domain.Parties.Party">
     <Position X="11" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAgAAAAAAAAAAAAAAAAAAAEAAiACABAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAgAAAAAAAAAAAAAAAAAAAEAAiAAABAAAAAAA=</HashCode>
       <FileName>Parties\Party.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Domain.Products.Product">
     <Position X="0.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgAgAABAQAAAgAAAAAAAAAIAAAAAAAAAAACAAAAEAA=</HashCode>
+      <HashCode>AAgAgAAAAQAAAgAAAAAAAAAAAAAAAAAAAAACAAAAEAA=</HashCode>
       <FileName>Products\Product.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Domain.Parties.ContactMechanism">
-    <Position X="14.5" Y="2" Width="1.5" />
+    <Position X="13" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQIAAQAAAAAAAAAMAAAACAAAAAIAAgAHAAIABAAAAAA=</HashCode>
       <FileName>Parties\ContactMechanism.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="MaskShop.Domain.Parties.PartyName">
-    <Position X="12.25" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAIAAEAAAABAAAAEAAAQAAQAEAAEAAAAAAAAAAAAAAg=</HashCode>
-      <FileName>Parties\PartyName.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
