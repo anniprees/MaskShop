@@ -73,8 +73,8 @@ namespace MaskShop.Infra
 
             var orders = new[]
             {
-                new OrderData {Id = "1", Name = "Order1", ContactMechanismId   = "1", OrderStatus = OrderStatus.Received, ValidFrom = Convert.ToDateTime("10/06/2019 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")},
-                new OrderData {Id = "2", Name = "Order2", ContactMechanismId   = "3", OrderStatus = OrderStatus.Received, ValidFrom = Convert.ToDateTime("17/06/2018 09:00"), ValidTo = Convert.ToDateTime("21/04/2022 09:00")},
+                new OrderData {Id = "1", Name = "Order1", PartyId = "1",ContactMechanismId   = "1", OrderStatus = OrderStatus.Received, ValidFrom = Convert.ToDateTime("10/06/2019 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")},
+                new OrderData {Id = "2", Name = "Order2", PartyId = "4",ContactMechanismId   = "3", OrderStatus = OrderStatus.Received, ValidFrom = Convert.ToDateTime("17/06/2018 09:00"), ValidTo = Convert.ToDateTime("21/04/2022 09:00")},
 
             };
 
@@ -92,6 +92,9 @@ namespace MaskShop.Infra
                 new OrderItemData {OrderId = "1", ProductId = "1", Quantity = 5, ValidFrom = DateTime.Now, ValidTo = null},
                 new OrderItemData {OrderId = "1", ProductId = "2", Quantity = 2, ValidFrom = DateTime.Now, ValidTo = null},
                 new OrderItemData {OrderId = "1", ProductId = "3", Quantity = 2, ValidFrom = DateTime.Now, ValidTo = null},
+                new OrderItemData {OrderId = "2", ProductId = "4", Quantity = 5, ValidFrom = DateTime.Now, ValidTo = null},
+                new OrderItemData {OrderId = "2", ProductId = "5", Quantity = 5, ValidFrom = DateTime.Now, ValidTo = null},
+
             };
 
             db.OrderItems.AddRange(orderItems);
@@ -105,7 +108,6 @@ namespace MaskShop.Infra
             var baskets = new[]
             {
                 new BasketData {Id = "1", Name = "Basket1", ValidFrom = Convert.ToDateTime("10/06/2019 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")},
-                new BasketData {Id = "2", Name = "Basket2", ValidFrom = Convert.ToDateTime("17/06/2018 09:00"), ValidTo = Convert.ToDateTime("21/04/2022 09:00")},
 
             };
 

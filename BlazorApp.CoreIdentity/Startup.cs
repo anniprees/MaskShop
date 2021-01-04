@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BlazorApp.CoreIdentity.Data;
+using BlazorStrap;
 using MaskShop.Domain.Common;
 using MaskShop.Domain.Orders;
 using MaskShop.Domain.Parties;
@@ -31,7 +32,9 @@ namespace BlazorApp.CoreIdentity
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddControllersWithViews();
             services.AddServerSideBlazor();
+            services.AddBootstrapCss();
             RegisterDbContexts(services);
             RegisterAuthentication(services);
             RegisterRepositories(services);
@@ -97,6 +100,9 @@ namespace BlazorApp.CoreIdentity
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapBlazorHub();
             });
         }

@@ -1,0 +1,85 @@
+﻿@using Microsoft.AspNetCore.Components
+@using MaskShop.PagesCore.ShopClient.Products
+@using BlazorStrap
+@*@inherits OwningComponentBase<>*@
+
+
+    <BSTable IsResponsive="true" class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>Name</th>
+                <th>Product Category</th>
+                <th>Price</th>
+                <th>Picture</th>
+            </tr>
+        </thead>
+        <tbody>
+            <virtualize>
+
+                @foreach (var item in Items)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.ProductCategoryId</td>
+                        <td>@item.Price</td>
+                        <td><img src="@item.PictureUri" width="150" /></td>
+                        <td>
+                            <button class="btn btn-primary">Add to basket</button>
+                            
+
+                            @*<BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-eye text-primary" @onclick="@(async () => await ViewProduct(item.Id))"></BSButton>
+                            <BSButton ButtonType="ButtonType.Link" Color="Color.None" Class="oi oi-pencil text-warning" @onclick="@(async () => await EditProduct(item.Id))"></BSButton>*@
+                        </td>
+                    </tr>
+                }
+            </virtualize>
+        </tbody>
+    </BSTable>
+
+@*<div>
+    <BSModal @bind-IsOpen="IsView" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
+        <BSModalHeader @onclick="CloseModal">@ModalTitle</BSModalHeader>
+        <BSModalBody>
+            <div class="col-md-12">
+                <hr />
+                <h5>Product</h5>
+                <hr />
+                <BSTable IsResponsive="true" class="table">
+                    <tr>
+                        <td>Id</td>
+                        <td>@Product.Id</td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>@Product.Name</td>
+                    </tr>
+                    <tr>
+                        <td>Product Category</td>
+                        <td>@Product.ProductCategoryId</td>
+                    </tr>
+                    <tr>
+                        <td>Price</td>
+                        <td>@Product.Price</td>
+                    </tr>
+                    <tr>
+                        <td>Picture</td>
+                        <td><img src="@Product.PictureUri" /></td>
+                    </tr>
+                    <tr>
+                        <td>Valid From</td>
+                        <td>@Product.ValidFrom</td>
+                    </tr>
+                    <tr>
+                        <td>Valid To</td>
+                        <td>@Product.ValidTo</td>
+                    </tr>
+                </BSTable>
+
+                <div class="form-group">
+                    <button class="btn btn-primary" @onclick="CloseModal">Back</button>
+                    <button class="btn btn-primary" @onclick=@(async () => await CreateBasketItem())><i class="oi oi-cart"></i> Add to basket</button>
+                </div>
+            </div>
+        </BSModalBody>
+    </BSModal>
+</div>*@

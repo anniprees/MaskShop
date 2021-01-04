@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using MaskShop.Aids.Constants;
 using MaskShop.Data.Common;
 using MaskShop.Data.Products;
@@ -8,7 +10,9 @@ using MaskShop.Domain.Products;
 using MaskShop.Facade.Products;
 using MaskShop.PagesCore.Common;
 using MaskShop.PagesCore.Common.Extensions;
+using MaskShop.PagesCore.Shop.Orders;
 using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -44,6 +48,20 @@ namespace MaskShop.PagesCore.Shop.Products
             createColumn(x => Item.PictureUri);
             createColumn(x => Item.Price);
         }
-        
+
+        public virtual async Task<IActionResult> OnGetSelectAsync(string id, string sortOrder, string searchString,
+            int pageIndex, string fixedFilter, string fixedValue)
+        {
+            Product p = await db.Get(id);
+            Basket b = await Baskets.GetLatestForUser(User.Identity.Name);
+            BasketItem i = await BasketItems.Add(b, p);
+
+            var url = new Uri($"{BasketItemsPage}/Edit?handler=Edit" +
+                              $"&id={i.Id}" +
+                              $"&fixedFilter={nameof(i.BasketId)}" +
+                              $"&fixedValue={b.Id}", UriKind.Relative);
+
+            return Redirect(url.ToString());
+        }
     }
 }
