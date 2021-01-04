@@ -26,16 +26,12 @@
        asp-route-fixedValue="@Model.FixedValue"
        asp-route-pageIndex="@Model.PageIndex"
        asp-route-id="@itemId">Edit</a> |
-
-    @Html.BackTo(
-        new Args(
-            null,
-            null,
-            Model.FixedFilter,
-            Model.FixedValue,
-            Model.SortOrder,
-            Model.SearchString,
-            Model.PageIndex))
+    
+    <a id="backToList"asp-page="./Index"
+       asp-route-handler="Index"
+       asp-route-sortorder="@Model.SortOrder"
+       asp-route-fixedFilter="@Model.FixedFilter"
+       asp-route-fixedValue="@Model.FixedValue">Back to Full List</a>
 
     @RenderSection("Details")
 </div>

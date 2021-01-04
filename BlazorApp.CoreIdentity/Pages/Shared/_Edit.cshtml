@@ -30,19 +30,12 @@
     </div>
 </div>
 
-<div>
-    
-    @Html.BackTo(
-        new Args(
-            null, 
-            null, 
-            Model.FixedFilter, 
-            Model.FixedValue, 
-            Model.SortOrder, 
-            Model.SearchString, 
-            Model.PageIndex))
+<a id="backToList"asp-page="./Index"
+   asp-route-handler="Index"
+   asp-route-sortorder="@Model.SortOrder"
+   asp-route-fixedFilter="@Model.FixedFilter"
+   asp-route-fixedValue="@Model.FixedValue">Back to Full List</a>
 
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

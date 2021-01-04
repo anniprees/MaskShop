@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.IO;
 using MaskShop.Aids.Methods;
 using MaskShop.Data.Products;

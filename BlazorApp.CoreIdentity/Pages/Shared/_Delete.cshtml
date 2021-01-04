@@ -30,18 +30,11 @@
         <input id="deleteButton" type="submit" value="Delete" class="btn btn-danger" /> |
 
     </form>
-
-    <div>
-        @Html.BackTo(
-            new Args(
-                null,
-                null,
-                Model.FixedFilter,
-                Model.FixedValue,
-                Model.SortOrder,
-                Model.SearchString,
-                Model.PageIndex
-                ))
-    </div>
+    
+    <a id="backToList"asp-page="./Index"
+       asp-route-handler="Index"
+       asp-route-sortorder="@Model.SortOrder"
+       asp-route-fixedFilter="@Model.FixedFilter"
+       asp-route-fixedValue="@Model.FixedValue">Back to Full List</a>
 
 </div>
