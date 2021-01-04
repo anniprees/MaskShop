@@ -39,7 +39,7 @@ namespace MaskShop.PagesCore.Common {
             set => db.FixedFilter = value;
         }
 
-        protected internal void setFixedFilter(string fixedFilter, string fixedValue) {
+        public void setFixedFilter(string fixedFilter, string fixedValue) {
             FixedFilter = fixedFilter;
             FixedValue = fixedValue;
         }
@@ -55,7 +55,7 @@ namespace MaskShop.PagesCore.Common {
                 + $"&fixedFilter={FixedFilter}&fixedValue={FixedValue}", UriKind.Relative);
         }
 
-        protected internal virtual string getSortOrder(string name) {
+        public virtual string getSortOrder(string name) {
             if (string.IsNullOrEmpty(SortOrder)) return name;
             if (!SortOrder.StartsWith(name, StringComparison.InvariantCulture)) return name;
             if (SortOrder.EndsWith("_desc", StringComparison.InvariantCulture)) return name;
