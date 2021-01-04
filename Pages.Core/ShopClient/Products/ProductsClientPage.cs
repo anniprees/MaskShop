@@ -17,7 +17,7 @@ namespace MaskShop.PagesCore.ShopClient.Products
             : base(r, c, b, bi) { }
 
         public int PageSize { get; set; } = 100;
-        protected internal override Uri pageUrl() => new Uri("/Shop/Products", UriKind.Relative);
+        protected internal override Uri pageUrl() => new Uri("/Client/Products", UriKind.Relative);
         
         public override IHtmlContent GetValue(IHtmlHelper<ProductsClientPage> h, int i) => i switch
         {

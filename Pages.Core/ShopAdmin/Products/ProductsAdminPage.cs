@@ -14,7 +14,7 @@ namespace MaskShop.PagesCore.ShopAdmin.Products
         public ProductsAdminPage(IProductsRepository r, IProductCategoriesRepository c, IBasketsRepository b, IBasketItemsRepository bi) 
             : base(r, c, b, bi) { }
 
-        protected internal override Uri pageUrl() => new Uri("/Client/Products", UriKind.Relative);
+        protected internal override Uri pageUrl() => new Uri("/Shop/Products", UriKind.Relative);
 
         protected override void createTableColumns()
         {
