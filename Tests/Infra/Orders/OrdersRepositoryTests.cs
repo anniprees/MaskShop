@@ -18,5 +18,7 @@ namespace MaskShop.Tests.Infra.Orders
             new OrdersRepository(c);
 
         protected override DbSet<OrderData> GetSet(ShopDbContext c) => c.Orders;
+        [TestMethod]
+        public void AddTest() => Assert.Inconclusive();
     }
 }

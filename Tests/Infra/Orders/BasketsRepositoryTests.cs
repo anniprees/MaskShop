@@ -17,5 +17,11 @@ namespace MaskShop.Tests.Infra.Orders
         protected override BasketsRepository GetObject(ShopDbContext c) => new BasketsRepository(c);
 
         protected override DbSet<BasketData> GetSet(ShopDbContext c) => c.Baskets;
+
+        [TestMethod]
+        public void GetLatestForUserTest() => Assert.Inconclusive();
+
+        [TestMethod]
+        public void CloseTest() => Assert.Inconclusive();
     }
 }
