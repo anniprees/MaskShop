@@ -1,12 +1,9 @@
 ﻿@using MaskShop.PagesCore.Common.Extensions;
-@model MaskShop.PagesCore.ShopAdmin.Parties.PartiesAdminPage;
+@model MaskShop.PagesCore.ShopClient.Parties.PartiesClientPage;
 
 <body>
-    @Html.Editor(m => m.Item.Id)
     @Html.Editor(m => m.Item.Name)
-    @Html.DropDown(m => m.Item.PartyRoleId, Model.PartyRoles)
     @Html.DropDown(m => m.Item.ContactMechanismId, Model.ContactMechanisms)
-    @Html.DropDown(m => m.Item.PartyType, Model.PartyType)
     @Html.Editor(m => m.Item.ValidFrom)
     @Html.Editor(m => m.Item.ValidTo)
 </body>
