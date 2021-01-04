@@ -17,14 +17,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MaskShop.Tests.Facade.Common
 {
     [TestClass]
-    public class AbstractViewFactoryTests : AbstractClassTests<AbstractViewFactory<ProductCategoryData, ProductCategory, ProductCategoryView>, object>
+    public class AbstractViewFactoryTests : AbstractClassTests<AbstractViewFactory<ProductData, Product, ProductView>, object>
     {
-        private class TestClass : AbstractViewFactory<ProductCategoryData, ProductCategory, ProductCategoryView>
+        private class TestClass : AbstractViewFactory<ProductData, Product, ProductView>
         {
-            protected override ProductCategory ToObject(ProductCategoryData d) => new ProductCategory(d);
+            protected internal override Product ToObject(ProductData d) => new Product(d);
         }
 
-        [TestInitialize] public override void TestInitialize() => type = typeof(AbstractViewFactory<ProductCategoryData, ProductCategory, ProductCategoryView>);
+        [TestInitialize] public override void TestInitialize() => type = typeof(AbstractViewFactory<ProductData, Product, ProductView>);
 
         [TestMethod]
         public void CreateTest() => Assert.Inconclusive();

@@ -22,7 +22,7 @@ namespace MaskShop.Tests.Infra.Common
 
             public TestClass(DbContext c, DbSet<ProductData> s) : base(c, s) { }
 
-            protected override Product ToDomainObject(ProductData d) => new Product(d);
+            protected internal override Product ToDomainObject(ProductData d) => new Product(d);
 
             protected override async Task<ProductData> GetData(string id)
             {
