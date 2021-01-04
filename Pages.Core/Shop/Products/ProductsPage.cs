@@ -3,6 +3,7 @@ using System.Linq;
 using MaskShop.Aids.Constants;
 using MaskShop.Data.Common;
 using MaskShop.Data.Products;
+using MaskShop.Domain.Orders;
 using MaskShop.Domain.Products;
 using MaskShop.Facade.Products;
 using MaskShop.PagesCore.Common;
@@ -21,6 +22,7 @@ namespace MaskShop.PagesCore.Shop.Products
         public IEnumerable<SelectListItem> Categories { get; }
         public IBasketsRepository Baskets { get; }
         public IBasketItemsRepository BasketItems { get; }
+        protected abstract string BasketItemsPage { get; }
 
         protected ProductsPage(IProductsRepository r, IProductCategoriesRepository c, IBasketsRepository b, IBasketItemsRepository bi) :
             base(r, "Products")
