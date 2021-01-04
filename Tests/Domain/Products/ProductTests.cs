@@ -28,9 +28,17 @@ namespace MaskShop.Tests.Domain.Products
         public void PictureTest() => IsReadOnlyProperty(obj.Data.Picture);
 
         [TestMethod]
-        public void ProductCategoryTest() =>
-            GetFromRepository<ProductCategoryData, ProductCategory, IProductCategoriesRepository>(
-                obj.ProductCategoryId, () => obj.ProductCategory.Data, d => new ProductCategory(d));
+        public async Task ProductCategoryTest()
+        {
+            var p = GetRandom.Object<ProductCategoryData>();
+            p.Id = obj.ProductCategoryId;
+            await GetRepository.Instance<IProductCategoriesRepository>().Add(new ProductCategory(p));
+            TestArePropertiesEqual(p, obj.ProductCategory.Data);
+        }
+            
+            //=>
+            //GetFromRepository<ProductCategoryData, ProductCategory, IProductCategoriesRepository>(
+            //    obj.ProductCategoryId, () => obj.ProductCategory.Data, d => new ProductCategory(d));
 
         [TestMethod]
         public void PriceComponentTest() =>

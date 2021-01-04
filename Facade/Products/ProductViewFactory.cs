@@ -4,32 +4,29 @@ using System.IO;
 using MaskShop.Aids.Methods;
 using MaskShop.Data.Products;
 using MaskShop.Domain.Products;
+using MaskShop.Facade.Common;
 
 namespace MaskShop.Facade.Products
 {
-    public static class ProductViewFactory
+    public sealed class ProductViewFactory : AbstractViewFactory<ProductData, Product, ProductView>
     {
-        public static Product Create(ProductView v)
+        protected internal override Product ToObject(ProductData d) => new Product(d);
+        protected internal override void CopyMembers(ProductView v, ProductData d)
         {
-            var d = new ProductData();
+            base.CopyMembers(v, d);
             d.PictureUri = v?.PictureFile?.FileName;
             var stream = new MemoryStream();
             v?.PictureFile?.CopyTo(stream);
             if (stream.Length < 2097152)
                 d.Picture = stream.ToArray();
-            Copy.Members(v, d);
-            return new Product(d);
         }
-
-        public static ProductView Create(Product o)
+        protected internal override void CopyMembers(ProductData d, ProductView v)
         {
-            var v = new ProductView();
+            base.CopyMembers(d, v);
             var s = Convert.ToBase64String(
-                o?.Picture ?? Array.Empty<byte>(), 0,
-                o?.Picture?.Length ?? 0);
+                d?.Picture ?? Array.Empty<byte>(), 0,
+                d?.Picture?.Length ?? 0);
             v.PictureUri = "data:image/jpg;base64," + s;
-            Copy.Members(o?.Data, v);
-            return v;
         }
     }
 }

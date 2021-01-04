@@ -1,0 +1,25 @@
+﻿@page
+@using Microsoft.AspNetCore.Components.Web
+@using MaskShop.PagesCore.Common.Aids
+@using MaskShop.PagesCore.Common.Consts
+@using MaskShop.PagesCore.Common.Extensions
+@model MaskShop.PagesCore.ShopClient.Products.ProductsClientPage
+
+@{
+    Layout = "_IndexBlazor";
+    var page = Model.PageUrl;
+}
+
+@section Create {
+    @Html.Link(string.Empty, new Link(Captions.Create, Model.CreateUrl))
+}
+
+<body>
+
+<component type="typeof(TableGeneric)" render-mode="ServerPrerendered"
+           param-Items="@Model.Items"/>
+
+</body>
+
+
+ 

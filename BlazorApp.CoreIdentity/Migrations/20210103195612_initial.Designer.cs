@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorApp.CoreIdentity.Migrations
 {
     [DbContext(typeof(ApplicationCoreDbContext))]
-    [Migration("20210103163840_initial")]
+    [Migration("20210103195612_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -88,9 +88,6 @@ namespace BlazorApp.CoreIdentity.Migrations
                     b.Property<string>("PartyId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PartyNameId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ValidFrom")
                         .HasColumnType("datetime2");
 
@@ -166,7 +163,7 @@ namespace BlazorApp.CoreIdentity.Migrations
                     b.Property<string>("ContactMechanismId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PartyNameId")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PartyRoleId")
@@ -186,41 +183,10 @@ namespace BlazorApp.CoreIdentity.Migrations
                     b.ToTable("Parties");
                 });
 
-            modelBuilder.Entity("MaskShop.Data.Parties.PartyNameData", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MiddleName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PartyId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ValidFrom")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("ValidTo")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PartyNames");
-                });
-
             modelBuilder.Entity("MaskShop.Data.Parties.PartyRoleData", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("PartyId")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
@@ -240,6 +206,9 @@ namespace BlazorApp.CoreIdentity.Migrations
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProductFeatureApplicabilityId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductId")
                         .HasColumnType("nvarchar(max)");
@@ -323,9 +292,6 @@ namespace BlazorApp.CoreIdentity.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductCategoryId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProductFeatureApplicabilityId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ValidFrom")

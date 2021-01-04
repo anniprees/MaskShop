@@ -214,12 +214,12 @@ namespace MaskShop.Infra
 
             var products = new[]
             {
-                new ProductData{Id = "1", Name = "Reusable cloth mask", Price = 8, ProductCategoryId = "9",PictureUri = "", ValidFrom = Convert.ToDateTime("1/04/2020 09:00"), ValidTo = null},
-                new ProductData{Id = "2", Name = "Face shield", Price = 15, ProductCategoryId = "10", ValidFrom = Convert.ToDateTime("15/05/2020 09:00"), ValidTo = null},
-                new ProductData{Id = "3", Name = "N95 respirator", Price = 10, ProductCategoryId = "7", ValidFrom = Convert.ToDateTime("10/04/2020 09:00"), ValidTo = null},
-                new ProductData{Id = "4", Name = " 3-layer surgical mask", Price = 5, ProductCategoryId = "1", ValidFrom = Convert.ToDateTime("13/03/2020 09:00"), ValidTo = null},
-                new ProductData{Id = "5", Name = "4-layer surgical mask", Price = 6, ProductCategoryId = "2", ValidFrom = null, ValidTo = null},
-                new ProductData{Id = "6", Name = "5-layer surgical mask", Price = 7, ProductCategoryId = "3", ValidFrom = null, ValidTo = null},
+                new ProductData{Id = "1", Name = "Reusable cloth mask", Picture = ConvertToByteArray(files[0]), Price = 8, ProductCategoryId = "9", ValidFrom = Convert.ToDateTime("1/04/2020 09:00"), ValidTo = null},
+                new ProductData{Id = "2", Name = "Face shield", Picture = ConvertToByteArray(files[1]), Price = 15, ProductCategoryId = "10", ValidFrom = Convert.ToDateTime("15/05/2020 09:00"), ValidTo = null},
+                new ProductData{Id = "3", Name = "N95 respirator", Picture = ConvertToByteArray(files[2]), Price = 10, ProductCategoryId = "7", ValidFrom = Convert.ToDateTime("10/04/2020 09:00"), ValidTo = null},
+                new ProductData{Id = "4", Name = " 3-layer surgical mask", Picture = ConvertToByteArray(files[3]), Price = 5, ProductCategoryId = "1", ValidFrom = Convert.ToDateTime("13/03/2020 09:00"), ValidTo = null},
+                new ProductData{Id = "5", Name = "4-layer surgical mask", Picture = ConvertToByteArray(files[4]), Price = 6, ProductCategoryId = "2", ValidFrom = null, ValidTo = null},
+                new ProductData{Id = "6", Name = "5-layer surgical mask", Picture = ConvertToByteArray(files[5]), Price = 7, ProductCategoryId = "3", ValidFrom = null, ValidTo = null},
             };
 
             db.Products.AddRange(products);

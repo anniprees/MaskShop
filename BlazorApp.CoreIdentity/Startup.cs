@@ -14,6 +14,8 @@ using MaskShop.Infra;
 using MaskShop.Infra.Orders;
 using MaskShop.Infra.Parties;
 using MaskShop.Infra.Products;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 
 namespace BlazorApp.CoreIdentity
 {
@@ -28,9 +30,10 @@ namespace BlazorApp.CoreIdentity
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddRazorPages();
+            services.AddServerSideBlazor();
             RegisterDbContexts(services);
             RegisterAuthentication(services);
-            services.AddRazorPages();
             RegisterRepositories(services);
             services.AddDatabaseDeveloperPageExceptionFilter();
         }
@@ -94,6 +97,7 @@ namespace BlazorApp.CoreIdentity
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapBlazorHub();
             });
         }
     }

@@ -11,10 +11,6 @@ namespace MaskShop.Tests.Data.Orders
         public void ContactMechanismIdTest()
             => IsNullableProperty(() => obj.ContactMechanismId, x => obj.ContactMechanismId = x);
 
-        [TestMethod]
-        public void PartyNameIdTest()
-            => IsNullableProperty(() => obj.PartyNameId, x => obj.PartyNameId = x);
-
         [TestMethod] 
         public void OrderStatusTest() 
             => IsProperty(() => obj.OrderStatus, x => obj.OrderStatus = x);
