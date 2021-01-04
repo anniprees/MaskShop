@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using MaskShop.Data.Products;
+using MaskShop.Domain.Common;
 using MaskShop.Domain.Products;
 using MaskShop.Facade.Products;
 using MaskShop.PagesCore.Common;
@@ -41,8 +43,7 @@ namespace MaskShop.PagesCore.Shop.Products
         {
             createColumn(x => Item.Id);
             createColumn(x => Item.ProductId);
-            createColumn(x => Item.ProductFeatureId);
-            createColumn(x => Item.FeatureDefinition);
+            createColumn(x => Item.FeaturesCombo);
             createColumn(x => Item.ValidFrom);
             createColumn(x => Item.ValidTo);
         }
@@ -50,7 +51,6 @@ namespace MaskShop.PagesCore.Shop.Products
         public override IHtmlContent GetValue(IHtmlHelper<ProductFeatureApplicabilitiesPage> h, int i) => i switch
         {
             1 => getRaw(h, ProductName(Item.ProductId)),
-            2 => getRaw(h, ProductFeatureName(Item.ProductFeatureId)),
             _ => base.GetValue(h, i)
         };
     }

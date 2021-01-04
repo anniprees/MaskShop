@@ -4,14 +4,16 @@ using BlazorApp.CoreIdentity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BlazorApp.CoreIdentity.Migrations
 {
     [DbContext(typeof(ApplicationCoreDbContext))]
-    partial class ApplicationCoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210104151023_ProductFeaturesAdded")]
+    partial class ProductFeaturesAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

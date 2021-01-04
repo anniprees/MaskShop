@@ -9,9 +9,7 @@ namespace MaskShop.Domain.Products
         public ProductFeatureApplicability(ProductFeatureApplicabilityData d) : base(d) { }
         public string ProductId => Data?.ProductId ?? Unspecified;
         public string ProductFeatureId => Data?.ProductFeatureId ?? Unspecified;
-
         public IReadOnlyList<Product> Products => new GetFrom<IProductsRepository, Product>().ListBy(ProductId, Id);
         public ProductFeature ProductFeature => new GetFrom<IProductFeaturesRepository, ProductFeature>().ById(ProductFeatureId);
-
     }
 }

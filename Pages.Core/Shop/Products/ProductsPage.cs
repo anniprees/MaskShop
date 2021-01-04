@@ -44,14 +44,6 @@ namespace MaskShop.PagesCore.Shop.Products
             createColumn(x => Item.PictureUri);
             createColumn(x => Item.Price);
         }
-
-        public override IHtmlContent GetValue(IHtmlHelper<TPage> h, int i) => i switch
-        {
-            2 => getRaw(h, CategoryName(Item.ProductCategoryId)),
-            3 => h.DisplayImageFor(Item.PictureUri),
-            _ => base.GetValue(h, i)
-
-        };
-
+        
     }
 }
