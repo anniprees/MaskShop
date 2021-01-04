@@ -16,7 +16,7 @@ namespace MaskShop.Tests.Facade.Orders
         public void CreateObjectTest()
         {
             var view = GetRandom.Object<BasketItemView>();
-            var data = BasketItemViewFactory.Create(view).Data;
+            var data = new BasketItemViewFactory().Create(view).Data;
             TestArePropertiesEqual(view, data);
         }
 
@@ -24,7 +24,7 @@ namespace MaskShop.Tests.Facade.Orders
         public void CreateViewTest()
         {
             var data = GetRandom.Object<BasketItemData>();
-            var view = BasketItemViewFactory.Create(new BasketItem(data));
+            var view = new BasketItemViewFactory().Create(new BasketItem(data));
             TestArePropertiesEqual(view, data);
         }
     }

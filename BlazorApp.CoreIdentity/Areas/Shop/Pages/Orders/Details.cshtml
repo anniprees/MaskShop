@@ -2,9 +2,9 @@
 @using MaskShop.Aids
 @using MaskShop.Data.Orders
 @using MaskShop.PagesCore.Common.Extensions
-@model MaskShop.PagesCore.Shop.Orders.OrdersPage
+@model MaskShop.PagesCore.ShopAdmin.Orders.OrdersAdminPage
 
-@{ 
+@{
     Layout = "_Details";
     string items = "/Shop/OrderItems";
     var orderId = GetMember.Name<OrderItemData>(x => x.OrderId);

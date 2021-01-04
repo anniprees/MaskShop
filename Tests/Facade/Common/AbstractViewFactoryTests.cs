@@ -21,7 +21,7 @@ namespace MaskShop.Tests.Facade.Common
     {
         private class TestClass : AbstractViewFactory<ProductCategoryData, ProductCategory, ProductCategoryView>
         {
-            protected override ProductCategory ToObject(ProductCategoryData d) => new ProductCategory(d);
+            protected internal override ProductCategory ToObject(ProductCategoryData d) => new ProductCategory(d);
         }
 
         [TestInitialize] public override void TestInitialize() => type = typeof(AbstractViewFactory<ProductCategoryData, ProductCategory, ProductCategoryView>);

@@ -14,6 +14,21 @@ namespace MaskShop.Infra.Orders
     {
         public OrderItemsRepository(ShopDbContext c) : base(c, c.OrderItems) { }
 
+        public async Task Add(Order o, Basket b)
+        {
+            foreach (var e in b.Items)
+            {
+                OrderItemData d = new OrderItemData
+                {
+                    OrderId = o.Id,
+                    ProductId = e.ProductId,
+                    Quantity = e.Quantity
+                };
+                var obj = ToDomainObject(d);
+                await Add(obj);
+            }
+        }
+
         protected override async Task<OrderItemData> GetData(string id)
         {
             var orderId = id?.GetHead();
