@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using MaskShop.Aids;
-using MaskShop.Aids.Methods;
 using MaskShop.Data.Products;
 using MaskShop.Domain.Common;
 using MaskShop.Domain.Products;

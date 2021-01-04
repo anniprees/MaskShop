@@ -9,7 +9,7 @@ namespace MaskShop.Tests.Facade.Parties
     [TestClass]
     public class ContactMechanismViewFactoryTests : BaseTests
     {
-        [TestInitialize] public void TestInitialize() => type = typeof(ContactMechanismViewFactory);
+        [TestInitialize] public void TestInitialize() => Type = typeof(ContactMechanismViewFactory);
         [TestMethod] public void CreateTest() { }
 
         [TestMethod]

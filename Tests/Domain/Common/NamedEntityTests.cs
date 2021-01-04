@@ -23,7 +23,7 @@ namespace MaskShop.Tests.Domain.Common
         [TestMethod]
         public void NameTest()
         {
-            Assert.AreEqual(Aids.Constants.Word.Unspecified, obj.Name);
+            Assert.AreEqual(Word.Unspecified, obj.Name);
             obj = new TestClass(GetRandom.Object<ProductData>());
             IsReadOnlyProperty(obj, GetMember.Name<TestClass>(x => x.Name), obj.Data.Name);
         }

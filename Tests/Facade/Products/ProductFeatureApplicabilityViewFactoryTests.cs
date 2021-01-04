@@ -12,7 +12,7 @@ namespace MaskShop.Tests.Facade.Products
     [TestClass]
     public class ProductFeatureApplicabilityViewFactoryTests : BaseTests
     {
-        [TestInitialize] public virtual void TestInitialize() => type = typeof(ProductFeatureApplicabilityViewFactory);
+        [TestInitialize] public virtual void TestInitialize() => Type = typeof(ProductFeatureApplicabilityViewFactory);
         [TestMethod] public void CreateTest() { }
 
         [TestMethod]

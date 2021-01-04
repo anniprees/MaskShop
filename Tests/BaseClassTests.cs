@@ -13,18 +13,18 @@ namespace MaskShop.Tests
     {
         protected TClass obj;
 
-        [TestInitialize] public virtual void TestInitialize() => type = typeof(TClass);
+        [TestInitialize] public virtual void TestInitialize() => Type = typeof(TClass);
 
         [TestCleanup]
         public virtual void TestCleanup()
         {
-            type = null;
+            Type = null;
             obj = default;
         }
 
         [TestMethod]
         public void IsInheritedTest()
-            => Assert.AreEqual(GetBaseClass(), type.BaseType);
+            => Assert.AreEqual(GetBaseClass(), Type.BaseType);
 
         [TestMethod] public void CanCreateTest() => Assert.IsNotNull(obj);
 

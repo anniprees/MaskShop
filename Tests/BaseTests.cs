@@ -11,13 +11,13 @@ namespace MaskShop.Tests
         private const string NotTested = "<{0}> is not tested";
         private const string NotSpecified = "Class is not specified";
         private List<string> Members { get; set; }
-        protected Type type;
+        protected Type Type;
 
         [TestMethod]
         public void IsTested()
         {
-            if (type == null) Assert.Inconclusive(NotSpecified);
-            var m = GetClass.Members(type, PublicFlagsFor.Declared);
+            if (Type == null) Assert.Inconclusive(NotSpecified);
+            var m = GetClass.Members(Type, PublicFlagsFor.Declared);
             Members = m.Select(e => e.Name).ToList();
             RemoveTested();
 

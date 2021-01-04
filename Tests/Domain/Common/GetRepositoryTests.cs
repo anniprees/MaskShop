@@ -10,7 +10,7 @@ namespace MaskShop.Tests.Domain.Common
     [TestClass]
     public class GetRepositoryTests : BaseTests
     {
-        [TestInitialize] public void TestInitialize() => type = typeof(GetRepository);
+        [TestInitialize] public void TestInitialize() => Type = typeof(GetRepository);
 
         [TestMethod] public void SetServiceProviderTest() => Assert.Inconclusive();
         [TestMethod] public void InstanceTest() => Assert.Inconclusive();
