@@ -9,7 +9,7 @@ namespace MaskShop.Tests.Facade.Parties
     [TestClass]
     public class PartyRoleViewFactoryTests : BaseTests
     {
-        [TestInitialize] public void TestInitialize() => type = typeof(PartyRoleViewFactory);
+        [TestInitialize] public void TestInitialize() => Type = typeof(PartyRoleViewFactory);
         [TestMethod] public void CreateTest() { }
 
         [TestMethod]

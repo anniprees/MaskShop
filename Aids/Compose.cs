@@ -1,5 +1,5 @@
 ﻿
-namespace MaskShop.Aids.Methods 
+namespace MaskShop.Aids 
 {
     public static class Compose 
     {

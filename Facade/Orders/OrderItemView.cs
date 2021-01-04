@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
-using MaskShop.Aids.Methods;
+using MaskShop.Aids;
 using MaskShop.Data.Orders;
 
 namespace MaskShop.Facade.Orders

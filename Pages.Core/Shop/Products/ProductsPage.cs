@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MaskShop.Aids.Constants;
 using MaskShop.Data.Common;
 using MaskShop.Data.Products;
 using MaskShop.Domain.Orders;

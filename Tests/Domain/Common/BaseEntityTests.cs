@@ -1,4 +1,5 @@
 ﻿using System;
+using MaskShop.Aids;
 using MaskShop.Domain.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -17,7 +18,7 @@ namespace MaskShop.Tests.Domain.Common
         }
 
         [TestMethod]
-        public void UnspecifiedTest() => Assert.AreEqual(BaseEntity.Unspecified, Aids.Constants.Word.Unspecified);
+        public void UnspecifiedTest() => Assert.AreEqual(BaseEntity.Unspecified, Word.Unspecified);
         [TestMethod]
         public void UnspecifiedValidFromTest() => Assert.AreEqual(BaseEntity.UnspecifiedValidFrom, DateTime.MinValue);
         [TestMethod]

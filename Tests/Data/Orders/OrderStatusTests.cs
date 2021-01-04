@@ -8,7 +8,7 @@ namespace MaskShop.Tests.Data.Orders
     public class OrderStatusTests : BaseTests
     {
         [TestInitialize]
-        public void TestInitialize() => type = typeof(OrderStatus);
+        public void TestInitialize() => Type = typeof(OrderStatus);
 
         [TestMethod]
         public void CountTest() 

@@ -9,5 +9,11 @@ namespace MaskShop.Tests.Data.Products
     {
         [TestMethod]
         public void NumericCodeTest() => IsProperty<int>(() => obj.NumericCode, x => obj.NumericCode = x);
+
+        [TestMethod]
+        public void ColorTest() => IsNullableProperty<string>(() => obj.Color, x => obj.Color = x);
+
+        [TestMethod]
+        public void SizeTest() => IsNullableProperty<string>(() => obj.Size, x => obj.Size = x);
     }
 }

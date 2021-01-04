@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using MaskShop.Aids;
-using MaskShop.Aids.Methods;
 using MaskShop.Data.Products;
 using MaskShop.Domain.Common;
 using MaskShop.Domain.Products;
@@ -33,7 +32,7 @@ namespace MaskShop.Tests.Domain.Common
         }
         protected virtual IReadOnlyList<Product> getList() => obj.ListBy("ProductCategoryId", ProductCategoryId);
 
-        //[TestMethod] public void RepositoryTest() => Assert.AreSame(repository, obj.);
+        [TestMethod] public void RepositoryTest() => Assert.AreSame(repository, obj.Repository);
 
         [TestMethod]
         public void ByIdTest()
@@ -83,7 +82,7 @@ namespace MaskShop.Tests.Domain.Common
             if (idx % 4 == 0) data.ProductCategoryId = ProductCategoryId;
         }
 
-        [TestMethod] public void ListByTest() => Assert.Inconclusive();
+        [TestMethod] public void ListByTest() => ListTest();
 
         [TestMethod] public void ListContextTest() => ContentTest();
     }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using MaskShop.Aids.Methods;
+using MaskShop.Aids;
 using MaskShop.Data.Orders;
 using MaskShop.Domain.Products;
 

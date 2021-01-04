@@ -8,19 +8,13 @@ namespace MaskShop.Tests.Facade.Common
     [TestClass]
     public class UniqueEntityViewTests : AbstractClassTests<UniqueEntityView, PeriodView>
     {
-
-        private class TestClass : UniqueEntityView {
-            public override string GetId()
-            {
-                throw new System.NotImplementedException();
-            }
-        }
+        private class TestClass : UniqueEntityView { }
 
         [TestInitialize]
         public override void TestInitialize()
         {
             base.TestInitialize();
-            obj = GetRandom.Object<TestClass>();
+            obj = new TestClass();
         }
 
         [TestMethod] public void IdTest() => IsNullableProperty(() => obj.Id, x => obj.Id = x);

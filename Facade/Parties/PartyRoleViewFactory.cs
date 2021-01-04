@@ -1,4 +1,4 @@
-﻿using MaskShop.Aids.Methods;
+﻿using MaskShop.Aids;
 using MaskShop.Data.Parties;
 using MaskShop.Domain.Parties;
 

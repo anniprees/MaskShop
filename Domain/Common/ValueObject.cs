@@ -1,5 +1,5 @@
 ﻿using System;
-using MaskShop.Aids.Methods;
+using MaskShop.Aids;
 
 namespace MaskShop.Domain.Common
 {
