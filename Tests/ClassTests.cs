@@ -9,7 +9,7 @@ namespace MaskShop.Tests
         public override void TestInitialize()
         {
             obj = CreateObject();
-            type = obj.GetType();
+            Type = obj.GetType();
         }
         protected virtual TClass CreateObject() => GetRandom.Object<TClass>();
     }

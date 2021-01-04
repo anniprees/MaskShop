@@ -7,7 +7,7 @@ namespace MaskShop.Tests
         [TestMethod]
         public void IsSealed()
         {
-            Assert.IsTrue(type.IsSealed);
+            Assert.IsTrue(Type.IsSealed);
         }
     }
 }

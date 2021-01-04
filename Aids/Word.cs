@@ -1,4 +1,4 @@
-﻿namespace MaskShop.Aids.Constants
+﻿namespace MaskShop.Aids
 {
     public static class Word
     {

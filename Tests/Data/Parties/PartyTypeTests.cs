@@ -7,7 +7,7 @@ namespace MaskShop.Tests.Data.Parties
     [TestClass]
     public class PartyTypeTests : BaseTests
     {
-        [TestInitialize] public void TestInitialize() => type = typeof(PartyType);
+        [TestInitialize] public void TestInitialize() => Type = typeof(PartyType);
 
         [TestMethod]
         public void CountTest()

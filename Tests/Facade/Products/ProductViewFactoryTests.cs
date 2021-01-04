@@ -11,7 +11,7 @@ namespace MaskShop.Tests.Facade.Products
     public class ProductViewFactoryTests : BaseTests
     {
 
-        [TestInitialize] public void TestInitialize() => type = typeof(ProductViewFactory);
+        [TestInitialize] public void TestInitialize() => Type = typeof(ProductViewFactory);
 
         [TestMethod] public void CreateTest() { }
 

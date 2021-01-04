@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MaskShop.Aids.Methods;
+using MaskShop.Aids;
 using MaskShop.Data.Common;
 using MaskShop.Domain.Common;
 using Microsoft.EntityFrameworkCore;

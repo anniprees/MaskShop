@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MaskShop.Aids.Constants;
+using MaskShop.Aids;
 using MaskShop.Data.Common;
 using MaskShop.Domain.Common;
 using MaskShop.Facade.Common;

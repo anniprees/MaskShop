@@ -9,20 +9,20 @@ namespace MaskShop.Tests
         [TestMethod]
         public void IsAbstract()
         {
-            Assert.IsTrue(type.IsAbstract);
+            Assert.IsTrue(Type.IsAbstract);
 
         }
 
         protected void IsAbstractMethod(string name)
         {
-            var i = type.GetMethod(name);
+            var i = Type.GetMethod(name);
             Assert.IsNotNull(i);
             Assert.IsTrue(i.IsAbstract);
         }
 
         protected void IsAbstractProperty(string name)
         {
-            var i = type.GetProperty(name);
+            var i = Type.GetProperty(name);
             Assert.IsNotNull(i);
             if (i.CanRead) Assert.IsTrue(IsAbstract(i.GetGetMethod()));
             if (i.CanWrite) Assert.IsTrue(IsAbstract(i.GetSetMethod()));

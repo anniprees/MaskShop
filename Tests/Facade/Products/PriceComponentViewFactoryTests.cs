@@ -13,7 +13,7 @@ namespace MaskShop.Tests.Facade.Products
     public class PriceComponentViewFactoryTests : BaseTests
     {
         [TestInitialize]
-        public void TestInitialize() => type = typeof(PriceComponentViewFactory);
+        public void TestInitialize() => Type = typeof(PriceComponentViewFactory);
 
         [TestMethod]
         public void CreateTest()

@@ -9,7 +9,7 @@ namespace MaskShop.Tests.Facade.Products
     [TestClass]
     public class ProductFeatureViewFactoryTests : BaseTests
     {
-        [TestInitialize] public void TestInitialize() => type = typeof(ProductFeatureViewFactory);
+        [TestInitialize] public void TestInitialize() => Type = typeof(ProductFeatureViewFactory);
 
         [TestMethod] public void CreateTest() { }
 
