@@ -16,7 +16,6 @@ namespace MaskShop.Facade.Orders
             var v = base.Create(o);
             //v.PartyName = o?.Party?.PartyName.Name;
             v.PartyAddress = o?.Party?.ContactMechanism.Address;
-            //v.Closed = o?.Data?.To != null;
             v.TotalPrice = o?.TotalPrice ?? decimal.Zero;
             return v;
         }

@@ -11,8 +11,6 @@ namespace MaskShop.PagesCore.ShopAdmin.Orders
 {
     public class BasketItemsAdminPage : BasketItemsPage<BasketItemsAdminPage>
     {
-        protected override string OrdersPage => "/Shop/Orders";
-
         public BasketItemsAdminPage(IBasketItemsRepository r, IBasketsRepository b, IOrdersRepository o, IOrderItemsRepository oi, IProductsRepository p) 
             : base(r, b, o, oi, p) { }
 

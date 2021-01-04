@@ -30,12 +30,14 @@ namespace MaskShop.Infra.Orders
             return o;
         }
 
-        public async Task Close(Basket b)
+        public async Task Close(Basket b, string basketId)
         {
             var d = b?.Data;
+            basketId = b.Id;
             if (d == null) return;
             d.ValidTo = DateTime.Now;
-            await Update(new Basket(d));
+            await Delete(basketId);
+            //await Update(new Basket(d));
         }
     }
 }

@@ -8,7 +8,10 @@ namespace MaskShop.PagesCore.ShopAdmin.Orders
 {
     public class BasketsAdminPage : BasketsPage<BasketsAdminPage>
     {
-        public BasketsAdminPage(IBasketsRepository r) : base(r) { }
+        protected override string OrdersPage => "/Shop/Orders";
+
+        public BasketsAdminPage(IBasketsRepository r, IOrdersRepository o, IOrderItemsRepository oi) 
+            : base(r, o, oi) { }
 
         protected internal override Uri pageUrl() => new Uri("/Shop/Baskets", UriKind.Relative);
 

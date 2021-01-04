@@ -40,22 +40,5 @@ namespace MaskShop.PagesCore.Shop.Orders
         protected internal override BasketItem toObject(BasketItemView v) => new BasketItemViewFactory().Create(v);
         protected internal override BasketItemView toView(BasketItem o) => new BasketItemViewFactory().Create(o);
 
-        public async Task<IActionResult> OnGetOrdersAsync(string id, string sortOrder, string searchString,
-            int pageIndex, string fixedFilter, string fixedValue)
-        {
-
-            Basket b = await BasketsRepo.Get(fixedValue);
-            await BasketsRepo.Close(b);
-            Order o = await Orders.Add(b);
-            await OrderItems.Add(o, b);
-
-            var url = new Uri($"{OrdersPage}/Details?handler=Details" +
-                              $"&id={o.Id}", UriKind.Relative);
-
-            return Redirect(url.ToString());
-        }
-
-        protected abstract string OrdersPage { get; }
-
     }
 }

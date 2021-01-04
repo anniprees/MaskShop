@@ -9,6 +9,6 @@ namespace MaskShop.Domain.Orders
     public interface IBasketsRepository : IRepository<Basket>
     {
         Task<Basket> GetLatestForUser(string name);
-        Task Close(Basket b);
+        Task Close(Basket b, string basketId);
     }
 }

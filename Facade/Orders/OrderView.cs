@@ -19,5 +19,6 @@ namespace MaskShop.Facade.Orders
 
         [DisplayName("Order status")]
         public OrderStatus OrderStatus { get; set; }
+
     }
 }

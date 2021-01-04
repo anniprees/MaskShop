@@ -15,7 +15,5 @@ namespace MaskShop.Facade.Orders
 
         [DisplayName("Total price")]
         public decimal TotalPrice { get; set; }
-
-        //[DisplayName("Closed")] public bool Closed { get; set; }
     }
 }
