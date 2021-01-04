@@ -11,16 +11,13 @@ namespace MaskShop.Tests.Facade.Products
         public void PriceTest() => IsProperty<decimal>("Product Price");
 
         [TestMethod]
-        public void ProductCategoryIdTest() => IsNullableProperty<string>("Product Category Id");
+        public void ProductCategoryIdTest() => IsNullableProperty<string>("Product Category");
 
         [TestMethod]
-        public void ProductFeatureApplicabilityIdTest() => IsNullableProperty<string>("Product feature applicability");
+        public void PriceComponentIdTest() => IsNullableProperty<string>("Price Component");
 
         [TestMethod]
-        public void PriceComponentIdTest() => IsNullableProperty<string>("Price Component Id");
-
-        [TestMethod]
-        public void PictureUriTest() => IsNullableProperty<string>("Picture Uri");
+        public void PictureUriTest() => IsNullableProperty<string>("Picture");
 
         [TestMethod]
         public void PictureFileTest() => IsProperty<IFormFile>("Picture");

@@ -11,8 +11,10 @@ namespace MaskShop.Tests.Facade.Products
     public class ProductFeatureApplicabilityViewTests : SealedClassTests<ProductFeatureApplicabilityView, UniqueEntityView>
     {
         [TestMethod]
-        public void ProductIdTest() => IsNullableProperty<string>("Product Id");
+        public void ProductIdTest() => IsNullableProperty<string>("Product");
         [TestMethod]
-        public void ProductFeatureIdTest() => IsNullableProperty<string>("Product Feature Id");
+        public void ProductFeatureIdTest() => IsNullableProperty<string>("Product Feature");
+        [TestMethod]
+        public void FeatureDefinitionTest() => IsNullableProperty<string>("Product Feature");
     }
 }

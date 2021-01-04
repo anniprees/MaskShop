@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace MaskShop.Tests.Facade.Orders
 {
     [TestClass]
-    public class ItemProductViewTests : SealedClassTests<ItemProductView, PeriodView>
+    public class ItemProductViewTests : AbstractClassTests<ItemProductView, PeriodView>
     {
         [TestMethod] public void ProductIdTest() => Assert.Inconclusive();
         [TestMethod] public void QuantityTest() => Assert.Inconclusive();

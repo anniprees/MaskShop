@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorApp.CoreIdentity.Migrations
 {
     [DbContext(typeof(ApplicationCoreDbContext))]
-    [Migration("20210104113355_Initial")]
-    partial class Initial
+    [Migration("20210104115833_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

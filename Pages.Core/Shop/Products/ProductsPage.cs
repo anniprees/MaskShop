@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using MaskShop.Aids.Constants;
 using MaskShop.Data.Common;
 using MaskShop.Data.Products;
-using MaskShop.Domain.Common;
 using MaskShop.Domain.Orders;
 using MaskShop.Domain.Products;
 using MaskShop.Facade.Products;
 using MaskShop.PagesCore.Common;
 using MaskShop.PagesCore.Common.Extensions;
 using Microsoft.AspNetCore.Html;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -26,6 +22,7 @@ namespace MaskShop.PagesCore.Shop.Products
         public IEnumerable<SelectListItem> Categories { get; }
         public IBasketsRepository Baskets { get; }
         public IBasketItemsRepository BasketItems { get; }
+        protected abstract string BasketItemsPage { get; }
 
         protected ProductsPage(IProductsRepository r, IProductCategoriesRepository c, IBasketsRepository b, IBasketItemsRepository bi) :
             base(r, "Products")
@@ -48,20 +45,13 @@ namespace MaskShop.PagesCore.Shop.Products
             createColumn(x => Item.Price);
         }
 
-        public virtual async Task<IActionResult> OnGetSelectAsync(string id, string sortOrder, string searchString,
-            int pageIndex, string fixedFilter, string fixedValue)
+        public override IHtmlContent GetValue(IHtmlHelper<TPage> h, int i) => i switch
         {
-            Product p = await db.Get(id);
-            Basket b = await Baskets.GetLatestForUser(User.Identity.Name);
-            BasketItem i = await BasketItems.Add(b, p);
+            2 => getRaw(h, CategoryName(Item.ProductCategoryId)),
+            3 => h.DisplayImageFor(Item.PictureUri),
+            _ => base.GetValue(h, i)
 
-            var url = new Uri($"{BasketItemsPage}/Edit?handler=Edit" +
-                              $"&id={i.Id}" +
-                              $"&fixedFilter={nameof(i.BasketId)}" +
-                              $"&fixedValue={b.Id}", UriKind.Relative);
+        };
 
-            return Redirect(url.ToString());
-        }
-        protected abstract string BasketItemsPage { get; }
     }
 }
