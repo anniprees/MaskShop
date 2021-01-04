@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using System.Web.Providers.Entities;
+using MaskShop.Domain.Orders;
+using MaskShop.Domain.Products;
 using MaskShop.Facade.Orders;
 using MaskShop.Facade.Products;
+using MaskShop.Infra.Orders;
 using MaskShop.PagesCore.ShopClient.Products;
 using Microsoft.AspNet.SignalR.Client;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorApp.CoreIdentity.Components
 {
@@ -19,12 +24,10 @@ namespace BlazorApp.CoreIdentity.Components
         //[Inject] private NavigationManager NavigationManager { get; set; }
         //[Inject] private HttpClient HttpClient { get; set; }
 
-        [Parameter] public string Page { get; set; } = "1";
-        [Parameter] public string SearchTerm { get; set; } = string.Empty;
         [Parameter] public List<ProductView> Items { get; set; }
-
-        //List<ProductView> _products;
-        ProductCategoryView[] _categories;
+        [Parameter] public IBasketsRepository Baskets { get; set; }
+        [Parameter] public IBasketItemsRepository BasketItems { get; set; }
+        [Parameter] public IProductsRepository ProductsRepo { get; set; }
 
         private HubConnection hubConnection;
 
@@ -46,6 +49,13 @@ namespace BlazorApp.CoreIdentity.Components
         protected string CurrentProductId { get; set; }
         protected string ModalTitle { get; set; }
         protected bool IsView { get; set; }
+
+        protected async Task AddToBasket(string productId)
+        {
+            //Product p = await ProductsRepo.Get(productId);
+            //Basket b = await Baskets.GetLatestForUser(User.Identity.Name);
+            //BasketItem i = await BasketItems.Add(b, p);
+        }
 
         //public bool IsConnected => hubConnection.State == HubConnectionState.Connected;
 
