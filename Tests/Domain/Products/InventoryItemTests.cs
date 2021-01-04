@@ -15,10 +15,15 @@ namespace MaskShop.Tests.Domain.Products
         public void QuantityOnHandTest() => IsReadOnlyProperty(obj.Data.QuantityOnHand);
         [TestMethod]
         public void ProductIdTest() => IsReadOnlyProperty(obj.Data.ProductId);
+        [TestMethod]
+        public void ProductFeatureApplicabilityIdTest() => IsReadOnlyProperty(obj.Data.ProductFeatureApplicabilityId);
 
         [TestMethod]
         public void ProductTest() =>
             IsReadOnlyProperty(obj, nameof(obj.ProductId), obj.Data.ProductId);
+        [TestMethod]
+        public void ProductFeatureApplicabilityTest() =>
+            IsReadOnlyProperty(obj, nameof(obj.ProductFeatureApplicabilityId), obj.Data.ProductFeatureApplicabilityId);
 
     }
 }
