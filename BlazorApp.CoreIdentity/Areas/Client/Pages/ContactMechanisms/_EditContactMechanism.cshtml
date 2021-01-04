@@ -1,14 +1,12 @@
 ﻿@using MaskShop.PagesCore.Common.Extensions;
-@model MaskShop.PagesCore.ShopAdmin.Parties.ContactMechanismsAdminPage;
+@model MaskShop.PagesCore.ShopClient.Parties.ContactMechanismsClientPage;
 
 <body>
-    @Html.Editor(m => m.Item.Id)
+    <input type="hidden" asp-for="Item.Id" />
     @Html.Editor(m => m.Item.Street)
     @Html.Editor(m => m.Item.State)
     @Html.Editor(m => m.Item.City)
     @Html.Editor(m => m.Item.Country)
     @Html.Editor(m => m.Item.ZipCode)
     @Html.Editor(m => m.Item.ElectronicMail)
-    @Html.Editor(m => m.Item.ValidFrom)
-    @Html.Editor(m => m.Item.ValidTo)
 </body>

@@ -41,7 +41,9 @@
                             new Link("Parties", new Uri("/Shop/Parties/Index?handler=index", UriKind.Relative))
                             )
                         @Html.DropMenu("Client",
-                            new Link("Products", new Uri("/Client/Products/Index?handler=index", UriKind.Relative))
+                            new Link("Products", new Uri("/Client/Products/Index?handler=index", UriKind.Relative)),
+                            new Link("My Data", new Uri("/Client/Parties/Index?handler=index", UriKind.Relative)),
+                            new Link("My Contact Data", new Uri("/Client/ContactMechanisms/Index?handler=index", UriKind.Relative))
                             )
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
