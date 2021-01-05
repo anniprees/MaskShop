@@ -3,7 +3,7 @@
 
 <body>
     @Html.Show(m => m.Item.Id)
-    @Html.Show(m => m.Item.PartyId)
+    @Html.Show(m => m.Item.PartyId, Model.BuyerName(Model.Item.PartyId))
     @Html.Show(m => m.Item.PartyName)
     @Html.Show(m => m.Item.PartyAddress)
     @Html.Show(m => m.Item.TotalPrice)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using MaskShop.Domain.Orders;
+using MaskShop.Domain.Parties;
 using MaskShop.PagesCore.Shop.Orders;
 
 namespace MaskShop.PagesCore.ShopAdmin.Orders
@@ -10,8 +11,8 @@ namespace MaskShop.PagesCore.ShopAdmin.Orders
     {
         protected override string OrdersPage => "/Shop/Orders";
 
-        public BasketsAdminPage(IBasketsRepository r, IOrdersRepository o, IOrderItemsRepository oi) 
-            : base(r, o, oi) { }
+        public BasketsAdminPage(IBasketsRepository r, IOrdersRepository o, IOrderItemsRepository oi, IPartiesRepository p) 
+            : base(r, o, oi, p) { }
 
         protected internal override Uri pageUrl() => new Uri("/Shop/Baskets", UriKind.Relative);
 
