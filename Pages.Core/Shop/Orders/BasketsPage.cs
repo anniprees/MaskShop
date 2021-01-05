@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using MaskShop.Data.Orders;
+using MaskShop.Data.Parties;
 using MaskShop.Domain.Orders;
+using MaskShop.Domain.Parties;
 using MaskShop.Facade.Orders;
 using MaskShop.PagesCore.Common;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MaskShop.PagesCore.Shop.Orders
 {
@@ -18,14 +21,18 @@ namespace MaskShop.PagesCore.Shop.Orders
         public IBasketsRepository BasketsRepo { get; }
         public IOrdersRepository Orders { get; }
         public IOrderItemsRepository OrderItems { get; }
+        public IEnumerable<SelectListItem> Buyers { get; }
 
-        protected BasketsPage(IBasketsRepository r, IOrdersRepository o, IOrderItemsRepository oi)
+        protected BasketsPage(IBasketsRepository r, IOrdersRepository o, IOrderItemsRepository oi, IPartiesRepository p)
             : base(r, "Baskets")
         {
             BasketsRepo = r;
             Orders = o;
             OrderItems = oi;
+            Buyers = newItemsList<Party, PartyData>(p);
         }
+
+        public string BuyerName(string id) => itemName(Buyers, id);
 
         protected internal override Uri pageUrl() => new Uri("/Shop/Baskets", UriKind.Relative);
 

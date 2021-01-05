@@ -218,10 +218,14 @@ namespace MaskShop.Infra
             {
                 new ProductData{Id = "1", Name = "Reusable cloth mask", Picture = ConvertToByteArray(files[0]), Price = 8, ProductCategoryId = "9", ValidFrom = Convert.ToDateTime("1/04/2020 09:00"), ValidTo = null},
                 new ProductData{Id = "2", Name = "Face shield", Picture = ConvertToByteArray(files[1]), Price = 15, ProductCategoryId = "10", ValidFrom = Convert.ToDateTime("15/05/2020 09:00"), ValidTo = null},
-                new ProductData{Id = "3", Name = "N95 respirator", Picture = ConvertToByteArray(files[2]), Price = 10, ProductCategoryId = "7", ValidFrom = Convert.ToDateTime("10/04/2020 09:00"), ValidTo = null},
-                new ProductData{Id = "4", Name = " 3-layer surgical mask", Picture = ConvertToByteArray(files[3]), Price = 5, ProductCategoryId = "1", ValidFrom = Convert.ToDateTime("13/03/2020 09:00"), ValidTo = null},
-                new ProductData{Id = "5", Name = "4-layer surgical mask", Picture = ConvertToByteArray(files[4]), Price = 6, ProductCategoryId = "2", ValidFrom = null, ValidTo = null},
-                new ProductData{Id = "6", Name = "5-layer surgical mask", Picture = ConvertToByteArray(files[5]), Price = 7, ProductCategoryId = "3", ValidFrom = null, ValidTo = null},
+                new ProductData{Id = "3", Name = "N95 respirator", Picture = ConvertToByteArray(files[5]), Price = 10, ProductCategoryId = "7", ValidFrom = Convert.ToDateTime("10/04/2020 09:00"), ValidTo = null},
+                new ProductData{Id = "4", Name = " 3-layer surgical mask", Picture = ConvertToByteArray(files[7]), Price = 5, ProductCategoryId = "1", ValidFrom = Convert.ToDateTime("13/03/2020 09:00"), ValidTo = null},
+                new ProductData{Id = "5", Name = "4-layer surgical mask", Picture = ConvertToByteArray(files[8]), Price = 6, ProductCategoryId = "2", ValidFrom = Convert.ToDateTime("13/03/2020 09:00"), ValidTo = null},
+                new ProductData{Id = "6", Name = "5-layer surgical mask", Picture = ConvertToByteArray(files[9]), Price = 7, ProductCategoryId = "3", ValidFrom = Convert.ToDateTime("13/03/2020 09:00"), ValidTo = null},
+                new ProductData{Id = "7", Name = "FFP1 mask", Picture = ConvertToByteArray(files[2]), Price = 8, ProductCategoryId = "4", ValidFrom = Convert.ToDateTime("13/03/2020 09:00"), ValidTo = null},
+                new ProductData{Id = "8", Name = "FFP2 mask", Picture = ConvertToByteArray(files[3]), Price = 9, ProductCategoryId = "5", ValidFrom = Convert.ToDateTime("13/03/2020 09:00"), ValidTo = null},
+                new ProductData{Id = "9", Name = "FFP3 mask", Picture = ConvertToByteArray(files[4]), Price = 10, ProductCategoryId = "6", ValidFrom = Convert.ToDateTime("13/03/2020 09:00"), ValidTo = null},
+                new ProductData{Id = "10", Name = "N99 respirator", Picture = ConvertToByteArray(files[6]), Price = 12, ProductCategoryId = "8", ValidFrom = Convert.ToDateTime("13/03/2020 09:00"), ValidTo = null}
             };
 
             db.Products.AddRange(products);
@@ -271,16 +275,5 @@ namespace MaskShop.Infra
             file.CopyTo(stream);
             return stream.ToArray();
         }
-
-        //internal static List<ProductData> Products => new List<ProductData>
-        //{
-        //    new ProductData{Id = "1", Name = "Reusable cloth mask", Picture = ConvertToByteArray(files[0]), Price = 8, ProductCategoryId = "9", ValidFrom = Convert.ToDateTime("1/04/2020 09:00"), ValidTo = null},
-        //    new ProductData{Id = "2", Name = "Face shield", Picture = ConvertToByteArray(files[1]), Price = 15, ProductCategoryId = "10", ValidFrom = Convert.ToDateTime("15/05/2020 09:00"), ValidTo = null},
-        //    new ProductData{Id = "3", Name = "N95 respirator", Picture = ConvertToByteArray(files[2]), Price = 10, ProductCategoryId = "7", ValidFrom = Convert.ToDateTime("10/04/2020 09:00"), ValidTo = null},
-        //    new ProductData{Id = "4", Name = " 3-layer surgical mask", Picture = ConvertToByteArray(files[3]), Price = 5, ProductCategoryId = "1", ValidFrom = Convert.ToDateTime("13/03/2020 09:00"), ValidTo = null},
-        //    new ProductData{Id = "5", Name = "4-layer surgical mask", Picture = ConvertToByteArray(files[4]), Price = 6, ProductCategoryId = "2", ValidFrom = null, ValidTo = null},
-        //    new ProductData{Id = "6", Name = "5-layer surgical mask", Picture = ConvertToByteArray(files[5]), Price = 7, ProductCategoryId = "3", ValidFrom = null, ValidTo = null},
-        //};
-
     }
 }

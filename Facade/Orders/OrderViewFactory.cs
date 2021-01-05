@@ -23,8 +23,8 @@ namespace MaskShop.Facade.Orders
         {
             var v = new OrderView();
             Copy.Members(o?.Data, v);
-            //v.BuyerName = o.Party.Name;
-            //v.ContactMechanismId = o.Party.ContactMechanism.Address;
+            v.BuyerName = o?.Party.Name;
+            v.ContactMechanismId = o?.Party.ContactMechanism.Address;
             v.TotalPrice = o?.TotalPrice ?? decimal.Zero;
             v.OrderStatus = o.OrderStatus;
             return v;

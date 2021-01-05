@@ -14,7 +14,7 @@ namespace MaskShop.Facade.Orders
         public override BasketView Create(Basket o)
         {
             var v = base.Create(o);
-            //v.PartyName = o?.Party?.PartyName.Name;
+            v.PartyName = o?.Party?.Name;
             v.PartyAddress = o?.Party?.ContactMechanism.Address;
             v.TotalPrice = o?.TotalPrice ?? decimal.Zero;
             return v;
