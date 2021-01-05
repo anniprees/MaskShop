@@ -14,6 +14,7 @@ namespace MaskShop.PagesCore.ShopClient.Parties
     [Authorize]
     public class PartiesClientPage : PartiesPage<PartiesClientPage>
     {
+        protected override string contactsPage => "/Client/ContactMechanisms";
         public PartiesClientPage(IPartiesRepository r, IPartyRolesRepository p, IContactMechanismsRepository c) 
             : base(r, p, c, "My data") { }
 

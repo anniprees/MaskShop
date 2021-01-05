@@ -1,0 +1,10 @@
+﻿@using MaskShop.PagesCore.Common.Extensions
+@model MaskShop.PagesCore.ShopClient.Orders.OrderItemsClientPage;
+
+<body>
+    @Html.Show(m => m.Item.ProductId, Model.ProductName(Model.Item.ProductId))
+    @*@Html.DisplayImageFor(m => m.Item.ProductImage, 150)*@
+    @Html.Show(m => m.Item.UnitPrice)
+    @Html.Show(m => m.Item.Quantity)
+    @Html.Show(m => m.Item.TotalPrice)
+</body>

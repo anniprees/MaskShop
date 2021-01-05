@@ -36,5 +36,19 @@ namespace MaskShop.PagesCore.Shop.Orders
 
         protected internal override OrderItemView toView(OrderItem o) => new OrderItemViewFactory().Create(o);
 
+        protected override void createTableColumns()
+        {
+            //createColumn(x => Item.GetId());
+            //createColumn(x => Item.BasketId);
+            //createColumn(x => Item.ProductId);
+            createColumn(x => Item.ProductName);
+            //createColumn(x => Item.ProductImage);
+            createColumn(x => Item.UnitPrice);
+            createColumn(x => Item.Quantity);
+            createColumn(x => Item.TotalPrice);
+            //createColumn(x => Item.ValidFrom);
+            //createColumn(x => Item.ValidTo);
+        }
+
     }
 }

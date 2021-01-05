@@ -1,0 +1,105 @@
+﻿@using BlazorApp.CoreIdentity.Services
+@using Microsoft.AspNetCore.Components
+@using MaskShop.PagesCore.ShopClient.Products
+@using BlazorStrap
+@using MaskShop.Domain.Products
+@using MaskShop.Facade.Products
+@inherits OwningComponentBase<ProductsClientPage>
+@inject ShoppingService _Shopping
+
+
+<div class="card-columns">
+    @if (Items == null)
+    {
+        <h4>Loading details...</h4>
+    }
+    else
+    {
+        @foreach (var item in Items)
+        {
+            <div class="card">
+                <div class="card-img" style="background-image: url('@item.PictureUri');">
+                </div>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@item.Name</h5>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">
+                    <button @onclick="(e => ViewProduct(item.Id))"
+                            data-toggle="modal" data-target="#productModal" class="btn btn-primary">
+                        More Info
+                    </button>
+                </small>
+            </div>
+        }
+    }
+</div>
+
+<div>
+    <BSModal @bind-IsOpen="IsView" Size="Size.Large" IgnoreEscape="true" IgnoreClickOnBackdrop="true">
+        <BSModalHeader>@ModalTitle</BSModalHeader>
+        <BSModalBody>
+            <div class="col-md-12">
+                <hr />
+                <h5>Product</h5>
+                <hr />
+                <BSTable IsResponsive="true" class="table">
+                    <tr>
+                        <td>Name</td>
+                        <td>@selectedProduct.Name</td>
+                    </tr>
+                    <tr>
+                        <td>Product Category</td>
+                        <td>@selectedProduct.Price</td>
+                    </tr>
+                    <tr>
+                        <td>Price</td>
+                        <td>@selectedProduct.ProductCategoryId</td>
+                    </tr>
+                </BSTable>
+
+                <div class="form-group">
+                    <button class="btn btn-primary">Back</button>
+                    <button class="btn btn-primary"><i class="oi oi-cart"></i> Add to basket</button>
+                </div>
+            </div>
+        </BSModalBody>
+    </BSModal>
+</div>
+
+
+@code {
+
+    [Parameter]public List<ProductView> Items { get; set; }
+
+    protected string ModalTitle { get; set; }
+    protected bool IsView { get; set; }
+
+    ProductView selectedProduct;
+    string selectedProductId;
+
+
+
+    protected async Task ViewProduct(string productId)
+    {
+        selectedProduct = await _Shopping.GetProductById(productId);
+        selectedProductId = productId;
+        this.IsView = true;
+        this.ModalTitle = "View product";
+    }
+
+
+    ////private List<ProductView> _model;
+
+    //[Parameter] public ProductsClientPage Model { get; set; }
+
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    if (_model is null)
+    //    {
+    //        _model = await _Shopping.GetProducts();
+    //    }
+    //}
+
+}

@@ -5,6 +5,7 @@ using MaskShop.Data.Products;
 using MaskShop.Domain.Common;
 using MaskShop.Domain.Products;
 using MaskShop.Facade.Products;
+using MaskShop.Infra.Products;
 using MaskShop.PagesCore.Common;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -16,11 +17,11 @@ namespace MaskShop.PagesCore.Shop.Products
         public IEnumerable<SelectListItem> Products { get; }
         public IEnumerable<SelectListItem> ProductFeatures { get; }
 
-        public InventoryItemsPage(IInventoryItemsRepository r, IProductsRepository p, IProductFeaturesRepository f)
+        public InventoryItemsPage(IInventoryItemsRepository r, IProductsRepository p, IProductFeaturesRepository f, IProductFeatureApplicabilitiesRepository pfa)
             : base(r, "Inventory")
         {
             Products = newItemsList<Product, ProductData>(p);
-            ProductFeatures = newItemsList<ProductFeature, ProductFeatureData>(f);
+            ProductFeatures = CreateFeatureSelect(pfa);
         }
 
         public string ProductName(string id) => itemName(Products, id);
@@ -30,6 +31,11 @@ namespace MaskShop.PagesCore.Shop.Products
 
         protected internal override InventoryItem toObject(InventoryItemView v) => InventoryItemViewFactory.Create(v);
         protected internal override InventoryItemView toView(InventoryItem o) => InventoryItemViewFactory.Create(o);
+        protected internal static IEnumerable<SelectListItem> CreateFeatureSelect(IRepository<ProductFeatureApplicability> r)
+        {
+            var items = r.Get().GetAwaiter().GetResult();
+            return items.Select(m => new SelectListItem(m.FeatureCombo, m.Data.Id)).ToList();
+        }
 
         protected override void createTableColumns()
         {
@@ -39,6 +45,7 @@ namespace MaskShop.PagesCore.Shop.Products
             createColumn(x => Item.QuantityOnHand);
             createColumn(x => Item.ValidFrom);
             createColumn(x => Item.ValidTo);
+            createColumn(x => Item.FeatureCombo);
         }
         public override IHtmlContent GetValue(IHtmlHelper<InventoryItemsPage> h, int i) => i switch
         {

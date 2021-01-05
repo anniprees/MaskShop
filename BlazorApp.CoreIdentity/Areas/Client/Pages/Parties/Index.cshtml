@@ -5,7 +5,7 @@
 @model MaskShop.PagesCore.ShopClient.Parties.PartiesClientPage;
 
 @{
-    Layout = "_Index";
+    Layout = "_PartyIndex";
     var page = Model.PageUrl;
 }
 
@@ -13,6 +13,7 @@
     @if (!Model.HasData())
     {
         @Html.Link(string.Empty, new Link(Captions.Create, Model.CreateUrl))
+    @*<h4>@Html.Link(string.Empty, new Link("Edit My Contacts", Model.ContactsUrl))</h4>*@
     }
 
 }

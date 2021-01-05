@@ -44,7 +44,11 @@
                         @Html.DropMenu("Client",
                             new Link("Products", new Uri("/Client/Products/Index?handler=index", UriKind.Relative)),
                             new Link("My Data", new Uri("/Client/Parties/Index?handler=index", UriKind.Relative)),
-                            new Link("My Contact Data", new Uri("/Client/ContactMechanisms/Index?handler=index", UriKind.Relative))
+                            new Link("My Contact Data", new Uri("/Client/ContactMechanisms/Index?handler=index", UriKind.Relative)),
+                            new Link("My Baskets", new Uri("/Client/Baskets/Index?handler=index", UriKind.Relative)),
+                            new Link("My Basket Items", new Uri("/Client/BasketItems/Index?handler=index", UriKind.Relative)),
+                            new Link("My Orders", new Uri("/Client/Orders/Index?handler=index", UriKind.Relative)),
+                            new Link("My Order Items", new Uri("/Client/OrderItems/Index?handler=index", UriKind.Relative))
                             )
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>

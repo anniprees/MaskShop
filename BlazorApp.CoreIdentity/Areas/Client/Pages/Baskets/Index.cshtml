@@ -2,7 +2,7 @@
 @using MaskShop.PagesCore.Common.Aids
 @using MaskShop.PagesCore.Common.Consts
 @using MaskShop.PagesCore.Common.Extensions
-@model MaskShop.PagesCore.Shop.Products.ProductCategoriesPage
+@model MaskShop.PagesCore.ShopClient.Orders.BasketsClientPage;
 
 @{
     Layout = "_Index";
@@ -13,4 +13,4 @@
     @Html.Link(string.Empty, new Link(Captions.Create, Model.CreateUrl))
 }
 
-@Html.ShowTable(Model, "Products")
+@Html.ShowTable(Model, "Osta", null, "Vaata", null)

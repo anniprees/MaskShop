@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using MaskShop.Data.Parties;
 using MaskShop.Domain.Common;
+using MaskShop.Domain.Orders;
 using MaskShop.Domain.Parties;
 using MaskShop.Facade.Parties;
 using MaskShop.PagesCore.Common;
 using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -25,12 +28,14 @@ namespace MaskShop.PagesCore.Shop.Parties
         }
         public IEnumerable<SelectListItem> PartyRoles { get; }
         public IEnumerable<SelectListItem> ContactMechanisms { get; }
-       
+        public IContactMechanismsRepository ContactsRepo { get; }
+
         public PartiesPage(IPartiesRepository r, IPartyRolesRepository p, IContactMechanismsRepository c, string title) :
             base(r, title)
         {
             PartyRoles = CreatePartyRoleSelect(p);
             ContactMechanisms = CreateContactMechanismsSelect(c);
+            ContactsRepo = c;
         }
 
         public string PartyRoleName(string id) => itemName(PartyRoles, id);
@@ -38,6 +43,17 @@ namespace MaskShop.PagesCore.Shop.Parties
 
         protected internal override Party toObject(PartyView v) => PartyViewFactory.Create(v);
         protected internal override PartyView toView(Party o) => PartyViewFactory.Create(o);
+
+        //public Uri ContactsUrl => contactsUrl();
+        //protected internal Uri contactsUrl()
+        //    => new Uri($"{ContactsUrl}/Edit" +
+        //               "?handler=Edit" +
+        //               $"&pageIndex={PageIndex}" +
+        //               $"&sortOrder={SortOrder}" +
+        //               $"&searchString={SearchString}" +
+        //               $"&fixedFilter={FixedFilter}" +
+        //               $"&fixedValue={FixedValue}", UriKind.Relative);
+        
         protected internal static IEnumerable<SelectListItem> CreatePartyRoleSelect(IRepository<PartyRole> r)
         {
             var items = r.Get().GetAwaiter().GetResult();
@@ -54,5 +70,7 @@ namespace MaskShop.PagesCore.Shop.Parties
             createColumn(x => Item.ContactMechanismId);
             createColumn(x => Item.ValidFrom);
         }
+
+        protected abstract string contactsPage { get; }
     }
 }

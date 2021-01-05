@@ -12,9 +12,11 @@
 
 @section Create {}
 
-@*@Html.ShowTable(Model, "Osta", null, "Vaata", null)*@
+@Html.ShowTable(Model, "Osta", null, "Vaata", null)
 
-<component type="typeof(Products)" render-mode="ServerPrerendered"
-           param-Items="@Model.Items"/>
+@*<component type="typeof(Products)" render-mode="ServerPrerendered"
+    param-Items="@Model.Items"/>*@
 
+@*<component type="typeof(ProductList)" render-mode="ServerPrerendered"
+    param-Items="@Model.Items"/>*@
 

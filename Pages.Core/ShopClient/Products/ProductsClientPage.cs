@@ -25,5 +25,6 @@ namespace MaskShop.PagesCore.ShopClient.Products
             2 => h.DisplayImageFor(Item.PictureUri),
             _ => base.GetValue(h, i)
         };
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using MaskShop.Facade.Common;
 
 namespace MaskShop.Facade.Products
@@ -14,5 +15,8 @@ namespace MaskShop.Facade.Products
 
         [Required]
         [DisplayName("Product Feature")] public string ProductFeatureApplicabilityId { get; set; }
+
+        [DisplayName("Color (Size)")]
+        public string FeatureCombo { get; set; }
     }
 }

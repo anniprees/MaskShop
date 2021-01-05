@@ -1,0 +1,20 @@
+﻿@page
+@using MaskShop.Aids
+@using MaskShop.Data.Orders
+@using MaskShop.PagesCore.Common.Extensions
+
+@model MaskShop.PagesCore.ShopAdmin.Orders.OrdersAdminPage
+
+@{
+    Layout = "_Details";
+    string items = "/Shop/BasketItems";
+    var basketId = GetMember.Name<BasketItemData>(x => x.BasketId);
+    var id = Model.Item.Id;
+    var itemsUrl = new Uri($"{items}/Index?handler=index&fixedFilter={basketId}&fixedValue={id}", UriKind.Relative);
+}
+
+<partial name="_ShowOrders" />
+
+@section Details {
+    @Html.Link(new MaskShop.PagesCore.Common.Aids.Link(" | Show items", itemsUrl))
+}

@@ -28,10 +28,7 @@ namespace MaskShop.PagesCore.ShopAdmin.Orders
         {
             createColumn(x => Item.Id);
             createColumn(x => Item.PartyId);
-            createColumn(x => Item.BuyerName);
-            createColumn(x => Item.ContactMechanismId);
-            createColumn(x => Item.TotalPrice);
-            createColumn(x => Item.OrderStatus);
+            base.createTableColumns();
             createColumn(x => Item.ValidFrom);
             createColumn(x => Item.ValidTo);
         }

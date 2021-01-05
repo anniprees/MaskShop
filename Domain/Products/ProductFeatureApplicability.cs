@@ -11,5 +11,7 @@ namespace MaskShop.Domain.Products
         public string ProductFeatureId => Data?.ProductFeatureId ?? Unspecified;
         public IReadOnlyList<Product> Products => new GetFrom<IProductsRepository, Product>().ListBy(ProductId, Id);
         public ProductFeature ProductFeature => new GetFrom<IProductFeaturesRepository, ProductFeature>().ById(ProductFeatureId);
+        
     }
+    
 }

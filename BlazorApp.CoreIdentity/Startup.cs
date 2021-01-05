@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BlazorApp.CoreIdentity.Data;
+using BlazorApp.CoreIdentity.Services;
 using BlazorStrap;
 using MaskShop.Domain.Common;
 using MaskShop.Domain.Orders;
@@ -39,6 +40,7 @@ namespace BlazorApp.CoreIdentity
             RegisterAuthentication(services);
             RegisterRepositories(services);
             services.AddDatabaseDeveloperPageExceptionFilter();
+            services.AddScoped<ShoppingService>();
         }
 
         private static void RegisterRepositories(IServiceCollection s)

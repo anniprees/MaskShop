@@ -21,5 +21,13 @@ namespace MaskShop.PagesCore.Shop.Orders
         protected internal override OrderView toView(Order o) => new OrderViewFactory().Create(o);
 
         protected internal override Uri pageUrl() => new Uri("/Shop/Orders", UriKind.Relative);
+
+        protected override void createTableColumns()
+        {
+            createColumn(x => Item.BuyerName);
+            createColumn(x => Item.ContactMechanismId);
+            createColumn(x => Item.TotalPrice);
+            createColumn(x => Item.OrderStatus);
+        }
     }
 }

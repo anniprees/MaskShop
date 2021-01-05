@@ -10,6 +10,7 @@ namespace MaskShop.PagesCore.ShopAdmin.Parties
 {
     public class PartiesAdminPage : PartiesPage<PartiesAdminPage>
     {
+        protected override string contactsPage => "/Client/ContactMechanisms";
         public PartiesAdminPage(IPartiesRepository r, IPartyRolesRepository p, IContactMechanismsRepository c) 
             : base(r, p, c, "Users data") { }
         protected internal override Uri pageUrl() => new Uri("/Shop/Parties", UriKind.Relative);

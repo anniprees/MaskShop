@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MaskShop.Aids;
 using MaskShop.Data.Common;
 using MaskShop.Data.Products;
 using MaskShop.Domain.Orders;
@@ -25,14 +26,20 @@ namespace MaskShop.PagesCore.Shop.Products
         public IEnumerable<SelectListItem> Categories { get; }
         public IBasketsRepository Baskets { get; }
         public IBasketItemsRepository BasketItems { get; }
+        public IList<ProductFeatureApplicabilityView> ProductFeatures { get; }
+        protected internal readonly IProductFeatureApplicabilitiesRepository productFeatures;
         protected abstract string BasketItemsPage { get; }
+        public IProductCategoriesRepository CategoryRepo { get; }
 
-        protected ProductsPage(IProductsRepository r, IProductCategoriesRepository c, IBasketsRepository b, IBasketItemsRepository bi) :
+        protected ProductsPage(IProductsRepository r, IProductCategoriesRepository c, 
+            IBasketsRepository b, IBasketItemsRepository bi, IProductFeatureApplicabilitiesRepository) :
             base(r, "Products")
         {
             Categories = newItemsList<ProductCategory, ProductCategoryData>(c);
             Baskets = b;
             BasketItems = bi;
+            CategoryRepo = c;
+
         }
 
         public string CategoryName(string id) => itemName(Categories, id);
@@ -62,5 +69,9 @@ namespace MaskShop.PagesCore.Shop.Products
 
             return Redirect(url.ToString());
         }
-    }
+        
+        public void loadDetails(ProductView item) 
+            => loadDetails(ProductFeatures, productFeatures, item, 
+                GetMember.Name<ProductFeatureApplicabilityData>(x=>x.ProductId),
+                ProductFeatureApplicabilityViewFactory.Create);
 }

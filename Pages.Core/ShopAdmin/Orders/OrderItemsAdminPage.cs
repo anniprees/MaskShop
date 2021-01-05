@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using MaskShop.Domain.Orders;
 using MaskShop.Domain.Products;
+using MaskShop.PagesCore.Common.Extensions;
 using MaskShop.PagesCore.Shop.Orders;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -21,10 +22,7 @@ namespace MaskShop.PagesCore.ShopAdmin.Orders
             createColumn(x => Item.GetId());
             createColumn(x => Item.OrderId);
             createColumn(x => Item.ProductId);
-            createColumn(x => Item.ProductName);
-            createColumn(x => Item.UnitPrice);
-            createColumn(x => Item.Quantity);
-            createColumn(x => Item.TotalPrice);
+            base.createTableColumns();
             createColumn(x => Item.ValidFrom);
             createColumn(x => Item.ValidTo);
         }
@@ -37,6 +35,7 @@ namespace MaskShop.PagesCore.ShopAdmin.Orders
         public override IHtmlContent GetValue(IHtmlHelper<OrderItemsAdminPage> h, int i) => i switch
         {
             0 => getRaw(h, Item.GetId()),
+            //4 => h.DisplayImageFor(Item.ProductImage),
             _ => base.GetValue(h, i)
         };
 

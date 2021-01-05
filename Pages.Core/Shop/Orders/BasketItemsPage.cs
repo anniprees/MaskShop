@@ -39,6 +39,46 @@ namespace MaskShop.PagesCore.Shop.Orders
         public string ProductName(string id) => itemName(Products, id);
         protected internal override BasketItem toObject(BasketItemView v) => new BasketItemViewFactory().Create(v);
         protected internal override BasketItemView toView(BasketItem o) => new BasketItemViewFactory().Create(o);
+        public Uri OrdersUrl => ordersUrl();
+        protected internal Uri ordersUrl()
+            => new Uri($"{PageUrl}/Orders" +
+                       "?handler=Orders" +
+                       $"&pageIndex={PageIndex}" +
+                       $"&sortOrder={SortOrder}" +
+                       $"&searchString={SearchString}" +
+                       $"&fixedFilter={FixedFilter}" +
+                       $"&fixedValue={FixedValue}", UriKind.Relative);
+        public override IActionResult OnGetCreate(
+            string sortOrder, string searchString, int? pageIndex,
+            string fixedFilter, string fixedValue, int? switchOfCreate)
+        {
+            return Redirect("/Client/Products/Index?handler=Index");
+        }
+
+        public async Task<IActionResult> OnGetOrdersAsync(string id, string sortOrder, string searchString,
+            int pageIndex, string fixedFilter, string fixedValue)
+        {
+
+            Basket b = await BasketsRepo.Get(fixedValue);
+            //await BasketsRepo.Close(b);
+            Order o = await Orders.Add(b);
+            await OrderItems.Add(o, b);
+
+            var url = new Uri($"{ordersPage}/Details?handler=Details" +
+                              $"&id={o.Id}", UriKind.Relative);
+
+            return Redirect(url.ToString());
+        }
+        protected override void createTableColumns()
+        {
+            createColumn(x => Item.ProductName);
+            createColumn(x=> Item.ProductImage);
+            createColumn(x => Item.UnitPrice);
+            createColumn(x => Item.Quantity);
+            createColumn(x => Item.TotalPrice);
+        }
+
+        protected abstract string ordersPage { get; }
 
     }
 }
