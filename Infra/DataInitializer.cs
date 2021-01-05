@@ -12,7 +12,6 @@ namespace MaskShop.Infra
     {
         internal static string dir = Directory.GetCurrentDirectory() + "\\wwwroot\\images";
         internal static string[] files = Directory.GetFiles(dir);
-        internal static int idx = GetRandom.Int32(0, files.Length);
 
         public static void Initialize(ShopDbContext db)
         {
@@ -56,8 +55,10 @@ namespace MaskShop.Infra
 
             var productFeatures = new[]
             {
-                new ProductFeatureData {Id = "1", Name = "Color", Color = "Black", Size = "L", ValidFrom = Convert.ToDateTime("10/06/2019 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")},
-                new ProductFeatureData {Id = "2", Name = "Color", Color = "Blue", Size = "M", ValidFrom = Convert.ToDateTime("17/06/2018 09:00"), ValidTo = Convert.ToDateTime("21/04/2022 09:00")},
+                new ProductFeatureData {Id = "1", Name = "Feature combo 1", Color = "Black", Size = "L", ValidFrom = Convert.ToDateTime("10/06/2019 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")},
+                new ProductFeatureData {Id = "2", Name = "Feature combo 2", Color = "Blue", Size = "M", ValidFrom = Convert.ToDateTime("17/06/2018 09:00"), ValidTo = Convert.ToDateTime("21/04/2022 09:00")},
+                new ProductFeatureData {Id ="3", Name = "Feature combo 3", Color="Black", Size = "M", ValidFrom = Convert.ToDateTime("17/06/2018 09:00"), ValidTo = Convert.ToDateTime("21/04/2022 09:00")},
+                new ProductFeatureData {Id ="4", Name = "Feature combo 4", Color="Blue", Size = "L", ValidFrom = Convert.ToDateTime("17/06/2018 09:00"), ValidTo = Convert.ToDateTime("21/04/2022 09:00")}
 
             };
 
@@ -122,6 +123,7 @@ namespace MaskShop.Infra
             {
                 new BasketItemData{BasketId = "1",ProductId = "1", Quantity = 1},
                 new BasketItemData{BasketId = "1",ProductId = "2", Quantity = 2},
+                new BasketItemData{BasketId = "1", ProductId = "9", Quantity = 5}, 
             };
 
             db.BasketItems.AddRange(basketItems);
@@ -189,16 +191,16 @@ namespace MaskShop.Infra
 
             var products = new[]
             {
-                new ProductData{Id = "1", Name = "Reusable cloth mask", Picture = ConvertToByteArray(files[0]), Price = 8, ProductCategoryId = "9", ValidFrom = Convert.ToDateTime("1/04/2020 09:00"), ValidTo = null},
-                new ProductData{Id = "2", Name = "Face shield", Picture = ConvertToByteArray(files[1]), Price = 15, ProductCategoryId = "10", ValidFrom = Convert.ToDateTime("15/05/2020 09:00"), ValidTo = null},
-                new ProductData{Id = "3", Name = "N95 respirator", Picture = ConvertToByteArray(files[5]), Price = 10, ProductCategoryId = "7", ValidFrom = Convert.ToDateTime("10/04/2020 09:00"), ValidTo = null},
+                new ProductData{Id = "1", Name = "Reusable cloth mask", Picture = ConvertToByteArray(files[0]), Price = 8, ProductCategoryId = "3", ValidFrom = Convert.ToDateTime("1/04/2020 09:00"), ValidTo = null},
+                new ProductData{Id = "2", Name = "Face shield", Picture = ConvertToByteArray(files[1]), Price = 15, ProductCategoryId = "4", ValidFrom = Convert.ToDateTime("15/05/2020 09:00"), ValidTo = null},
+                new ProductData{Id = "3", Name = "N95 respirator", Picture = ConvertToByteArray(files[5]), Price = 10, ProductCategoryId = "4", ValidFrom = Convert.ToDateTime("10/04/2020 09:00"), ValidTo = null},
                 new ProductData{Id = "4", Name = " 3-layer surgical mask", Picture = ConvertToByteArray(files[7]), Price = 5, ProductCategoryId = "1", ValidFrom = Convert.ToDateTime("13/03/2020 09:00"), ValidTo = null},
-                new ProductData{Id = "5", Name = "4-layer surgical mask", Picture = ConvertToByteArray(files[8]), Price = 6, ProductCategoryId = "2", ValidFrom = Convert.ToDateTime("13/03/2020 09:00"), ValidTo = null},
-                new ProductData{Id = "6", Name = "5-layer surgical mask", Picture = ConvertToByteArray(files[9]), Price = 7, ProductCategoryId = "3", ValidFrom = Convert.ToDateTime("13/03/2020 09:00"), ValidTo = null},
+                new ProductData{Id = "5", Name = "4-layer surgical mask", Picture = ConvertToByteArray(files[8]), Price = 6, ProductCategoryId = "1", ValidFrom = Convert.ToDateTime("13/03/2020 09:00"), ValidTo = null},
+                new ProductData{Id = "6", Name = "5-layer surgical mask", Picture = ConvertToByteArray(files[9]), Price = 7, ProductCategoryId = "1", ValidFrom = Convert.ToDateTime("13/03/2020 09:00"), ValidTo = null},
                 new ProductData{Id = "7", Name = "FFP1 mask", Picture = ConvertToByteArray(files[2]), Price = 8, ProductCategoryId = "4", ValidFrom = Convert.ToDateTime("13/03/2020 09:00"), ValidTo = null},
-                new ProductData{Id = "8", Name = "FFP2 mask", Picture = ConvertToByteArray(files[3]), Price = 9, ProductCategoryId = "5", ValidFrom = Convert.ToDateTime("13/03/2020 09:00"), ValidTo = null},
-                new ProductData{Id = "9", Name = "FFP3 mask", Picture = ConvertToByteArray(files[4]), Price = 10, ProductCategoryId = "6", ValidFrom = Convert.ToDateTime("13/03/2020 09:00"), ValidTo = null},
-                new ProductData{Id = "10", Name = "N99 respirator", Picture = ConvertToByteArray(files[6]), Price = 12, ProductCategoryId = "8", ValidFrom = Convert.ToDateTime("13/03/2020 09:00"), ValidTo = null}
+                new ProductData{Id = "8", Name = "FFP2 mask", Picture = ConvertToByteArray(files[3]), Price = 9, ProductCategoryId = "4", ValidFrom = Convert.ToDateTime("13/03/2020 09:00"), ValidTo = null},
+                new ProductData{Id = "9", Name = "FFP3 mask", Picture = ConvertToByteArray(files[4]), Price = 10, ProductCategoryId = "4", ValidFrom = Convert.ToDateTime("13/03/2020 09:00"), ValidTo = null},
+                new ProductData{Id = "10", Name = "N99 respirator", Picture = ConvertToByteArray(files[6]), Price = 12, ProductCategoryId = "4", ValidFrom = Convert.ToDateTime("13/03/2020 09:00"), ValidTo = null}
             };
 
             db.Products.AddRange(products);
@@ -211,13 +213,16 @@ namespace MaskShop.Infra
 
             var inventoryItems = new[]
             {
-                new InventoryItemData {Id = "1", ProductId = "1", QuantityOnHand = 7, ValidFrom = Convert.ToDateTime("10/06/2019 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")},
-                new InventoryItemData {Id = "2", ProductId = "2", QuantityOnHand = 55, ValidFrom = Convert.ToDateTime("1/06/2019 09:00"), ValidTo = Convert.ToDateTime("14/04/2021 09:00")},
+                new InventoryItemData {Id = "1", ProductId = "1", QuantityOnHand = 750, ValidFrom = Convert.ToDateTime("10/06/2019 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")},
+                new InventoryItemData {Id = "2", ProductId = "2", QuantityOnHand = 553, ValidFrom = Convert.ToDateTime("1/06/2019 09:00"), ValidTo = Convert.ToDateTime("14/04/2021 09:00")},
                 new InventoryItemData {Id = "3", ProductId = "3", QuantityOnHand = 98, ValidFrom = Convert.ToDateTime("25/06/2019 09:00"), ValidTo = Convert.ToDateTime("1/12/2021 09:00")},
-                new InventoryItemData {Id = "4", ProductId = "4", QuantityOnHand = 4, ValidFrom = Convert.ToDateTime("1/09/2019 09:00"), ValidTo = Convert.ToDateTime("10/04/2028 09:00")},
+                new InventoryItemData {Id = "4", ProductId = "4", QuantityOnHand = 405, ValidFrom = Convert.ToDateTime("1/09/2019 09:00"), ValidTo = Convert.ToDateTime("10/04/2028 09:00")},
                 new InventoryItemData {Id = "5", ProductId = "5", QuantityOnHand = 315, ValidFrom = Convert.ToDateTime("11/09/2000 09:00"), ValidTo = Convert.ToDateTime("21/04/2021 09:00")},
                 new InventoryItemData {Id = "6", ProductId = "6", QuantityOnHand = 99, ValidFrom = Convert.ToDateTime("1/06/2010 09:00"), ValidTo = Convert.ToDateTime("1/12/2026 09:00")},
-
+                new InventoryItemData {Id = "7", ProductId = "7", QuantityOnHand = 102, ValidFrom = Convert.ToDateTime("1/06/2010 09:00"), ValidTo = Convert.ToDateTime("1/12/2026 09:00")},
+                new InventoryItemData {Id = "8", ProductId = "8", QuantityOnHand = 189, ValidFrom = Convert.ToDateTime("1/06/2010 09:00"), ValidTo = Convert.ToDateTime("1/12/2026 09:00")},
+                new InventoryItemData {Id = "9", ProductId = "9", QuantityOnHand = 299, ValidFrom = Convert.ToDateTime("1/06/2010 09:00"), ValidTo = Convert.ToDateTime("1/12/2026 09:00")},
+                new InventoryItemData {Id = "10", ProductId = "10", QuantityOnHand = 330, ValidFrom = Convert.ToDateTime("1/06/2010 09:00"), ValidTo = Convert.ToDateTime("1/12/2026 09:00")},
             };
 
             db.InventoryItems.AddRange(inventoryItems);
