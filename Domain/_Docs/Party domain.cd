@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="MaskShop.Domain.Parties.ContactMechanism">
-    <Position X="7.5" Y="2.75" Width="2.25" />
+    <Position X="7" Y="2.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AQIAAQAAAAAAAAAMAAAACAAAAAIAAgAHAAIABAAAAAA=</HashCode>
       <FileName>Parties\ContactMechanism.cs</FileName>
@@ -19,7 +19,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="MaskShop.Domain.Parties.PartyRole">
-    <Position X="7.5" Y="0.5" Width="2.25" />
+    <Position X="7" Y="0.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Parties\PartyRole.cs</FileName>
@@ -39,12 +39,12 @@
     <Position X="0.5" Y="3.25" Width="2" />
     <AssociationLine Name="ContactMechanism" Type="MaskShop.Domain.Parties.ContactMechanism" FixedToPoint="true">
       <Path>
-        <Point X="2.5" Y="5.375" />
-        <Point X="7.5" Y="5.375" />
+        <Point X="2.5" Y="5.125" />
+        <Point X="7" Y="5.125" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAgAACCAAAAAAAAAAAAAAAUAQAACAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAgAACCAAAAAAAAAAAAAAAUAQAAAAAAAAAAAA=</HashCode>
       <FileName>Orders\Order.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>

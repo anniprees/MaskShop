@@ -21,7 +21,7 @@ namespace MaskShop.PagesCore.Shop.Products
             : base(r, "Inventory")
         {
             Products = newItemsList<Product, ProductData>(p);
-            ProductFeatures = CreateFeatureSelect(pfa);
+            ProductFeatures = CreateProductFeatureSelect(f, pfa, r);
         }
 
         public string ProductName(string id) => itemName(Products, id);
@@ -31,11 +31,6 @@ namespace MaskShop.PagesCore.Shop.Products
 
         protected internal override InventoryItem toObject(InventoryItemView v) => InventoryItemViewFactory.Create(v);
         protected internal override InventoryItemView toView(InventoryItem o) => InventoryItemViewFactory.Create(o);
-        protected internal static IEnumerable<SelectListItem> CreateFeatureSelect(IRepository<ProductFeatureApplicability> r)
-        {
-            var items = r.Get().GetAwaiter().GetResult();
-            return items.Select(m => new SelectListItem(m.FeatureCombo, m.Data.Id)).ToList();
-        }
 
         protected override void createTableColumns()
         {
@@ -45,7 +40,6 @@ namespace MaskShop.PagesCore.Shop.Products
             createColumn(x => Item.QuantityOnHand);
             createColumn(x => Item.ValidFrom);
             createColumn(x => Item.ValidTo);
-            createColumn(x => Item.FeatureCombo);
         }
         public override IHtmlContent GetValue(IHtmlHelper<InventoryItemsPage> h, int i) => i switch
         {
@@ -53,5 +47,19 @@ namespace MaskShop.PagesCore.Shop.Products
             2 => getRaw(h, ProductName(Item.ProductFeatureApplicabilityId)),
             _ => base.GetValue(h, i)
         };
+
+        protected internal static IEnumerable<SelectListItem> CreateProductFeatureSelect(
+            IRepository<ProductFeature> r, IRepository<ProductFeatureApplicability> pf, IRepository<InventoryItem> iv)
+        {
+            var inventory = iv.Get().GetAwaiter().GetResult();
+            var applicabilities = pf.Get().GetAwaiter().GetResult();
+                var features = r.Get().GetAwaiter().GetResult();
+                    return (from a in applicabilities
+                            from f in features
+                            from v in inventory
+                            where a.Data.ProductId == v.Data.Id && f.Data.Id == a.Data.ProductFeatureId
+                                select
+                                new SelectListItem($"{f.Data.Color} ({f.Data.Size})", a.Data.Id)).ToList();
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using MaskShop.Aids;
 using MaskShop.Data.Orders;
 using MaskShop.Domain.Orders;
+using MaskShop.Domain.Parties;
 using MaskShop.PagesCore.Shop.Orders;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,7 +14,7 @@ namespace MaskShop.PagesCore.ShopClient.Orders
     public class BasketsClientPage : BasketsPage<BasketsClientPage>
     {
         protected override string OrdersPage => "/Shop/Orders";
-        public BasketsClientPage(IBasketsRepository r, IOrdersRepository o, IOrderItemsRepository oi) : base(r, o, oi)
+        public BasketsClientPage(IBasketsRepository r, IOrdersRepository o, IOrderItemsRepository oi, IPartiesRepository p) : base(r, o, oi, p)
         {
         }
         protected internal override Uri pageUrl() => new Uri("/Client/Baskets", UriKind.Relative);

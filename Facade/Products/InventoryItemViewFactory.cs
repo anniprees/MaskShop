@@ -17,7 +17,6 @@ namespace MaskShop.Facade.Products
         {
             var v = new InventoryItemView();
             Copy.Members(o?.Data, v);
-            v.FeatureCombo = o?.ProductFeatureApplicability.FeatureCombo;
             return v;
         }
     }

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="MaskShop.Domain.Orders.Basket">
-    <Position X="6.25" Y="4.5" Width="1.5" />
+    <Position X="5.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAQAAAAAAAAAAEAAA=</HashCode>
       <FileName>Orders\Basket.cs</FileName>
@@ -11,7 +11,7 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="MaskShop.Domain.Orders.BasketItem">
-    <Position X="3.75" Y="3.5" Width="1.5" />
+    <Position X="2.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Orders\BasketItem.cs</FileName>
@@ -28,7 +28,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="MaskShop.Domain.Orders.Order">
-    <Position X="6.25" Y="0.5" Width="2.5" />
+    <Position X="6.75" Y="0.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAgAACCAAAAAAAAAAAAAAAUAQAAAAAAAAAAAA=</HashCode>
       <FileName>Orders\Order.cs</FileName>
@@ -48,7 +48,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Domain.Orders.PartyProducts&lt;TData&gt;">
-    <Position X="8.25" Y="4.5" Width="1.5" />
+    <Position X="7.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AEAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Orders\PartyProducts.cs</FileName>
@@ -58,7 +58,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="MaskShop.Domain.Parties.Party">
-    <Position X="11" Y="4.5" Width="1.5" />
+    <Position X="9.75" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAgAAAAAAAAAAAAAAAAAAAEAAiAAABAAAAAAA=</HashCode>
       <FileName>Parties\Party.cs</FileName>
@@ -72,7 +72,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="MaskShop.Domain.Parties.ContactMechanism">
-    <Position X="13" Y="0.5" Width="1.5" />
+    <Position X="11.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQIAAQAAAAAAAAAMAAAACAAAAAIAAgAHAAIABAAAAAA=</HashCode>
       <FileName>Parties\ContactMechanism.cs</FileName>

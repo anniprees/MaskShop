@@ -13,8 +13,9 @@ namespace MaskShop.PagesCore.ShopClient.Products
     {
         protected override string BasketItemsPage => "/Client/BasketItems";
 
-        public ProductsClientPage(IProductsRepository r, IProductCategoriesRepository c, IBasketsRepository b, IBasketItemsRepository bi) 
-            : base(r, c, b, bi) { }
+        public ProductsClientPage(IProductsRepository r, IProductCategoriesRepository c, 
+            IBasketsRepository b, IBasketItemsRepository bi, IProductFeatureApplicabilitiesRepository pfa) 
+            : base(r, c, b, bi, pfa) { }
 
         public int PageSize { get; set; } = 100;
         protected internal override Uri pageUrl() => new Uri("/Client/Products", UriKind.Relative);

@@ -18,8 +18,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MaskShop.PagesCore.Shop.Products
 {
-    public abstract class ProductsPage<TPage> : 
-        ViewPage<TPage, IProductsRepository, Product, ProductView, ProductData> 
+    public abstract class ProductsPage<TPage> :
+        ViewPage<TPage, IProductsRepository, Product, ProductView, ProductData>
         where TPage : PageModel
 
     {
@@ -31,15 +31,15 @@ namespace MaskShop.PagesCore.Shop.Products
         protected abstract string BasketItemsPage { get; }
         public IProductCategoriesRepository CategoryRepo { get; }
 
-        protected ProductsPage(IProductsRepository r, IProductCategoriesRepository c, 
-            IBasketsRepository b, IBasketItemsRepository bi, IProductFeatureApplicabilitiesRepository) :
+        protected ProductsPage(IProductsRepository r, IProductCategoriesRepository c,
+            IBasketsRepository b, IBasketItemsRepository bi, IProductFeatureApplicabilitiesRepository pfa) :
             base(r, "Products")
         {
             Categories = newItemsList<ProductCategory, ProductCategoryData>(c);
             Baskets = b;
             BasketItems = bi;
             CategoryRepo = c;
-
+            productFeatures = pfa;
         }
 
         public string CategoryName(string id) => itemName(Categories, id);
@@ -69,9 +69,10 @@ namespace MaskShop.PagesCore.Shop.Products
 
             return Redirect(url.ToString());
         }
-        
-        public void loadDetails(ProductView item) 
-            => loadDetails(ProductFeatures, productFeatures, item, 
-                GetMember.Name<ProductFeatureApplicabilityData>(x=>x.ProductId),
+
+        public void loadDetails(ProductView item)
+            => loadDetails(ProductFeatures, productFeatures, item,
+                GetMember.Name<ProductFeatureApplicabilityData>(x => x.ProductId),
                 ProductFeatureApplicabilityViewFactory.Create);
+    }
 }

@@ -32,7 +32,8 @@ namespace MaskShop.Tests.Domain.Orders
         {
             var p = GetRandom.Object<ProductData>();
             p.Id = obj.ProductId;
-            await GetRepository.Instance<IProductsRepository>().Add(new Product(p));
+            var repo = GetRepository.Instance<IProductsRepository>();
+                await repo.Add(new Product(p));
             TestArePropertiesEqual(p, obj.Product.Data);
         }
 

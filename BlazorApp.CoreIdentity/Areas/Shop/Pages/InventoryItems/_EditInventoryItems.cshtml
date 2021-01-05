@@ -4,7 +4,7 @@
 <body>
     @Html.Editor(m => m.Item.Id)
     @Html.DropDown(m => m.Item.ProductId, Model.Products)
-    @Html.Editor(m => m.Item.ProductFeatureApplicabilityId)
+    @Html.DropDown(m => m.Item.ProductFeatureApplicabilityId, Model.ProductFeatures)
     @Html.Editor(m => m.Item.QuantityOnHand)
     @Html.Editor(m => m.Item.ValidFrom)
     @Html.Editor(m => m.Item.ValidTo)
