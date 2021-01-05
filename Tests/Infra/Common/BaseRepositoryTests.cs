@@ -33,7 +33,7 @@ namespace MaskShop.Tests.Infra.Common
         public override void TestInitialize()
         {
             base.TestInitialize();
-            var options = new DbContextOptionsBuilder<ShopDbContext>().Options;
+            var options = new DbContextOptionsBuilder<ShopDbContext>().UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=MaskShopDB;Trusted_Connection=True;MultipleActiveResultSets=true").Options;
             var c = new ShopDbContext(options);
             obj = new TestClass(c, c.Products);
         }
